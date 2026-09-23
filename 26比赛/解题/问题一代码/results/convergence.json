@@ -1,0 +1,30 @@
+[
+  {
+    "initial_celsius": -20,
+    "success": true,
+    "message": "The solver successfully reached the end of the integration interval.",
+    "T_mean_C_max_abs_difference": 4.377055877746727e-05,
+    "T_mean_C_difference_over_scale": 4.377055877746727e-05,
+    "V_max_abs_difference": 2.055326215488762e-05,
+    "V_difference_over_scale": 2.055326215488762e-05,
+    "eps_ice_max_max_abs_difference": 4.704880796002487e-08,
+    "eps_ice_max_difference_over_scale": 1.1183458036611568e-07,
+    "note": "温度尺度1K，电压尺度1V，冰尺度阴极CL初始孔隙率；同时保存绝对差。",
+    "within_one_percent": true,
+    "ice_difference_relative_to_predicted_peak": 0.004432605098221836
+  },
+  {
+    "initial_celsius": -25,
+    "success": true,
+    "message": "The solver successfully reached the end of the integration interval.",
+    "T_mean_C_max_abs_difference": 0.0009278403885062403,
+    "T_mean_C_difference_over_scale": 0.0009278403885062403,
+    "V_max_abs_difference": 0.0001718117079514414,
+    "V_difference_over_scale": 0.0001718117079514414,
+    "eps_ice_max_max_abs_difference": 9.81715446353985e-07,
+    "eps_ice_max_difference_over_scale": 2.3335285152222127e-06,
+    "note": "温度尺度1K，电压尺度1V，冰尺度阴极CL初始孔隙率；同时保存绝对差。",
+    "within_one_percent": true,
+    "ice_difference_relative_to_predicted_peak": 0.007758150054900043
+  }
+]

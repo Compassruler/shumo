@@ -96,3 +96,39 @@ P.operation = S(
     nitrogen_mass_fraction=0.767,
     tolerance=1e-6,
 )
+
+# 第一问代码补充参数。原附件1参数保留原值；下面明确区分题给常数、
+# 建模假设和数值设置。不要将优化初猜误认为附件给定或已验证的物性。
+P.constants = S(
+    R=8.314,                 # 气体常数，J/(mol K)，题备注1
+    F=96485.0,               # 法拉第常数，C/mol，题备注1
+    M_water=0.018,           # 水摩尔质量，kg/mol，题备注1
+    M_oxygen=0.032,          # O2摩尔质量，kg/mol，通用近似常数
+    M_nitrogen=0.028,        # N2摩尔质量，kg/mol，通用近似常数
+)
+P.cold_start = S(
+    alpha=0.5,                      # 电荷传递系数，题备注1式(39)
+    activation_energy=67000.0,       # 活化能，J/mol，题备注1式(40)
+    j0_ref=0.01,                    # 参考交换电流密度优化初猜，A/m²；题给初猜
+    contact_resistance=1e-6,         # 面积比接触电阻，Ωm²；0.01 Ωcm²换算
+    thermoneutral_voltage=1.48,      # 热中性电压，V；题备注1式(35)
+    reference_pressure=101325.0,     # 参考压力，Pa；题备注1
+    freezing_temperature=273.15,    # 常压相变温度，K；MD假设H3
+    k_freeze=1.0,                   # 冻结速率优化初猜，s^-1；不是附件1参数
+    k_melt_ratio=1.0,               # k_m/k_f，MD暂取对称速率；未经融化数据验证
+    D_hydrogen_ref=1.10e-4,          # H2参考扩散系数，m²/s；题式(17)
+    D_oxygen_ref=2.20e-5,            # O2参考扩散系数，m²/s；题式(17)
+    D_water_anode_ref=8.69e-5,       # 阳极等效水参考扩散系数，m²/s；题式(23)
+    D_water_cathode_ref=2.48e-5,     # 阴极等效水参考扩散系数，m²/s；题式(23)
+    temperature_exponent=1.75,      # 扩散温度指数，题式(16)
+    porosity_exponent=1.5,          # Bruggeman指数，题式(16)，不参与拟合
+    # 数值设置：依次为aBP,aGDL,aCL,PEM,cCL,cGDL,cBP的有限体积单元数。
+    # 每层加倍及收紧容差进行收敛检查；不是附件物性。
+    grid=(8, 12, 8, 12, 8, 12, 8),
+    rtol=1e-6,                     # 尺度化状态的相对积分误差控制
+    atol=1e-9,                     # 尺度化状态的绝对积分误差控制
+    max_step=0.05,                 # 最大积分步长，s
+    fit_j0_bounds=(1e-5, 1e3),      # A/m²，对数搜索边界；数值选择
+    fit_k_bounds=(1e-4, 1e4),       # s^-1，对数搜索边界；数值选择
+    fit_k_starts=(0.01, 1.0, 100.0),# MD建议多初猜；不代表三组已知物性
+)

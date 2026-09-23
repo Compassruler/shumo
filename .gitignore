@@ -3,3 +3,15 @@
 reports
 todo.md
 Plan.md
+
+# 本机 Python 缓存与为第一问临时安装的数值库
+__pycache__/
+*.py[cod]
+/26比赛/解题/问题一代码/.python_deps/
+
+# 可重新计算的草稿和来源提取中间文件
+/26比赛/解题/问题一代码/baseline_results/
+/26比赛/解题/问题一代码/source_extract.txt
+
+# Excel 打开工作簿时生成的临时锁文件
+~$*.xlsx
