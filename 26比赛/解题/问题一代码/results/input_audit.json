@@ -1,6 +1,6 @@
 {
   "-20": {
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\B题\\氢燃料电池低温冷启动建模与控制策略研究  附件\\附件2.xlsx",
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件2.xlsx",
     "sheet": "-20℃",
     "input_column": "F",
     "unit": "A/m²",
@@ -24,7 +24,7 @@
     "sha256": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b"
   },
   "-25": {
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\B题\\氢燃料电池低温冷启动建模与控制策略研究  附件\\附件2.xlsx",
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件2.xlsx",
     "sheet": "-25℃",
     "input_column": "F",
     "unit": "A/m²",

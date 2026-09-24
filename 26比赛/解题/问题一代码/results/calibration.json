@@ -1,64 +1,64 @@
 {
-  "j0_ref": 0.12021893075564784,
-  "k_freeze": 4.6883331929044925,
-  "k_melt": 4.6883331929044925,
-  "objective": 0.32268984754754443,
+  "j0_ref": 0.1202193291279339,
+  "k_freeze": 0.00010011135907000225,
+  "k_melt": 0.00010011135907000225,
+  "objective": 0.32268199333442144,
   "training_celsius": -20,
   "validation_celsius": -25,
   "residual_scale_voltage_V": 0.09245337556879292,
   "residual_scale_temperature_K": 2.5107828213614707,
   "source_sha256": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b",
-  "model_sha256": "349b468a6c9bd8082aa9b53e7cd95da60ecdc5929ddaae61836898b29fb850b8",
+  "model_sha256": "d0a5630d7f972f51b65e4c87833b96137978c35cb16fb2fcf4c5e3838b79ee97",
   "starts": [
     {
       "start_kf": 0.01,
       "parameters": [
-        0.12024750521175347,
-        5.12387720526656
+        0.1202193291279339,
+        0.00010011135907000225
       ],
       "scipy_success": true,
       "message": "`xtol` termination condition is satisfied.",
-      "nfev": 10,
-      "cost": 29.687485846758353
+      "nfev": 4,
+      "cost": 29.68674338676677
     },
     {
       "start_kf": 1.0,
       "parameters": [
-        0.1187157562264415,
-        0.9569109927829985
+        0.12016415306143774,
+        0.966449379938512
       ],
       "scipy_success": true,
       "message": "`ftol` termination condition is satisfied.",
       "nfev": 4,
-      "cost": 29.69032429424624
+      "cost": 29.687021963408576
     },
     {
       "start_kf": 100.0,
       "parameters": [
-        0.12021893075564784,
-        4.6883331929044925
+        0.12024920016380908,
+        0.04625392913832104
       ],
       "scipy_success": true,
       "message": "`ftol` termination condition is satisfied.",
-      "nfev": 7,
-      "cost": 29.68746597437409
+      "nfev": 4,
+      "cost": 29.68678086863946
     }
   ],
   "fixed_j0_kf_profile": [
     {
-      "k_freeze": 0.46883331929044925,
-      "objective": 0.3226842574537693
+      "k_freeze": 0.0001,
+      "objective": 0.3226823925619681
     },
     {
-      "k_freeze": 4.6883331929044925,
-      "objective": 0.32268984754754443
+      "k_freeze": 0.00010011135907000225,
+      "objective": 0.32268199333442144
     },
     {
-      "k_freeze": 46.88333192904493,
-      "objective": 0.32276020465196475
+      "k_freeze": 0.0010011135907000224,
+      "objective": 0.3226820120297015
     }
   ],
-  "n_simulations": 53,
+  "n_simulations": 36,
   "bounds": {
     "j0": [
       1e-05,

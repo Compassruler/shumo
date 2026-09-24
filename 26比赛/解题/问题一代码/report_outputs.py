@@ -243,7 +243,7 @@ def _plot_main(results, experiments, output_dir, chinese):
             ax.plot(t, result[key], color=blue, label="模型" if chinese else "Model")
             if expkey:
                 ax.plot(et[use], np.asarray(exp[expkey])[use], linestyle="none",
-                        marker="o", markersize=3, markevery=max(1, int(use.sum()/40)),
+                        marker="o", markersize=3, markevery= 1,
                         color=orange, alpha=.8, label="实验" if chinese else "Experiment")
             else:
                 ax.text(.02, .95, "冰量为模型预测；附件无冰量观测" if chinese

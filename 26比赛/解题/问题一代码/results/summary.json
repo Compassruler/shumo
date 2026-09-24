@@ -10,66 +10,66 @@
   },
   "metadata": {
     "calibration": {
-      "j0_ref": 0.12021893075564784,
-      "k_freeze": 4.6883331929044925,
-      "k_melt": 4.6883331929044925,
-      "objective": 0.32268984754754443,
+      "j0_ref": 0.1202193291279339,
+      "k_freeze": 0.00010011135907000225,
+      "k_melt": 0.00010011135907000225,
+      "objective": 0.32268199333442144,
       "training_celsius": -20,
       "validation_celsius": -25,
       "residual_scale_voltage_V": 0.09245337556879292,
       "residual_scale_temperature_K": 2.5107828213614707,
       "source_sha256": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b",
-      "model_sha256": "349b468a6c9bd8082aa9b53e7cd95da60ecdc5929ddaae61836898b29fb850b8",
+      "model_sha256": "d0a5630d7f972f51b65e4c87833b96137978c35cb16fb2fcf4c5e3838b79ee97",
       "starts": [
         {
           "start_kf": 0.01,
           "parameters": [
-            0.12024750521175347,
-            5.12387720526656
+            0.1202193291279339,
+            0.00010011135907000225
           ],
           "scipy_success": true,
           "message": "`xtol` termination condition is satisfied.",
-          "nfev": 10,
-          "cost": 29.687485846758353
+          "nfev": 4,
+          "cost": 29.68674338676677
         },
         {
           "start_kf": 1.0,
           "parameters": [
-            0.1187157562264415,
-            0.9569109927829985
+            0.12016415306143774,
+            0.966449379938512
           ],
           "scipy_success": true,
           "message": "`ftol` termination condition is satisfied.",
           "nfev": 4,
-          "cost": 29.69032429424624
+          "cost": 29.687021963408576
         },
         {
           "start_kf": 100.0,
           "parameters": [
-            0.12021893075564784,
-            4.6883331929044925
+            0.12024920016380908,
+            0.04625392913832104
           ],
           "scipy_success": true,
           "message": "`ftol` termination condition is satisfied.",
-          "nfev": 7,
-          "cost": 29.68746597437409
+          "nfev": 4,
+          "cost": 29.68678086863946
         }
       ],
       "fixed_j0_kf_profile": [
         {
-          "k_freeze": 0.46883331929044925,
-          "objective": 0.3226842574537693
+          "k_freeze": 0.0001,
+          "objective": 0.3226823925619681
         },
         {
-          "k_freeze": 4.6883331929044925,
-          "objective": 0.32268984754754443
+          "k_freeze": 0.00010011135907000225,
+          "objective": 0.32268199333442144
         },
         {
-          "k_freeze": 46.88333192904493,
-          "objective": 0.32276020465196475
+          "k_freeze": 0.0010011135907000224,
+          "objective": 0.3226820120297015
         }
       ],
-      "n_simulations": 53,
+      "n_simulations": 36,
       "bounds": {
         "j0": [
           1e-05,
@@ -86,9 +86,9 @@
     "temperature_domain": "aBP + 五层MEA + cBP，总长0.0043267m，厚度加权空间平均",
     "ice_definition": "epsilon_ice=mi/rho_ice，控制体总体积基准",
     "software": {
-      "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
-      "numpy": "2.3.5",
-      "scipy": "1.18.1"
+      "python": "3.9.6 (default, May 22 2026, 11:13:45) \n[Clang 21.0.0 (clang-2100.1.1.101)]",
+      "numpy": "2.0.2",
+      "scipy": "1.13.1"
     },
     "numerical_settings": {
       "grid": [
@@ -105,37 +105,7 @@
       "atol": 1e-09,
       "max_step_s": 0.05
     },
-    "model_sha256": "349b468a6c9bd8082aa9b53e7cd95da60ecdc5929ddaae61836898b29fb850b8",
-    "convergence": [
-      {
-        "initial_celsius": -20,
-        "success": true,
-        "message": "The solver successfully reached the end of the integration interval.",
-        "T_mean_C_max_abs_difference": 4.377055877746727e-05,
-        "T_mean_C_difference_over_scale": 4.377055877746727e-05,
-        "V_max_abs_difference": 2.055326215488762e-05,
-        "V_difference_over_scale": 2.055326215488762e-05,
-        "eps_ice_max_max_abs_difference": 4.704880796002487e-08,
-        "eps_ice_max_difference_over_scale": 1.1183458036611568e-07,
-        "note": "温度尺度1K，电压尺度1V，冰尺度阴极CL初始孔隙率；同时保存绝对差。",
-        "within_one_percent": true,
-        "ice_difference_relative_to_predicted_peak": 0.004432605098221836
-      },
-      {
-        "initial_celsius": -25,
-        "success": true,
-        "message": "The solver successfully reached the end of the integration interval.",
-        "T_mean_C_max_abs_difference": 0.0009278403885062403,
-        "T_mean_C_difference_over_scale": 0.0009278403885062403,
-        "V_max_abs_difference": 0.0001718117079514414,
-        "V_difference_over_scale": 0.0001718117079514414,
-        "eps_ice_max_max_abs_difference": 9.81715446353985e-07,
-        "eps_ice_max_difference_over_scale": 2.3335285152222127e-06,
-        "note": "温度尺度1K，电压尺度1V，冰尺度阴极CL初始孔隙率；同时保存绝对差。",
-        "within_one_percent": true,
-        "ice_difference_relative_to_predicted_peak": 0.007758150054900043
-      }
-    ]
+    "model_sha256": "d0a5630d7f972f51b65e4c87833b96137978c35cb16fb2fcf4c5e3838b79ee97"
   },
   "cases": {
     "-20": {
@@ -151,10 +121,10 @@
       "solver_status": "completed",
       "solver_message": "The solver successfully reached the end of the integration interval.",
       "event_time_s": null,
-      "final_model_temperature_C": -12.05648581533866,
-      "final_model_voltage_V": 0.5984739476772859,
-      "final_max_ice_volume_fraction": 1.0614256609256429e-05,
-      "peak_max_ice_volume_fraction_over_valid_interval": 1.0614256609256429e-05,
+      "final_model_temperature_C": -12.056473276761599,
+      "final_model_voltage_V": 0.598477274279092,
+      "final_max_ice_volume_fraction": 2.2665078370044525e-10,
+      "peak_max_ice_volume_fraction_over_valid_interval": 2.2665078370044525e-10,
       "metrics_at_experimental_sampling_times": {
         "count": 184,
         "time_range_s": [
@@ -162,44 +132,44 @@
           36.6
         ],
         "voltage_V": {
-          "mae": 0.04393698832187432,
-          "rmse": 0.05239701843091878,
-          "max_abs": 0.10504930854251981,
-          "mean_relative_percent": 7.4485071131530844,
-          "max_relative_percent": 21.57647559456715,
+          "mae": 0.04393629606795374,
+          "rmse": 0.052396377128080866,
+          "max_abs": 0.105049487607072,
+          "mean_relative_percent": 7.448402380434405,
+          "max_relative_percent": 21.57651487891661,
           "count": 184,
           "near_zero_experiment_count": 0
         },
         "temperature_C": {
-          "mae": 0.07639104301512244,
-          "rmse": 0.09710316150856303,
-          "max_abs": 0.16622717999425518,
-          "mean_relative_percent": 0.4666386859869514,
-          "max_relative_percent": 1.0619266236009997,
+          "mae": 0.07639015254461964,
+          "rmse": 0.09710342513971051,
+          "max_abs": 0.16623040504547149,
+          "mean_relative_percent": 0.4666325253488939,
+          "max_relative_percent": 1.0620295178171266,
           "count": 184,
           "near_zero_experiment_count": 0
         }
       },
       "diagnostics": {
-        "nfev": 6351,
-        "njev": 208,
-        "nlu": 892,
-        "elapsed_s": 13.022642200001428,
-        "heat_capacity_J_m2_K": 6127.479660000001,
+        "nfev": 6298,
+        "njev": 223,
+        "nlu": 902,
+        "elapsed_s": 11.340447459000018,
+        "heat_capacity_J_m2_K": 6127.47966,
         "water_initial_kg_m2": 0.0013932,
-        "max_water_balance_abs_kg_m2": 8.239936510889834e-18,
-        "max_water_balance_relative": 1.3751182860125015e-15,
-        "max_energy_balance_abs_J_m2": 9.803882705661238e-11,
-        "max_energy_balance_relative": 1.731552034181312e-15,
-        "max_hydrogen_balance_abs_mol_m2": 4.996003610813204e-16,
-        "max_oxygen_balance_abs_mol_m2": 1.3877787807814457e-16,
-        "max_interface_normalized_residual": 1.90708316135768e-13,
+        "max_water_balance_abs_kg_m2": 5.637851296924623e-18,
+        "max_water_balance_relative": 9.408660047315281e-16,
+        "max_energy_balance_abs_J_m2": 8.405122465374665e-11,
+        "max_energy_balance_relative": 1.4844994349867261e-15,
+        "max_hydrogen_balance_abs_mol_m2": 2.498001805406602e-16,
+        "max_oxygen_balance_abs_mol_m2": 2.220446049250313e-16,
+        "max_interface_normalized_residual": 1.904264924008164e-13,
         "min_unfrozen_water_kg_m3": 0.0,
-        "min_ice_kg_m3": -1.833955262110651e-20,
+        "min_ice_kg_m3": -3.686984388049837e-21,
         "min_gas_porosity": 0.3916,
-        "min_membrane_lambda": 2.262359045932114,
-        "min_membrane_conductivity_S_m": 0.36837497109884143,
-        "min_current_margin_A_m2": 278316.82425588643,
+        "min_membrane_lambda": 2.2623631372192574,
+        "min_membrane_conductivity_S_m": 0.36837551270200364,
+        "min_current_margin_A_m2": 278316.81834956986,
         "negative_voltage_count": 0,
         "thermal_cells": 68,
         "mass_cells": 52,
@@ -216,7 +186,7 @@
         "membrane_drag_faces": "一阶迎风；电渗沿 +x；界面用 M43。"
       },
       "input_audit": {
-        "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\B题\\氢燃料电池低温冷启动建模与控制策略研究  附件\\附件2.xlsx",
+        "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件2.xlsx",
         "sheet": "-20℃",
         "input_column": "F",
         "unit": "A/m²",
@@ -254,10 +224,10 @@
       "solver_status": "completed",
       "solver_message": "The solver successfully reached the end of the integration interval.",
       "event_time_s": null,
-      "final_model_temperature_C": -16.710691960190164,
-      "final_model_voltage_V": 0.5809913096230231,
-      "final_max_ice_volume_fraction": 0.00012653988894349035,
-      "peak_max_ice_volume_fraction_over_valid_interval": 0.00012653988894349035,
+      "final_model_temperature_C": -16.71109305491057,
+      "final_model_voltage_V": 0.5810355065400274,
+      "final_max_ice_volume_fraction": 2.706897477482916e-09,
+      "peak_max_ice_volume_fraction_over_valid_interval": 2.706897477482916e-09,
       "metrics_at_experimental_sampling_times": {
         "count": 184,
         "time_range_s": [
@@ -265,44 +235,44 @@
           36.5999999999999
         ],
         "voltage_V": {
-          "mae": 0.04453094252536758,
-          "rmse": 0.050463499906146264,
-          "max_abs": 0.09480952424837708,
-          "mean_relative_percent": 7.449759356017087,
-          "max_relative_percent": 19.56956992192884,
+          "mae": 0.0445219195253253,
+          "rmse": 0.05045397805190228,
+          "max_abs": 0.09480982962965578,
+          "mean_relative_percent": 7.448332974214366,
+          "max_relative_percent": 19.569666565134053,
           "count": 184,
           "near_zero_experiment_count": 0
         },
         "temperature_C": {
-          "mae": 0.08060380400742238,
-          "rmse": 0.12463503744486623,
-          "max_abs": 0.3986857751661361,
-          "mean_relative_percent": 0.4141932150562657,
-          "max_relative_percent": 2.330217856738631,
+          "mae": 0.08053716770222788,
+          "rmse": 0.12450826916333828,
+          "max_abs": 0.3982846804457303,
+          "mean_relative_percent": 0.4138283222515492,
+          "max_relative_percent": 2.3278735592042037,
           "count": 184,
           "near_zero_experiment_count": 0
         }
       },
       "diagnostics": {
-        "nfev": 6572,
-        "njev": 234,
-        "nlu": 1003,
-        "elapsed_s": 13.792223899999954,
-        "heat_capacity_J_m2_K": 6127.479660000001,
+        "nfev": 11260,
+        "njev": 653,
+        "nlu": 2894,
+        "elapsed_s": 28.206376417,
+        "heat_capacity_J_m2_K": 6127.47966,
         "water_initial_kg_m2": 0.0013932,
-        "max_water_balance_abs_kg_m2": 1.0408340855860843e-17,
-        "max_water_balance_relative": 1.690076918263624e-15,
-        "max_energy_balance_abs_J_m2": 1.205799904369087e-10,
-        "max_energy_balance_relative": 2.0404110569737455e-15,
-        "max_hydrogen_balance_abs_mol_m2": 8.881784197001252e-16,
-        "max_oxygen_balance_abs_mol_m2": 1.6653345369377348e-16,
-        "max_interface_normalized_residual": 1.4647720868934682e-13,
+        "max_water_balance_abs_kg_m2": 1.3010426069826053e-17,
+        "max_water_balance_relative": 2.1125875985919893e-15,
+        "max_energy_balance_abs_J_m2": 1.0785391771849472e-10,
+        "max_energy_balance_relative": 1.8250895514643593e-15,
+        "max_hydrogen_balance_abs_mol_m2": 8.326672684688674e-16,
+        "max_oxygen_balance_abs_mol_m2": 3.608224830031759e-16,
+        "max_interface_normalized_residual": 1.463606572862945e-13,
         "min_unfrozen_water_kg_m3": 0.0,
-        "min_ice_kg_m3": -2.765423784995543e-20,
+        "min_ice_kg_m3": -8.846334150125204e-21,
         "min_gas_porosity": 0.3916,
-        "min_membrane_lambda": 2.446306791152812,
-        "min_membrane_conductivity_S_m": 0.3710250386802656,
-        "min_current_margin_A_m2": 274158.6168750667,
+        "min_membrane_lambda": 2.4463078308979367,
+        "min_membrane_conductivity_S_m": 0.3710252861051823,
+        "min_current_margin_A_m2": 274158.72054127255,
         "negative_voltage_count": 0,
         "thermal_cells": 68,
         "mass_cells": 52,
@@ -319,7 +289,7 @@
         "membrane_drag_faces": "一阶迎风；电渗沿 +x；界面用 M43。"
       },
       "input_audit": {
-        "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\B题\\氢燃料电池低温冷启动建模与控制策略研究  附件\\附件2.xlsx",
+        "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件2.xlsx",
         "sheet": "-25℃",
         "input_column": "F",
         "unit": "A/m²",
@@ -360,8 +330,6 @@
     "temperature_voltage_ice.pdf",
     "errors.png",
     "errors.pdf",
-    "convergence.png",
-    "convergence.pdf",
     "summary.json",
     "results.md"
   ]
