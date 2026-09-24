@@ -89,11 +89,43 @@
   },
   {
     "id": "09_freezing_identifiability",
-    "caption": "冻结系数剖面：每个固定冻结系数都重新优化交换电流密度，均仅使用−20℃数据。误差目标在小冻结系数区间变化很小，而冰量跨多个数量级；这不是置信区间。",
+    "caption": "冻结系数剖面：每个固定 kf 仅用−20℃重新拟合 j0，再预测−25℃。所有曲线采用粗网格和0.05 s步长，不能与正式细网格末位混比；竖线表示固定基准kf=1。剖面用于判断参数非唯一性，不是置信区间。",
     "pdf": "figures/09_freezing_identifiability.pdf",
     "png": "figures/09_freezing_identifiability.png",
     "sources": [
       "data/冻结系数剖面.csv"
+    ]
+  },
+  {
+    "id": "10_phase_coefficient_sensitivity",
+    "caption": "六相变系数按完全相同的0.1倍/10倍扰动规则逐一检验，j0保持正式校准值。数字为两种扰动的最大绝对影响；V、T取全时段最大差，冰取35 s最大冰体积分数差并换算为百分点。所有敏感性轨迹及各自基准采用同网格、0.025 s步长。零影响仅表明本工况/窗口内没有激活或影响低于数值输出精度，不证明参数普遍不重要。",
+    "pdf": "figures/10_phase_coefficient_sensitivity.pdf",
+    "png": "figures/10_phase_coefficient_sensitivity.png",
+    "sources": [
+      "data/参数与闭合敏感性.csv"
+    ]
+  },
+  {
+    "id": "11_phase_cumulative_amounts",
+    "caption": "冻结、融化、凝结、蒸发、凝华、升华六通道的累计转化水量，均为模型输出。各面板纵轴独立；全零通道明确标注未激活。累计相变量允许同一份水反复转化，不能相加当作互斥水库存，也不能直接除以产水解释为冻结概率。",
+    "pdf": "figures/11_phase_cumulative_amounts.pdf",
+    "png": "figures/11_phase_cumulative_amounts.png",
+    "sources": [
+      "data/main_minus20.csv",
+      "data/main_minus25.csv",
+      "data/bp_minus20.csv",
+      "data/bp_minus25.csv"
+    ]
+  },
+  {
+    "id": "12_near_optimal_ice_scenarios",
+    "caption": "仅由−20℃校准目标挑选不超过扫描最小值1.05倍的离散冻结情景，原样应用于−25℃，阴影为逐采样时刻最小/最大值。5%是工程误差容差而非统计显著性，范围不是置信区间，亦不是全部物理不确定性；1%/10%阈值另存CSV。橙色参考与阴影同采用粗网格0.05 s，正式主解另见图04。",
+    "pdf": "figures/12_near_optimal_ice_scenarios.pdf",
+    "png": "figures/12_near_optimal_ice_scenarios.png",
+    "sources": [
+      "data/近优冻结情景范围_非置信区间.csv",
+      "data/冻结系数情景全时序.csv",
+      "data/近优阈值敏感性.csv"
     ]
   }
 ]

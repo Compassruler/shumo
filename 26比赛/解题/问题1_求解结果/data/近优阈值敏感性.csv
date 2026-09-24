@@ -1,0 +1,13 @@
+﻿model,condition,allowed_relative_objective_increase,min_training_objective,selected_kf_min,selected_kf_max,n_scenarios,ice_at35_min,ice_at35_max,interpretation
+main,minus20,0.01,0.7417074167995229,0.0001,0.3,6,3.00730518494114e-06,0.00831959271803315,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+main,minus25,0.01,0.7417074167995229,0.0001,0.3,6,6.781014140255484e-06,0.01837693487579861,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+main,minus20,0.05,0.7417074167995229,0.0001,3.0,8,3.00730518494114e-06,0.054962852073558534,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+main,minus25,0.05,0.7417074167995229,0.0001,3.0,8,6.781014140255484e-06,0.10423534194669201,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+main,minus20,0.1,0.7417074167995229,0.0001,10.0,9,3.00730518494114e-06,0.10613932127242727,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+main,minus25,0.1,0.7417074167995229,0.0001,10.0,9,6.781014140255484e-06,0.17911294300457745,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+bp,minus20,0.01,0.008933351647734067,0.0001,0.03,4,1.3437585204267197e-05,0.003982037865732363,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+bp,minus25,0.01,0.008933351647734067,0.0001,0.03,4,1.940621809261963e-05,0.005731351016310157,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+bp,minus20,0.05,0.008933351647734067,0.0001,0.1,5,1.3437585204267197e-05,0.012903337787005678,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+bp,minus25,0.05,0.008933351647734067,0.0001,0.1,5,1.940621809261963e-05,0.01843139430508984,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+bp,minus20,0.1,0.008933351647734067,0.0001,0.3,6,1.3437585204267197e-05,0.03583705713934771,engineering error tolerance; discrete conditional scenarios; not statistical confidence
+bp,minus25,0.1,0.008933351647734067,0.0001,0.3,6,1.940621809261963e-05,0.050212357499795655,engineering error tolerance; discrete conditional scenarios; not statistical confidence

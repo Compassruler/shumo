@@ -3,9 +3,21 @@
   "platform": "macOS-26.6.2-arm64-arm-64bit",
   "numpy": "2.3.5",
   "scipy": "1.18.1",
-  "runtime_s": 167.79009895800118,
+  "runtime_s": 337.30555404200004,
   "calibration_condition": "-20 C only",
   "validation_condition": "-25 C held out",
+  "fitted_parameters": [
+    "j0"
+  ],
+  "phase_baseline": {
+    "kf": 1,
+    "km": 1,
+    "kcond": 1,
+    "kevap": 1,
+    "kdep": 0.0001,
+    "ksub": 0.0001
+  },
+  "reference_time_s": 1,
   "final_dt_s": 0.0125,
   "grid_counts_MEA": [
     16,
@@ -15,15 +27,41 @@
     16
   ],
   "grid_counts_BP_each": 8,
+  "sensitivity_dt_s": 0.025,
+  "sensitivity_grid_scale": 2,
+  "profile_dt_s": 0.05,
+  "profile_grid_scale": 1,
   "sources": {
-    "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件1.xlsx": "06fece93cc86cd9110b5f24fbb3e1085f779d89338a6002d26c67616a4e4ed62",
-    "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件2.xlsx": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b",
-    "/Users/ygcz/Desktop/shumo/26比赛/解题/问题1_建模推导源文件.md": "c61bacc0d1872c32cb8d2a51a26c95248f3bf036a2359234f4f78e78eef871b1"
+    "/Users/ygcz/Desktop/shumo/26比赛/解题/问题1_求解结果/inputs/附件1.xlsx": "06fece93cc86cd9110b5f24fbb3e1085f779d89338a6002d26c67616a4e4ed62",
+    "/Users/ygcz/Desktop/shumo/26比赛/解题/问题1_求解结果/inputs/附件2.xlsx": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b",
+    "/Users/ygcz/Desktop/shumo/26比赛/解题/问题1_建模推导源文件.md": "4e38ec4a9cdcb5898923060a78b88fe02bbb79bfca6f099d5df164876a923a50"
   },
   "code_hashes": {
-    "model.py": "ec40b05f53ca11d8d6f8d89d8a9d441bf0d9399f249ba384d1fe803e9e6d64b4",
-    "io_utils.py": "c195af9005f72d2acc14e3ca4870db1ce29cd8501bb7cc37e47d2b587e92e4a3",
-    "plot_results.py": "0921a28499da1d165284525328578f459bea730730bf392844ebe6b93a5e0aa3",
-    "run_question1.py": "9cd1eb07efdb10a8a5f1048a81d2a4fe470e0d40ee983e0615d7e98205943f17"
-  }
+    "build_parameter_inventory.py": "aff51c42fae670e4a8b40a75c63afc37ac18027ab93925c28eeeb8519b75289b",
+    "build_parameter_source_pdf.py": "c85a362102c99333182da46e14558820c68d1af81a74c5c1486719ee1cb9b79e",
+    "build_report.py": "57a71b5bee100b5ec211ae052ba86606d4806f6f390b003e29ea86db24ca6f28",
+    "io_utils.py": "c8c5106b55e907572df5d89bac55a35ab09fa990d7d734561bf34121599f6268",
+    "model.py": "5932fe88f8ce5bc6b051df9db94584c6706b78755bc08a8163e11a5261a1de80",
+    "plot_results.py": "c829665233ad2ca7aaa990b0d208234cf311967130c5c7194060ab7b796d2e99",
+    "run_question1.py": "45309c9987ab393cb6b3eae599ca099878300365623fe0c72d6b354bde8094e9",
+    "verify_phase_exports.py": "c03a3394d3bad83fa8f8c1f60992076a181e0f2ab8b2423472185bb594e7e4ce"
+  },
+  "postprocessing_updated_at": "2026-09-24T23:34:48.647263+08:00",
+  "final_output_verification": {
+    "退化与守恒测试.csv": {
+      "count": 27,
+      "all_passed": true
+    },
+    "相变输出独立核验.csv": {
+      "count": 124,
+      "all_passed": true
+    },
+    "最终交付独立核验.csv": {
+      "count": 4,
+      "all_passed": true
+    }
+  },
+  "figure_count": 12,
+  "documentation_updated_at": "2026-09-24T15:53:18.936Z",
+  "documentation_update": "仅补充双极板热域、物性、界面与边界、热容量级及温度口径说明；相变/电化学/校准/数值结果未改动，未重新计算。"
 }

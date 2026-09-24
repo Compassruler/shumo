@@ -178,7 +178,7 @@ def plot_errors(all_data, output, manifest):
     for col, temp in enumerate(['20', '25']):
         for row, (key, ylabel) in enumerate([
                 ('V_rel_error_pct', '电压相对误差 / %'),
-                ('T_rel_error_pct', '温度相对误差（℃ 绝对值分母）/ %')]):
+                ('T_rel_error_pct', '温度相对误差（摄氏口径）/ %')]):
             ax = axes[row, col]
             handles = []
             for model, label, ls in [('main', '五层基线', '-'),
@@ -399,6 +399,143 @@ def plot_fields(model, fields, output, manifest):
                      'sources': [f'data/fields_{key}.csv' for key in key_list]})
 
 
+
+PHASE_LABELS = {'kf': '冻结', 'km': '融化', 'kcond': '凝结',
+                'kevap': '蒸发', 'kdep': '凝华', 'ksub': '升华'}
+PHASE_CHANNELS = {'cond': '凝结', 'evap': '蒸发', 'dep': '凝华',
+                  'sub': '升华', 'frz': '冻结', 'mlt': '融化'}
+
+
+def select(data, **filters):
+    mask = np.ones(len(next(iter(data.values()))), dtype=bool)
+    for key, value in filters.items():
+        mask &= np.isclose(data[key], value) if isinstance(value, (float, int)) else data[key] == value
+    return {k: v[mask] for k, v in data.items()}
+
+
+def plot_profile(root, output, manifest):
+    data = read_csv(root / 'data/冻结系数剖面.csv',
+                    ['model', 'condition', 'kf_s_inv', 'mean_squared_relative_objective', 'ice_at35_bulk'])
+    fig, axes = plt.subplots(2, 2, figsize=(10.4, 7.1))
+    handles = []
+    for row, (model, title) in enumerate([('main', '五层基线'), ('bp', '含双极板修订')]):
+        for condition, color, ls, label in [('minus20', COLORS['main'], '-', '−20 ℃：校准工况'),
+                                           ('minus25', COLORS['bp'], '--', '−25 ℃：留出工况')]:
+            d = select(data, model=model, condition=condition)
+            order = np.argsort(d['kf_s_inv'])
+            for col, key in enumerate(['mean_squared_relative_objective', 'ice_at35_bulk']):
+                x, y = d['kf_s_inv'][order], d[key][order]
+                if col == 1:
+                    y = np.where(y > 0, y, np.nan)
+                h = axes[row, col].plot(x, y, 'o', linestyle=ls, color=color, markersize=4, label=label)[0]
+                axes[row, col].set_xscale('log')
+                if col == 1:
+                    axes[row, col].set_yscale('log')
+                axes[row, col].axvline(1, color='#888888', linewidth=.8, linestyle=':')
+                axes[row, col].set_xlabel(r'冻结系数 $k_f$ / $\mathrm{s}^{-1}$')
+            if row == 0:
+                handles.append(h)
+        axes[row, 0].set_ylabel('平均平方相对误差目标')
+        axes[row, 1].set_ylabel('35 s 最大冰体积分数')
+        for col in range(2):
+            axes[row, col].set_title(f'({chr(97 + row * 2 + col)}) {title}')
+    handles.append(Line2D([0], [0], color='#888888', linestyle=':', label='固定基准 $k_f=1$'))
+    shared_legend(fig, handles, ncol=3)
+    finish(fig, output, '09_freezing_identifiability',
+           '冻结系数剖面：每个固定 kf 仅用−20℃重新拟合 j0，再预测−25℃。所有曲线采用粗网格和0.05 s步长，不能与正式细网格末位混比；竖线表示固定基准kf=1。剖面用于判断参数非唯一性，不是置信区间。',
+           ['冻结系数剖面.csv'], manifest, top=.91, hspace=.45)
+
+
+def plot_phase_sensitivity(root, output, manifest):
+    data = read_csv(root / 'data/参数与闭合敏感性.csv')
+    parameters = list(PHASE_LABELS)
+    metrics = [('max_delta_V_V', 1e3, 'max |ΔV|\n/mV'),
+               ('max_delta_T_C', 1, 'max |ΔT|\n/℃'),
+               ('delta_ice_at35', 100, '|Δ冰35s|\n/百分点')]
+    matrices = []
+    for tag, _, _ in CASES:
+        model, condition = tag.split('_', 1)
+        d = select(data, model=model, condition=condition, kind='phase_one_at_a_time')
+        a = np.array([[np.max(np.abs(select(d, parameter=p)[k])) * scale
+                       for k, scale, _ in metrics] for p in parameters])
+        matrices.append(a)
+    scale = np.maximum(np.max(np.stack(matrices), axis=(0, 1)), 1e-15)
+    fig, axes = plt.subplots(2, 2, figsize=(10.8, 7.6))
+    for idx, ((_, model, temp), a) in enumerate(zip(CASES, matrices)):
+        ax = axes.flat[idx]
+        z = a / scale
+        ax.imshow(z, cmap='Blues', vmin=0, vmax=1, aspect='auto')
+        ax.set_xticks(range(3), [m[2] for m in metrics], fontsize=9)
+        ax.set_yticks(range(6), [PHASE_LABELS[p] + ' · ' + p for p in parameters])
+        for i in range(6):
+            for j in range(3):
+                val = a[i, j]
+                label = '0' if val == 0 else (f'{val:.3g}' if val >= .001 else f'{val:.1e}')
+                ax.text(j, i, label, ha='center', va='center', fontsize=9,
+                        color='white' if z[i, j] > .65 else '#20252B')
+        ax.set_title(f'({chr(97 + idx)}) {model} · {temp}')
+        ax.grid(False)
+        for spine in ax.spines.values():
+            spine.set_visible(False)
+    fig.text(.5, .02, '每项均取单独调整至0.1倍、10倍的较大影响；颜色按各指标在四面板的共同最大值归一化，数值为实际变化。',
+             ha='center', fontsize=8.3)
+    finish(fig, output, '10_phase_coefficient_sensitivity',
+           '六相变系数按完全相同的0.1倍/10倍扰动规则逐一检验，j0保持正式校准值。数字为两种扰动的最大绝对影响；V、T取全时段最大差，冰取35 s最大冰体积分数差并换算为百分点。所有敏感性轨迹及各自基准采用同网格、0.025 s步长。零影响仅表明本工况/窗口内没有激活或影响低于数值输出精度，不证明参数普遍不重要。',
+           ['参数与闭合敏感性.csv'], manifest, top=.94, bottom=.12, wspace=.35, hspace=.55)
+
+
+def plot_phase_amounts(all_data, output, manifest):
+    fig, axes = plt.subplots(2, 3, figsize=(11.5, 7.0))
+    handles = []
+    for idx, (phase, label) in enumerate(PHASE_CHANNELS.items()):
+        ax = axes.flat[idx]
+        peak = 0
+        for tag, model, temp in CASES:
+            d = all_data[tag]
+            amount = d[f'phase_{phase}_kg_m2'] * 1e3
+            peak = max(peak, float(np.max(amount)))
+            color = COLORS[tag.split('_')[0]]
+            ls = '-' if tag.endswith('20') else '--'
+            h = ax.plot(d['t_s'], amount, color=color, linestyle=ls, label=f'{model} · {temp}')[0]
+            if idx == 0:
+                handles.append(h)
+        panel(ax, f'({chr(97 + idx)}) {label}', '累计转化水量 / (g/m²)')
+        if peak == 0:
+            ax.set_ylim(-.05, 1)
+            ax.text(.5, .52, '本窗口内未激活', transform=ax.transAxes, ha='center', color='#666666')
+        else:
+            ax.set_ylim(0, peak * 1.12)
+            ax.ticklabel_format(axis='y', style='sci', scilimits=(-2, 3), useMathText=True)
+    shared_legend(fig, handles, ncol=2)
+    finish(fig, output, '11_phase_cumulative_amounts',
+           '冻结、融化、凝结、蒸发、凝华、升华六通道的累计转化水量，均为模型输出。各面板纵轴独立；全零通道明确标注未激活。累计相变量允许同一份水反复转化，不能相加当作互斥水库存，也不能直接除以产水解释为冻结概率。',
+           [f'{key}.csv' for key, _, _ in CASES], manifest, top=.87, wspace=.40, hspace=.47)
+
+
+def plot_near_optimal(root, output, manifest):
+    ranges = read_csv(root / 'data/近优冻结情景范围_非置信区间.csv')
+    series = read_csv(root / 'data/冻结系数情景全时序.csv')
+    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.1))
+    for idx, (tag, model, temp) in enumerate(CASES):
+        prefix, condition = tag.split('_', 1)
+        d = select(ranges, model=prefix, condition=condition)
+        reference = select(series, model=prefix, condition=condition, kf_s_inv=1.)
+        ax = axes.flat[idx]
+        ax.fill_between(d['t_s'], d['ice_max_bulk_min'], d['ice_max_bulk_max'],
+                        color='#709DAF', alpha=.32, linewidth=0)
+        ax.plot(d['t_s'], d['ice_max_bulk_min'], color='#4C7E92', linewidth=.9)
+        ax.plot(d['t_s'], d['ice_max_bulk_max'], color='#4C7E92', linewidth=.9)
+        ax.plot(reference['t_s'], reference['ice_max_bulk'], '--', color=COLORS['bp'])
+        panel(ax, f'({chr(97 + idx)}) {model} · {temp}', '最大冰体积分数', zero=True)
+        ax.text(.03, .94, f'纳入 {int(d["n_scenarios"][0])} 个离散情景', transform=ax.transAxes,
+                ha='left', va='top', fontsize=8.5)
+    shared_legend(fig, [Patch(facecolor='#709DAF', alpha=.32, label='校准目标≤最小值×1.05的情景范围'),
+                       Line2D([0], [0], color=COLORS['bp'], linestyle='--', label='$k_f=1$ 同粗网格参考')], ncol=2)
+    finish(fig, output, '12_near_optimal_ice_scenarios',
+           '仅由−20℃校准目标挑选不超过扫描最小值1.05倍的离散冻结情景，原样应用于−25℃，阴影为逐采样时刻最小/最大值。5%是工程误差容差而非统计显著性，范围不是置信区间，亦不是全部物理不确定性；1%/10%阈值另存CSV。橙色参考与阴影同采用粗网格0.05 s，正式主解另见图04。',
+           ['近优冻结情景范围_非置信区间.csv', '冻结系数情景全时序.csv', '近优阈值敏感性.csv'],
+           manifest, top=.91, hspace=.45)
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root', type=Path, default=DEFAULT_ROOT)
@@ -436,6 +573,10 @@ def main():
     plot_balances(all_data, output, manifest)
     plot_fields('main', fields, output, manifest)
     plot_fields('bp', fields, output, manifest)
+    plot_profile(root, output, manifest)
+    plot_phase_sensitivity(root, output, manifest)
+    plot_phase_amounts(all_data, output, manifest)
+    plot_near_optimal(root, output, manifest)
     (output / 'figure_manifest.json').write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
     print(f'Saved {len(manifest)} figures as vector PDF and PNG: {output}')

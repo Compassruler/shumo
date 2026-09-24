@@ -1,0 +1,7 @@
+﻿parameter,process,attachment_row,attachment_unit,weight,assumed_reference_time_s,effective_rate_s_inv,fitting_status,qualification
+kf,冻结,48,-,1.0,1.0,1.0,"fixed reference, not inferred from V/T",膜水-冰系数扩展至孔液冻结；过冷度归一化另属闭合
+km,融化,48,-,1.0,1.0,1.0,"fixed reference, not inferred from V/T",膜水-冰系数扩展至融化；过热度归一化另属闭合
+kcond,凝结,49,-,1.0,1.0,1.0,"fixed reference, not inferred from V/T",附件权重采用1秒参考时间转成有效速率
+kevap,蒸发,49,-,1.0,1.0,1.0,"fixed reference, not inferred from V/T",附件权重采用1秒参考时间转成有效速率
+kdep,凝华,50,-,0.0001,1.0,0.0001,"fixed reference, not inferred from V/T",附件权重采用1秒参考时间转成有效速率
+ksub,升华,50,-,0.0001,1.0,0.0001,"fixed reference, not inferred from V/T",由凝华权重对称扩展；附件未独立给升华值

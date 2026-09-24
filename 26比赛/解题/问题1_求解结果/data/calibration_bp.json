@@ -1,33 +1,38 @@
 {
-  "j0": 0.08430420725793636,
-  "kf": 0.00010002098704957458,
+  "j0": 0.10255839004732065,
+  "kf": 1.0,
   "km": 1.0,
+  "kcond": 1.0,
+  "kevap": 1.0,
+  "kdep": 0.0001,
+  "ksub": 0.0001,
   "kvl": 1.0,
   "kvi": 0.0001,
-  "objective": 1.5722896936596094,
-  "log10_parameter_bounds": [
-    [
-      -5,
-      3
-    ],
-    [
-      -4,
-      1
-    ]
+  "objective": 0.010679722003337118,
+  "objective_normalization": "mean over 176 samples",
+  "method": "coarse log-j0 grid + bounded scalar minimization + fine-grid refinement",
+  "fitted_parameters": [
+    "j0"
   ],
-  "log_regularization_weight": 1e-06,
+  "fixed_phase_parameters": {
+    "kf": 1.0,
+    "km": 1.0,
+    "kcond": 1.0,
+    "kevap": 1.0,
+    "kdep": 0.0001,
+    "ksub": 0.0001
+  },
+  "reference_time_s": 1.0,
+  "parameter_status": "attachment weights / assumed 1 s; kf/km pore extension and reverse sublimation are closures",
   "training": "minus20 only, 176 samples, 0-35 s",
-  "fit_dt_s": 0.05,
-  "status": 1,
-  "message": "`gtol` termination condition is satisfied.",
-  "jacobian_singular_values": [
-    2.2075793999489526,
-    0.0010009848104110693
+  "validation": "minus25 held out",
+  "model_sha256": "5932fe88f8ce5bc6b051df9db94584c6706b78755bc08a8163e11a5261a1de80",
+  "fit_dt_s": 0.0125,
+  "fit_grid_scale": 2,
+  "n_model_evaluations": 21,
+  "log10_j0_bounds": [
+    -5,
+    3
   ],
-  "multistart_objectives": [
-    1.572289699961202,
-    1.5722896936596094,
-    1.5722898002082895
-  ],
-  "n_model_evaluations": 45
+  "kf_is_fitted": false
 }

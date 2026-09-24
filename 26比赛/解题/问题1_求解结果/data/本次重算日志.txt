@@ -1,0 +1,23 @@
+CALIBRATED main {'j0': 161.90921352010508, 'kf': 1.0, 'km': 1.0, 'kcond': 1.0, 'kevap': 1.0, 'kdep': 0.0001, 'ksub': 0.0001, 'kvl': 1.0, 'kvi': 0.0001, 'objective': 0.7525220939517587, 'objective_normalization': 'mean over 176 samples', 'method': 'coarse log-j0 grid + bounded scalar minimization + fine-grid refinement', 'fitted_parameters': ['j0'], 'fixed_phase_parameters': {'kf': 1.0, 'km': 1.0, 'kcond': 1.0, 'kevap': 1.0, 'kdep': 0.0001, 'ksub': 0.0001}, 'reference_time_s': 1.0, 'parameter_status': 'attachment weights / assumed 1 s; kf/km pore extension and reverse sublimation are closures', 'training': 'minus20 only, 176 samples, 0-35 s', 'validation': 'minus25 held out', 'model_sha256': '5932fe88f8ce5bc6b051df9db94584c6706b78755bc08a8163e11a5261a1de80', 'fit_dt_s': 0.0125, 'fit_grid_scale': 2, 'n_model_evaluations': 28, 'log10_j0_bounds': [-5, 3], 'kf_is_fitted': False}
+CALIBRATED bp {'j0': 0.10255839004732065, 'kf': 1.0, 'km': 1.0, 'kcond': 1.0, 'kevap': 1.0, 'kdep': 0.0001, 'ksub': 0.0001, 'kvl': 1.0, 'kvi': 0.0001, 'objective': 0.010679722003337118, 'objective_normalization': 'mean over 176 samples', 'method': 'coarse log-j0 grid + bounded scalar minimization + fine-grid refinement', 'fitted_parameters': ['j0'], 'fixed_phase_parameters': {'kf': 1.0, 'km': 1.0, 'kcond': 1.0, 'kevap': 1.0, 'kdep': 0.0001, 'ksub': 0.0001}, 'reference_time_s': 1.0, 'parameter_status': 'attachment weights / assumed 1 s; kf/km pore extension and reverse sublimation are closures', 'training': 'minus20 only, 176 samples, 0-35 s', 'validation': 'minus25 held out', 'model_sha256': '5932fe88f8ce5bc6b051df9db94584c6706b78755bc08a8163e11a5261a1de80', 'fit_dt_s': 0.0125, 'fit_grid_scale': 2, 'n_model_evaluations': 21, 'log10_j0_bounds': [-5, 3], 'kf_is_fitted': False}
+SENSITIVITY main done
+SENSITIVITY bp done
+PROFILE main 0.0001 167.62575178920932 0.7417074167995229
+PROFILE main 0.001 167.6080568197529 0.7417185468294957
+PROFILE main 0.01 167.43185016071905 0.7418296181711341
+PROFILE main 0.03 167.04414538890285 0.7420749243751992
+PROFILE main 0.1 165.72194926913238 0.742917499162661
+PROFILE main 0.3 162.21358264479417 0.7451963343672219
+PROFILE main 1.0 161.21689292240654 0.7520104932836366
+PROFILE main 3.0 173.00861582258955 0.7659556193189342
+PROFILE main 10.0 216.82482526678484 0.791668720908127
+PROFILE bp 0.0001 0.08433788977053681 0.008933351647734067
+PROFILE bp 0.001 0.08435429269994763 0.008934947783645765
+PROFILE bp 0.01 0.08451829320074407 0.008950909061737629
+PROFILE bp 0.03 0.08488254555830216 0.008986377013638143
+PROFILE bp 0.1 0.08615524736321406 0.009110461968508402
+PROFILE bp 0.3 0.08977076958724152 0.009463714948643011
+PROFILE bp 1.0 0.10212803416570711 0.010662207317420137
+PROFILE bp 3.0 0.13470717064705726 0.013635348419724186
+PROFILE bp 10.0 0.253446940450501 0.02372483032789339
+DONE 337.30555404200004
