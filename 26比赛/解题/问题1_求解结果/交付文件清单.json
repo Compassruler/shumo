@@ -1,0 +1,327 @@
+[
+  {
+    "path": "code/build_report.py",
+    "bytes": 23614,
+    "sha256": "430bf143013d739a2473ecf84d29dd3f977b5f2a30356d1c321605c51fcb9159"
+  },
+  {
+    "path": "code/io_utils.py",
+    "bytes": 2556,
+    "sha256": "c8c5106b55e907572df5d89bac55a35ab09fa990d7d734561bf34121599f6268"
+  },
+  {
+    "path": "code/model.py",
+    "bytes": 16409,
+    "sha256": "ec40b05f53ca11d8d6f8d89d8a9d441bf0d9399f249ba384d1fe803e9e6d64b4"
+  },
+  {
+    "path": "code/plot_results.py",
+    "bytes": 23020,
+    "sha256": "816bbd2bc375e85bc0a02f795de872e182d10dd205d5aa7fe12f16f9220c2329"
+  },
+  {
+    "path": "code/requirements.txt",
+    "bytes": 53,
+    "sha256": "2e3e99c124a3b46c52045e0ee5b3ffc8d86fcd8f736c4a2c084b822c4a776e28"
+  },
+  {
+    "path": "code/run_question1.py",
+    "bytes": 9976,
+    "sha256": "9cd1eb07efdb10a8a5f1048a81d2a4fe470e0d40ee983e0615d7e98205943f17"
+  },
+  {
+    "path": "data/bp_minus20.csv",
+    "bytes": 169176,
+    "sha256": "3451d554159d218c00aecbf73684a0634036b96b2bf1851759c17a84be8b5267"
+  },
+  {
+    "path": "data/bp_minus25.csv",
+    "bytes": 172810,
+    "sha256": "7c6ccc83105402838d1bd0b8888c4af389168baba43daba4dbeab418a17fe200"
+  },
+  {
+    "path": "data/calibration_bp.json",
+    "bytes": 641,
+    "sha256": "6e12dba05699bf4ec643f9a93848a5f2929c98c72eaefc1d0103deabddd76461"
+  },
+  {
+    "path": "data/calibration_main.json",
+    "bytes": 639,
+    "sha256": "b921a715c1c3d2ba3f80fb96efc63e4c1953119e072347fe4ee4c0c1a411357a"
+  },
+  {
+    "path": "data/calibration_trace_bp.csv",
+    "bytes": 2930,
+    "sha256": "621d30f46e8370d66b5169e37df4166f216345ffb30fabf34825c889ca7c7148"
+  },
+  {
+    "path": "data/calibration_trace_main.csv",
+    "bytes": 4089,
+    "sha256": "1f3f1608b43ef0bb29d4cbb13b6559265dde5e58a569178a787573f116cdf60d"
+  },
+  {
+    "path": "data/fields_bp_minus20.csv",
+    "bytes": 1482928,
+    "sha256": "fb3bbb61b4731e264f1b103771bc4a2fa5fda9c2baefd25a7e44f3fa836d130d"
+  },
+  {
+    "path": "data/fields_bp_minus25.csv",
+    "bytes": 1493127,
+    "sha256": "356d90385043eb2428f8bc755f86db1f058de1b68f04a44ca6ed007054febf3b"
+  },
+  {
+    "path": "data/fields_main_minus20.csv",
+    "bytes": 1248901,
+    "sha256": "7f3214905402279a1e285714460fdf0e3a70b66b8c7f07a864dbe97e1d17865a"
+  },
+  {
+    "path": "data/fields_main_minus25.csv",
+    "bytes": 1258074,
+    "sha256": "f93534dfe8f88856f295fe43ba83627c9b7cc735c72eb6fa4e71a38d5cea8987"
+  },
+  {
+    "path": "data/main_minus20.csv",
+    "bytes": 168513,
+    "sha256": "a91187f16c8ee91b291c66b84e19eeee15d19355dd31bc1bb970a7466c183da2"
+  },
+  {
+    "path": "data/main_minus25.csv",
+    "bytes": 172292,
+    "sha256": "4821fa9063c47577e91b6e732bf52bf551abe881a93d429c88fbfe1f5ead6e37"
+  },
+  {
+    "path": "data/plot.log",
+    "bytes": 110,
+    "sha256": "ece815196504f0deebf78a9fc0813e609b518c2be5bfa10f2d5bee5d1a6dc2cc"
+  },
+  {
+    "path": "data/run.log",
+    "bytes": 2396,
+    "sha256": "70a4c3c4fc25189abf2b6585f5c75a6d20c331278827043eb87856616297f342"
+  },
+  {
+    "path": "data/summary.json",
+    "bytes": 12637,
+    "sha256": "c3d4251a96fbe093f38a27461b274850df78d80c503a1ce9a0d36a94eb2c26a5"
+  },
+  {
+    "path": "data/五层基线_minus20_0至35秒全部采样数据.csv",
+    "bytes": 83580,
+    "sha256": "38f0d5f3f0ae737f128c1bdbfa1a26d34a28fcd103db6b4cc92ea5b4ef34758f"
+  },
+  {
+    "path": "data/五层基线_minus20_每5秒结果表.csv",
+    "bytes": 4227,
+    "sha256": "0aa04a268d919baf6b214dc483ab655d7820c691b1e01bdb0f9a2d0bf8d99f60"
+  },
+  {
+    "path": "data/五层基线_minus25_0至35秒全部采样数据.csv",
+    "bytes": 85619,
+    "sha256": "82773192c54fa9d09645c28088ba61119b71e61c577518bb39c06e4d76908211"
+  },
+  {
+    "path": "data/五层基线_minus25_每5秒结果表.csv",
+    "bytes": 4299,
+    "sha256": "797d90c8173c1349e84deb9bee17c8d032aa5b4cf49b21f3321929df4dcbd12c"
+  },
+  {
+    "path": "data/五层基线_两工况352行工作数据.csv",
+    "bytes": 168571,
+    "sha256": "efcfbb6eb1697c059a982809458c4acb98e71e9a78ce3bbf2110a68dbacf147c"
+  },
+  {
+    "path": "data/冻结系数剖面.csv",
+    "bytes": 802,
+    "sha256": "2b025fb75cd456b84f4d98770ed434b3d31e9f4a21eaf68c1256c3d35100d1a1"
+  },
+  {
+    "path": "data/原始数据与单位审计.csv",
+    "bytes": 29893,
+    "sha256": "50cfd2f6fc4906e75259f92b816d5dd6da91581ae555893fcd5cbda9485e3ea9"
+  },
+  {
+    "path": "data/参数与闭合敏感性.csv",
+    "bytes": 4934,
+    "sha256": "675f0db3f039b902c52e8538e576531d72e755401191897ab4b49cd33df29221"
+  },
+  {
+    "path": "data/含双极板修订_minus20_0至35秒全部采样数据.csv",
+    "bytes": 83931,
+    "sha256": "21f4ec3f9525852a47cd7c462e36d5c38e5243b8a7a95f0c57f0e9ea7a85e60d"
+  },
+  {
+    "path": "data/含双极板修订_minus20_每5秒结果表.csv",
+    "bytes": 4239,
+    "sha256": "5c55a1a6252152dca54d2ba5dcf42b7c515b94098da6f82de4713ab5e514d47e"
+  },
+  {
+    "path": "data/含双极板修订_minus25_0至35秒全部采样数据.csv",
+    "bytes": 85936,
+    "sha256": "827fe763d2e05c10ccb59de2ffcfa363133e104d56929cb65ff130448395c187"
+  },
+  {
+    "path": "data/含双极板修订_minus25_每5秒结果表.csv",
+    "bytes": 4328,
+    "sha256": "37352e5e2d00b7da0f670966db0a0ff1ccfc3621da0ad68b250e05d42de6a0ba"
+  },
+  {
+    "path": "data/含双极板修订_两工况352行工作数据.csv",
+    "bytes": 169239,
+    "sha256": "186247860a38a9e54765e1e96eaecc230bec97b301ace4c45dcbe012b5638eed"
+  },
+  {
+    "path": "data/最终交付独立核验.csv",
+    "bytes": 469,
+    "sha256": "4a32134f292fbfe80c87aec559f87b358c0613ee26f1cb04f04d8637afcdcfbe"
+  },
+  {
+    "path": "data/热容与面积诊断.csv",
+    "bytes": 436,
+    "sha256": "93468a95155a024495d862c58c4f7ee8dc7d534a989d4310c9745a43e1c6d250"
+  },
+  {
+    "path": "data/网格与时间步收敛.csv",
+    "bytes": 2023,
+    "sha256": "d23c4da415a517cf3d07911278b306e1b5be25b4e1f4cf8ef2e03db576bec770"
+  },
+  {
+    "path": "data/运行记录与来源哈希.json",
+    "bytes": 1343,
+    "sha256": "d0b50bcb9c14ed34473025eb13a8f86424341739210f01411bf1433265f4c482"
+  },
+  {
+    "path": "data/退化与守恒测试.csv",
+    "bytes": 149,
+    "sha256": "f9c19479058f7c9891c0741e9fa1bbcbbc025b9734d9380a07ae752f936da7eb"
+  },
+  {
+    "path": "data/附件1参数原值.csv",
+    "bytes": 5311,
+    "sha256": "ac208ce5dc4d21d44a90d71f8e49c8e9181c97d5e94f20452cfe856093ca8bc4"
+  },
+  {
+    "path": "figures/01_main_experiment_comparison.pdf",
+    "bytes": 24348,
+    "sha256": "ce61f77cd6692800ea18f48cae4d46cf9630e2d9b41321ebf5d348f38ea8f0b0"
+  },
+  {
+    "path": "figures/01_main_experiment_comparison.png",
+    "bytes": 215443,
+    "sha256": "6cdf4ae149869f2381a5aaa84330294dbf9fe187d58bad3e902d3d62b55ef627"
+  },
+  {
+    "path": "figures/02_bp_structural_comparison.pdf",
+    "bytes": 28988,
+    "sha256": "fa092004816dbd8191c20daa5f516893705e9082989b84fd8bde41034d0e97c1"
+  },
+  {
+    "path": "figures/02_bp_structural_comparison.png",
+    "bytes": 234266,
+    "sha256": "05245cfcc89b3a0456d84be74b48dd664e372747b0c70ce686792d51f89d9dcf"
+  },
+  {
+    "path": "figures/03_sample_relative_errors.pdf",
+    "bytes": 26657,
+    "sha256": "aff0d22d97824e950afee734116613e4ef96bf49a2f036104353b8e91ec06b27"
+  },
+  {
+    "path": "figures/03_sample_relative_errors.png",
+    "bytes": 258601,
+    "sha256": "5b7577a12e8f48d83c7ae62ea30b37bc6b971e8d178e32b3c8b83151d842321a"
+  },
+  {
+    "path": "figures/04_ice_fraction_saturation.pdf",
+    "bytes": 31770,
+    "sha256": "320fc5ff61880c239d24b55f7948edb141b58e71453876d980aa82b6e0e91b15"
+  },
+  {
+    "path": "figures/04_ice_fraction_saturation.png",
+    "bytes": 390204,
+    "sha256": "9cf24766a16e8a06eaf6c03b03446540f9e5c980f644d58afdd36c8c41b4b1b8"
+  },
+  {
+    "path": "figures/05_voltage_loss_decomposition.pdf",
+    "bytes": 53275,
+    "sha256": "01a1692c393ad2616087d241ae3fe5cd5728a27f73e405a4d11f6cf74f9c8cc2"
+  },
+  {
+    "path": "figures/05_voltage_loss_decomposition.png",
+    "bytes": 205889,
+    "sha256": "f533930b17e8b5af2873c1cfb28fd635712de91747aba3576523792761280860"
+  },
+  {
+    "path": "figures/06_bp_water_energy_balances.pdf",
+    "bytes": 38169,
+    "sha256": "492dfc7589e602d7eec4b81f0b16c5f26558b8e5c2123961ce0af5b27dae922b"
+  },
+  {
+    "path": "figures/06_bp_water_energy_balances.png",
+    "bytes": 402115,
+    "sha256": "8c0e5fc0f75768d6c94859d44543487cd473e453315392e8f323bf829a14a071"
+  },
+  {
+    "path": "figures/07_main_spacetime_fields.pdf",
+    "bytes": 571678,
+    "sha256": "9ae73d777786979d0041ff90272f313418eb4aa0c0c11988c8c1960a53537061"
+  },
+  {
+    "path": "figures/07_main_spacetime_fields.png",
+    "bytes": 217145,
+    "sha256": "e73c5ab73cca48636b603d14649b772c6300573cc12016c49152da9a4a541c41"
+  },
+  {
+    "path": "figures/08_bp_spacetime_fields.pdf",
+    "bytes": 1103322,
+    "sha256": "140cfb0b2452ab3cf9ed0b485254a421dd9c3c13ffa44bf2de57ee955190bbf9"
+  },
+  {
+    "path": "figures/08_bp_spacetime_fields.png",
+    "bytes": 236942,
+    "sha256": "7e30d4d82d64d0bf64c1ec4fed20395817ddf9c5ac9bdd841a6bf014c25b2e47"
+  },
+  {
+    "path": "figures/09_freezing_identifiability.pdf",
+    "bytes": 22173,
+    "sha256": "dff0883653c1f453d35914e5607a2f6d784049b8e5863b1cc34cbc74e7a5f43c"
+  },
+  {
+    "path": "figures/09_freezing_identifiability.png",
+    "bytes": 115396,
+    "sha256": "d24e382437bad8ef4e724270501442ae0b59d3184631c31f88332164e475824d"
+  },
+  {
+    "path": "figures/figure_manifest.json",
+    "bytes": 3942,
+    "sha256": "0663ca365fd990e2e8b2dd2eaa407dddce7c2af0c03322414c0a170e5a6f18e4"
+  },
+  {
+    "path": "reports/RESULTS_REPORT.md",
+    "bytes": 18336,
+    "sha256": "92fe9df641cd55082ae378a5f854e7a21c8b034ef8c9d4b0743f025da1c8e7b9"
+  },
+  {
+    "path": "reports/数据字段说明.md",
+    "bytes": 4879,
+    "sha256": "b1adef83db199f1c36643985168f317a85d2b94a3b613a140ad607b873a6bb61"
+  },
+  {
+    "path": "reports/算法模型与实现说明.md",
+    "bytes": 29336,
+    "sha256": "df414bc3a985973dbbea6bc810c12a80c5725fd2d8d88aeb56668e6c440a9596"
+  },
+  {
+    "path": "inputs/问题1_建模推导源文件.md",
+    "bytes": 44278,
+    "sha256": "c61bacc0d1872c32cb8d2a51a26c95248f3bf036a2359234f4f78e78eef871b1"
+  },
+  {
+    "path": "inputs/附件1.xlsx",
+    "bytes": 13419,
+    "sha256": "06fece93cc86cd9110b5f24fbb3e1085f779d89338a6002d26c67616a4e4ed62"
+  },
+  {
+    "path": "inputs/附件2.xlsx",
+    "bytes": 31625,
+    "sha256": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b"
+  }
+]

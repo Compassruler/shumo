@@ -1,0 +1,33 @@
+{
+  "j0": 0.08430420725793636,
+  "kf": 0.00010002098704957458,
+  "km": 1.0,
+  "kvl": 1.0,
+  "kvi": 0.0001,
+  "objective": 1.5722896936596094,
+  "log10_parameter_bounds": [
+    [
+      -5,
+      3
+    ],
+    [
+      -4,
+      1
+    ]
+  ],
+  "log_regularization_weight": 1e-06,
+  "training": "minus20 only, 176 samples, 0-35 s",
+  "fit_dt_s": 0.05,
+  "status": 1,
+  "message": "`gtol` termination condition is satisfied.",
+  "jacobian_singular_values": [
+    2.2075793999489526,
+    0.0010009848104110693
+  ],
+  "multistart_objectives": [
+    1.572289699961202,
+    1.5722896936596094,
+    1.5722898002082895
+  ],
+  "n_model_evaluations": 45
+}

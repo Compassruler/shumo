@@ -1,0 +1,5 @@
+﻿dataset,samples,first_s,last_s,interval_s,all_internal_steps_valid,field_average_max_difference_K,field_ice_max_difference,field_water_max_difference_kg_m2,passed
+main_minus20,176,0,35,0.2,True,6.217248937900877e-14,0.0,0.0,True
+main_minus25,176,0,35,0.2,True,6.572520305780927e-14,0.0,0.0,True
+bp_minus20,176,0,35,0.2,True,1.3855583347321954e-13,0.0,1.734723475976807e-18,True
+bp_minus25,176,0,35,0.2,True,1.3500311979441904e-13,0.0,8.673617379884035e-19,True

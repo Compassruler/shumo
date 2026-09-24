@@ -1,0 +1,3 @@
+﻿condition,n_samples,interval_s,t_start_s,t_end_s,apparent_heat_capacity_J_m2_K,reaction_heat_using_experiment_J_m2,heat_loss_using_experiment_J_m2,bipolar_plate_heat_capacity_J_m2_K,implied_area_median_cm2,given_area_cm2
+minus20,176,0.2,0.0,35.0,6117.766914076602,52170.698000000004,7300.492325687075,6066.72,310.6275524781096,25.0
+minus25,176,0.2,0.0,35.0,6309.898776603222,54171.38019801955,7402.401228723904,6066.72,303.0,25.0

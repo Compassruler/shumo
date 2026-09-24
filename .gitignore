@@ -1,17 +1,75 @@
+# 操作系统与编辑器临时文件
 .DS_Store
+._*
+Thumbs.db
+.idea/
+.vscode/
+*.bak
+*.tmp
+*.swp
+*.swo
+*~
+
+# Office 临时锁文件
+~$*
+
+# Python 缓存、虚拟环境与本地安装依赖
+__pycache__/
+*.py[cod]
+.python_deps/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+*.egg-info/
+.coverage
+htmlcov/
+
+# Matplotlib 本机字体与配置缓存
+.mplconfig/
+.matplotlib/
+
+# MATLAB/Simulink 自动保存和编译产物
+*.asv
+*.autosave
+*.m~
+*.mex*
+*.slxc
+slprj/
+codegen/
+
+# LaTeX/Typst 可重新生成的编译中间文件
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.lof
+*.log
+*.lot
+*.nav
+*.out
+*.run.xml
+*.snm
+*.synctex.gz
+*.toc
+*.vrb
+*.xdv
+.typst-cache/
+
+# 当前比赛中不需要提交的题面副本与打包文件
 /26比赛/中文题目/
+/26比赛/解题/*_求解结果.zip
+
+# 本地工作计划与自动生成报告
 reports
 todo.md
 Plan.md
 
-# 本机 Python 缓存与为第一问临时安装的数值库
-__pycache__/
-*.py[cod]
-/26比赛/解题/问题一代码/.python_deps/
-
 # 可重新计算的草稿和来源提取中间文件
 /26比赛/解题/问题一代码/baseline_results/
 /26比赛/解题/问题一代码/source_extract.txt
-
-# Excel 打开工作簿时生成的临时锁文件
-~$*.xlsx

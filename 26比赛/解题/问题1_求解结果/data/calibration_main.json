@@ -1,0 +1,33 @@
+{
+  "j0": 167.56776867175873,
+  "kf": 0.0001000024594757204,
+  "km": 1.0,
+  "kvl": 1.0,
+  "kvi": 0.0001,
+  "objective": 130.54389946193575,
+  "log10_parameter_bounds": [
+    [
+      -5,
+      3
+    ],
+    [
+      -4,
+      1
+    ]
+  ],
+  "log_regularization_weight": 1e-06,
+  "training": "minus20 only, 176 samples, 0-35 s",
+  "fit_dt_s": 0.05,
+  "status": 2,
+  "message": "`ftol` termination condition is satisfied.",
+  "jacobian_singular_values": [
+    2.9404926443569295,
+    0.001000421092767857
+  ],
+  "multistart_objectives": [
+    130.54389947790474,
+    130.54389946801453,
+    130.54389946193575
+  ],
+  "n_model_evaluations": 63
+}

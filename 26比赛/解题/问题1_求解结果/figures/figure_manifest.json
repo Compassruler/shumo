@@ -1,0 +1,99 @@
+[
+  {
+    "id": "01_main_experiment_comparison",
+    "caption": "五层基线电压、温度与实验采样值的对比；模型结果与实验数据采用相同采样时刻。",
+    "pdf": "figures/01_main_experiment_comparison.pdf",
+    "png": "figures/01_main_experiment_comparison.png",
+    "sources": [
+      "data/main_minus20.csv",
+      "data/main_minus25.csv"
+    ]
+  },
+  {
+    "id": "02_bp_structural_comparison",
+    "caption": "五层基线与含双极板修订模型的电压、温度响应。BP 曲线为纳入双极板热容量后的修订计算结果，与五层基线分开表示。",
+    "pdf": "figures/02_bp_structural_comparison.pdf",
+    "png": "figures/02_bp_structural_comparison.png",
+    "sources": [
+      "data/main_minus20.csv",
+      "data/main_minus25.csv",
+      "data/bp_minus20.csv",
+      "data/bp_minus25.csv"
+    ]
+  },
+  {
+    "id": "03_sample_relative_errors",
+    "caption": "各采样时刻的电压与温度相对误差；温度按建模推导文件使用实验摄氏温度的绝对值作为分母；开尔文分母误差另存 CSV。",
+    "pdf": "figures/03_sample_relative_errors.pdf",
+    "png": "figures/03_sample_relative_errors.png",
+    "sources": [
+      "data/main_minus20.csv",
+      "data/main_minus25.csv",
+      "data/bp_minus20.csv",
+      "data/bp_minus25.csv"
+    ]
+  },
+  {
+    "id": "04_ice_fraction_saturation",
+    "caption": "四组计算的最大总冰、孔隙冰、膜相冰体积分数及最大孔隙冰饱和度。各最大值可位于不同空间位置。",
+    "pdf": "figures/04_ice_fraction_saturation.pdf",
+    "png": "figures/04_ice_fraction_saturation.png",
+    "sources": [
+      "data/main_minus20.csv",
+      "data/main_minus25.csv",
+      "data/bp_minus20.csv",
+      "data/bp_minus25.csv"
+    ]
+  },
+  {
+    "id": "05_voltage_loss_decomposition",
+    "caption": "模型电压与活化、欧姆、浓差损失的堆叠分解；虚线表示可逆电压。",
+    "pdf": "figures/05_voltage_loss_decomposition.pdf",
+    "png": "figures/05_voltage_loss_decomposition.png",
+    "sources": [
+      "data/main_minus20.csv",
+      "data/main_minus25.csv",
+      "data/bp_minus20.csv",
+      "data/bp_minus25.csv"
+    ]
+  },
+  {
+    "id": "06_bp_water_energy_balances",
+    "caption": "含双极板修订模型的累计水量、累计热量及守恒残差。储水变化扣除初始存水量；相变热正号表示放热。灰色点线残差采用各面板右轴单独刻度。",
+    "pdf": "figures/06_bp_water_energy_balances.pdf",
+    "png": "figures/06_bp_water_energy_balances.png",
+    "sources": [
+      "data/bp_minus20.csv",
+      "data/bp_minus25.csv"
+    ]
+  },
+  {
+    "id": "07_main_spacetime_fields",
+    "caption": "五层基线局部温度与总冰体积分数时空分布。虚线表示计算层界面；同一行采用统一色标。",
+    "pdf": "figures/07_main_spacetime_fields.pdf",
+    "png": "figures/07_main_spacetime_fields.png",
+    "sources": [
+      "data/fields_main_minus20.csv",
+      "data/fields_main_minus25.csv"
+    ]
+  },
+  {
+    "id": "08_bp_spacetime_fields",
+    "caption": "含双极板修订模型局部温度与总冰体积分数时空分布。虚线表示计算层界面；同一行采用统一色标。双极板修订模型温度图显示整域，冰图显示 MEA 区域。",
+    "pdf": "figures/08_bp_spacetime_fields.pdf",
+    "png": "figures/08_bp_spacetime_fields.png",
+    "sources": [
+      "data/fields_bp_minus20.csv",
+      "data/fields_bp_minus25.csv"
+    ]
+  },
+  {
+    "id": "09_freezing_identifiability",
+    "caption": "冻结系数剖面：每个固定冻结系数都重新优化交换电流密度，均仅使用−20℃数据。误差目标在小冻结系数区间变化很小，而冰量跨多个数量级；这不是置信区间。",
+    "pdf": "figures/09_freezing_identifiability.pdf",
+    "png": "figures/09_freezing_identifiability.png",
+    "sources": [
+      "data/冻结系数剖面.csv"
+    ]
+  }
+]

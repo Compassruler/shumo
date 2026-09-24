@@ -114,12 +114,13 @@ P.cold_start = S(
     thermoneutral_voltage=1.48,      # 热中性电压，V；题备注1式(35)
     reference_pressure=101325.0,     # 参考压力，Pa；题备注1
     freezing_temperature=273.15,    # 常压相变温度，K；MD假设H3
-    k_freeze=1.0,                   # 冻结速率优化初猜，s^-1；不是附件1参数
+    k_freeze=0.1,                   # 冻结速率主情景，s^-1；不是附件1参数，另做0.01--1敏感性
     k_melt_ratio=1.0,               # k_m/k_f，MD暂取对称速率；未经融化数据验证
+    boundary_water_transfer_factor=0.1, # 流道有限排湿修正；1为原理想干气边界
     D_hydrogen_ref=1.10e-4,          # H2参考扩散系数，m²/s；题式(17)
     D_oxygen_ref=2.20e-5,            # O2参考扩散系数，m²/s；题式(17)
-    D_water_anode_ref=8.69e-5,       # 阳极等效水参考扩散系数，m²/s；题式(23)
-    D_water_cathode_ref=2.48e-5,     # 阴极等效水参考扩散系数，m²/s；题式(23)
+    D_water_anode_ref=8.69e-5,       # 阳极蒸气参考扩散系数，m²/s；沿用题式(23)，新版相别解释
+    D_water_cathode_ref=2.48e-5,     # 阴极蒸气参考扩散系数，m²/s；液水不使用此系数
     temperature_exponent=1.75,      # 扩散温度指数，题式(16)
     porosity_exponent=1.5,          # Bruggeman指数，题式(16)，不参与拟合
     # 数值设置：依次为aBP,aGDL,aCL,PEM,cCL,cGDL,cBP的有限体积单元数。
@@ -129,6 +130,6 @@ P.cold_start = S(
     atol=1e-9,                     # 尺度化状态的绝对积分误差控制
     max_step=0.05,                 # 最大积分步长，s
     fit_j0_bounds=(1e-5, 1e3),      # A/m²，对数搜索边界；数值选择
-    fit_k_bounds=(1e-4, 1e4),       # s^-1，对数搜索边界；数值选择
+    fit_k_bounds=(1e-4, 1e2),       # s^-1，初始剖面搜索边界；非已知物性范围
     fit_k_starts=(0.01, 1.0, 100.0),# MD建议多初猜；不代表三组已知物性
 )
