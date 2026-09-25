@@ -2,7 +2,8 @@
 """Recreate publication figures directly from the exported question-1 CSV data.
 
 Usage: python code/plot_results.py [--root RESULT_DIRECTORY]
-All CSVs are read with utf-8-sig. Output: figures/*.pdf, figures/*.png,
+All CSVs are read with utf-8-sig. Output: figures/*.pdf, figures/*.svg,
+figures/*.png,
 and figures/figure_manifest.json. No fitting, smoothing, or data modification
 is performed in this script. The five-layer baseline and bipolar-plate revision are distinguished explicitly.
 """
@@ -13,11 +14,10 @@ import csv
 import json
 import os
 from pathlib import Path
+import re
 import sys
 
 DEFAULT_ROOT = Path(__file__).resolve().parents[1]
-if (DEFAULT_ROOT / '.python_deps').is_dir():
-    sys.path.insert(0, str(DEFAULT_ROOT / '.python_deps'))
 os.environ.setdefault('MPLCONFIGDIR', str(DEFAULT_ROOT / '.mplconfig'))
 import numpy as np
 import matplotlib
@@ -26,11 +26,20 @@ import matplotlib.pyplot as plt
 from matplotlib import font_manager, colors
 from matplotlib.lines import Line2D
 from matplotlib.patches import Patch
+from matplotlib.transforms import ScaledTranslation
 
-COLORS = {'main': '#2369A1', 'bp': '#D55E00', 'exp': '#252A34',
-          'pore': '#178A72', 'mem': '#AD568B', 'sat': '#B18320',
-          'act': '#6E9FC1', 'ohm': '#E89A58', 'con': '#A890BF',
-          'loss': '#CF655F', 'phase': '#198D8A', 'residual': '#555555'}
+NATURE_FIGURE_SCRIPTS = Path.home() / '.codex' / 'skills' / 'nature-figure' / 'scripts'
+if not NATURE_FIGURE_SCRIPTS.is_dir():
+    raise RuntimeError('nature-figure QA scripts are required to export the figures.')
+sys.path.insert(0, str(NATURE_FIGURE_SCRIPTS))
+from audit_panel_alignment import require_matplotlib_panel_alignment
+
+# Okabe-Ito-inspired palette: color-vision safe and separable in grayscale
+# through the paired line styles used below.
+COLORS = {'main': '#0072B2', 'bp': '#D55E00', 'exp': '#202124',
+          'pore': '#009E73', 'mem': '#CC79A7', 'sat': '#A66F00',
+          'act': '#56B4E9', 'ohm': '#E69F00', 'con': '#8C6BB1',
+          'loss': '#C44E52', 'phase': '#008B8B', 'residual': '#5F6368'}
 CASES = [('main_minus20', '五层基线', '−20 ℃'),
          ('main_minus25', '五层基线', '−25 ℃'),
          ('bp_minus20', '含双极板修订', '−20 ℃'),
@@ -55,18 +64,21 @@ def configure_style():
                                     'Microsoft YaHei', 'SimHei'] if f in installed),
                       'DejaVu Sans')
     plt.rcParams.update({
-        'font.family': family, 'font.size': 9.5, 'axes.labelsize': 10,
-        'axes.titlesize': 10, 'axes.titleweight': 'normal',
-        'axes.titlelocation': 'left', 'axes.titlepad': 9,
+        'font.family': 'sans-serif',
+        'font.sans-serif': [family, 'Arial', 'DejaVu Sans', 'Liberation Sans'],
+        'font.size': 8.5, 'axes.labelsize': 9,
+        'axes.titlesize': 9, 'axes.titleweight': 'semibold',
+        'axes.titlelocation': 'left', 'axes.titlepad': 8,
         'axes.unicode_minus': False, 'axes.linewidth': .75,
         'axes.spines.top': False, 'axes.spines.right': False,
         'xtick.direction': 'out', 'ytick.direction': 'out',
-        'xtick.labelsize': 8.5, 'ytick.labelsize': 8.5,
-        'legend.fontsize': 9, 'legend.frameon': False,
-        'lines.linewidth': 1.7, 'savefig.dpi': 240,
+        'xtick.labelsize': 7.5, 'ytick.labelsize': 7.5,
+        'legend.fontsize': 8, 'legend.frameon': False,
+        'lines.linewidth': 1.65, 'savefig.dpi': 300,
+        'svg.fonttype': 'none',
         'pdf.fonttype': 42, 'ps.fonttype': 42,
-        'axes.grid': True, 'grid.color': '#DCE1E7', 'grid.alpha': .65,
-        'grid.linewidth': .55, 'figure.facecolor': 'white',
+        'axes.grid': True, 'grid.color': '#D9DEE5', 'grid.alpha': .58,
+        'grid.linewidth': .50, 'figure.facecolor': 'white',
         'axes.facecolor': 'white', 'mathtext.fontset': 'dejavusans',
     })
 
@@ -94,8 +106,20 @@ def read_csv(path: Path, required=None):
     return data
 
 
+def panel_title(ax, label):
+    """Separate a bold panel letter from the descriptive title."""
+    match = re.match(r'^\(([a-z])\)\s*(.*)$', label)
+    if not match:
+        raise ValueError(f'Panel title must start with a lowercase label: {label}')
+    letter, title = match.groups()
+    ax.set_title(title)
+    offset = ScaledTranslation(-13 / 72, 3 / 72, ax.figure.dpi_scale_trans)
+    ax.text(0, 1, letter, transform=ax.transAxes + offset,
+            fontsize=9, fontweight='bold', ha='left', va='bottom')
+
+
 def panel(ax, label, ylabel=None, zero=False):
-    ax.set_title(label)
+    panel_title(ax, label)
     ax.set_xlabel('时间 / s')
     if ylabel:
         ax.set_ylabel(ylabel)
@@ -119,28 +143,45 @@ def finish(fig, output: Path, stem: str, caption: str, sources, manifest,
            top=.91, bottom=.09, wspace=.30, hspace=.40):
     fig.subplots_adjust(left=.09, right=.96, bottom=bottom, top=top,
                         wspace=wspace, hspace=hspace)
-    for suffix in ['pdf', 'png']:
+    qa_dir = output / 'qa'
+    qa_dir.mkdir(parents=True, exist_ok=True)
+    require_matplotlib_panel_alignment(
+        fig,
+        json_out=qa_dir / f'{stem}.alignment.json',
+        overlay_svg=qa_dir / f'{stem}.alignment.svg',
+        tolerance_pt=1.5,
+        gutter_tolerance_pt=1.5,
+        require_panel_labels=True,
+        strict=True,
+    )
+    for suffix in ['pdf', 'svg', 'png']:
         fig.savefig(output / f'{stem}.{suffix}', bbox_inches='tight',
-                    pad_inches=.09, metadata={'Creator': 'Question 1 plot_results.py'}
-                    if suffix == 'pdf' else None)
+                    pad_inches=.09, dpi=300,
+                    metadata={'Creator': 'Question 1 plot_results.py'}
+                    if suffix in {'pdf', 'svg'} else None)
     plt.close(fig)
     manifest.append({'id': stem, 'caption': caption,
-                     'pdf': f'figures/{stem}.pdf', 'png': f'figures/{stem}.png',
+                     'pdf': f'figures/{stem}.pdf', 'svg': f'figures/{stem}.svg',
+                     'png': f'figures/{stem}.png',
+                     'alignment': f'figures/qa/{stem}.alignment.json',
                      'sources': [f'data/{p}' for p in sources]})
 
 
 def plot_main_fit(all_data, output, manifest):
-    fig, axes = plt.subplots(2, 2, figsize=(10.2, 7.0))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.0))
+    experiment_color = '#C44E52'
     for col, temp in enumerate(['20', '25']):
         d = all_data[f'main_minus{temp}']
         for row, (measure, ylabel) in enumerate([('V', '电压 / V'),
                                                ('T', '温度 / ℃')]):
             ax = axes[row, col]
-            # Every experimental sample is shown; small open symbols preserve detail.
+            # Every experimental sample is shown; compact solid circles remain
+            # distinct from the blue model curve without hiding local detail.
             exp = ax.plot(d['t_s'], d[f'{measure}_exp_' + ('V' if row == 0 else 'C')],
-                          'o', color=COLORS['exp'], markersize=3.2,
-                          markerfacecolor='white', markeredgewidth=.75,
-                          label='实验采样值', zorder=3)[0]
+                          'o', color=experiment_color, markersize=3.0,
+                          markerfacecolor=experiment_color,
+                          markeredgecolor='white', markeredgewidth=.25,
+                          alpha=.92, label='实验采样值', zorder=3)[0]
             mod = ax.plot(d['t_s'], d[f'{measure}_model_' + ('V' if row == 0 else 'C')],
                           color=COLORS['main'], label='五层基线')[0]
             panel(ax, f'({chr(97 + row * 2 + col)}) 初始温度 −{temp} ℃', ylabel)
@@ -151,7 +192,7 @@ def plot_main_fit(all_data, output, manifest):
 
 
 def plot_bp_comparison(all_data, output, manifest):
-    fig, axes = plt.subplots(2, 2, figsize=(10.2, 7.0))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.0))
     for col, temp in enumerate(['20', '25']):
         main = all_data[f'main_minus{temp}']
         bp = all_data[f'bp_minus{temp}']
@@ -174,7 +215,7 @@ def plot_bp_comparison(all_data, output, manifest):
 
 
 def plot_errors(all_data, output, manifest):
-    fig, axes = plt.subplots(2, 2, figsize=(10.2, 7.0))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.0))
     for col, temp in enumerate(['20', '25']):
         for row, (key, ylabel) in enumerate([
                 ('V_rel_error_pct', '电压相对误差 / %'),
@@ -195,7 +236,7 @@ def plot_errors(all_data, output, manifest):
 
 
 def plot_ice(all_data, output, manifest):
-    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.3))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.1))
     handles = []
     for idx, (key, model, temp) in enumerate(CASES):
         d, ax = all_data[key], axes.flat[idx]
@@ -225,7 +266,7 @@ def plot_ice(all_data, output, manifest):
 
 
 def plot_voltage_terms(all_data, output, manifest):
-    fig, axes = plt.subplots(2, 2, figsize=(10.2, 7.0))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.0))
     labels = ['模型电压', '活化损失', '欧姆损失', '浓差损失']
     palette = ['#DCE6EC', COLORS['act'], COLORS['ohm'], COLORS['con']]
     for idx, (key, model, temp) in enumerate(CASES):
@@ -244,7 +285,9 @@ def plot_voltage_terms(all_data, output, manifest):
 
 
 def plot_balances(all_data, output, manifest):
-    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.2))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.1))
+    water_handles = []
+    heat_handles = []
     for col, temp in enumerate(['20', '25']):
         d = all_data[f'bp_minus{temp}']
         ax = axes[0, col]
@@ -253,7 +296,10 @@ def plot_balances(all_data, output, manifest):
                 ('water_stored_kg_m2', '储水量变化', COLORS['pore'], '--'),
                 ('water_out_kg_m2', '累计排水', COLORS['bp'], '-.')]:
             amount = d[key] - d['water_initial_kg_m2'] if key == 'water_stored_kg_m2' else d[key]
-            ax.plot(d['t_s'], amount * 1e3, label=label, color=color, linestyle=ls)
+            line = ax.plot(d['t_s'], amount * 1e3, label=label,
+                           color=color, linestyle=ls)[0]
+            if col == 0:
+                water_handles.append(line)
         # Plot exported residual on a separate scale so conservation error remains visible.
         twin = ax.twinx()
         twin.plot(d['t_s'], d['water_balance_kg_m2'] * 1e3,
@@ -264,14 +310,15 @@ def plot_balances(all_data, output, manifest):
         twin.ticklabel_format(axis='y', style='sci', scilimits=(-2, 3), useMathText=True)
         twin.spines['right'].set_visible(True)
         panel(ax, f'({chr(97 + col)}) 含双极板修订 · −{temp} ℃', '水量 / (g/m²)')
-        ax.legend(loc='upper center', bbox_to_anchor=(.5, -.18), ncol=3,
-                  fontsize=8, columnspacing=.9, handlelength=1.8)
         ax = axes[1, col]
         for key, label, color, ls in [
                 ('heat_gen_J_m2', '累计产热', COLORS['main'], '-'),
                 ('heat_phase_J_m2', '累计相变放热', COLORS['phase'], '--'),
                 ('heat_loss_J_m2', '累计散热', COLORS['loss'], '-.')]:
-            ax.plot(d['t_s'], d[key] / 1e3, label=label, color=color, linestyle=ls)
+            line = ax.plot(d['t_s'], d[key] / 1e3, label=label,
+                           color=color, linestyle=ls)[0]
+            if col == 0:
+                heat_handles.append(line)
         twin = ax.twinx()
         twin.plot(d['t_s'], d['energy_balance_J_m2'], color='#7A7E86',
                   linewidth=.9, linestyle=':', label='收支残差')
@@ -281,14 +328,18 @@ def plot_balances(all_data, output, manifest):
         twin.ticklabel_format(axis='y', style='sci', scilimits=(-2, 3), useMathText=True)
         twin.spines['right'].set_visible(True)
         panel(ax, f'({chr(99 + col)}) 含双极板修订 · −{temp} ℃', '累计热量 / (kJ/m²)')
-        ax.legend(loc='upper center', bbox_to_anchor=(.5, -.18), ncol=3,
-                  fontsize=8, columnspacing=.9, handlelength=1.8)
-    shared_legend(fig, [Line2D([0], [0], color='#7A7E86', linestyle=':',
-                              label='灰色点线：收支残差（各面板右轴）')], ncol=1)
+    residual = Line2D([0], [0], color=COLORS['residual'], linestyle=':',
+                      label='收支残差（右轴）')
+    legend_kw = dict(ncol=4, fontsize=7.5, frameon=False,
+                     columnspacing=1.15, handlelength=1.7, borderaxespad=0)
+    fig.legend(handles=water_handles + [residual], loc='upper center',
+               bbox_to_anchor=(.5, .985), **legend_kw)
+    fig.legend(handles=heat_handles + [residual], loc='center',
+               bbox_to_anchor=(.5, .475), **legend_kw)
     finish(fig, output, '06_bp_water_energy_balances',
            '含双极板修订模型的累计水量、累计热量及守恒残差。储水变化扣除初始存水量；相变热正号表示放热。灰色点线残差采用各面板右轴单独刻度。',
            ['bp_minus20.csv', 'bp_minus25.csv'], manifest,
-           top=.92, bottom=.13, wspace=.52, hspace=.72)
+           top=.84, bottom=.10, wspace=.52, hspace=.75)
 
 
 def field_grid(data, key):
@@ -345,7 +396,7 @@ def layer_boundaries(ax, x_edges, layers):
 
 
 def plot_fields(model, fields, output, manifest):
-    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.25))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.1))
     key_list = [f'{model}_minus20', f'{model}_minus25']
     t_min = min(np.min(fields[k]['T_C']) for k in key_list)
     t_max = max(np.max(fields[k]['T_C']) for k in key_list)
@@ -368,7 +419,7 @@ def plot_fields(model, fields, output, manifest):
                                cmap='coolwarm' if row == 0 else 'YlGnBu',
                                norm=norms[row], rasterized=False)
             layer_boundaries(ax, x_edges, layers)
-            ax.set_title(f'({chr(97 + row * 2 + col)}) 初始温度 −{temp} ℃')
+            panel_title(ax, f'({chr(97 + row * 2 + col)}) 初始温度 −{temp} ℃')
             ax.set_xlabel('时间 / s')
             ax.set_ylabel('MEA 位置 / μm' if model == 'bp' and row == 1 else '厚度方向位置 / μm')
             ax.set_xlim(0, 35)
@@ -382,6 +433,7 @@ def plot_fields(model, fields, output, manifest):
         pos = axes[row, 1].get_position()
         cax = fig.add_axes([.89, pos.y0, .019, pos.height])
         bar = fig.colorbar(im, cax=cax)
+        bar.solids.set_rasterized(False)
         bar.set_label('局部温度 / ℃' if row == 0 else '局部总冰体积分数', labelpad=9)
         bar.outline.set_linewidth(.6)
         if row == 1 and i_max < .01:
@@ -390,12 +442,28 @@ def plot_fields(model, fields, output, manifest):
     name = '五层基线' if model == 'main' else '含双极板修订模型'
     stem = '07_main_spacetime_fields' if model == 'main' else '08_bp_spacetime_fields'
     # Save directly: fixed colorbar axes should not be adjusted by finish().
-    for ext in ['pdf', 'png']:
-        fig.savefig(output / f'{stem}.{ext}', bbox_inches='tight', pad_inches=.09)
+    qa_dir = output / 'qa'
+    qa_dir.mkdir(parents=True, exist_ok=True)
+    require_matplotlib_panel_alignment(
+        fig,
+        axes=list(axes.flat),
+        json_out=qa_dir / f'{stem}.alignment.json',
+        overlay_svg=qa_dir / f'{stem}.alignment.svg',
+        tolerance_pt=1.5,
+        gutter_tolerance_pt=1.5,
+        require_panel_labels=True,
+        strict=True,
+    )
+    for ext in ['pdf', 'svg', 'png']:
+        fig.savefig(output / f'{stem}.{ext}', bbox_inches='tight', pad_inches=.09,
+                    dpi=300, metadata={'Creator': 'Question 1 plot_results.py'}
+                    if ext in {'pdf', 'svg'} else None)
     plt.close(fig)
     manifest.append({'id': stem,
                      'caption': f'{name}局部温度与总冰体积分数时空分布。虚线表示计算层界面；同一行采用统一色标。' + ('双极板修订模型温度图显示整域，冰图显示 MEA 区域。' if model == 'bp' else ''),
-                     'pdf': f'figures/{stem}.pdf', 'png': f'figures/{stem}.png',
+                     'pdf': f'figures/{stem}.pdf', 'svg': f'figures/{stem}.svg',
+                     'png': f'figures/{stem}.png',
+                     'alignment': f'figures/qa/{stem}.alignment.json',
                      'sources': [f'data/fields_{key}.csv' for key in key_list]})
 
 
@@ -416,7 +484,7 @@ def select(data, **filters):
 def plot_profile(root, output, manifest):
     data = read_csv(root / 'data/冻结系数剖面.csv',
                     ['model', 'condition', 'kf_s_inv', 'mean_squared_relative_objective', 'ice_at35_bulk'])
-    fig, axes = plt.subplots(2, 2, figsize=(10.4, 7.1))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.0))
     handles = []
     for row, (model, title) in enumerate([('main', '五层基线'), ('bp', '含双极板修订')]):
         for condition, color, ls, label in [('minus20', COLORS['main'], '-', '−20 ℃：校准工况'),
@@ -425,6 +493,8 @@ def plot_profile(root, output, manifest):
             order = np.argsort(d['kf_s_inv'])
             for col, key in enumerate(['mean_squared_relative_objective', 'ice_at35_bulk']):
                 x, y = d['kf_s_inv'][order], d[key][order]
+                if not np.isfinite(x).all() or np.any(x <= 0):
+                    raise ValueError('Freezing coefficients must be finite and strictly positive for the log axis.')
                 if col == 1:
                     y = np.where(y > 0, y, np.nan)
                 h = axes[row, col].plot(x, y, 'o', linestyle=ls, color=color, markersize=4, label=label)[0]
@@ -438,7 +508,7 @@ def plot_profile(root, output, manifest):
         axes[row, 0].set_ylabel('平均平方相对误差目标')
         axes[row, 1].set_ylabel('35 s 最大冰体积分数')
         for col in range(2):
-            axes[row, col].set_title(f'({chr(97 + row * 2 + col)}) {title}')
+            panel_title(axes[row, col], f'({chr(97 + row * 2 + col)}) {title}')
     handles.append(Line2D([0], [0], color='#888888', linestyle=':', label='固定基准 $k_f=1$'))
     shared_legend(fig, handles, ncol=3)
     finish(fig, output, '09_freezing_identifiability',
@@ -460,20 +530,24 @@ def plot_phase_sensitivity(root, output, manifest):
                        for k, scale, _ in metrics] for p in parameters])
         matrices.append(a)
     scale = np.maximum(np.max(np.stack(matrices), axis=(0, 1)), 1e-15)
-    fig, axes = plt.subplots(2, 2, figsize=(10.8, 7.6))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.2))
     for idx, ((_, model, temp), a) in enumerate(zip(CASES, matrices)):
         ax = axes.flat[idx]
         z = a / scale
-        ax.imshow(z, cmap='Blues', vmin=0, vmax=1, aspect='auto')
-        ax.set_xticks(range(3), [m[2] for m in metrics], fontsize=9)
-        ax.set_yticks(range(6), [PHASE_LABELS[p] + ' · ' + p for p in parameters])
+        ax.pcolormesh(np.arange(4), np.arange(7), z, cmap='Blues',
+                      vmin=0, vmax=1, shading='flat', rasterized=False)
+        ax.set_xlim(0, 3)
+        ax.set_ylim(6, 0)
+        ax.set_xticks(np.arange(3) + .5, [m[2] for m in metrics], fontsize=9)
+        ax.set_yticks(np.arange(6) + .5,
+                      [PHASE_LABELS[p] + ' · ' + p for p in parameters])
         for i in range(6):
             for j in range(3):
                 val = a[i, j]
                 label = '0' if val == 0 else (f'{val:.3g}' if val >= .001 else f'{val:.1e}')
-                ax.text(j, i, label, ha='center', va='center', fontsize=9,
+                ax.text(j + .5, i + .5, label, ha='center', va='center', fontsize=9,
                         color='white' if z[i, j] > .65 else '#20252B')
-        ax.set_title(f'({chr(97 + idx)}) {model} · {temp}')
+        panel_title(ax, f'({chr(97 + idx)}) {model} · {temp}')
         ax.grid(False)
         for spine in ax.spines.values():
             spine.set_visible(False)
@@ -485,7 +559,7 @@ def plot_phase_sensitivity(root, output, manifest):
 
 
 def plot_phase_amounts(all_data, output, manifest):
-    fig, axes = plt.subplots(2, 3, figsize=(11.5, 7.0))
+    fig, axes = plt.subplots(2, 3, figsize=(7.1, 4.8))
     handles = []
     for idx, (phase, label) in enumerate(PHASE_CHANNELS.items()):
         ax = axes.flat[idx]
@@ -502,11 +576,12 @@ def plot_phase_amounts(all_data, output, manifest):
         panel(ax, f'({chr(97 + idx)}) {label}', '累计转化水量 / (g/m²)')
         if peak == 0:
             ax.set_ylim(-.05, 1)
+            ax.grid(False)
             ax.text(.5, .52, '本窗口内未激活', transform=ax.transAxes, ha='center', color='#666666')
         else:
             ax.set_ylim(0, peak * 1.12)
             ax.ticklabel_format(axis='y', style='sci', scilimits=(-2, 3), useMathText=True)
-    shared_legend(fig, handles, ncol=2)
+    shared_legend(fig, handles, ncol=4)
     finish(fig, output, '11_phase_cumulative_amounts',
            '冻结、融化、凝结、蒸发、凝华、升华六通道的累计转化水量，均为模型输出。各面板纵轴独立；全零通道明确标注未激活。累计相变量允许同一份水反复转化，不能相加当作互斥水库存，也不能直接除以产水解释为冻结概率。',
            [f'{key}.csv' for key, _, _ in CASES], manifest, top=.87, wspace=.40, hspace=.47)
@@ -515,7 +590,7 @@ def plot_phase_amounts(all_data, output, manifest):
 def plot_near_optimal(root, output, manifest):
     ranges = read_csv(root / 'data/近优冻结情景范围_非置信区间.csv')
     series = read_csv(root / 'data/冻结系数情景全时序.csv')
-    fig, axes = plt.subplots(2, 2, figsize=(10.5, 7.1))
+    fig, axes = plt.subplots(2, 2, figsize=(7.1, 5.0))
     for idx, (tag, model, temp) in enumerate(CASES):
         prefix, condition = tag.split('_', 1)
         d = select(ranges, model=prefix, condition=condition)
@@ -526,9 +601,9 @@ def plot_near_optimal(root, output, manifest):
         ax.plot(d['t_s'], d['ice_max_bulk_min'], color='#4C7E92', linewidth=.9)
         ax.plot(d['t_s'], d['ice_max_bulk_max'], color='#4C7E92', linewidth=.9)
         ax.plot(reference['t_s'], reference['ice_max_bulk'], '--', color=COLORS['bp'])
-        panel(ax, f'({chr(97 + idx)}) {model} · {temp}', '最大冰体积分数', zero=True)
-        ax.text(.03, .94, f'纳入 {int(d["n_scenarios"][0])} 个离散情景', transform=ax.transAxes,
-                ha='left', va='top', fontsize=8.5)
+        n_scenarios = int(d['n_scenarios'][0])
+        panel(ax, f'({chr(97 + idx)}) {model} · {temp}（{n_scenarios}个情景）',
+              '最大冰体积分数', zero=True)
     shared_legend(fig, [Patch(facecolor='#709DAF', alpha=.32, label='校准目标≤最小值×1.05的情景范围'),
                        Line2D([0], [0], color=COLORS['bp'], linestyle='--', label='$k_f=1$ 同粗网格参考')], ncol=2)
     finish(fig, output, '12_near_optimal_ice_scenarios',
@@ -579,7 +654,7 @@ def main():
     plot_near_optimal(root, output, manifest)
     (output / 'figure_manifest.json').write_text(
         json.dumps(manifest, ensure_ascii=False, indent=2) + '\n', encoding='utf-8')
-    print(f'Saved {len(manifest)} figures as vector PDF and PNG: {output}')
+    print(f'Saved {len(manifest)} figures as vector PDF/SVG and 300 dpi PNG: {output}')
 
 
 if __name__ == '__main__':
