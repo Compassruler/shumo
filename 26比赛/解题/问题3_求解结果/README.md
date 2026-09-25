@@ -9,7 +9,7 @@
 - `data/表4_问题三主结果.csv`：题面要求的两种策略结果。
 - `data/summary_results.csv`：未过度舍入的主结果及额外稳健预热方案。
 - `data/postload_verification.csv`：达到首次启动后继续加载的检查，不将检查终点冒充启动时间。
-- `figures/`：论文用PNG及可编辑SVG图。
+- `figures/`：论文用矢量 PDF、可编辑 SVG 及 300 dpi PNG 预览图。
 
 ## 策略和数据口径
 
@@ -21,7 +21,7 @@ P为题面纯预热：电流为零直至全部电池首次超过0 ℃，随后�
 
 ## 代码位置与复算
 
-数值代码位于`code/`。绘图源码独立位于`../../画图代码/问题3/plot_q3.py`，不放在解题目录。
+数值代码位于 `code/`。逐图绘图代码位于 `code/figure_scripts/`，每张图均可独立运行；原批量绘图源码 `../../画图代码/问题3/plot_q3.py` 保留用于追溯。
 
 依赖：Python 3.12、NumPy、SciPy、Numba、Matplotlib。代码优先使用既有问题二的`.python_deps`，不存在时也可使用正常Python环境安装的相同库。共享内核`fast_cell.py`已复制固化，未修改问题一或问题二源代码。
 
@@ -34,7 +34,7 @@ python code/cooperative_search.py
 python code/optimize_aux.py R
 python code/export_results.py
 python code/validate_model.py
-python ../../画图代码/问题3/plot_q3.py
+python3 code/figure_scripts/fig01_main_strategy_temperatures.py
 ```
 
 首次运行会编译数值内核，需要等待。完整优化需数分钟到更久，取决于电脑配置。`export_results.py`利用已搜索并验证的活跃功率模式做细网格校正；若改变物性、初温或边界，必须先重新全变量优化，不能只改导出脚本后沿用本题功率模式。
