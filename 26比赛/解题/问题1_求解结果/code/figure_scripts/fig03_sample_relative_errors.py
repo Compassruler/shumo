@@ -29,5 +29,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '03_sample_relative_errors', args,
+    export_and_show(build_figure(), '03_电压和温度相对误差', args,
                     dict(left=.09, right=.96, bottom=.09, top=.91, wspace=.30, hspace=.40))

@@ -38,5 +38,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '12_near_optimal_ice_scenarios', args,
+    export_and_show(build_figure(), '12_近优冻结情景范围与kf1参考曲线', args,
                     dict(left=.09, right=.96, bottom=.09, top=.91, wspace=.30, hspace=.45))

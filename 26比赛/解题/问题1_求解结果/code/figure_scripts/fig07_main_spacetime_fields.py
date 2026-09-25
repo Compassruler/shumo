@@ -10,4 +10,4 @@ ICE_CMAP = 'YlGnBu'
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
     fig = build_field_figure('main', FIGSIZE, TEMPERATURE_CMAP, ICE_CMAP)
-    export_and_show(fig, '07_main_spacetime_fields', args)
+    export_and_show(fig, '07_五层基线温度与结冰时空分布', args)

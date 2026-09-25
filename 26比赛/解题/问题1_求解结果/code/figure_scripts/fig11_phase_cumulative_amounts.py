@@ -33,5 +33,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '11_phase_cumulative_amounts', args,
+    export_and_show(build_figure(), '11_六个相变通道累计转化水量', args,
                     dict(left=.09, right=.96, bottom=.09, top=.87, wspace=.40, hspace=.47))

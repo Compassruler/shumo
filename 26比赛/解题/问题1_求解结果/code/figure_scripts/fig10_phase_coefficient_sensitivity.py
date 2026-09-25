@@ -49,5 +49,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '10_phase_coefficient_sensitivity', args,
+    export_and_show(build_figure(), '10_六个相变系数一次一因子敏感性矩阵', args,
                     dict(left=.09, right=.96, bottom=.12, top=.94, wspace=.35, hspace=.55))

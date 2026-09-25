@@ -38,6 +38,6 @@ if __name__ == '__main__':
     args = cli(__doc__)
     configure_style()
     figure = build_figure()
-    export_and_show(figure, '01_main_experiment_comparison', args,
+    export_and_show(figure, '01_五层基线电压温度计算值与实验采样值对比', args,
                     dict(left=.09, right=.96, bottom=.09, top=.91,
                          wspace=.30, hspace=.40))

@@ -56,5 +56,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '06_bp_water_energy_balances', args,
+    export_and_show(build_figure(), '06_含双极板修订模型水量热量收支与守恒残差', args,
                     dict(left=.09, right=.96, bottom=.10, top=.84, wspace=.52, hspace=.75))

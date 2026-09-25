@@ -40,5 +40,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '09_freezing_identifiability', args,
+    export_and_show(build_figure(), '09_冻结系数剖面与参数可辨识性', args,
                     dict(left=.09, right=.96, bottom=.09, top=.91, wspace=.30, hspace=.45))

@@ -255,122 +255,122 @@
     "sha256": "ac208ce5dc4d21d44a90d71f8e49c8e9181c97d5e94f20452cfe856093ca8bc4"
   },
   {
-    "path": "figures/01_main_experiment_comparison.pdf",
+    "path": "figures/01_五层基线电压温度计算值与实验采样值对比.pdf",
     "bytes": 24312,
     "sha256": "b3b02a856919f2119b7fa75fe192fd2c34037be5148cc6744c9a3c0d372503c1"
   },
   {
-    "path": "figures/01_main_experiment_comparison.png",
+    "path": "figures/01_五层基线电压温度计算值与实验采样值对比.png",
     "bytes": 214738,
     "sha256": "5a0843a0707ca2be7c0401f15437c69106fa64210540a4a54df589c0f0040ba7"
   },
   {
-    "path": "figures/02_bp_structural_comparison.pdf",
+    "path": "figures/02_实验值五层基线与含双极板修订模型对比.pdf",
     "bytes": 29006,
     "sha256": "2a05547ab4b47a1dc5ae1fe89cff1a5e6a2738f112de5d20710691587d750687"
   },
   {
-    "path": "figures/02_bp_structural_comparison.png",
+    "path": "figures/02_实验值五层基线与含双极板修订模型对比.png",
     "bytes": 234821,
     "sha256": "89ef9ae2daa75773ce8eccc073816ba1454cf4b5b8a747bcf18759b42c841fbc"
   },
   {
-    "path": "figures/03_sample_relative_errors.pdf",
+    "path": "figures/03_电压和温度相对误差.pdf",
     "bytes": 26989,
     "sha256": "eae1116d63c5212d1429e3752fb50b6846e6d547a51e1c6c0864cf9c5ccdadb9"
   },
   {
-    "path": "figures/03_sample_relative_errors.png",
+    "path": "figures/03_电压和温度相对误差.png",
     "bytes": 255539,
     "sha256": "b72e21c99788e9b36ac5e13bbbd1198e0da18441be250d0b0aaa7b24d2efa519"
   },
   {
-    "path": "figures/04_ice_fraction_saturation.pdf",
+    "path": "figures/04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.pdf",
     "bytes": 31742,
     "sha256": "1ec599039d20fcd042e474ac3c295512ba3397c2ceb68dc266bc60b85a5212ac"
   },
   {
-    "path": "figures/04_ice_fraction_saturation.png",
+    "path": "figures/04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.png",
     "bytes": 396516,
     "sha256": "6ddba7ab40b6fde3ebb5752ec383eacd3dd8aa3a4a33e03ade628c5b83fef9c8"
   },
   {
-    "path": "figures/05_voltage_loss_decomposition.pdf",
+    "path": "figures/05_模型电压与活化欧姆浓差损失分解.pdf",
     "bytes": 53257,
     "sha256": "cd6b9d52550b8604d756831ec65a8dd3026d6de1b8412de346ef34583726b36e"
   },
   {
-    "path": "figures/05_voltage_loss_decomposition.png",
+    "path": "figures/05_模型电压与活化欧姆浓差损失分解.png",
     "bytes": 206907,
     "sha256": "718109b3072a0a28491d0f6a637c34ad9b0285d7892e358dca8b737bbce25f37"
   },
   {
-    "path": "figures/06_bp_water_energy_balances.pdf",
+    "path": "figures/06_含双极板修订模型水量热量收支与守恒残差.pdf",
     "bytes": 38401,
     "sha256": "5ae8e1ee712ec93a7ccaa5351e50b309ccddd529b7e13ea0895a7db75e5605a9"
   },
   {
-    "path": "figures/06_bp_water_energy_balances.png",
+    "path": "figures/06_含双极板修订模型水量热量收支与守恒残差.png",
     "bytes": 406556,
     "sha256": "516b857c9f7f645f83a69c0c0bc584516ebcdfc5fb5fddceb0976fd08f1f8544"
   },
   {
-    "path": "figures/07_main_spacetime_fields.pdf",
+    "path": "figures/07_五层基线温度与结冰时空分布.pdf",
     "bytes": 574403,
     "sha256": "e58bbfab8a5a73c992ef1511a79f78b60a54ebba839482fabe2c3aca875e9eb7"
   },
   {
-    "path": "figures/07_main_spacetime_fields.png",
+    "path": "figures/07_五层基线温度与结冰时空分布.png",
     "bytes": 219431,
     "sha256": "64f8628823cca796ac6cca63dcdc6258c51a15f980656c9e9c67315ad3ce257e"
   },
   {
-    "path": "figures/08_bp_spacetime_fields.pdf",
+    "path": "figures/08_含双极板修订模型温度与结冰时空分布.pdf",
     "bytes": 1083452,
     "sha256": "f7e5eb95ecaba3f00aeb92483c9b59879ee0ecdebbdd01374efe6ed56befa4f9"
   },
   {
-    "path": "figures/08_bp_spacetime_fields.png",
+    "path": "figures/08_含双极板修订模型温度与结冰时空分布.png",
     "bytes": 233282,
     "sha256": "88d495e02652ca6e37c01a17c4b441868ccb1995ff7f31ebc1fea9a9544dbcf9"
   },
   {
-    "path": "figures/09_freezing_identifiability.pdf",
+    "path": "figures/09_冻结系数剖面与参数可辨识性.pdf",
     "bytes": 38929,
     "sha256": "ab97f8cfcabce25b4e1b7208b17d4a69804d39e42dd3233afe80bf361705b2e3"
   },
   {
-    "path": "figures/09_freezing_identifiability.png",
+    "path": "figures/09_冻结系数剖面与参数可辨识性.png",
     "bytes": 293008,
     "sha256": "4ee1346630d3c2d5fcdd665424b5bcf7c2dafc5ff7286d109995bb92336f97fc"
   },
   {
-    "path": "figures/10_phase_coefficient_sensitivity.pdf",
+    "path": "figures/10_六个相变系数一次一因子敏感性矩阵.pdf",
     "bytes": 40161,
     "sha256": "cb4129ef7e55bd05f8f686deca3206c99f4ca6aed71de315df2d0e975bc08dd9"
   },
   {
-    "path": "figures/10_phase_coefficient_sensitivity.png",
+    "path": "figures/10_六个相变系数一次一因子敏感性矩阵.png",
     "bytes": 310251,
     "sha256": "b0e43b1ca556fac275d148ab744a6f225c9ab62bd8e3bd6335833995e781c979"
   },
   {
-    "path": "figures/11_phase_cumulative_amounts.pdf",
+    "path": "figures/11_六个相变通道累计转化水量.pdf",
     "bytes": 33104,
     "sha256": "ea5e3ec36c4d169be05c6c71d7a2fd32031500928d84de835ad6c836acdc1535"
   },
   {
-    "path": "figures/11_phase_cumulative_amounts.png",
+    "path": "figures/11_六个相变通道累计转化水量.png",
     "bytes": 317386,
     "sha256": "0b5768de0858e18a0f3d6f025e3d0ecc663a3cacfe445d50cff77e26fac8a4c2"
   },
   {
-    "path": "figures/12_near_optimal_ice_scenarios.pdf",
+    "path": "figures/12_近优冻结情景范围与kf1参考曲线.pdf",
     "bytes": 47870,
     "sha256": "52d796e986d3040f8b9922999f46993c47dd505ce29d0d7176718f0ebcf7e7f9"
   },
   {
-    "path": "figures/12_near_optimal_ice_scenarios.png",
+    "path": "figures/12_近优冻结情景范围与kf1参考曲线.png",
     "bytes": 277336,
     "sha256": "6a16f054bea0415a0f117ae09bfa91cfd68394274df25741a858d8c32070fb64"
   },

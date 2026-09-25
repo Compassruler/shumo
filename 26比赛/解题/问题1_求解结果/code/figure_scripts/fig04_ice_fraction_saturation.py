@@ -31,5 +31,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '04_ice_fraction_saturation', args,
+    export_and_show(build_figure(), '04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度', args,
                     dict(left=.09, right=.96, bottom=.09, top=.885, wspace=.42, hspace=.40))

@@ -34,5 +34,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '02_bp_structural_comparison', args,
+    export_and_show(build_figure(), '02_实验值五层基线与含双极板修订模型对比', args,
                     dict(left=.09, right=.96, bottom=.09, top=.91, wspace=.30, hspace=.40))

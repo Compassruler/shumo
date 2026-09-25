@@ -31,5 +31,5 @@ def build_figure():
 
 if __name__ == '__main__':
     args = cli(__doc__); configure_style()
-    export_and_show(build_figure(), '05_voltage_loss_decomposition', args,
+    export_and_show(build_figure(), '05_模型电压与活化欧姆浓差损失分解', args,
                     dict(left=.09, right=.96, bottom=.09, top=.91, wspace=.30, hspace=.40))

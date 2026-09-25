@@ -220,101 +220,101 @@ verify_phase_exports.py另从全部CSV独立核验正式四轨迹、两个中文
 
 ## 10. 图表与直接数据来源
 
-### 01_main_experiment_comparison
+### 01_五层基线电压温度计算值与实验采样值对比
 
 五层基线电压、温度与实验采样值的对比；模型结果与实验数据采用相同采样时刻。
 
-![01_main_experiment_comparison](../figures/01_main_experiment_comparison.png)
+![01_五层基线电压温度计算值与实验采样值对比](../figures/01_五层基线电压温度计算值与实验采样值对比.png)
 
-[矢量PDF](../figures/01_main_experiment_comparison.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)。
+[矢量PDF](../figures/01_五层基线电压温度计算值与实验采样值对比.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)。
 
-### 02_bp_structural_comparison
+### 02_实验值五层基线与含双极板修订模型对比
 
 五层基线与含双极板修订模型的电压、温度响应。BP 曲线为纳入双极板热容量后的修订计算结果，与五层基线分开表示。
 
-![02_bp_structural_comparison](../figures/02_bp_structural_comparison.png)
+![02_实验值五层基线与含双极板修订模型对比](../figures/02_实验值五层基线与含双极板修订模型对比.png)
 
-[矢量PDF](../figures/02_bp_structural_comparison.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
+[矢量PDF](../figures/02_实验值五层基线与含双极板修订模型对比.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
 
-### 03_sample_relative_errors
+### 03_电压和温度相对误差
 
 各采样时刻的电压与温度相对误差；温度按建模推导文件使用实验摄氏温度的绝对值作为分母；开尔文分母误差另存 CSV。
 
-![03_sample_relative_errors](../figures/03_sample_relative_errors.png)
+![03_电压和温度相对误差](../figures/03_电压和温度相对误差.png)
 
-[矢量PDF](../figures/03_sample_relative_errors.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
+[矢量PDF](../figures/03_电压和温度相对误差.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
 
-### 04_ice_fraction_saturation
+### 04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度
 
 四组计算的最大总冰、孔隙冰、膜相冰体积分数及最大孔隙冰饱和度。各最大值可位于不同空间位置。
 
-![04_ice_fraction_saturation](../figures/04_ice_fraction_saturation.png)
+![04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度](../figures/04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.png)
 
-[矢量PDF](../figures/04_ice_fraction_saturation.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
+[矢量PDF](../figures/04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
 
-### 05_voltage_loss_decomposition
+### 05_模型电压与活化欧姆浓差损失分解
 
 模型电压与活化、欧姆、浓差损失的堆叠分解；虚线表示可逆电压。
 
-![05_voltage_loss_decomposition](../figures/05_voltage_loss_decomposition.png)
+![05_模型电压与活化欧姆浓差损失分解](../figures/05_模型电压与活化欧姆浓差损失分解.png)
 
-[矢量PDF](../figures/05_voltage_loss_decomposition.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
+[矢量PDF](../figures/05_模型电压与活化欧姆浓差损失分解.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
 
-### 06_bp_water_energy_balances
+### 06_含双极板修订模型水量热量收支与守恒残差
 
 含双极板修订模型的累计水量、累计热量及守恒残差。储水变化扣除初始存水量；相变热正号表示放热。灰色点线残差采用各面板右轴单独刻度。
 
-![06_bp_water_energy_balances](../figures/06_bp_water_energy_balances.png)
+![06_含双极板修订模型水量热量收支与守恒残差](../figures/06_含双极板修订模型水量热量收支与守恒残差.png)
 
-[矢量PDF](../figures/06_bp_water_energy_balances.pdf)；数据：[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
+[矢量PDF](../figures/06_含双极板修订模型水量热量收支与守恒残差.pdf)；数据：[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
 
-### 07_main_spacetime_fields
+### 07_五层基线温度与结冰时空分布
 
 五层基线局部温度与总冰体积分数时空分布。虚线表示计算层界面；同一行采用统一色标。
 
-![07_main_spacetime_fields](../figures/07_main_spacetime_fields.png)
+![07_五层基线温度与结冰时空分布](../figures/07_五层基线温度与结冰时空分布.png)
 
-[矢量PDF](../figures/07_main_spacetime_fields.pdf)；数据：[fields_main_minus20.csv](../data/fields_main_minus20.csv)、[fields_main_minus25.csv](../data/fields_main_minus25.csv)。
+[矢量PDF](../figures/07_五层基线温度与结冰时空分布.pdf)；数据：[fields_main_minus20.csv](../data/fields_main_minus20.csv)、[fields_main_minus25.csv](../data/fields_main_minus25.csv)。
 
-### 08_bp_spacetime_fields
+### 08_含双极板修订模型温度与结冰时空分布
 
 含双极板修订模型局部温度与总冰体积分数时空分布。虚线表示计算层界面；同一行采用统一色标。双极板修订模型温度图显示整域，冰图显示 MEA 区域。
 
-![08_bp_spacetime_fields](../figures/08_bp_spacetime_fields.png)
+![08_含双极板修订模型温度与结冰时空分布](../figures/08_含双极板修订模型温度与结冰时空分布.png)
 
-[矢量PDF](../figures/08_bp_spacetime_fields.pdf)；数据：[fields_bp_minus20.csv](../data/fields_bp_minus20.csv)、[fields_bp_minus25.csv](../data/fields_bp_minus25.csv)。
+[矢量PDF](../figures/08_含双极板修订模型温度与结冰时空分布.pdf)；数据：[fields_bp_minus20.csv](../data/fields_bp_minus20.csv)、[fields_bp_minus25.csv](../data/fields_bp_minus25.csv)。
 
-### 09_freezing_identifiability
+### 09_冻结系数剖面与参数可辨识性
 
 冻结系数剖面：每个固定 kf 仅用−20℃重新拟合 j0，再预测−25℃。所有曲线采用粗网格和0.05 s步长，不能与正式细网格末位混比；竖线表示固定基准kf=1。剖面用于判断参数非唯一性，不是置信区间。
 
-![09_freezing_identifiability](../figures/09_freezing_identifiability.png)
+![09_冻结系数剖面与参数可辨识性](../figures/09_冻结系数剖面与参数可辨识性.png)
 
-[矢量PDF](../figures/09_freezing_identifiability.pdf)；数据：[冻结系数剖面.csv](../data/冻结系数剖面.csv)。
+[矢量PDF](../figures/09_冻结系数剖面与参数可辨识性.pdf)；数据：[冻结系数剖面.csv](../data/冻结系数剖面.csv)。
 
-### 10_phase_coefficient_sensitivity
+### 10_六个相变系数一次一因子敏感性矩阵
 
 六相变系数按完全相同的0.1倍/10倍扰动规则逐一检验，j0保持正式校准值。数字为两种扰动的最大绝对影响；V、T取全时段最大差，冰取35 s最大冰体积分数差并换算为百分点。所有敏感性轨迹及各自基准采用同网格、0.025 s步长。零影响仅表明本工况/窗口内没有激活或影响低于数值输出精度，不证明参数普遍不重要。
 
-![10_phase_coefficient_sensitivity](../figures/10_phase_coefficient_sensitivity.png)
+![10_六个相变系数一次一因子敏感性矩阵](../figures/10_六个相变系数一次一因子敏感性矩阵.png)
 
-[矢量PDF](../figures/10_phase_coefficient_sensitivity.pdf)；数据：[参数与闭合敏感性.csv](../data/参数与闭合敏感性.csv)。
+[矢量PDF](../figures/10_六个相变系数一次一因子敏感性矩阵.pdf)；数据：[参数与闭合敏感性.csv](../data/参数与闭合敏感性.csv)。
 
-### 11_phase_cumulative_amounts
+### 11_六个相变通道累计转化水量
 
 冻结、融化、凝结、蒸发、凝华、升华六通道的累计转化水量，均为模型输出。各面板纵轴独立；全零通道明确标注未激活。累计相变量允许同一份水反复转化，不能相加当作互斥水库存，也不能直接除以产水解释为冻结概率。
 
-![11_phase_cumulative_amounts](../figures/11_phase_cumulative_amounts.png)
+![11_六个相变通道累计转化水量](../figures/11_六个相变通道累计转化水量.png)
 
-[矢量PDF](../figures/11_phase_cumulative_amounts.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
+[矢量PDF](../figures/11_六个相变通道累计转化水量.pdf)；数据：[main_minus20.csv](../data/main_minus20.csv)、[main_minus25.csv](../data/main_minus25.csv)、[bp_minus20.csv](../data/bp_minus20.csv)、[bp_minus25.csv](../data/bp_minus25.csv)。
 
-### 12_near_optimal_ice_scenarios
+### 12_近优冻结情景范围与kf1参考曲线
 
 仅由−20℃校准目标挑选不超过扫描最小值1.05倍的离散冻结情景，原样应用于−25℃，阴影为逐采样时刻最小/最大值。5%是工程误差容差而非统计显著性，范围不是置信区间，亦不是全部物理不确定性；1%/10%阈值另存CSV。橙色参考与阴影同采用粗网格0.05 s，正式主解另见图04。
 
-![12_near_optimal_ice_scenarios](../figures/12_near_optimal_ice_scenarios.png)
+![12_近优冻结情景范围与kf1参考曲线](../figures/12_近优冻结情景范围与kf1参考曲线.png)
 
-[矢量PDF](../figures/12_near_optimal_ice_scenarios.pdf)；数据：[近优冻结情景范围_非置信区间.csv](../data/近优冻结情景范围_非置信区间.csv)、[冻结系数情景全时序.csv](../data/冻结系数情景全时序.csv)、[近优阈值敏感性.csv](../data/近优阈值敏感性.csv)。
+[矢量PDF](../figures/12_近优冻结情景范围与kf1参考曲线.pdf)；数据：[近优冻结情景范围_非置信区间.csv](../data/近优冻结情景范围_非置信区间.csv)、[冻结系数情景全时序.csv](../data/冻结系数情景全时序.csv)、[近优阈值敏感性.csv](../data/近优阈值敏感性.csv)。
 
 ## 11. 文件索引与可复现性
 

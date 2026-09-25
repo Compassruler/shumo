@@ -93,9 +93,9 @@ python fig01_main_experiment_comparison.py --no-show
 例如运行图01后会更新：
 
 ```text
-figures/01_main_experiment_comparison.pdf
-figures/01_main_experiment_comparison.svg
-figures/01_main_experiment_comparison.png
+figures/01_五层基线电压温度计算值与实验采样值对比.pdf
+figures/01_五层基线电压温度计算值与实验采样值对比.svg
+figures/01_五层基线电压温度计算值与实验采样值对比.png
 ```
 
 ## 哪些文件不能删除
