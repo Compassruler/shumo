@@ -25,5 +25,5 @@ step_terminal_time_match,0.0,1e-09,True
 step_five_cell_export_symmetry,0.0,1e-12,True
 critical_success_status,0.0,0,True
 critical_failure_status,0.0,0,True
-finest_check_-12.8076171875_bracket_confirm,0.0,0,True
-finest_check_-12.802734375_bracket_confirm,0.0,0,True
+finest_check_-16.42578125_bracket_confirm,0.0,0,True
+finest_check_-16.4208984375_bracket_confirm,0.0,0,True

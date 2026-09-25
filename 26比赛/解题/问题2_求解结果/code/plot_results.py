@@ -17,7 +17,9 @@ matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 
-FONT = Path('C:/Windows/Fonts/msyh.ttc')
+FONT = next((p for p in [Path('C:/Windows/Fonts/msyh.ttc'),
+    Path('/System/Library/Fonts/STHeiti Light.ttc'),
+    Path('/System/Library/Fonts/Supplemental/Songti.ttc')] if p.exists()), Path('missing-font'))
 if FONT.exists():
     font_manager.fontManager.addfont(str(FONT))
     plt.rcParams['font.family'] = font_manager.FontProperties(fname=str(FONT)).get_name()
@@ -67,12 +69,12 @@ def axis(ax, ylabel, xlabel='时间 / s'):
 
 
 def save(fig, name, title, sources, output, note=''):
-    fig.suptitle(title, fontsize=13)
     fig.savefig(output / f'{name}.png', dpi=220, bbox_inches='tight')
     fig.savefig(output / f'{name}.svg', bbox_inches='tight')
+    fig.savefig(output / f'{name}.pdf', bbox_inches='tight')
     plt.close(fig)
     MANIFEST.append({'figure': name, 'title': title, 'data_sources': ';'.join(sources),
-                     'png': f'{name}.png', 'svg': f'{name}.svg', 'note': note})
+                     'png': f'{name}.png', 'svg': f'{name}.svg', 'pdf': f'{name}.pdf', 'note': note})
 
 
 def strategy_plots(data, output):
@@ -372,7 +374,7 @@ def main():
     sensitivity_plot(args.data, args.output)
     ramp_limit_plot(args.data, args.output)
     with (args.output / 'figure_manifest.csv').open('w', encoding='utf-8-sig', newline='') as handle:
-        writer = csv.DictWriter(handle, fieldnames=['figure', 'title', 'data_sources', 'png', 'svg', 'note'])
+        writer = csv.DictWriter(handle, fieldnames=['figure', 'title', 'data_sources', 'png', 'svg', 'pdf', 'note'])
         writer.writeheader()
         writer.writerows(MANIFEST)
     print(json.dumps({'figures_created': len(MANIFEST), 'directory': str(args.output),

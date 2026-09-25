@@ -1,5 +1,5 @@
 {
-  "elapsed_seconds": 574.1806116104126,
+  "elapsed_seconds": 372.4394738674164,
   "main_grid_scale": 8,
   "main_dt_s": 0.003125,
   "optimization_dt_s": 0.1,
@@ -9,6 +9,19 @@
   "minimum_temperature_scope": "fixed optimized curves, checked against per-temperature reoptimization",
   "tmax_s": 600,
   "event_target_C": 1e-07,
+  "plate_model_version": "shared_bp_6_positions_v1",
+  "plate_positions": 6,
+  "bp_thickness_m": 0.002,
+  "bp_capacity_per_plate_J_m2K": 3033.36,
+  "bp_node_fractions_five_cells": [
+    1.5,
+    1.0,
+    1.0,
+    1.0,
+    1.5
+  ],
+  "bp_total_capacity_J_m2K": 18200.16,
+  "cell_pitch_m": 0.0023267,
   "main_cells_per_MEA": 232,
   "verification_grid_scale": 16,
   "verification_cells_per_MEA": 464,
@@ -21,5 +34,17 @@
   ],
   "critical_temperature_tolerance_C": 0.0048828125,
   "lower_current_search_bound_A_cm2": 0.0,
-  "historical_search_note": "Initial broad stochastic search used 0.02 lower bounds. Final code permits zero; separate zero-current corner audit retained."
+  "finalize_elapsed_seconds": 127.20174217224121,
+  "python_version": "3.12.14",
+  "platform": "macOS-26.6.2-arm64-arm-64bit",
+  "package_versions": {
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "numba": "0.67.0",
+    "matplotlib": "3.11.2",
+    "openpyxl": "3.1.5",
+    "lxml": "6.1.3"
+  },
+  "below_critical_diagnostic_T0_C": -18.0,
+  "historical_search_note": "Full optimization rerun after shared-plate correction with zero lower current bounds; zero-current corners independently checked."
 }

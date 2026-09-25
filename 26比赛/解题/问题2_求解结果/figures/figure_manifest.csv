@@ -1,13 +1,13 @@
-﻿figure,title,data_sources,png,svg,note
-01_加载策略与累计电荷,最优加载策略与电荷消耗,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,01_加载策略与累计电荷.png,01_加载策略与累计电荷.svg,
-02_各单电池与端板温度,轴向温度非均匀性,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,02_各单电池与端板温度.png,02_各单电池与端板温度.svg,镜像对称：单电池 1=5、2=4；端板不计入五片电池启动判据。
-03_各单电池电压与安全约束,全过程单电池电压,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,03_各单电池电压与安全约束.png,03_各单电池电压与安全约束.svg,保留 CSV 内阶梯切换时刻左右极限；未在可视化阶段重新采样或平滑。
-04_总体积基准冰体积分数,总体积基准冰体积分数,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,04_总体积基准冰体积分数.png,04_总体积基准冰体积分数.svg,总体积基准 ice_bulk 与孔隙冰饱和度分开呈现，禁止混作同一指标。
-05_孔隙冰饱和度,孔隙内冰占比与堵塞风险,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,05_孔隙冰饱和度.png,05_孔隙冰饱和度.svg,孔隙冰饱和度不是题目要求汇总的总体积基准最大冰体积分数。
-06_全局热预算与能量守恒,五片单电池与两块端板的全局热预算,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,06_全局热预算与能量守恒.png,06_全局热预算与能量守恒.svg,单位为几何截面积归一化热量；Q显热−Q电化学−Q相变+Q散热=残差。
-07_最低启动温度两侧轨迹,临界初温两侧的温度与电压,trajectory_critical_success.csv;trajectory_critical_failure.csv,07_最低启动温度两侧轨迹.png,07_最低启动温度两侧轨迹.svg,成功或失败侧按对应输入文件命名，不在图表脚本内重新判定。
-08_临界启动电压损失分解,临界冷启动的电压损失构成,trajectory_critical_success.csv;trajectory_critical_failure.csv,08_临界启动电压损失分解.png,08_临界启动电压损失分解.svg,
-09_最低初温可行性搜索,最低启动初温的数值搜索,temperature_search.csv,09_最低初温可行性搜索.png,09_最低初温可行性搜索.svg,成功用圆点，失败用叉号；失败工况横坐标对应初温，纵坐标为终止时间而非启动时间。
-10_时间空间离散收敛性,恒流最优方案的时间与空间离散收敛性,convergence.csv,10_时间空间离散收敛性.png,10_时间空间离散收敛性.svg,仅对横坐标步长排序连接；未改变任何数值。
-11_参数与边界假设敏感性,参数与边界假设敏感性（蓝：成功；橙：失败）,sensitivity.csv,11_参数与边界假设敏感性.png,11_参数与边界假设敏感性.svg,保留输入 CSV 工况顺序；失败工况显示终止时间。
-12_线性升载斜率极限,升载时间趋零时的性能极限,ramp_slope_limit.csv,12_线性升载斜率极限.png,12_线性升载斜率极限.svg,同一离散设置下比较不同升载时间；0.2s为数值搜索约定，不是题给斜率限制。
+﻿figure,title,data_sources,png,svg,pdf,note
+01_加载策略与累计电荷,最优加载策略与电荷消耗,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,01_加载策略与累计电荷.png,01_加载策略与累计电荷.svg,01_加载策略与累计电荷.pdf,
+02_各单电池与端板温度,轴向温度非均匀性,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,02_各单电池与端板温度.png,02_各单电池与端板温度.svg,02_各单电池与端板温度.pdf,镜像对称：单电池 1=5、2=4；端板不计入五片电池启动判据。
+03_各单电池电压与安全约束,全过程单电池电压,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,03_各单电池电压与安全约束.png,03_各单电池电压与安全约束.svg,03_各单电池电压与安全约束.pdf,保留 CSV 内阶梯切换时刻左右极限；未在可视化阶段重新采样或平滑。
+04_总体积基准冰体积分数,总体积基准冰体积分数,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,04_总体积基准冰体积分数.png,04_总体积基准冰体积分数.svg,04_总体积基准冰体积分数.pdf,总体积基准 ice_bulk 与孔隙冰饱和度分开呈现，禁止混作同一指标。
+05_孔隙冰饱和度,孔隙内冰占比与堵塞风险,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,05_孔隙冰饱和度.png,05_孔隙冰饱和度.svg,05_孔隙冰饱和度.pdf,孔隙冰饱和度不是题目要求汇总的总体积基准最大冰体积分数。
+06_全局热预算与能量守恒,五片单电池与两块端板的全局热预算,trajectory_constant.csv;trajectory_ramp.csv;trajectory_step.csv,06_全局热预算与能量守恒.png,06_全局热预算与能量守恒.svg,06_全局热预算与能量守恒.pdf,单位为几何截面积归一化热量；Q显热−Q电化学−Q相变+Q散热=残差。
+07_最低启动温度两侧轨迹,临界初温两侧的温度与电压,trajectory_critical_success.csv;trajectory_critical_failure.csv,07_最低启动温度两侧轨迹.png,07_最低启动温度两侧轨迹.svg,07_最低启动温度两侧轨迹.pdf,成功或失败侧按对应输入文件命名，不在图表脚本内重新判定。
+08_临界启动电压损失分解,临界冷启动的电压损失构成,trajectory_critical_success.csv;trajectory_critical_failure.csv,08_临界启动电压损失分解.png,08_临界启动电压损失分解.svg,08_临界启动电压损失分解.pdf,
+09_最低初温可行性搜索,最低启动初温的数值搜索,temperature_search.csv,09_最低初温可行性搜索.png,09_最低初温可行性搜索.svg,09_最低初温可行性搜索.pdf,成功用圆点，失败用叉号；失败工况横坐标对应初温，纵坐标为终止时间而非启动时间。
+10_时间空间离散收敛性,恒流最优方案的时间与空间离散收敛性,convergence.csv,10_时间空间离散收敛性.png,10_时间空间离散收敛性.svg,10_时间空间离散收敛性.pdf,仅对横坐标步长排序连接；未改变任何数值。
+11_参数与边界假设敏感性,参数与边界假设敏感性（蓝：成功；橙：失败）,sensitivity.csv,11_参数与边界假设敏感性.png,11_参数与边界假设敏感性.svg,11_参数与边界假设敏感性.pdf,保留输入 CSV 工况顺序；失败工况显示终止时间。
+12_线性升载斜率极限,升载时间趋零时的性能极限,ramp_slope_limit.csv,12_线性升载斜率极限.png,12_线性升载斜率极限.svg,12_线性升载斜率极限.pdf,同一离散设置下比较不同升载时间；0.2s为数值搜索约定，不是题给斜率限制。

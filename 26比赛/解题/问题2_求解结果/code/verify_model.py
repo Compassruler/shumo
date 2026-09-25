@@ -47,6 +47,22 @@ def cell_parity(scale,T0):
 for scale,T0 in ((1,253.15),(2,248.15)):
     cell_parity(scale,T0)
 
+# Independent geometry inventory: N MEAs require N-1 shared + 2 terminal plates.
+# Derive expectations from material data rather than reuse model BP constants.
+cfg=make_config();states=tuple(initial_state(cfg,263.15) for _ in range(3))
+c,g,h,conduct=network(cfg,states,THERMAL)
+mea_c,mea_r=properties(cfg,states[0])
+one_plate=0.002*1980.*766.
+for k,nplates in enumerate((1.5,1.,1.)):
+    check(f'plate_capacity_node_{k+1}_J_m2K',abs(c[k]-mea_c-nplates*one_plate),1e-9)
+plate_total=float(np.dot(np.array([2.,2.,1.]),c[:3]-mea_c))
+check('stack_six_plate_inventory_J_m2K',abs(plate_total-(5-1+2)*one_plate),1e-9)
+expected_g=1./(mea_r+0.002/95.)
+for k in (0,1):
+    check(f'single_shared_plate_conductance_{k}_W_m2K',abs(conduct[k]-expected_g),1e-9)
+check('terminal_full_plate_conductance_W_m2K',abs(conduct[2]-1./(.5*mea_r+.002/95.+.005/15.)),1e-9)
+check('thermal_cell_pitch_m',abs(float(np.sum(cfg.dx))+(1./conduct[0]-mea_r)*95.-.0023267),1e-12)
+
 # Independent 7-node implicit heat solve compared with the 4-node reduction.
 cfg=make_config();states=tuple(initial_state(cfg,263.15) for _ in range(3))
 temp=np.full(4,-10.);symmetry=0.

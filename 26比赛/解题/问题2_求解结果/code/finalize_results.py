@@ -1,7 +1,8 @@
 """Final high-resolution exports after the coarse multi-start optimization."""
 from run_question2 import ROOT,DATA,write_csv,export_trajectory,temperature_boundary
 from stack_model import simulate
-import csv,json,time
+import csv,json,time,math,platform,importlib.metadata
+finalize_start=time.time()
 
 def read(name):
     with (DATA/name).open(encoding='utf-8-sig') as f:return list(csv.DictReader(f))
@@ -11,6 +12,11 @@ opt=json.loads((DATA/'optimized_parameters.json').read_text(encoding='utf-8'))
 # use canonical times strictly before startup instead of optimizer round-off.
 if max(opt['step'][:3])-min(opt['step'][:3])<1e-8:
     opt['step']=[opt['step'][0]]*3+[8.,16.]
+# Narrative/table templates describe this boundary solution; fail loudly if a
+# future model revision changes it rather than silently report stale parameters.
+expected={'constant':[.5],'ramp':[2.5,.5],'step':[.5,.5,.5,8.,16.]}
+assert all(len(opt[k])==len(v) and max(abs(a-b) for a,b in zip(opt[k],v))<1e-8
+           for k,v in expected.items()), 'Refresh strategy parameter descriptions for the new optimum'
 (DATA/'optimized_parameters.json').write_text(json.dumps(opt,indent=2),encoding='utf-8')
 summary=[]
 for kind,p in opt.items():
@@ -20,7 +26,7 @@ for kind,p in opt.items():
     print('final',kind,s['end_time_s'],s['max_ice_bulk'],flush=True)
 write_csv('strategy_summary.csv',summary)
 
-conv=read('convergence.csv')
+conv=[r for r in read('convergence.csv') if int(r['grid_scale']) not in (8,16)]
 for kind,p in opt.items():
     for scale,dt in ((8,.003125),(16,.0015625)):
         s,*_=simulate(kind,p,dt=dt,scale=scale)
@@ -39,10 +45,11 @@ bestkind=min(boundary,key=lambda k:boundary[k]['warm_feasible_C'])
 cold=boundary[bestkind]['cold_infeasible_C'];warm=boundary[bestkind]['warm_feasible_C']
 sc=export_trajectory('critical_success',bestkind,opt[bestkind],warm,dt=.003125,scale=8)
 fc=export_trajectory('critical_failure',bestkind,opt[bestkind],cold,dt=.003125,scale=8)
-below=export_trajectory('below_critical',bestkind,opt[bestkind],-14.,dt=.003125,scale=8)
+below_T=float(math.floor(cold)-1)
+below=export_trajectory('below_critical',bestkind,opt[bestkind],below_T,dt=.003125,scale=8)
 boundary['critical_success']={'T0_C':warm,**sc}
 boundary['critical_failure']={'T0_C':cold,**fc}
-boundary['below_critical']={'T0_C':-14.,**below}
+boundary['below_critical']={'T0_C':below_T,**below}
 # One finest-grid pass on both sides confirms the reported practical bracket.
 for T in (cold,warm):
     s,*_=simulate(bestkind,opt[bestkind],T0=T,dt=.0015625,scale=16)
@@ -57,7 +64,7 @@ write_csv('第二小问_临界与更冷工况.csv',[
     {'case':case,**boundary[case]} for case in ('critical_success','critical_failure','below_critical')])
 
 zero=[]
-for T0 in (-10.,-12.8,-13.):
+for T0 in (-10.,warm,cold):
     for p in ([0.,.5,.5,.2,8.],[0.,.5,.5,8.,16.],[.5,0.,.5,8.,16.],[.5,.5,0.,8.,16.]):
         s,*_=simulate('step',p,T0=T0,dt=.05,scale=2)
         zero.append({'T0_C':T0,'parameters':json.dumps(p),**s})
@@ -82,6 +89,10 @@ meta.update({'main_grid_scale':8,'main_cells_per_MEA':232,'main_dt_s':.003125,
     'equal_step_canonical_switch_times_s':[8.,16.],
     'critical_temperature_tolerance_C':20/4096,
     'lower_current_search_bound_A_cm2':0.,
-    'historical_search_note':'Initial broad stochastic search used 0.02 lower bounds. Final code permits zero; separate zero-current corner audit retained.'})
+    'finalize_elapsed_seconds':time.time()-finalize_start,
+    'python_version':platform.python_version(),'platform':platform.platform(),
+    'package_versions':{name:importlib.metadata.version(name) for name in ('numpy','scipy','numba','matplotlib','openpyxl','lxml')},
+    'below_critical_diagnostic_T0_C':below_T,
+    'historical_search_note':'Full optimization rerun after shared-plate correction with zero lower current bounds; zero-current corners independently checked.'})
 (DATA/'run_metadata.json').write_text(json.dumps(meta,ensure_ascii=False,indent=2),encoding='utf-8')
 print('High-resolution results complete',flush=True)

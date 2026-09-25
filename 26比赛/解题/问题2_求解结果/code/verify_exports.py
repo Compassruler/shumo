@@ -41,7 +41,7 @@ record('critical_success_status',float(boundary['critical_success']['status']!='
 record('critical_failure_status',float(boundary['critical_failure']['status']!='charge_exhausted'),0)
 for key,value in boundary.items():
     if key.startswith('finest_check_'):
-        expected='charge_exhausted' if value['T0_C']==boundary['constant']['cold_infeasible_C'] else 'success'
+        expected='charge_exhausted' if value['T0_C']==boundary['critical_failure']['T0_C'] else 'success'
         record(key+'_bracket_confirm',float(value['status']!=expected),0)
 write_csv('最终CSV独立核验.csv',rows)
 

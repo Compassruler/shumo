@@ -1,38 +1,38 @@
 [
   {
     "file": "问题2_建模推导源文件.md",
-    "source": "C:\\Users\\马汗青\\xwechat_files\\wxid_da5t146bb4fg22_8787\\temp\\RWTemp\\2026-09\\1a982c231f41821d37ec7653a0d530e4\\问题2_建模推导源文件.md",
-    "sha256": "3c6863012e0482d84a1217493f0f17f1ff526fdeea679cdd87cc60ca02f4a9a4"
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题2_建模推导源文件.md",
+    "sha256": "2ab8de2275661d98bc6aa93f65e1aff4afed5826e64d1267e7e31b2390fb371f"
   },
   {
     "file": "氢燃料电池低温冷启动建模与控制策略研究.docx",
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\B题\\氢燃料电池低温冷启动建模与控制策略研究.docx",
-    "sha256": "2c782005dee4ee2842b3682b1730413f219ef4ad5594350111539e5d171992a9"
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究.docx",
+    "sha256": "0e6ca771dd804a4eda4d4936142d37b632babc0fefbfeaff4508e9fc4e0fdf93"
   },
   {
     "file": "附件1.xlsx",
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\B题\\氢燃料电池低温冷启动建模与控制策略研究  附件\\附件1.xlsx",
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件1.xlsx",
     "sha256": "06fece93cc86cd9110b5f24fbb3e1085f779d89338a6002d26c67616a4e4ed62"
   },
   {
     "file": "附件2.xlsx",
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\B题\\氢燃料电池低温冷启动建模与控制策略研究  附件\\附件2.xlsx",
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/B题/氢燃料电池低温冷启动建模与控制策略研究  附件/附件2.xlsx",
     "sha256": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b"
   },
   {
     "file": "calibration_bp.json",
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\问题1_求解结果\\data\\calibration_bp.json",
-    "sha256": "1f2c8cbf90bfdc3f842bcbebc8c41296acce7ba96da02f65c5decbc8500d2314"
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题1_求解结果/data/calibration_bp.json",
+    "sha256": "87b5e0b32798f03f052789ee1950131c927e43698b87f39c3c909833e30e3272"
   },
   {
     "file": "summary.json",
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\问题1_求解结果\\data\\summary.json",
-    "sha256": "f9c032854ec0c6149872dd7a8b8f4f59fc9e23f4bdf220c52ccbb8e0351c5344"
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题1_求解结果/data/summary.json",
+    "sha256": "7d13c94d92dd7480a31e677911a3f4be43ee488e256d68f0d88c7a7c15873d19"
   },
   {
     "file": "model_q1_reference.py",
-    "source": "C:\\Users\\马汗青\\Desktop\\shumo\\26比赛\\解题\\问题1_求解结果\\code\\model.py",
-    "sha256": "f615735cc6d1cebb6b17f3fae3317a32e3bbc6c167db85bdb4f73b1b0ccb01d8",
+    "source": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题1_求解结果/code/model.py",
+    "sha256": "5932fe88f8ce5bc6b051df9db94584c6706b78755bc08a8163e11a5261a1de80",
     "LF_normalized_sha256": "5932fe88f8ce5bc6b051df9db94584c6706b78755bc08a8163e11a5261a1de80",
     "calibration_code_matches_after_LF_normalization": true
   }

@@ -4,7 +4,7 @@ import csv
 import json
 import time
 import argparse
-from stack_model import simulate, HISTORY_NAMES, THERMAL
+from stack_model import simulate, HISTORY_NAMES, THERMAL, PLATE_MODEL_VERSION
 import numpy as np
 from scipy.optimize import differential_evolution, minimize_scalar, minimize
 
@@ -181,7 +181,7 @@ def main():
     cold=boundary[bestkind]['cold_infeasible_C'];warm=boundary[bestkind]['warm_feasible_C']
     export_trajectory('critical_success',bestkind,opt[bestkind],warm)
     export_trajectory('critical_failure',bestkind,opt[bestkind],cold)
-    export_trajectory('below_critical',bestkind,opt[bestkind],-14.)
+    export_trajectory('below_critical',bestkind,opt[bestkind],float(np.floor(cold)-1))
     # Fine-grid boundary confirmation, independent of the optimization grid.
     for scale,dt in ((1,.025),(2,.0125),(4,.00625)):
         cl,wa,rows=temperature_boundary(bestkind,opt[bestkind],dt=dt,scale=scale)
@@ -199,7 +199,7 @@ def main():
     for label,th,kw in cases:
         s,*_=simulate(bestkind,opt[bestkind],dt=.025,scale=2,thermal=th,**kw)
         cl,wa,_=temperature_boundary(bestkind,opt[bestkind],dt=.025,scale=2,thermal=th,cell_kwargs=kw)
-        sensitivities.append({'case':label,'critical_cold_C':cl,'critical_warm_C':wa,**s})
+        sensitivities.append({'case':label,'dt_s':.025,'grid_scale':2,'critical_cold_C':cl,'critical_warm_C':wa,**s})
     write_csv('sensitivity.csv',sensitivities)
     # Optional strategy-mesh verification: the constant control is admissible for all N.
     strategy_mesh=[]
@@ -216,7 +216,10 @@ def main():
         'ramp_plateau_time_lower_bound_s':.2,'ramp_note':'Numerical search convention, NOT supplied hardware constraint; ramp_slope_limit.csv tests its removal.',
         'optimality':'best feasible found in defined strategy classes; no global certificate',
         'minimum_temperature_scope':'fixed optimized curves, checked against per-temperature reoptimization',
-        'tmax_s':600,'event_target_C':1e-7},indent=2),encoding='utf-8')
+        'tmax_s':600,'event_target_C':1e-7,'plate_model_version':PLATE_MODEL_VERSION,
+        'plate_positions':6,'bp_thickness_m':.002,'bp_capacity_per_plate_J_m2K':3033.36,
+        'bp_node_fractions_five_cells':[1.5,1.,1.,1.,1.5],
+        'bp_total_capacity_J_m2K':18200.16,'cell_pitch_m':.0023267},indent=2),encoding='utf-8')
     print('BOUNDARY',json.dumps(boundary),'elapsed',time.time()-start,flush=True)
 
 if __name__=='__main__':main()

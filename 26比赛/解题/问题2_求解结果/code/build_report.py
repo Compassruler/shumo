@@ -17,6 +17,8 @@ export_checks=read('最终CSV独立核验.csv')
 assert all(r['passed'].lower()=='true' for r in checks+export_checks), 'Verification failures must be resolved before delivery'
 labels={'constant':'恒流','ramp':'线性升载（有限范围）','step':'三段阶梯（退化）'}
 param={'constant':'j=0.5','ramp':'a=2.5，jp=0.5，tp=0.2 s','step':'j1=j2=j3=0.5；t1=8 s，t2=16 s'}
+expected={'constant':[.5],'ramp':[2.5,.5],'step':[.5,.5,.5,8.,16.]}
+assert all(len(json.loads(by[k]['parameters']))==len(v) and max(abs(a-b) for a,b in zip(json.loads(by[k]['parameters']),v))<1e-8 for k,v in expected.items()), 'Regenerate strategy narrative for changed optimal controls'
 result_rows=[]
 for r in s:
     k=r['strategy'];result_rows.append([labels[k],param[k],f"{num(r,'end_time_s'):.4f}",
@@ -25,8 +27,11 @@ for r in s:
 results=table(['加载策略','最优加载参数','启动时间 / s','累计电荷 / C·cm⁻²','最大电流 / A·cm⁻²','最低电压 / V','最大冰体积分数','结果'],result_rows)
 warm=b['constant']['warm_feasible_C'];cold=b['constant']['cold_infeasible_C']
 failure=b['below_critical'];critical=b['critical_failure']
+below_T=failure['T0_C']
+assert failure['status']=='charge_exhausted', 'Update failure explanation if the limiting mechanism changes'
+assert all(r['status']=='success' for r in s), 'Main strategy conclusions require feasible outputs'
 traj=read('trajectory_below_critical.csv');last=traj[-1]
-loss=table(['−14 ℃终止时位置','温度 / ℃','电压 / V','活化损失 / V','欧姆损失 / V','浓差损失 / V','最大冰体积分数'],[
+loss=table([f'{below_T:g} ℃终止时位置','温度 / ℃','电压 / V','活化损失 / V','欧姆损失 / V','浓差损失 / V','最大冰体积分数'],[
     [label]+[f'{float(last[key]):.6f}' for key in [f'T{i}_C',f'cell{i}_V',f'cell{i}_eta_act',f'cell{i}_eta_ohm',f'cell{i}_eta_con',f'cell{i}_ice_bulk']]
     for i,label in [(1,'端部1和5'),(2,'次端部2和4'),(3,'中部3')]])
 coarse=next(r for r in cv if r['strategy']=='constant' and int(r['grid_scale'])==8)
@@ -38,6 +43,8 @@ count=sum(1 for _ in (DATA/'optimization_trace.csv').open(encoding='utf-8-sig'))
 report=f'''# 问题2 电堆自冷启动优化计算结果
 
 本报告完成第二问的两项任务：在−10 ℃比较恒流、线性升载、三段阶梯；在相同20 C/cm²电荷预算和0.5 A/cm²电流上限下确定可自启动初温边界，并定位失败电池。结果来自用户MD框架与已有问题一含双极板标定模型的耦合求解，属于该模型及相变闭合假设下的条件预测。
+
+本次已修正共享极板重复计数：五个MEA对应四块内部共用板及两块外侧终端流场板，各厚2 mm；共用板热容各半分配给相邻电池。端部节点的板热容为4550.04，中间节点为3033.36 J/(m²·K)，整堆板热容为18200.16 J/(m²·K)。片间导热只穿过一块2 mm板，MEA中心节距为2.3267 mm。所有策略搜索、工作数据、临界温度、收敛与敏感性结果均基于此修正重算。相变参数和对流边界沿用原定义。
 
 ## 1 表3 最优策略比较
 
@@ -57,18 +64,18 @@ report=f'''# 问题2 电堆自冷启动优化计算结果
 
 ## 2 第二小问 最低初始温度
 
-恒流及等价阶梯策略的临界初温位于 **({cold:.6f}, {warm:.6f}] ℃**，数值上约为 **−12.8 ℃**。这里冷端是预算耗尽前未达到启动条件的初温，暖端是已找到成功轨迹的初温；区间宽度为{warm-cold:.6f} ℃。
+恒流及等价阶梯策略的临界初温位于 **({cold:.6f}, {warm:.6f}] ℃**，数值上约为 **{warm:.1f} ℃**。这里冷端是预算耗尽前未达到启动条件的初温，暖端是已找到成功轨迹的初温；区间宽度为{warm-cold:.6f} ℃。
 
 ''' + table(['策略','失败侧初温 / ℃','成功侧初温 / ℃'],[
     [labels[k],f"{b[k]['cold_infeasible_C']:.6f}",f"{b[k]['warm_feasible_C']:.6f}"] for k in labels])+f'''
 
-搜索先在−10、−11、−12、−12.5、−12.75、−13、−14、−16、−20 ℃逐点重新优化三类策略，再对已优化曲线二分，并在更细网格上复核分界两侧。所检查温度点的最优加载仍趋向满载恒流。该区间是给定模型与所搜索策略空间的可行边界，不构成对任意无限维电流控制的全局不可行性证明；实际模型误差和参数不确定性远大于0.005 ℃的二分分辨率，不宜把这些小数当成实物测温精度。
+搜索先在−10、−11、−12、−12.5、−12.75、−13、−14、−16、−20 ℃逐点重新优化三类策略，再对已优化曲线二分，并在更细网格上复核分界两侧。所检查的成功工况中，最优加载仍趋向满载恒流；失败工况保留最小惩罚评分候选，仅表示未找到可行解，不将它解释为最优启动策略。该区间是给定模型与所搜索策略空间的可行边界，不构成对任意无限维电流控制的全局不可行性证明；实际模型误差和参数不确定性远大于0.005 ℃的二分分辨率，不宜把这些小数当成实物测温精度。
 
 ### 2.1 首要失效是端部能量不足
 
 临界失败侧T0={critical['T0_C']:.6f} ℃，电荷达到{critical['charge_C_cm2']:.6f} C/cm²时，端部最低温度仍为{critical['min_end_temperature_C']:.6f} ℃，全程最低电压{critical['min_voltage_V']:.6f} V。
 
-以更清楚的−14 ℃工况为例，0.5 A/cm²在40 s耗尽20 C/cm²电荷，端部1、5温度仍为{failure['min_end_temperature_C']:.4f} ℃，中部3已升到{failure['center_temperature_C']:.4f} ℃。全程最低电压{failure['min_voltage_V']:.6f} V，最大孔隙冰饱和度{failure['max_pore_ice_saturation']:.6f}，均未达到电压或孔隙堵塞失效。因此关键电池为**两端第1和第5片**，直接失败原因是**电荷预算耗尽时仍未越过0 ℃**。
+以更清楚的{below_T:g} ℃工况为例，0.5 A/cm²在40 s耗尽20 C/cm²电荷，端部1、5温度仍为{failure['min_end_temperature_C']:.4f} ℃，中部3已升到{failure['center_temperature_C']:.4f} ℃。全程最低电压{failure['min_voltage_V']:.6f} V，最大孔隙冰饱和度{failure['max_pore_ice_saturation']:.6f}，均未达到电压或孔隙堵塞失效。因此关键电池为**两端第1和第5片**，直接失败原因是**电荷预算耗尽时仍未越过0 ℃**。
 
 端部必须向大热容端板供热，并承担对流散热；中间电池没有这两项边界负担。冰量增加和损失变化存在，但在临界点附近没有成为先触发的硬约束，不能将该失败写成“电压率先跌破0.30 V”。
 
@@ -89,7 +96,7 @@ report=f'''# 问题2 电堆自冷启动优化计算结果
 
 正式表3使用每片232个输运网格、时间步0.003125 s，轨迹CSV通常按0.05 s输出并保留初末、切换和极值行；路径最小电压、最大冰量仍在每个内部积分步统计。进一步使用464个网格、0.0015625 s核验，恒流启动时间变化{dt_diff:.6f} s，最大冰体积分数变化{ice_rel:.3f}%。冰量比启动时间更敏感，报告六位小数便于复核，不表示六位有效物理精度。
 
-模型独立核验{len(checks)}项、最终CSV独立核验{len(export_checks)}项，共{len(checks)+len(export_checks)}项全部通过。加速内核与已有问题一的同温度输运、电化学和物性逐项对照误差在约10⁻¹³量级；完整七节点与对称降维热解一致。最终CSV核验另覆盖解析电荷、路径极值、成功条件、五片导出对称性及最细网格临界两侧状态。正式恒流累计热量残差{num(by['constant'],'energy_balance_J_m2'):.3e} J/m²，水量残差{num(by['constant'],'water_balance_kg_m2'):.3e} kg/m²。上述守恒是所采用离散模型的收支闭合，不等于证明经验闭合在实物上准确。
+极板六板总库存、端/中热容分配和单板厚度导度均通过独立核算。模型独立核验{len(checks)}项、最终CSV独立核验{len(export_checks)}项，共{len(checks)+len(export_checks)}项全部通过。加速内核与已有问题一的同温度输运、电化学和物性逐项对照误差在约10⁻¹³量级；完整七节点与对称降维热解一致。最终CSV核验另覆盖解析电荷、路径极值、成功条件、五片导出对称性及最细网格临界两侧状态。正式恒流累计热量残差{num(by['constant'],'energy_balance_J_m2'):.3e} J/m²，水量残差{num(by['constant'],'water_balance_kg_m2'):.3e} kg/m²。上述守恒是所采用离散模型的收支闭合，不等于证明经验闭合在实物上准确。
 
 ![收敛性](../figures/10_时间空间离散收敛性.png)
 
@@ -97,12 +104,21 @@ report=f'''# 问题2 电堆自冷启动优化计算结果
 
 几何与物性来自附件1。j0继承已有含双极板问题一标定，只有j0被拟合；−25 ℃留出验证已有电压RMSE约0.06077 V、温度RMSE约0.23226 K。校准文件与当前参考源码经换行符规范化后哈希一致。这里的温度集中化是第二问MD的降阶假设，并未用附件2重新辨识热网络。
 
-附件2的总电流与电流密度不能同时按25 cm²解释；本次沿用旧标定使用的电流密度列，完整差异见`附件2电流单位核验.csv`。相变参数原始单位是无量纲权重，转成时间率依赖参考时间1 s；冻结速率、膜不可冻结水和边界位置均做敏感性检查，详见`sensitivity.csv`，不能把计算边界视为不依赖这些假设的实验结论。
+附件2的总电流与电流密度不能同时按25 cm²解释；本次沿用旧标定使用的电流密度列，完整差异见`附件2电流单位核验.csv`。相变参数原始单位是无量纲权重，转成时间率依赖参考时间1 s；冻结速率、热网络参数和对流边界位置均做敏感性检查，详见`sensitivity.csv`，不能把计算边界视为不依赖这些假设的实验结论。
+
+敏感性计算统一使用58个输运网格/片、Δt=0.025 s，表中显式记录grid_scale=2和dt_s；其基准启动时间与正式232网格结果略有离散差异，应在敏感性表内部比较。
 
 ![参数敏感性](../figures/11_参数与边界假设敏感性.png)
 
-完整MD修正见[推导核验](MD推导核验.md)。原题、原MD和附件保存在inputs；所有新代码、工作数据和图表位于本文件夹，不改动原始模型。
+完整MD修正见[推导核验](MD推导核验.md)。原题、附件和同步修订后的MD保存在inputs；原路径的建模推导、代码、工作数据及图表已覆盖更新。本次物理模型修改仅涉及共享极板计数、节点极板热容、片间极板热阻与节距；水、冰、电化学参数、端板热容及原对流边界保持原定义。
 '''
+with (ROOT/'figures'/'figure_manifest.csv').open(encoding='utf-8-sig') as handle:
+    figure_rows=list(csv.DictReader(handle))
+report+='\n## 6 全部图表与数据索引\n\n'
+report+=table(['图表','PNG','PDF','数据来源'],[
+    [r['title'],f"[查看](../figures/{r['png']})",f"[下载](../figures/{r['pdf']})",
+     '、'.join(f"[{name}](../data/{name})" for name in r['data_sources'].split(';'))]
+    for r in figure_rows])
 (OUT/'问题2_结果报告.md').write_text(report,encoding='utf-8')
 
 algorithm=r'''# 问题2 算法模型与代码说明
@@ -136,13 +152,13 @@ Erev采用Nernst关系，活化采用原模型asinh形式，膜电导采用Sprin
 
 ## 3 七节点热网络
 
-节点顺序为端板EL、单片1至5、端板ER。单片面热容为MEA片相分率加权积分与两块双极板面热容6066.72 J/(m²·K)之和，端板各39500 J/(m²·K)。各片相变后重算热容和MEA热阻。
+节点顺序为端板EL、单片1至5、端板ER。五个MEA之间共用四块2 mm双极板，两个最外侧各保留一块2 mm终端流场板，共六个板位置。每块板的面热容为0.002×1980×766=3033.36 J/(m²·K)。共享板的热容各半分配给相邻电池节点：端部电池为MEA热容+4550.04，中间三片为MEA热容+3033.36 J/(m²·K)。因此五片所分配的板热容总和为18200.16 J/(m²·K)，不重复计入。端板仍各39500 J/(m²·K)。各片相变后重算MEA热容与热阻，板材料参数固定。这是保持七节点框架的集中近似，共享板未增加独立温度自由度。
 
 $$R_{MEA,k}=\sum_i\Delta x_i/k_i,\quad
-g_{k,k+1}=\left[\tfrac12R_{MEA,k}+0.004/95+\tfrac12R_{MEA,k+1}\right]^{-1},$$
+g_{k,k+1}=\left[\tfrac12R_{MEA,k}+0.002/95+\tfrac12R_{MEA,k+1}\right]^{-1},$$
 $$g_{E,k}=\left[\tfrac12R_{MEA,k}+0.002/95+0.005/15\right]^{-1}.$$
 
-初始gc≈350.56 W/(m²·K)、gE≈568.30 W/(m²·K)，与MD近似值350和568一致。干阴极混合气体导热系数沿用原模型0.02373 W/(m·K)，故与MD采用纯氮0.0235得到的末位值略异。
+代码初始gc≈353.17 W/(m²·K)、gE≈568.30 W/(m²·K)；节距δ=2.3267 mm，keff=δgc≈0.8217 W/(m·K)。MD按取整干态热阻给出gc≈352.6、gE≈567.7。干阴极混合气体导热系数沿用原模型0.02373 W/(m·K)，故与MD采用纯氮0.0235得到的末位值略异。
 
 $$C_k\dot T_k=10^4j(1.48-V_k)+\dot q_{pc,k}
 +\sum_lg_{kl}(T_l-T_k)-h_k(T_k-T_{amb}).$$
@@ -161,7 +177,7 @@ $$C_k\dot T_k=10^4j(1.48-V_k)+\dot q_{pc,k}
 
 恒流j=jc，jc∈[0,0.5]；线性升载j=min(at,jp)，用(jp,tp)搜索且a=jp/tp；N段阶梯有N档独立电流和N−1个正持续时长，切换时间为持续时长的累计值。各档不强制严格不同。基准N=3，并检查N=2和4。
 
-主恒流采用26点网格及有界标量优化。升载和阶梯采用差分进化种子17、43，种群因子6、最多24代，再Powell精修；温度逐点搜索使用种子89、种群因子4、最多9代和热启动满载候选。完整历史保留，初次执行的非零搜索下界为0.02，最终代码已允许0，另有零档电流的角点核验。不存在靠反复调整闭合参数制造更好解的步骤。
+主恒流采用26点网格及有界标量优化。升载和阶梯采用差分进化种子17、43，种群因子6、最多24代，再Powell精修；温度逐点搜索使用种子89、种群因子4、最多9代和热启动满载候选。本次修正极板后已从零电流下界重新执行完整搜索，另有零档电流的角点核验。不存在靠反复调整闭合参数制造更好解的步骤。
 
 可行目标是启动时间；失败评分为1000+100 max(−Tend,0)+10000 max(0.30−Vmin,0)，物理失效再加10000。该评分只帮助搜索，最终可行性仍由硬约束逐项判断。常流包含在阶梯类中，所以下界候选必须始终加入，防止优化器给出反而更差的阶梯解。
 
@@ -179,7 +195,7 @@ $$C_k\dot T_k=10^4j(1.48-V_k)+\dot q_{pc,k}
 
 readme=f'''# 问题2求解交付
 
-已完成第二问两小问。主结果：−10 ℃下0.5 A/cm²恒流约{num(by['constant'],'end_time_s'):.2f} s成功，电荷{num(by['constant'],'charge_C_cm2'):.4f} C/cm²；最低初温约−12.8 ℃，端部1和5在更冷时因电荷耗尽仍未过0 ℃而失败。
+已完成第二问两小问。主结果：−10 ℃下0.5 A/cm²恒流约{num(by['constant'],'end_time_s'):.2f} s成功，电荷{num(by['constant'],'charge_C_cm2'):.4f} C/cm²；最低初温约{warm:.1f} ℃，端部1和5在更冷时因电荷耗尽仍未过0 ℃而失败。
 
 - [完整结果报告](reports/问题2_结果报告.md)
 - [表3 CSV](data/表3_不同策略最优启动结果.csv)
@@ -208,7 +224,7 @@ python code/build_report.py
 
 `run_question2.py --reuse-search`仅跳过随机搜索，不能作为新增优化证据；完整复现请不加该选项。Numba首次运行需要编译，后续会复用本地缓存。`source_audit.py`和`inspect_sources.py`用于本机原始来源整理，常规复现无需重跑；输入原件已经保存于inputs。
 
-正式数据为232空间单元/片、Δt=0.003125 s，另用464单元/片、Δt=0.0015625 s核验。CSV使用UTF-8 BOM，便于Excel打开。figures提供PNG和SVG，SVG为可缩放矢量图。优化历史与主数据可追溯；没有外部试验直接验证本题预测的冰量和临界温度。
+正式数据为232空间单元/片、Δt=0.003125 s，另用464单元/片、Δt=0.0015625 s核验。CSV使用UTF-8 BOM，便于Excel打开。figures提供PNG、SVG和PDF，后两者为可缩放矢量图。实际运行平台及依赖版本记录于data/run_metadata.json。优化历史与主数据可追溯；没有外部试验直接验证本题预测的冰量和临界温度。
 '''
 (ROOT/'README.md').write_text(readme,encoding='utf-8')
 
@@ -220,7 +236,7 @@ CSV编码均为UTF-8 BOM。所有时间单位s；温度列*_C为℃；电流密�
 
 - `表3_不同策略最优启动结果.csv`：中文主结果表，包含题目全部要求列及两种冰量补充。
 - `strategy_summary.csv`：正式高精度的英文机器可读汇总。所有极值统计覆盖每个内部积分步。
-- `trajectory_*.csv`：每个方案的时间轨迹，通常输出间隔0.05 s，额外保留初末、切换与主要极值行。临界成功/失败及−14 ℃诊断也各有独立文件。
+- `trajectory_*.csv`：每个方案的时间轨迹，通常输出间隔0.05 s，额外保留初末、切换与主要极值行。临界成功/失败及低于临界初温的诊断工况也各有独立文件，实际初温见各CSV首行和critical_temperature.json。
 - `cells_*.csv`：五片显式长表，cell=1…5。对称电池共享物理结果，4与2、5与1完全镜像。
 - `fields_terminal_*.csv`：各工况终止时，五片各层网格的水蒸气、液水、冰密度及冰体积分数。
 - `optimization_trace.csv`：逐次参数评估记录，含成功/失败、评分、最大电流、全程最低电压及终温。objectives中的惩罚评分不是物理量。
@@ -257,7 +273,7 @@ htmltable+='</tbody></table>'
 figs=sorted((ROOT/'figures').glob('*.png'))
 page='''<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>问题2计算结果</title>
 <style>body{font-family:'Microsoft YaHei',sans-serif;max-width:1200px;margin:40px auto;padding:0 24px;color:#182536;line-height:1.7}h1,h2{font-weight:600}table{border-collapse:collapse;width:100%;font-size:14px}th,td{border:1px solid #ddd;padding:10px;text-align:left}th{background:#edf2f7}img{max-width:100%;margin:20px 0}a{color:#176499}p{max-width:1000px}</style>
-<h1>问题2 电堆自冷启动优化结果</h1>'''+f'<p>最低初温约−12.8 ℃；数值分界({cold:.6f}, {warm:.6f}] ℃。端部第1、5片为瓶颈。</p>'+htmltable+'''<p>线性升载行仅对应tp≥0.2 s的有限搜索范围，题目没有斜率上限；继续提高斜率时趋近恒流。三档相等时阶梯退化为恒流。冰体积分数包含膜冰。</p>
+<h1>问题2 电堆自冷启动优化结果</h1>'''+f'<p>最低初温约{warm:.1f} ℃；数值分界({cold:.6f}, {warm:.6f}] ℃。端部第1、5片为瓶颈。</p>'+htmltable+'''<p>线性升载行仅对应tp≥0.2 s的有限搜索范围，题目没有斜率上限；继续提高斜率时趋近恒流。三档相等时阶梯退化为恒流。冰体积分数包含膜冰。</p>
 <p><a href="问题2_结果报告.md">详细结果报告</a> · <a href="算法模型与代码说明.md">算法模型</a> · <a href="../data/表3_不同策略最优启动结果.csv">表3 CSV</a></p>'''
 for fig in figs:page+=f'<h2>{html.escape(fig.stem)}</h2><img src="../figures/{html.escape(fig.name)}" alt="{html.escape(fig.stem)}">'
 (OUT/'问题2_结果预览.html').write_text(page+'</html>',encoding='utf-8')

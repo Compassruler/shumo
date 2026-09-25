@@ -13,6 +13,13 @@ from fast_cell import make_config, initial_state, cell_step, electro, properties
 
 J0 = 0.10255839004732065
 WEIGHTS = np.array([2., 2., 1.])
+# Four shared internal BPs and two terminal flow-field plates, each 2 mm.
+# Shared plates contribute half their heat capacity to each neighboring MEA.
+BP_THICKNESS_M = 0.002
+BP_CONDUCTIVITY_W_MK = 95.
+BP_CAPACITY_J_M2K = BP_THICKNESS_M * 1980. * 766.
+BP_NODE_FRACTIONS = np.array([1.5, 1., 1.])  # end, near-end, center
+PLATE_MODEL_VERSION = 'shared_bp_6_positions_v1' 
 THERMAL = np.array([1., 1., 1., 0., 10., 1.])
 # thermal: gc multiplier, gE multiplier, EP C multiplier, convection-on-EP,
 # end beta, dynamic conductance flag.
@@ -66,12 +73,12 @@ def network(cfg, states, th):
     r = np.empty(3)
     for k in range(3):
         cc,rr=properties(cfg,states[k])
-        c[k]=cc+6066.72
+        c[k]=cc+BP_NODE_FRACTIONS[k]*BP_CAPACITY_J_M2K
         r[k]=rr if th[5]>0.5 else 0.002810469
     c[3]=39500.*th[2]
-    g1=th[0]/(.5*(r[0]+r[1])+.004/95.)
-    g2=th[0]/(.5*(r[1]+r[2])+.004/95.)
-    ge=th[1]/(.5*r[0]+.002/95.+.005/15.)
+    g1=th[0]/(.5*(r[0]+r[1])+BP_THICKNESS_M/BP_CONDUCTIVITY_W_MK)
+    g2=th[0]/(.5*(r[1]+r[2])+BP_THICKNESS_M/BP_CONDUCTIVITY_W_MK)
+    ge=th[1]/(.5*r[0]+BP_THICKNESS_M/BP_CONDUCTIVITY_W_MK+.005/15.)
     g=np.zeros((4,4))
     g[0,0]=g1+ge;g[0,1]=-g1;g[0,3]=-ge
     g[1,0]=-g1;g[1,1]=g1+g2;g[1,2]=-g2

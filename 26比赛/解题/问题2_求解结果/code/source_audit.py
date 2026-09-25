@@ -7,7 +7,7 @@ ROOT=Path(__file__).resolve().parents[1]
 BASE=ROOT.parent
 INPUTS=ROOT/'inputs';DATA=ROOT/'data';REPORTS=ROOT/'reports'
 for p in (INPUTS,DATA,REPORTS):p.mkdir(exist_ok=True,parents=True)
-source_md=Path('C:/Users/马汗青/xwechat_files/wxid_da5t146bb4fg22_8787/temp/RWTemp/2026-09/1a982c231f41821d37ec7653a0d530e4/问题2_建模推导源文件.md')
+source_md=BASE/'问题2_建模推导源文件.md'
 sources=[source_md,BASE/'B题'/'氢燃料电池低温冷启动建模与控制策略研究.docx',
     BASE/'B题'/'氢燃料电池低温冷启动建模与控制策略研究  附件'/'附件1.xlsx',
     BASE/'B题'/'氢燃料电池低温冷启动建模与控制策略研究  附件'/'附件2.xlsx',
@@ -16,7 +16,7 @@ sources=[source_md,BASE/'B题'/'氢燃料电池低温冷启动建模与控制策
 provenance=[]
 for p in sources:
     dest=INPUTS/p.name
-    if not dest.exists():shutil.copy2(p,dest)
+    if p == source_md or not dest.exists():shutil.copy2(p,dest)
     provenance.append({'file':p.name,'source':str(p),'sha256':hashlib.sha256(p.read_bytes()).hexdigest()})
 old=BASE/'问题1_求解结果'/'code'/'model.py'
 if not (INPUTS/'model_q1_reference.py').exists():shutil.copy2(old,INPUTS/'model_q1_reference.py')
@@ -57,7 +57,13 @@ for name,value,unit,source,meaning in [
  ('k_cond/k_evap',1,'1/s','附件无量纲权重1','除以假定参考时间1s'),
  ('k_dep/k_sub',.0001,'1/s','附件权重1e-4与原问题1闭合','升华沿用反向对称闭合'),
  ('lambda_nf',3,'1','原问题1闭合','膜不可冻结水阈值，非独立测量'),
- ('C_BP',6066.72,'J/m2/K','2*0.002*1980*766','每片两块BP，仅加一次'),
+ ('L_BP',.002,'m','附件1','完整共享板与终端流场板均采用2 mm厚度'),
+ ('plate_positions',6,'1','五MEA拓扑','四块内部共享BP+两块外侧终端流场板'),
+ ('C_BP_single',3033.36,'J/m2/K','0.002*1980*766','一块完整板的面热容'),
+ ('C_BP_end_node',4550.04,'J/m2/K','1.5*3033.36','端节点：一块终端板+半块内部共享板'),
+ ('C_BP_middle_node',3033.36,'J/m2/K','2*0.5*3033.36','中间节点：左右各半块内部共享板'),
+ ('C_BP_stack_total',18200.16,'J/m2/K','6*3033.36','总板热容守恒，不重复计数'),
+ ('cell_pitch',.0023267,'m','L_MEA+L_BP','MEA中心间几何节距'),
  ('C_EP',39500,'J/m2/K','0.01*7900*500','每端单独温度节点'),
  ('h',40,'W/m2/K','题面与MD式2-17','主计算置于端部单片，外端板对流为敏感性'),
  ('beta_end',10,'1','附件1','只放大浓差项且回馈电化学产热'),
