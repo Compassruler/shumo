@@ -1,0 +1,73 @@
+﻿check,category,error,tolerance,unit,passed,note
+zero_aux_time_grid,Q2 regression,0.0,1e-11,s,True,
+zero_aux_charge_history,Q2 regression,0.0,1e-12,C/cm2,True,
+Q2_current_left_limit_convention,Q2 regression,0.0,1e-14,A/cm2,True,Q2 records current(t-1e-9) after each integration step.
+Q3_current_endpoint_convention,Q2 regression,0.0,1e-14,A/cm2,True,Q3 records current(t) at a continuous ramp endpoint.
+zero_aux_T1_C,Q2 regression,3.552713678800501e-14,1e-09,K,True,
+zero_aux_T2_C,Q2 regression,2.1316282072803006e-14,1e-09,K,True,
+zero_aux_T3_C,Q2 regression,5.3290705182007514e-14,1e-09,K,True,
+zero_aux_T4_C,Q2 regression,6.039613253960852e-14,1e-09,K,True,
+zero_aux_T5_C,Q2 regression,6.750155989720952e-14,1e-09,K,True,
+zero_aux_TEL_C,Q2 regression,5.684341886080802e-14,1e-09,K,True,
+zero_aux_TER_C,Q2 regression,1.0302869668521453e-13,1e-09,K,True,
+zero_aux_cell1_V,Q2 regression,4.2048364790048254e-10,1e-08,V,True,Voltage histories use the documented left-limit/endpoint current convention; allowed regression difference is 1e-8 V.
+zero_aux_cell1_ice_bulk,Q2 regression,1.5959455978986625e-16,1e-10,1,True,
+zero_aux_cell1_pore_ice_saturation,Q2 regression,5.551115123125783e-17,1e-10,1,True,
+zero_aux_cell2_V,Q2 regression,4.204754322501003e-10,1e-08,V,True,Voltage histories use the documented left-limit/endpoint current convention; allowed regression difference is 1e-8 V.
+zero_aux_cell2_ice_bulk,Q2 regression,2.0816681711721685e-16,1e-10,1,True,
+zero_aux_cell2_pore_ice_saturation,Q2 regression,4.163336342344337e-17,1e-10,1,True,
+zero_aux_cell3_V,Q2 regression,4.204754322501003e-10,1e-08,V,True,Voltage histories use the documented left-limit/endpoint current convention; allowed regression difference is 1e-8 V.
+zero_aux_cell3_ice_bulk,Q2 regression,9.71445146547012e-17,1e-10,1,True,
+zero_aux_cell3_pore_ice_saturation,Q2 regression,5.551115123125783e-17,1e-10,1,True,
+zero_aux_cell4_V,Q2 regression,4.204754322501003e-10,1e-08,V,True,Voltage histories use the documented left-limit/endpoint current convention; allowed regression difference is 1e-8 V.
+zero_aux_cell4_ice_bulk,Q2 regression,2.0816681711721685e-16,1e-10,1,True,
+zero_aux_cell4_pore_ice_saturation,Q2 regression,6.938893903907228e-17,1e-10,1,True,
+zero_aux_cell5_V,Q2 regression,4.2048364790048254e-10,1e-08,V,True,Voltage histories use the documented left-limit/endpoint current convention; allowed regression difference is 1e-8 V.
+zero_aux_cell5_ice_bulk,Q2 regression,1.249000902703301e-16,1e-10,1,True,
+zero_aux_cell5_pore_ice_saturation,Q2 regression,2.7755575615628914e-17,1e-10,1,True,
+zero_aux_E_gen_J,Q2 regression,8.526512829121202e-14,1e-08,J,True,
+zero_aux_E_phase_J,Q2 regression,2.220446049250313e-15,1e-08,J,True,
+zero_aux_E_loss_J,Q2 regression,4.1744385725905886e-14,1e-08,J,True,
+zero_aux_E_sensible_J,Q2 regression,1.261923898709938e-11,1e-08,J,True,
+zero_aux_final_temperatures,Q2 regression,4.973799150320701e-14,1e-09,K,True,
+zero_aux_state_1,Q2 regression,1.7053025658242404e-13,1e-09,,True,"All five mass/gas state arrays, native units"
+zero_aux_state_2,Q2 regression,2.5579538487363607e-13,1e-09,,True,"All five mass/gas state arrays, native units"
+zero_aux_state_3,Q2 regression,3.694822225952521e-13,1e-09,,True,"All five mass/gas state arrays, native units"
+zero_aux_state_4,Q2 regression,8.384404281969182e-13,1e-09,,True,"All five mass/gas state arrays, native units"
+zero_aux_state_5,Q2 regression,9.023892744153272e-13,1e-09,,True,"All five mass/gas state arrays, native units"
+zero_aux_max_ice,Q2 regression,1.249000902703301e-16,1e-11,1,True,
+zero_aux_min_voltage,Q2 regression,2.556954648014198e-12,1e-11,V,True,
+zero_aux_energy,heater accounting,0.0,0.0,J,True,
+conductance_matrix_symmetric,network,0.0,1e-12,W/(m2 K),True,
+internal_heat_flow_cancels,network,0.0,1e-12,W/(m2 K),True,
+six_shared_plate_heat_capacity,network,3.637978807091713e-12,1e-09,J/(m2 K),True,
+idle_zero_auxiliary_energy,idle membrane exchange,0.0,0.0,J,True,
+idle_zero_electrochemical_energy,idle membrane exchange,0.0,0.0,J,True,
+idle_desorption_heat_is_negative,idle membrane exchange,0.0,0.0,,True,Computed phase/desorption heat = -0.04291346249999998 J
+idle_membrane_water_decreases,idle membrane exchange,0.0,0.0,,True,Membrane liquid inventory change = -1.716538499999806e-08 kg
+idle_no_reaction_water,idle membrane exchange,0.0,0.0,kg/m2,True,
+idle_energy_balance,idle membrane exchange,8.833905829064292e-13,1e-08,J,True,
+idle_water_balance,idle membrane exchange,5.615828440296011e-21,1e-14,kg,True,
+idle_thermal_iteration,idle membrane exchange,0.0,1e-09,K,True,
+asymmetric_heaters_temperature_mirror,independent heaters,3.552713678800501e-14,1e-10,K,True,
+asymmetric_heaters_voltage_mirror,independent heaters,2.220446049250313e-16,1e-10,V,True,
+one_sided_heater_not_forced_symmetric,independent heaters,0.0,0.0,,True,T1 minus T5 after 5 s = 6.941326212798312 K
+asymmetric_state_mirror_1,independent heaters,1.4210854715202004e-14,1e-09,,True,"All five mass/gas state arrays, native units"
+asymmetric_state_mirror_2,independent heaters,0.0,1e-09,,True,"All five mass/gas state arrays, native units"
+asymmetric_state_mirror_3,independent heaters,8.526512829121202e-14,1e-09,,True,"All five mass/gas state arrays, native units"
+asymmetric_state_mirror_4,independent heaters,2.842170943040401e-14,1e-09,,True,"All five mass/gas state arrays, native units"
+asymmetric_state_mirror_5,independent heaters,2.842170943040401e-14,1e-09,,True,"All five mass/gas state arrays, native units"
+one_heater_5s_energy,heater accounting,0.0,1e-10,J,True,
+mirrored_heater_energy,heater accounting,0.0,1e-12,J,True,
+non_grid_switch_energy_history,heater accounting,1.4210854715202004e-14,1e-09,J,True,
+non_grid_switch_total_energy,heater accounting,1.4210854715202004e-14,1e-09,J,True,
+switch_event_recorded_exactly,heater accounting,0.0,1e-12,s,True,
+shifted_loading_charge,heater accounting,6.071532165918825e-18,1e-12,C/cm2,True,
+zero_aux_total_energy_balance,conservation,1.516742287321904e-11,1e-08,J,True,
+zero_aux_total_water_balance,conservation,4.9398961483870796e-20,1e-13,kg,True,
+left_total_energy_balance,conservation,2.05746530923534e-12,1e-08,J,True,
+left_total_water_balance,conservation,1.5246593050577406e-21,1e-13,kg,True,
+right_total_energy_balance,conservation,3.802735903946086e-12,1e-08,J,True,
+right_total_water_balance,conservation,6.268043809681822e-22,1e-13,kg,True,
+mixed_total_energy_balance,conservation,7.882139385628761e-12,1e-08,J,True,
+mixed_total_water_balance,conservation,9.063252535621014e-22,1e-13,kg,True,

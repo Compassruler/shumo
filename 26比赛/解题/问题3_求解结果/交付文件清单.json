@@ -1,0 +1,287 @@
+[
+  {
+    "file": "README.md",
+    "bytes": 4350,
+    "sha256": "07117eb5213e5f437bdb3521f5b6857385e8bca7db93cf7c5a0c90677782bd31"
+  },
+  {
+    "file": "code/aux_model.py",
+    "bytes": 8867,
+    "sha256": "cfda0111c257a61bd42c4628805d7a78713daa0ba52b7444f83975beebf3d0b2"
+  },
+  {
+    "file": "code/cooperative_search.py",
+    "bytes": 2995,
+    "sha256": "eb332bc22d114ff21b29c3ec4418d8d1085b96ceb339a3b3d78002fd0e1dc0e6"
+  },
+  {
+    "file": "code/export_results.py",
+    "bytes": 7278,
+    "sha256": "a0d44901f3e3c32c0d0115ee0f6a7913c7e50716f617149ba57f2304e6903b82"
+  },
+  {
+    "file": "code/fast_cell.py",
+    "bytes": 15639,
+    "sha256": "bef778503aba14e51f07f0e7420d7b5cf83feb67da703207ae08aab64d040e6b"
+  },
+  {
+    "file": "code/optimize_aux.py",
+    "bytes": 5678,
+    "sha256": "206cd25d1167a959daed6bec80550330dca2a066b45ab714b0c996ca47732680"
+  },
+  {
+    "file": "code/preheat_linear.py",
+    "bytes": 3768,
+    "sha256": "f65a96904ecd7f443406f6a46753968389c1ca205acf109d92d3be830f3f5f4d"
+  },
+  {
+    "file": "code/refine_multistart.py",
+    "bytes": 2239,
+    "sha256": "00d64c59ed1777e8a7e93a185f138d45cc71c438c56f1695586dd896129b8f29"
+  },
+  {
+    "file": "code/validate_model.py",
+    "bytes": 9257,
+    "sha256": "a794bb0a59aa38f8df504977d5df409654e244f2c6195509c5b100dde77f2802"
+  },
+  {
+    "file": "code/verify_uniform_power.py",
+    "bytes": 2174,
+    "sha256": "63e94807e4ad9e2b65e5921a900a974cc82c99a7e9cbb7b5737739bb69509123"
+  },
+  {
+    "file": "data/convergence.csv",
+    "bytes": 14044,
+    "sha256": "3dd7fc3c05ff7c5eb8d20d79f6d63cd47faae37f68a0d110326f9ab30e6b9af9"
+  },
+  {
+    "file": "data/cooperative_multistart.csv",
+    "bytes": 1065,
+    "sha256": "f772f449e1865ea77d31f66fa88a712a735574fe84aef467ff81792cb66c0842"
+  },
+  {
+    "file": "data/cooperative_search.csv",
+    "bytes": 932445,
+    "sha256": "d078e5abf956439d68848645e3e2e109e9a66a2348902a1083826417c64c733e"
+  },
+  {
+    "file": "data/energy_budget.csv",
+    "bytes": 453,
+    "sha256": "18d2bfc902b4cb29ec1f95aeae6ab86f129a7991c2ce935533ea27c30c2947f7"
+  },
+  {
+    "file": "data/final_controls.json",
+    "bytes": 409,
+    "sha256": "9fe8859cc407cb391e3c8d42b33aa66ea0f68055f64bfb6770a9db3ef15d2dbe"
+  },
+  {
+    "file": "data/final_fields_C.csv",
+    "bytes": 94332,
+    "sha256": "e232a131d4880aff25d07645a5605e8b4932cc48fa4059e7088008c0ead2985f"
+  },
+  {
+    "file": "data/final_fields_P.csv",
+    "bytes": 87021,
+    "sha256": "478aa2aaf2664029a1fff180885e142e5028b6cc3edbd450e7a0a90d7b1bcdd7"
+  },
+  {
+    "file": "data/final_fields_R.csv",
+    "bytes": 87078,
+    "sha256": "c10d9367a6bfb6879fa89ed9024f03622621519c7faeca83661f6bbacbe0de58"
+  },
+  {
+    "file": "data/fine_center_power_search.csv",
+    "bytes": 554,
+    "sha256": "06c357a141de664a224a780cb21abdde8d3f8bb00c6dc121d67c215591cd918a"
+  },
+  {
+    "file": "data/model_validation.csv",
+    "bytes": 6604,
+    "sha256": "f1f6d8e0a47988e6042dd9d9c650349fc108f6596e648776b3591b4b539b8126"
+  },
+  {
+    "file": "data/optimization_search_P.csv",
+    "bytes": 740861,
+    "sha256": "97b7dc40768316a1fb57025dd28cb84669f04925d80ab733de8cf7d74aa5af31"
+  },
+  {
+    "file": "data/optimization_search_R.csv",
+    "bytes": 765708,
+    "sha256": "721815510f1c427a6d1be909505aa44efe7edf9b9cc4edbefae1ada2f851f03b"
+  },
+  {
+    "file": "data/optimum_C_aligned.json",
+    "bytes": 1928,
+    "sha256": "5bc48cfbde8fe903575f919b872f06856aaeb10bc9f62165dcb14e36176ad97c"
+  },
+  {
+    "file": "data/optimum_P.json",
+    "bytes": 1793,
+    "sha256": "6dc013589ebcdabe882e7f96ebf7892f4e9da948907b6bb79d6d18fa2d180b5c"
+  },
+  {
+    "file": "data/optimum_R.json",
+    "bytes": 2209,
+    "sha256": "f487a1689da4c5bf28181c4dd6e8600e609214a96d8dd7fc0371b092d37a5875"
+  },
+  {
+    "file": "data/optimum_R_refine_checkpoint.json",
+    "bytes": 969,
+    "sha256": "8c6c7b65f66bcf6160b8c790918188f5bc1e5657bc97e2c61a88cdf1980fb47e"
+  },
+  {
+    "file": "data/postload_verification.csv",
+    "bytes": 2738,
+    "sha256": "648f65e6dd855fc87cb8abd0ca31f05203315896a2f6406917c8a7982c808fe3"
+  },
+  {
+    "file": "data/preheat_linear_scan.csv",
+    "bytes": 90975,
+    "sha256": "b1234f6c2e0fdb0091a3c5ee98f89bc268256e600b8cd7bcdcbdd20972cc16b6"
+  },
+  {
+    "file": "data/sensitivity.csv",
+    "bytes": 14223,
+    "sha256": "25fa7587a76cf6d99a6139ed5e2cacb39df900636c65bf10a32cb630e3d077c3"
+  },
+  {
+    "file": "data/source_manifest.csv",
+    "bytes": 734,
+    "sha256": "9034c06a96ccfec05473d98c6ee46d3dbe6733b6c7b40282b208c9ce6b2993b5"
+  },
+  {
+    "file": "data/summary_results.csv",
+    "bytes": 3152,
+    "sha256": "cc164477e2381c96c1fc94d73927c3d510785a4f3c0e52b0af6d477b3633a4c7"
+  },
+  {
+    "file": "data/trajectory_C.csv",
+    "bytes": 3506230,
+    "sha256": "7b374460ab257121d68568513c263a0d8ab6561faaa936fcf3f69aed4d916283"
+  },
+  {
+    "file": "data/trajectory_C_postload.csv",
+    "bytes": 13379676,
+    "sha256": "b803be14b2678b7ce1fe8b20a11cb85345226b2ffab995d9948b984a59482ec7"
+  },
+  {
+    "file": "data/trajectory_P.csv",
+    "bytes": 2439487,
+    "sha256": "4a868ef270d320bc25aa1c07a492db2278cde2a27d741db387e861b1a3ba43b7"
+  },
+  {
+    "file": "data/trajectory_P_postload.csv",
+    "bytes": 15357987,
+    "sha256": "36e49d12d1b5843bdbdde7d0005216f274bab73748a21508d49ca067e132d74f"
+  },
+  {
+    "file": "data/trajectory_R.csv",
+    "bytes": 16115986,
+    "sha256": "8f2831ba72008f943df815c517851fdb4476d9c426c3b290ad103d6fbcaaf960"
+  },
+  {
+    "file": "data/表4_问题三主结果.csv",
+    "bytes": 765,
+    "sha256": "033fa674a3b50a9e16c38e847fb08639ed027b7c8433cd40923f7e579d1c914b"
+  },
+  {
+    "file": "figures/01_主策略温度历程.png",
+    "bytes": 183780,
+    "sha256": "da0eebd6cd0f5ce49080127121d384e615a3d68e09cb1e1cc32984a72f85efb6"
+  },
+  {
+    "file": "figures/01_主策略温度历程.svg",
+    "bytes": 79046,
+    "sha256": "5973984d0f2aeabc4552abbf01389711f88c455a2e943c7ddc622309a2e987cd"
+  },
+  {
+    "file": "figures/02_分片加热功率与能耗.png",
+    "bytes": 172835,
+    "sha256": "f66b00533420734d729c95f45bc37407eda05d01aae136853842e4ba827e9af8"
+  },
+  {
+    "file": "figures/02_分片加热功率与能耗.svg",
+    "bytes": 97570,
+    "sha256": "de8ee5353a2d305f3b6cc8b42681a6577c66995d36d87df8b741827da58cf158"
+  },
+  {
+    "file": "figures/03_主策略电压与结冰.png",
+    "bytes": 286213,
+    "sha256": "18c3ea1ec54a83e04b72d80ae1018db2a988cc01b0384babd1c6989b91a645c0"
+  },
+  {
+    "file": "figures/03_主策略电压与结冰.svg",
+    "bytes": 160103,
+    "sha256": "7c85fac73074bd2dcb013e5694b117fe3b4ac377f7c88fc01dc76e2056f73bf0"
+  },
+  {
+    "file": "figures/04_关热后回落与稳健验证.png",
+    "bytes": 198930,
+    "sha256": "045fba634930a81422d751bc69702fe167a10cd29fe36253ca3cbbd72e05e49a"
+  },
+  {
+    "file": "figures/04_关热后回落与稳健验证.svg",
+    "bytes": 112146,
+    "sha256": "647ebacd85b904337e940477a90e10e11b94eacb610b005d219bcadf25b70d5c"
+  },
+  {
+    "file": "figures/05_能量预算与守恒.png",
+    "bytes": 183661,
+    "sha256": "f41343ed03ddd1c7e7dfac8e7f1a890b027c22165b726bf5f0ae0bb8574fb464"
+  },
+  {
+    "file": "figures/05_能量预算与守恒.svg",
+    "bytes": 117406,
+    "sha256": "4f0c8075ef92aeff18bcab519313165940f3943a69fa93d7c589b0d45f1750f6"
+  },
+  {
+    "file": "figures/06_主策略关键指标对比.png",
+    "bytes": 206798,
+    "sha256": "a3fcc12aca28462fe1d925735a4fb0fedae90ccbec3676dc88d0a56c45ac408d"
+  },
+  {
+    "file": "figures/06_主策略关键指标对比.svg",
+    "bytes": 152034,
+    "sha256": "258b2b8ee9e35111192475f028ea3b38a2056a6c674278a4f15a68aac81e5624"
+  },
+  {
+    "file": "inputs/calibration_bp.json",
+    "bytes": 1008,
+    "sha256": "1f2c8cbf90bfdc3f842bcbebc8c41296acce7ba96da02f65c5decbc8500d2314"
+  },
+  {
+    "file": "inputs/stack_model.py",
+    "bytes": 12076,
+    "sha256": "0548bd34cd2e72fbb372a8054ef70a454e7ad0297d20eb30323dd1164bc203c9"
+  },
+  {
+    "file": "inputs/问题3_建模推导源文件.md",
+    "bytes": 51014,
+    "sha256": "598785cfe113c719c60890a82c90bf14ef2ca5002309898264f917a57fe3565a"
+  },
+  {
+    "file": "inputs/附件1_参数清单.csv",
+    "bytes": 5150,
+    "sha256": "e3dae6582c6a225bfbe066638ee82c53195abd6207f3b2025211a5e39abb2110"
+  },
+  {
+    "file": "inputs/题目全文提取.txt",
+    "bytes": 21948,
+    "sha256": "2a7a004e9f47c17975ae3ad6f3c79c75ac9ae2155cc5d332fa62b34553461551"
+  },
+  {
+    "file": "reports/模型与算法.md",
+    "bytes": 14737,
+    "sha256": "690a82210b7b4ab823fb97aaed3114594fdd361135513d6365a398d49a6aecbb"
+  },
+  {
+    "file": "reports/问题三结果与分析.md",
+    "bytes": 13997,
+    "sha256": "1fbed6a268ae2b5fd37b509e6f8255704b412a966fafaca8ceadd52b034ec3b6"
+  },
+  {
+    "file": "交付文件清单.json",
+    "bytes": 8766,
+    "sha256": "5fcf98a0b5c1c9c8266b0946a01d8eb4ab84d0fedb38c0e0641af34672cfd014"
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "mode": "R",
+  "status": "checkpoint_after_two_successful_seeds_and_full_five_control_refinement; final_asymmetric_release_not_completed",
+  "power": [1.0, 1.0, 1.0, 1.0, 1.0],
+  "th_s": 51.921947154740864,
+  "horizon_s": 96.66666666666667,
+  "energy_J": 6490.243394342608,
+  "dt": 0.025,
+  "scale": 4,
+  "provenance": "Recorded completed optimizer stdout. th_s=energy_J/(25*5), because each of the five powers reached its upper bound. Not a final independently validated optimum.",
+  "constraint_values_rounded_from_stdout": [-1.67696109e-10, 3.24510212, 0.329318986, 0.987876009, 0.433085517, 0.99],
+  "coarse_seed_20260925_energy_J": 6485.233926593402,
+  "coarse_seed_20260926_energy_J": 6485.233926956744,
+  "refine_dt_0_1_scale_2_energy_J": 6488.427442848951,
+  "note": "R is an additional robustness requirement: temperature must remain above 0.001 C through 96.6667 s of loading after heater switch-off. This extra horizon is not the formal startup time."
+}

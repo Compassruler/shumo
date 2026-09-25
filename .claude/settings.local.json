@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(py -0p)",
+      "Read(//c/Users/马汗青/AppData/Local/Programs//**)",
+      "Read(//c/Users/马汗青/AppData/Local//**)",
+      "Bash(\"/d/spss1/Python3/python.exe\" --version)",
+      "Bash(find /c /d -maxdepth 3 -iname \"python.exe\")"
+    ]
+  }
+}
