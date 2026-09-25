@@ -1,0 +1,25 @@
+{
+  "elapsed_seconds": 574.1806116104126,
+  "main_grid_scale": 8,
+  "main_dt_s": 0.003125,
+  "optimization_dt_s": 0.1,
+  "ramp_plateau_time_lower_bound_s": 0.2,
+  "ramp_note": "Numerical search convention, NOT supplied hardware constraint; ramp_slope_limit.csv tests its removal.",
+  "optimality": "best feasible found in defined strategy classes; no global certificate",
+  "minimum_temperature_scope": "fixed optimized curves, checked against per-temperature reoptimization",
+  "tmax_s": 600,
+  "event_target_C": 1e-07,
+  "main_cells_per_MEA": 232,
+  "verification_grid_scale": 16,
+  "verification_cells_per_MEA": 464,
+  "verification_dt_s": 0.0015625,
+  "trajectory_export_interval_s": 0.05,
+  "trajectory_extra_rows": "initial/terminal/switch/extrema",
+  "equal_step_canonical_switch_times_s": [
+    8.0,
+    16.0
+  ],
+  "critical_temperature_tolerance_C": 0.0048828125,
+  "lower_current_search_bound_A_cm2": 0.0,
+  "historical_search_note": "Initial broad stochastic search used 0.02 lower bounds. Final code permits zero; separate zero-current corner audit retained."
+}

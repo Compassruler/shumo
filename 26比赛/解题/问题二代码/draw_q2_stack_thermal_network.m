@@ -1,0 +1,378 @@
+function draw_q2_stack_thermal_network()
+%DRAW_Q2_STACK_THERMAL_NETWORK 绘制问题二电堆热网络与计算节点示意图。
+%
+% 运行方法：
+%   1. 在 MATLAB 中打开本文件；
+%   2. 点击“运行”，或在命令行输入 draw_q2_stack_thermal_network；
+%   3. 程序在本文件所在目录生成 PNG 和矢量 PDF。
+%
+% 图中包含：
+%   - 5片串联单电池及编号；
+%   - 左右各10 mm端板及独立温度节点 Theta_L、Theta_R；
+%   - 相邻单电池导热 G_cc、片—端板导热 G_ce；
+%   - 端板—环境对流 G_ea；
+%   - 每片单电池两侧各2 mm双极板；
+%   - 五层MEA局部放大图；
+%   - 启动成功判据所使用的温度范围。
+
+close all;
+fontName = chooseChineseFont();
+
+% ------------------------- 题给几何参数 -------------------------
+nCell = 5;
+bpThickness_mm = 2;          % 每侧双极板厚度
+endPlateThickness_mm = 10;  % 每块端板厚度
+meaThickness_mm = 0.3267;   % 五层MEA总厚度
+cellThickness_mm = 2*bpThickness_mm + meaThickness_mm;
+
+% ------------------------- 配色 -------------------------
+color.bg       = [1.00, 1.00, 1.00];
+color.bpA      = [0.25, 0.47, 0.72];
+color.bpC      = [0.30, 0.64, 0.78];
+color.mea      = [0.94, 0.67, 0.24];
+color.endPlate = [0.32, 0.35, 0.39];
+color.cellEdge = [0.14, 0.18, 0.22];
+color.heat     = [0.84, 0.22, 0.17];
+color.conv     = [0.10, 0.51, 0.38];
+color.node     = [0.98, 0.98, 0.98];
+color.note     = [0.97, 0.98, 1.00];
+
+fig = figure('Color', color.bg, ...
+    'Units', 'pixels', 'Position', [80, 70, 1500, 900], ...
+    'Name', '问题二电堆热网络与计算节点示意图', ...
+    'NumberTitle', 'off');
+
+ax = axes(fig, 'Position', [0.035, 0.055, 0.93, 0.90]);
+hold(ax, 'on');
+axis(ax, [0, 100, 0, 100]);
+axis(ax, 'off');
+set(ax, 'YDir', 'normal', 'FontName', fontName);
+
+text(ax, 50, 97, '问题二电堆热网络与计算节点示意图', ...
+    'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', ...
+    'FontName', fontName, 'FontSize', 20, 'FontWeight', 'bold', ...
+    'Color', color.cellEdge);
+text(ax, 50, 93.5, '五片单电池电学串联、热学耦合；结构宽度仅作示意，不按实际厚度比例绘制', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 10.5, 'Color', [0.35, 0.37, 0.40]);
+
+% ------------------------- 上半部分：全堆结构 -------------------------
+y0 = 60;
+h = 19;
+
+% 环境节点
+drawRoundedBox(ax, 1.0, y0+5.0, 6.5, 9.0, [0.92, 0.97, 0.94], color.conv, 1.5);
+text(ax, 4.25, y0+10.9, '环境', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 11, 'FontWeight', 'bold');
+text(ax, 4.25, y0+8.1, 'T_{amb}', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 11, 'Interpreter', 'tex');
+
+drawRoundedBox(ax, 92.5, y0+5.0, 6.5, 9.0, [0.92, 0.97, 0.94], color.conv, 1.5);
+text(ax, 95.75, y0+10.9, '环境', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 11, 'FontWeight', 'bold');
+text(ax, 95.75, y0+8.1, 'T_{amb}', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 11, 'Interpreter', 'tex');
+
+% 左右端板
+epW = 4.2;
+xEpL = 10.0;
+xEpR = 85.8;
+rectangle(ax, 'Position', [xEpL, y0, epW, h], 'FaceColor', color.endPlate, ...
+    'EdgeColor', color.cellEdge, 'LineWidth', 1.5, 'Curvature', 0.03);
+rectangle(ax, 'Position', [xEpR, y0, epW, h], 'FaceColor', color.endPlate, ...
+    'EdgeColor', color.cellEdge, 'LineWidth', 1.5, 'Curvature', 0.03);
+
+text(ax, xEpL+epW/2, y0+h/2, sprintf('左端板\n%.0f mm', endPlateThickness_mm), ...
+    'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', ...
+    'Rotation', 90, 'FontName', fontName, 'FontSize', 10, ...
+    'FontWeight', 'bold', 'Color', 'w');
+text(ax, xEpR+epW/2, y0+h/2, sprintf('右端板\n%.0f mm', endPlateThickness_mm), ...
+    'HorizontalAlignment', 'center', 'VerticalAlignment', 'middle', ...
+    'Rotation', 90, 'FontName', fontName, 'FontSize', 10, ...
+    'FontWeight', 'bold', 'Color', 'w');
+
+% 端板独立温度节点
+drawNode(ax, xEpL+epW/2, y0+h+5.0, 2.2, '\Theta_L', color, fontName);
+drawNode(ax, xEpR+epW/2, y0+h+5.0, 2.2, '\Theta_R', color, fontName);
+plot(ax, [xEpL+epW/2, xEpL+epW/2], [y0+h, y0+h+2.8], '-', ...
+    'Color', color.cellEdge, 'LineWidth', 1.1);
+plot(ax, [xEpR+epW/2, xEpR+epW/2], [y0+h, y0+h+2.8], '-', ...
+    'Color', color.cellEdge, 'LineWidth', 1.1);
+
+% 五片单电池
+cellW = 11.2;
+gap = 2.6;
+xFirst = 17.0;
+cellX = xFirst + (0:nCell-1)*(cellW+gap);
+
+for k = 1:nCell
+    x = cellX(k);
+    bpW = 2.1;
+    meaW = cellW - 2*bpW;
+
+    rectangle(ax, 'Position', [x, y0, bpW, h], ...
+        'FaceColor', color.bpA, 'EdgeColor', color.cellEdge, 'LineWidth', 1.2);
+    rectangle(ax, 'Position', [x+bpW, y0, meaW, h], ...
+        'FaceColor', color.mea, 'EdgeColor', color.cellEdge, 'LineWidth', 1.2);
+    rectangle(ax, 'Position', [x+bpW+meaW, y0, bpW, h], ...
+        'FaceColor', color.bpC, 'EdgeColor', color.cellEdge, 'LineWidth', 1.2);
+
+    text(ax, x+cellW/2, y0+h/2+1.0, sprintf('单电池 %d', k), ...
+        'HorizontalAlignment', 'center', 'FontName', fontName, ...
+        'FontSize', 11, 'FontWeight', 'bold', 'Color', color.cellEdge);
+    text(ax, x+cellW/2, y0+h/2-3.0, sprintf('T_%d, V_%d', k, k), ...
+        'HorizontalAlignment', 'center', 'FontName', fontName, ...
+        'FontSize', 10.5, 'Interpreter', 'tex', 'Color', color.cellEdge);
+    text(ax, x+cellW/2, y0+2.3, sprintf('j(t) 相同'), ...
+        'HorizontalAlignment', 'center', 'FontName', fontName, ...
+        'FontSize', 9, 'Color', [0.28, 0.29, 0.31]);
+
+    % 单电池平均温度节点
+    drawNode(ax, x+cellW/2, y0+h+5.0, 2.2, sprintf('T_%d', k), color, fontName);
+    plot(ax, [x+cellW/2, x+cellW/2], [y0+h, y0+h+2.8], '-', ...
+        'Color', color.cellEdge, 'LineWidth', 1.1);
+end
+
+% 环境对流箭头
+drawDoubleArrow(ax, 7.7, xEpL, y0+9.5, color.conv, 1.7, 0.7);
+text(ax, 8.85, y0+13.1, 'G_{ea}', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 10.5, 'Interpreter', 'tex', ...
+    'Color', color.conv, 'FontWeight', 'bold');
+text(ax, 8.85, y0+6.2, '对流', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 9, 'Color', color.conv);
+
+drawDoubleArrow(ax, xEpR+epW, 92.3, y0+9.5, color.conv, 1.7, 0.7);
+text(ax, 91.15, y0+13.1, 'G_{ea}', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 10.5, 'Interpreter', 'tex', ...
+    'Color', color.conv, 'FontWeight', 'bold');
+text(ax, 91.15, y0+6.2, '对流', 'HorizontalAlignment', 'center', ...
+    'FontName', fontName, 'FontSize', 9, 'Color', color.conv);
+
+% 端板—端片导热箭头
+drawDoubleArrow(ax, xEpL+epW, cellX(1), y0+9.5, color.heat, 1.7, 0.7);
+text(ax, mean([xEpL+epW, cellX(1)]), y0+13.1, 'G_{ce}', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 10.5, 'Interpreter', 'tex', 'Color', color.heat, ...
+    'FontWeight', 'bold');
+
+drawDoubleArrow(ax, cellX(end)+cellW, xEpR, y0+9.5, color.heat, 1.7, 0.7);
+text(ax, mean([cellX(end)+cellW, xEpR]), y0+13.1, 'G_{ce}', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 10.5, 'Interpreter', 'tex', 'Color', color.heat, ...
+    'FontWeight', 'bold');
+
+% 相邻单电池导热箭头
+for k = 1:nCell-1
+    xa = cellX(k)+cellW;
+    xb = cellX(k+1);
+    drawDoubleArrow(ax, xa, xb, y0+9.5, color.heat, 1.7, 0.65);
+    text(ax, mean([xa, xb]), y0+13.1, 'G_{cc}', ...
+        'HorizontalAlignment', 'center', 'FontName', fontName, ...
+        'FontSize', 9.8, 'Interpreter', 'tex', 'Color', color.heat, ...
+        'FontWeight', 'bold');
+end
+
+% 串联电流说明
+drawArrow(ax, cellX(1)+1.2, cellX(end)+cellW-1.2, y0-4.2, ...
+    [0.42, 0.22, 0.62], 1.8, 0.8);
+text(ax, mean([cellX(1), cellX(end)+cellW]), y0-2.1, ...
+    '电学串联：五片通过相同电流密度 j(t)', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 10.5, 'Color', [0.42, 0.22, 0.62], 'FontWeight', 'bold');
+
+% 启动成功判据说明框
+drawRoundedBox(ax, 12.0, 45.3, 76.0, 8.4, color.note, [0.36, 0.46, 0.62], 1.2);
+text(ax, 50, 50.8, ...
+    '启动成功温度判据：T_1,T_2,T_3,T_4,T_5 均大于 0 ℃；端板温度 \Theta_L、\Theta_R 不计入该判据', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 11, 'Interpreter', 'tex', 'Color', color.cellEdge, ...
+    'FontWeight', 'bold');
+text(ax, 50, 47.6, ...
+    '同时检查：各片局部冰体积分数 < 0.99，且启动过程中各片电压均不低于 0.30 V', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 10, 'Color', [0.25, 0.28, 0.32]);
+
+% ------------------------- 下半部分：单片局部放大 -------------------------
+text(ax, 50, 41.2, '单片电池热学重复单元及厚度口径', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 14, 'FontWeight', 'bold', 'Color', color.cellEdge);
+
+% 为了可读性不按真实厚度比例画，实际厚度通过标签给出。
+x0 = 12.0;
+yLayer = 19.0;
+hLayer = 15.0;
+layerNames = {'阳极双极板', 'aGDL', 'aCL', 'PEM', 'cCL', 'cGDL', '阴极双极板'};
+layerShort = {'aBP', 'aGDL', 'aCL', 'PEM', 'cCL', 'cGDL', 'cBP'};
+layerWidths = [10, 9, 6, 8, 6, 9, 10];
+layerColors = {color.bpA, [0.65,0.78,0.89], [0.42,0.67,0.84], ...
+    [0.93,0.82,0.45], [0.88,0.55,0.30], [0.72,0.84,0.72], color.bpC};
+layerTextColors = {'w', color.cellEdge, color.cellEdge, color.cellEdge, ...
+    color.cellEdge, color.cellEdge, 'w'};
+
+x = x0;
+centers = zeros(size(layerWidths));
+for i = 1:numel(layerWidths)
+    rectangle(ax, 'Position', [x, yLayer, layerWidths(i), hLayer], ...
+        'FaceColor', layerColors{i}, 'EdgeColor', color.cellEdge, 'LineWidth', 1.3);
+    centers(i) = x + layerWidths(i)/2;
+    text(ax, centers(i), yLayer+hLayer/2+1.0, layerShort{i}, ...
+        'HorizontalAlignment', 'center', 'FontName', fontName, ...
+        'FontSize', 10.5, 'FontWeight', 'bold', 'Color', layerTextColors{i});
+    text(ax, centers(i), yLayer+hLayer/2-2.4, layerNames{i}, ...
+        'HorizontalAlignment', 'center', 'FontName', fontName, ...
+        'FontSize', 8.5, 'Rotation', 90, 'Color', layerTextColors{i});
+    x = x + layerWidths(i);
+end
+
+% 厚度尺寸线
+drawDimension(ax, x0, x0+layerWidths(1), yLayer-3.0, ...
+    sprintf('2 mm'), color.bpA, fontName);
+meaLeft = x0+layerWidths(1);
+meaRight = x0+sum(layerWidths(1:6));
+drawDimension(ax, meaLeft, meaRight, yLayer-3.0, ...
+    sprintf('五层MEA：0.3267 mm'), [0.58,0.38,0.08], fontName);
+drawDimension(ax, meaRight, x0+sum(layerWidths), yLayer-3.0, ...
+    sprintf('2 mm'), color.bpC, fontName);
+
+text(ax, x0+sum(layerWidths)/2, yLayer+hLayer+3.0, ...
+    sprintf('第 k 片：aBP—五层MEA—cBP，完整热域厚度 L_c = %.4f mm', cellThickness_mm), ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 10.8, 'Interpreter', 'tex', 'FontWeight', 'bold', ...
+    'Color', color.cellEdge);
+
+% 右侧建模说明
+noteX = 76.0;
+drawRoundedBox(ax, noteX, 17.5, 21.5, 18.8, [0.98,0.98,0.97], [0.48,0.48,0.46], 1.0);
+text(ax, noteX+1.2, 34.0, '计算域说明', 'FontName', fontName, ...
+    'FontSize', 11.5, 'FontWeight', 'bold', 'Color', color.cellEdge);
+notes = { ...
+    '• 五层MEA：质量传输、反应与相变', ...
+    '• 双极板：只计算热传导', ...
+    '• 反应热只布置在MEA', ...
+    '• 端板是独立热容节点', ...
+    '• 片间热流在全堆求和后抵消'};
+for i = 1:numel(notes)
+    text(ax, noteX+1.2, 31.0-(i-1)*3.0, notes{i}, ...
+        'FontName', fontName, 'FontSize', 9.6, 'Color', [0.24,0.26,0.28]);
+end
+
+% 图例
+legendY = 8.0;
+legendItems = { ...
+    color.bpA, '阳极双极板'; ...
+    color.mea, '五层MEA'; ...
+    color.bpC, '阴极双极板'; ...
+    color.endPlate, '端板'; ...
+    color.heat, '导热方向'; ...
+    color.conv, '环境对流'};
+legendX = [15, 29, 41, 55, 67, 81];
+for i = 1:size(legendItems,1)
+    c = legendItems{i,1};
+    if i <= 4
+        rectangle(ax, 'Position', [legendX(i), legendY, 2.2, 1.8], ...
+            'FaceColor', c, 'EdgeColor', color.cellEdge, 'LineWidth', 0.8);
+    else
+        plot(ax, [legendX(i), legendX(i)+2.5], [legendY+0.9, legendY+0.9], ...
+            '-', 'Color', c, 'LineWidth', 2.0);
+    end
+    text(ax, legendX(i)+3.0, legendY+0.9, legendItems{i,2}, ...
+        'VerticalAlignment', 'middle', 'FontName', fontName, ...
+        'FontSize', 9.5, 'Color', color.cellEdge);
+end
+
+text(ax, 50, 3.0, ...
+    '注：示意图用于说明模型节点与传热关系；各层绘制宽度不代表实际几何比例。', ...
+    'HorizontalAlignment', 'center', 'FontName', fontName, ...
+    'FontSize', 9.5, 'Color', [0.42,0.43,0.45]);
+
+% ------------------------- 输出 -------------------------
+outDir = fileparts(mfilename('fullpath'));
+if isempty(outDir)
+    outDir = pwd;
+end
+pngFile = fullfile(outDir, 'q2_stack_thermal_network.png');
+pdfFile = fullfile(outDir, 'q2_stack_thermal_network.pdf');
+
+try
+    exportgraphics(fig, pngFile, 'Resolution', 300);
+    exportgraphics(fig, pdfFile, 'ContentType', 'vector');
+catch
+    % 兼容没有 exportgraphics 的旧版 MATLAB。
+    print(fig, pngFile, '-dpng', '-r300');
+    set(fig, 'PaperOrientation', 'landscape', 'PaperPositionMode', 'auto');
+    print(fig, pdfFile, '-dpdf', '-vector', '-bestfit');
+end
+
+fprintf('示意图已生成：\n%s\n%s\n', pngFile, pdfFile);
+end
+
+
+function drawNode(ax, x, y, radius, labelText, color, fontName)
+rectangle(ax, 'Position', [x-radius, y-radius, 2*radius, 2*radius], ...
+    'Curvature', [1,1], 'FaceColor', color.node, ...
+    'EdgeColor', color.cellEdge, 'LineWidth', 1.3);
+text(ax, x, y, labelText, 'HorizontalAlignment', 'center', ...
+    'VerticalAlignment', 'middle', 'FontName', fontName, ...
+    'FontSize', 10.5, 'FontWeight', 'bold', 'Interpreter', 'tex', ...
+    'Color', color.cellEdge);
+end
+
+
+function drawRoundedBox(ax, x, y, w, h, faceColor, edgeColor, lineWidth)
+rectangle(ax, 'Position', [x,y,w,h], 'Curvature', 0.10, ...
+    'FaceColor', faceColor, 'EdgeColor', edgeColor, 'LineWidth', lineWidth);
+end
+
+
+function drawArrow(ax, x1, x2, y, lineColor, lineWidth, headSize)
+% 使用数据坐标绘制单向箭头，避免 annotation 的归一化坐标换算。
+plot(ax, [x1, x2-headSize], [y,y], '-', 'Color', lineColor, 'LineWidth', lineWidth);
+patch(ax, [x2, x2-headSize, x2-headSize], ...
+    [y, y+0.55*headSize, y-0.55*headSize], lineColor, ...
+    'EdgeColor', lineColor);
+end
+
+
+function drawDoubleArrow(ax, x1, x2, y, lineColor, lineWidth, headSize)
+% 双向箭头表示两个节点之间可双向传热。
+if x2 < x1
+    tmp = x1; x1 = x2; x2 = tmp;
+end
+plot(ax, [x1+headSize, x2-headSize], [y,y], '-', ...
+    'Color', lineColor, 'LineWidth', lineWidth);
+patch(ax, [x1, x1+headSize, x1+headSize], ...
+    [y, y+0.55*headSize, y-0.55*headSize], lineColor, ...
+    'EdgeColor', lineColor);
+patch(ax, [x2, x2-headSize, x2-headSize], ...
+    [y, y+0.55*headSize, y-0.55*headSize], lineColor, ...
+    'EdgeColor', lineColor);
+end
+
+
+function drawDimension(ax, x1, x2, y, labelText, lineColor, fontName)
+plot(ax, [x1,x2], [y,y], '-', 'Color', lineColor, 'LineWidth', 1.0);
+plot(ax, [x1,x1], [y-0.6,y+0.6], '-', 'Color', lineColor, 'LineWidth', 1.0);
+plot(ax, [x2,x2], [y-0.6,y+0.6], '-', 'Color', lineColor, 'LineWidth', 1.0);
+text(ax, mean([x1,x2]), y-1.2, labelText, 'HorizontalAlignment', 'center', ...
+    'VerticalAlignment', 'top', 'FontName', fontName, 'FontSize', 9.2, ...
+    'Color', lineColor, 'FontWeight', 'bold');
+end
+
+
+function fontName = chooseChineseFont()
+% 优先选择常见中文字体，未找到时使用 MATLAB 默认字体。
+fontName = get(groot, 'DefaultAxesFontName');
+try
+    installed = listfonts;
+    candidates = {'Microsoft YaHei', 'SimHei', 'SimSun', ...
+        'Noto Sans CJK SC', 'Arial Unicode MS'};
+    for i = 1:numel(candidates)
+        if any(strcmpi(installed, candidates{i}))
+            fontName = candidates{i};
+            return;
+        end
+    end
+catch
+    % listfonts 在极旧版本中可能不可用，沿用默认字体。
+end
+end

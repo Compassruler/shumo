@@ -1,0 +1,462 @@
+[
+  {
+    "file": "code\\build_report.py",
+    "bytes": 24653,
+    "sha256": "c6bd30334f4ec43c9377b8b9ec1161918dba897f131ca5b757df63f7c3d2935b"
+  },
+  {
+    "file": "code\\fast_cell.py",
+    "bytes": 15639,
+    "sha256": "bef778503aba14e51f07f0e7420d7b5cf83feb67da703207ae08aab64d040e6b"
+  },
+  {
+    "file": "code\\finalize_results.py",
+    "bytes": 5287,
+    "sha256": "9c9643e48859082cccecdee07a693b0668696a13e541774608d8c3e391c7964c"
+  },
+  {
+    "file": "code\\inspect_sources.py",
+    "bytes": 1508,
+    "sha256": "4145d7afea2843ed54b1a1da5197ac95758fde0dd69953c1e958ba1cb8714064"
+  },
+  {
+    "file": "code\\plot_results.py",
+    "bytes": 19793,
+    "sha256": "22a949f1c8ab6273407f09e58b801cae1019b1f49a5e3238b5b12087b911b05a"
+  },
+  {
+    "file": "code\\probe_model.py",
+    "bytes": 170,
+    "sha256": "8741bf038b40cb38d54b2ad704b889cac22fc4777a6cf65dbf3bb07a5ce2c17f"
+  },
+  {
+    "file": "code\\probe_refinement.py",
+    "bytes": 237,
+    "sha256": "2aa3da30b47d13a070aa4673269511518300984b12c60dc16f5d0d341b5f34ed"
+  },
+  {
+    "file": "code\\requirements.txt",
+    "bytes": 78,
+    "sha256": "6a398a619f190557c9fdf4b4133abd00f802fabb926565a09aec9bd599fcc411"
+  },
+  {
+    "file": "code\\run_question2.py",
+    "bytes": 11312,
+    "sha256": "e0517c46bfe12f4599e9407e43770b2a7832da61069a109678a188313efb5789"
+  },
+  {
+    "file": "code\\source_audit.py",
+    "bytes": 4860,
+    "sha256": "b3dd42a63717e2b0eb76b85bb05a4153c191f41f6e3ce24d7431d7b0e6222ab3"
+  },
+  {
+    "file": "code\\stack_model.py",
+    "bytes": 11322,
+    "sha256": "c5e94a64ab21897533a16783eb81ce7f5b2057c291fcd53f0cab323d93e66b55"
+  },
+  {
+    "file": "code\\verify_exports.py",
+    "bytes": 2981,
+    "sha256": "ec33c81119e7e218ee6dd320276ce9df019cf7d46d2ffcf92f148c1ec9491934"
+  },
+  {
+    "file": "code\\verify_model.py",
+    "bytes": 4643,
+    "sha256": "3dc83b13b38fcd406ecee091cf02980b9018b85f6609f9e4f840c9dfe99f9a12"
+  },
+  {
+    "file": "data\\cells_below_critical.csv",
+    "bytes": 1848283,
+    "sha256": "c896013ddac9ca92373f6b845e42a2f4b1960bded391cef42ec283dc4a2b2105"
+  },
+  {
+    "file": "data\\cells_constant.csv",
+    "bytes": 1263749,
+    "sha256": "2ab82715f677ebadd06f8fd612f7edf371708471cf722a498c6824e467d14099"
+  },
+  {
+    "file": "data\\cells_critical_failure.csv",
+    "bytes": 1852504,
+    "sha256": "cacdb0d6260db2a84c8ed3959e868b3c4f2afddc64630840d6f56c39e54fa71e"
+  },
+  {
+    "file": "data\\cells_critical_success.csv",
+    "bytes": 1852629,
+    "sha256": "dfbd4eec8a7493d5a50637c2ec1c96720e8c5b5ed84edca81a43755e4c1079ad"
+  },
+  {
+    "file": "data\\cells_ramp.csv",
+    "bytes": 1268523,
+    "sha256": "6fd414a9cbd70f22eb86dbc999570ad945b64d3042750d8c73a0b5f63eb8577d"
+  },
+  {
+    "file": "data\\cells_step.csv",
+    "bytes": 1268324,
+    "sha256": "4c24fb982e9c450f9e4eccebd04aa1dd487945d9142a746a2e55e7ce73da02c3"
+  },
+  {
+    "file": "data\\convergence.csv",
+    "bytes": 13915,
+    "sha256": "688a2374e5db65fd6d5f218dce0c234745ac505d5224f6d7d11305b7933d31ff"
+  },
+  {
+    "file": "data\\critical_temperature.json",
+    "bytes": 6385,
+    "sha256": "436b7caac49ee1ecaed3096eebcb7ffe9dbb00d7947f00d4ab8fbb74cccd422a"
+  },
+  {
+    "file": "data\\fields_terminal_below_critical.csv",
+    "bytes": 141936,
+    "sha256": "631fc33441439f88b561f3808bcb2818e68e4bd9722518081235aaf4c040b0a2"
+  },
+  {
+    "file": "data\\fields_terminal_constant.csv",
+    "bytes": 141582,
+    "sha256": "ef996d4d3456a1b5b7d754cb2f71492b2628386641e08f8bf52c306faac3af5c"
+  },
+  {
+    "file": "data\\fields_terminal_critical_failure.csv",
+    "bytes": 143031,
+    "sha256": "0555ee095317f257edadbf9df870689f7d3b4821da204d06c34ee98f9a28709f"
+  },
+  {
+    "file": "data\\fields_terminal_critical_success.csv",
+    "bytes": 143953,
+    "sha256": "c36e88b99fca18c044342e70937ad1439e9789f4b369f8025d3be7e0be0a2721"
+  },
+  {
+    "file": "data\\fields_terminal_ramp.csv",
+    "bytes": 143470,
+    "sha256": "b20e067653b5533b4b7ed94f989558440f6075e3ccf5047c715085747fde09bc"
+  },
+  {
+    "file": "data\\fields_terminal_step.csv",
+    "bytes": 144009,
+    "sha256": "7b04107eab223028dc3702f5be38fe1107244b5885ef1cfd518ac69400d877d0"
+  },
+  {
+    "file": "data\\independent_verification.csv",
+    "bytes": 1447,
+    "sha256": "bf45c8ab954f97b575421c6c52e3b1487672de2bc47db7a3f271da6cfe28a7d9"
+  },
+  {
+    "file": "data\\optimization_trace.csv",
+    "bytes": 3990248,
+    "sha256": "25b82397266a780fc66120e6c7317e7758bd2d09d1276959392087c79006766b"
+  },
+  {
+    "file": "data\\optimized_parameters.json",
+    "bytes": 142,
+    "sha256": "b4448e4c6bed6b751f1467eddc95c3e65aa1fcd1689f0cb1d749e7b653572674"
+  },
+  {
+    "file": "data\\ramp_slope_limit.csv",
+    "bytes": 5492,
+    "sha256": "e0d56e471f4a609414126e873775e463e52480c752b28a9590a472d10c315e22"
+  },
+  {
+    "file": "data\\run_metadata.json",
+    "bytes": 1098,
+    "sha256": "9abe674ef4f5d7efbff7e8ef7bb5ae0059523148ae0b830fee69b84cbfdffe7e"
+  },
+  {
+    "file": "data\\sensitivity.csv",
+    "bytes": 6252,
+    "sha256": "247afe6ea9292d37e8edbcbb6cb48bdd81e99fa541ab595299c045f16a63e1b9"
+  },
+  {
+    "file": "data\\source_hashes.json",
+    "bytes": 2084,
+    "sha256": "7a7890f2429e064ebb4a22e3d65feb54f1d33b7cbf407d75dac993fcace0d3c7"
+  },
+  {
+    "file": "data\\strategy_mesh.csv",
+    "bytes": 1873,
+    "sha256": "8aaed492bc5cfc37d6035ba1f9749eefd383f3c6ddfe1865197e72c19f823063"
+  },
+  {
+    "file": "data\\strategy_summary.csv",
+    "bytes": 1881,
+    "sha256": "47e8157e3de33c17de7ec9cc3a746c3e2247331a5c59106713307617b0460732"
+  },
+  {
+    "file": "data\\temperature_bisection.csv",
+    "bytes": 17633,
+    "sha256": "f308fa7b238a8b112346580b19bd10c00d617ad1877581206fcf125dcb082618"
+  },
+  {
+    "file": "data\\temperature_search.csv",
+    "bytes": 13105,
+    "sha256": "d02419f3ba7370c2fcb172426ce645b9f2b297efced61c42d726e267e9a146ae"
+  },
+  {
+    "file": "data\\trajectory_below_critical.csv",
+    "bytes": 1193046,
+    "sha256": "a02d56ce55e9b09fb5be6c6b477a7832fc4b5e1b6ea2e0fa129926b4aeab4196"
+  },
+  {
+    "file": "data\\trajectory_constant.csv",
+    "bytes": 815616,
+    "sha256": "3f128f9d878f489efa189c640f46514a3c8208b9d8ac948f76f79414bd30b984"
+  },
+  {
+    "file": "data\\trajectory_critical_failure.csv",
+    "bytes": 1196212,
+    "sha256": "71ed68ec9c8edbf5286a8f114413a597d394e807e6fba04e23ef0e83d45dd50d"
+  },
+  {
+    "file": "data\\trajectory_critical_success.csv",
+    "bytes": 1195826,
+    "sha256": "11c20d74936b80ecc67b1d135ad78a0199d78f9c3e346fd738f04a702307c8a2"
+  },
+  {
+    "file": "data\\trajectory_ramp.csv",
+    "bytes": 818651,
+    "sha256": "71dd55bcc52f8a1ea567791613cc95dda2600578adaa310d2d4a548bb9c41420"
+  },
+  {
+    "file": "data\\trajectory_step.csv",
+    "bytes": 818421,
+    "sha256": "0f81a013839a6f51defc0181913b8b504f93e685f9c72affee88b302e20f27a4"
+  },
+  {
+    "file": "data\\zero_current_stage_audit.csv",
+    "bytes": 5993,
+    "sha256": "b36a2f1f3b3e31a42c61e5c38594f231d557a71fa54f751e7b626cd15e42f14b"
+  },
+  {
+    "file": "data\\参数来源与口径.csv",
+    "bytes": 1548,
+    "sha256": "de175ba526113a11dc0e6b92c57d426c5e2ea02dc74f553ed2261deb1db1f0e5"
+  },
+  {
+    "file": "data\\最终CSV独立核验.csv",
+    "bytes": 1289,
+    "sha256": "ef9dfc63d0181af2f4dcd85bd0241088f3583f309ed50a9e39e4bee6f8fe7dcf"
+  },
+  {
+    "file": "data\\第二小问_临界与更冷工况.csv",
+    "bytes": 1823,
+    "sha256": "28a46128175bdf952c16e795e0530166fbd3d3904733c69d64dc666f5ac26eea"
+  },
+  {
+    "file": "data\\第二小问_最低初温区间.csv",
+    "bytes": 397,
+    "sha256": "34b9ea8ec06a0cd33d84476b18a727d5479683351096931ac40a88428f93fadf"
+  },
+  {
+    "file": "data\\表3_不同策略最优启动结果.csv",
+    "bytes": 1033,
+    "sha256": "7246be95323a8c63d39b167127521e670dfc271f45d0afe345155136f7d42c6a"
+  },
+  {
+    "file": "data\\附件2电流单位核验.csv",
+    "bytes": 63540,
+    "sha256": "f2bee3038ceb34cfa5f1cd46378b7ac6c09e280b966a8abc6cd0bb4fa6203a38"
+  },
+  {
+    "file": "figures\\01_加载策略与累计电荷.png",
+    "bytes": 121286,
+    "sha256": "d5c8583c4924671c46da5bb734466255c98c9c4783dc3df1aa1f98d20136523f"
+  },
+  {
+    "file": "figures\\01_加载策略与累计电荷.svg",
+    "bytes": 26335,
+    "sha256": "2d7fd4ec55fcecabeba248febeb35f4cf537069aa071651a0848a03334bafa5f"
+  },
+  {
+    "file": "figures\\02_各单电池与端板温度.png",
+    "bytes": 236103,
+    "sha256": "554e35288d702e776112440c32335b4e91d17af04a1efeb1978e25887b326a2b"
+  },
+  {
+    "file": "figures\\02_各单电池与端板温度.svg",
+    "bytes": 47715,
+    "sha256": "35453a7072d6d946b44375825b317088b6af0c90f53f913170bba954849f3d37"
+  },
+  {
+    "file": "figures\\03_各单电池电压与安全约束.png",
+    "bytes": 169283,
+    "sha256": "57965ae852b26fa75995a6458a58fcc9e8b4eafc41e6357544bfacd63d7a34ab"
+  },
+  {
+    "file": "figures\\03_各单电池电压与安全约束.svg",
+    "bytes": 42719,
+    "sha256": "bc2c9723736346650464ffc3d41fef8c643bef890359bfce85a2a99fb5c6c31a"
+  },
+  {
+    "file": "figures\\04_总体积基准冰体积分数.png",
+    "bytes": 223747,
+    "sha256": "83c54f3be08c08f749626cb28eaecd6ee17453bce3e320563e6e4f39340d6b64"
+  },
+  {
+    "file": "figures\\04_总体积基准冰体积分数.svg",
+    "bytes": 49153,
+    "sha256": "b9ab80a449c9fe53db20aad82d93606d99d93ca24eaf7f76a0578395ef276dc6"
+  },
+  {
+    "file": "figures\\05_孔隙冰饱和度.png",
+    "bytes": 203301,
+    "sha256": "1c29124038b2081c8b10bc4dee6dadb4ddd2983f3ed47970d8eee1dd28162f69"
+  },
+  {
+    "file": "figures\\05_孔隙冰饱和度.svg",
+    "bytes": 46258,
+    "sha256": "43081b253c6f69414c9d937eb7056cce16128f1264aff3a841bba3b831b4cd71"
+  },
+  {
+    "file": "figures\\06_全局热预算与能量守恒.png",
+    "bytes": 340163,
+    "sha256": "9410567be3f715080d771ec60d60293652a2d9aff3eee5a2b3d4be34464e8554"
+  },
+  {
+    "file": "figures\\06_全局热预算与能量守恒.svg",
+    "bytes": 104106,
+    "sha256": "2eb754dec2de84c3e949b349ca41a15ffc8909ad22d5b059af9976c67d5683c6"
+  },
+  {
+    "file": "figures\\07_最低启动温度两侧轨迹.png",
+    "bytes": 262922,
+    "sha256": "feac610b50fe357b0f322873e5f6f9cc28075d50881faec2abb291fea9bd96ec"
+  },
+  {
+    "file": "figures\\07_最低启动温度两侧轨迹.svg",
+    "bytes": 63471,
+    "sha256": "14d18c75193b9e8c1e7d9bc497aaafd35043b05af7cb54adf35e458719e34c2f"
+  },
+  {
+    "file": "figures\\08_临界启动电压损失分解.png",
+    "bytes": 206667,
+    "sha256": "215434191f5cce3a5aa87fd47cd29db84a8d51f6426f7776546ba7dc61277b0d"
+  },
+  {
+    "file": "figures\\08_临界启动电压损失分解.svg",
+    "bytes": 59822,
+    "sha256": "1d9eb561a59fa1489a2224c1a0f8d9f3c942136eccdf417ceafe0730f73be500"
+  },
+  {
+    "file": "figures\\09_最低初温可行性搜索.png",
+    "bytes": 119344,
+    "sha256": "c75cb182e5097917626680245f0348f14536e57992ea74deb0a9f3134dd2c7f9"
+  },
+  {
+    "file": "figures\\09_最低初温可行性搜索.svg",
+    "bytes": 33580,
+    "sha256": "0580451b9a7872ec0faf188c45a0522766261875b27ec8f5a25dc9bd90c8fcd8"
+  },
+  {
+    "file": "figures\\10_时间空间离散收敛性.png",
+    "bytes": 173595,
+    "sha256": "584aef28cd7074020b09c9c49556c2da8e16184b1e38e6f4905e6af06fb756fb"
+  },
+  {
+    "file": "figures\\10_时间空间离散收敛性.svg",
+    "bytes": 46559,
+    "sha256": "016239e5709b5f85d83f690760b4310ae05873e70a0e0fb086803b370ec5286c"
+  },
+  {
+    "file": "figures\\11_参数与边界假设敏感性.png",
+    "bytes": 163884,
+    "sha256": "4f6b9f6c2f956202be29c3f9e13a76295c4092f0ada6c264707991f5ba2eebc5"
+  },
+  {
+    "file": "figures\\11_参数与边界假设敏感性.svg",
+    "bytes": 30016,
+    "sha256": "e32bc39e71452f3f64f5f01e7e358d8a22a5775ff4e3e60a8e0aa4660d8870f3"
+  },
+  {
+    "file": "figures\\12_线性升载斜率极限.png",
+    "bytes": 118232,
+    "sha256": "58cca33826adb23f080d3c75c4b2d34fa2b18adf8e389c424024f9ce9de4e5b4"
+  },
+  {
+    "file": "figures\\12_线性升载斜率极限.svg",
+    "bytes": 41456,
+    "sha256": "ef0473d7ec0d51dae883c5ca380c523f927ed6c518dcfa704bc091bb2b5388fe"
+  },
+  {
+    "file": "figures\\figure_manifest.csv",
+    "bytes": 3215,
+    "sha256": "f42d39b25c476d72e9aab55dee3d73772b55492602e880dd88e3c664a0906d70"
+  },
+  {
+    "file": "inputs\\calibration_bp.json",
+    "bytes": 1008,
+    "sha256": "1f2c8cbf90bfdc3f842bcbebc8c41296acce7ba96da02f65c5decbc8500d2314"
+  },
+  {
+    "file": "inputs\\model_q1_reference.py",
+    "bytes": 20215,
+    "sha256": "f615735cc6d1cebb6b17f3fae3317a32e3bbc6c167db85bdb4f73b1b0ccb01d8"
+  },
+  {
+    "file": "inputs\\summary.json",
+    "bytes": 17273,
+    "sha256": "f9c032854ec0c6149872dd7a8b8f4f59fc9e23f4bdf220c52ccbb8e0351c5344"
+  },
+  {
+    "file": "inputs\\氢燃料电池低温冷启动建模与控制策略研究.docx",
+    "bytes": 6654512,
+    "sha256": "2c782005dee4ee2842b3682b1730413f219ef4ad5594350111539e5d171992a9"
+  },
+  {
+    "file": "inputs\\问题2_建模推导源文件.md",
+    "bytes": 48942,
+    "sha256": "3c6863012e0482d84a1217493f0f17f1ff526fdeea679cdd87cc60ca02f4a9a4"
+  },
+  {
+    "file": "inputs\\附件1.xlsx",
+    "bytes": 13419,
+    "sha256": "06fece93cc86cd9110b5f24fbb3e1085f779d89338a6002d26c67616a4e4ed62"
+  },
+  {
+    "file": "inputs\\附件1_参数清单.csv",
+    "bytes": 5150,
+    "sha256": "e3dae6582c6a225bfbe066638ee82c53195abd6207f3b2025211a5e39abb2110"
+  },
+  {
+    "file": "inputs\\附件2.xlsx",
+    "bytes": 31625,
+    "sha256": "d913b2e78441c067f7737452d8d1d8573b2efd1d1c70e100c9c284e1716b294b"
+  },
+  {
+    "file": "inputs\\附件2_-20℃.csv",
+    "bytes": 8069,
+    "sha256": "3dcf6b3b04730c843ad9c70388c33f601cccdf73598d5db12849222c602b6567"
+  },
+  {
+    "file": "inputs\\附件2_-25℃.csv",
+    "bytes": 12975,
+    "sha256": "8159a7dddd92f872f8967a9aa4b1f130098c8f1d76a6d33243781989fe370c38"
+  },
+  {
+    "file": "inputs\\题目全文提取.txt",
+    "bytes": 21948,
+    "sha256": "2a7a004e9f47c17975ae3ad6f3c79c75ac9ae2155cc5d332fa62b34553461551"
+  },
+  {
+    "file": "reports\\MD推导核验.md",
+    "bytes": 3098,
+    "sha256": "9097425fa03a9b512faeae4fdc4445d9a40863b50b64f1f2939592e6bed69ac1"
+  },
+  {
+    "file": "reports\\数据字段说明.md",
+    "bytes": 3600,
+    "sha256": "e355e9ba104985267917c0fa83db0e698ad6ea7d73bf8c37aff9ac105391892a"
+  },
+  {
+    "file": "reports\\算法模型与代码说明.md",
+    "bytes": 6278,
+    "sha256": "0605ae39773bf75465137802b6c6efd46416135dd2bbe627d1fba27937fc32f2"
+  },
+  {
+    "file": "reports\\问题2_结果报告.md",
+    "bytes": 8278,
+    "sha256": "12935b7f7fa6f7f4d6e0f08499817b16c942d2d42e4ca3df7c124e05e6961177"
+  },
+  {
+    "file": "reports\\问题2_结果预览.html",
+    "bytes": 3348,
+    "sha256": "16b7e362e3ba4e2a17148adba4d1266c379ec610a22734702515cb6799411954"
+  }
+]
