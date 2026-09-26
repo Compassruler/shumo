@@ -1,0 +1,414 @@
+{
+  "original_main_sha256": "bdafa838e9c2ac84e52036c238955179da5057b7666e8494658200e2e4d3474a",
+  "original_chapter_sha256": "8f255b9a88815ad06f712a64fd1b269702ff0d96d63f4f7a2f5c32b9b64e7b27",
+  "integrated_main_sha256": "8334a93d490f62b1dde15cabb15d77c8431dc3faef69e39207cefd388d62640f",
+  "removed_noindent_count": 199,
+  "removed_noindent_original_lines": [
+    1133,
+    1138,
+    1140,
+    1145,
+    1351,
+    1356,
+    1361,
+    1366,
+    1371,
+    1373,
+    1378,
+    1397,
+    1402,
+    1407,
+    1412,
+    1417,
+    1422,
+    1442,
+    1447,
+    1452,
+    1457,
+    1462,
+    1467,
+    1472,
+    1477,
+    1484,
+    1489,
+    1494,
+    1499,
+    1504,
+    1506,
+    1511,
+    1513,
+    1518,
+    1520,
+    1524,
+    1529,
+    1537,
+    1542,
+    1544,
+    1549,
+    1554,
+    1559,
+    1564,
+    1569,
+    1578,
+    1583,
+    1588,
+    1601,
+    1606,
+    1611,
+    1613,
+    1618,
+    1624,
+    1629,
+    1634,
+    1639,
+    1641,
+    1646,
+    1651,
+    1655,
+    1660,
+    1665,
+    1667,
+    1672,
+    1677,
+    1682,
+    1685,
+    1690,
+    1695,
+    1700,
+    1702,
+    1704,
+    1719,
+    1724,
+    1729,
+    1734,
+    1739,
+    1747,
+    1756,
+    1762,
+    1767,
+    1773,
+    1782,
+    1794,
+    1820,
+    1822,
+    1827,
+    1832,
+    1837,
+    1842,
+    1847,
+    1852,
+    1861,
+    1865,
+    1867,
+    1872,
+    1874,
+    1879,
+    1884,
+    1889,
+    1891,
+    1893,
+    1900,
+    1902,
+    1910,
+    1915,
+    1917,
+    1919,
+    1924,
+    1926,
+    1931,
+    1936,
+    1940,
+    1942,
+    1947,
+    1949,
+    1955,
+    1957,
+    1959,
+    1963,
+    1965,
+    1967,
+    1969,
+    2068,
+    2099,
+    2108,
+    2121,
+    2123,
+    2125,
+    2127,
+    2187,
+    2192,
+    2197,
+    2199,
+    2204,
+    2208,
+    2216,
+    2221,
+    2223,
+    2228,
+    2233,
+    2247,
+    2249,
+    2254,
+    2259,
+    2264,
+    2267,
+    2272,
+    2274,
+    2279,
+    2283,
+    2288,
+    2293,
+    2295,
+    2303,
+    2311,
+    2317,
+    2319,
+    2332,
+    2336,
+    2338,
+    2349,
+    2354,
+    2356,
+    2367,
+    2369,
+    2374,
+    2376,
+    2381,
+    2383,
+    2390,
+    2395,
+    2400,
+    2405,
+    2410,
+    2412,
+    2425,
+    2428,
+    2433,
+    2438,
+    2440,
+    2445,
+    2449,
+    2454,
+    2459,
+    2464,
+    2481,
+    2486,
+    2490,
+    2495,
+    2500,
+    2502,
+    2507,
+    2516,
+    2518,
+    2520,
+    2522,
+    2524
+  ],
+  "retained_noindent_original_lines": [
+    1065,
+    2512
+  ],
+  "paragraph_formatting_addition": "% 列表条目中的后续正文段落与普通正文保持两字首行缩进。\n\\setlist[itemize]{listparindent=2em}\n",
+  "chapter_body_exact_match": true,
+  "other_source_exact_match_after_authorized_indent_changes": true,
+  "asset_count": 39,
+  "assets": [
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\问题一解决问题流程图 (3).eps",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\问题一解决问题流程图 (3).eps",
+      "sha256": "3fa904652e9a10fffe1739b2afa7aca81dc7d3525adad958420c66f573c712d9"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\算法流程图222.eps",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\算法流程图222.eps",
+      "sha256": "8941f053c060ca87345538b936a31ca459d051b5f4b5b5b1a610abdfb12f5f49"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\01_五层基线电压温度计算值与实验采样值对比.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\01_五层基线电压温度计算值与实验采样值对比.pdf",
+      "sha256": "bc2e5dfb3cd493dbcaa05af7674f682e3f30c4e7c24f226f7a4925747818fa41"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\02_实验值五层基线与含双极板修订模型对比.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\02_实验值五层基线与含双极板修订模型对比.pdf",
+      "sha256": "25302e723f96b1a7f3ffee268ee210c5eb0f8850d4c6915dbf1c313ecfe09e37"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\03_电压和温度相对误差.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\03_电压和温度相对误差.pdf",
+      "sha256": "941c79f064bfa993f8426063a010b6da28485c48855bcab02e21dfb4459cc2ca"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.pdf",
+      "sha256": "6a5fe2472a68749c7a445f3f628d9191221b23709c886bcd321080eb2da4b088"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\08_含双极板修订模型温度与结冰时空分布.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\08_含双极板修订模型温度与结冰时空分布.pdf",
+      "sha256": "6730b8b5e1ef612fbf4b7f6de96f6f070f4817d2270f1362062ed6796b5a47a2"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\05_模型电压与活化欧姆浓差损失分解.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\05_模型电压与活化欧姆浓差损失分解.pdf",
+      "sha256": "dca253517edbe49bee6591cfe4e63e4baf846c5ce65a551c89bf2e6822351de7"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\06_含双极板修订模型水量热量收支与守恒残差.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\06_含双极板修订模型水量热量收支与守恒残差.pdf",
+      "sha256": "9eb13a49badf2fc76d3a525fadbc8f991e933b6698a0ca866607de417ad5e2aa"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\电堆模型.eps",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\电堆模型.eps",
+      "sha256": "5c264517a8b9bbfcd490180c32bbe7dab3d63bc94f73464e152ddc63c87576b7"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\01_加载策略与累计电荷.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\01_加载策略与累计电荷.pdf",
+      "sha256": "dffb53c232bd91a557e2cfe9c44da07cf32246b5cbed2109cbd21a4ad6bbc0cc"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\12_线性升载斜率极限.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\12_线性升载斜率极限.pdf",
+      "sha256": "fab2568263ab6b8da80e94069260dcbdd15b019bcc21781024e829ce8ef98de8"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\02_各单电池与端板温度.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\02_各单电池与端板温度.pdf",
+      "sha256": "05d4dbe2700ad389efa78ef3201760a89e13508f6d42235558cc75be736d6845"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\03_各单电池电压与安全约束.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\03_各单电池电压与安全约束.pdf",
+      "sha256": "5374e7a6d22628b417a5c78dd5c85d67d125a1a718654c7bddf978ea3071fa6a"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\04_总体积基准冰体积分数.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\04_总体积基准冰体积分数.pdf",
+      "sha256": "979601ed704a9cbe11d8083b031a82e572ca9ed99080fbf43ba794848d0ef0b9"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\09_最低初温可行性搜索.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\09_最低初温可行性搜索.pdf",
+      "sha256": "182b7b6222073299bd7eb43b79a13ca47c2e5d46f00687378854d34d6f82fabd"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\07_最低启动温度两侧轨迹.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\07_最低启动温度两侧轨迹.pdf",
+      "sha256": "a008104f0c10f2880fdaf5662b297e7feba0ba49381d138632dc1dfb546e341f"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\08_临界启动电压损失分解.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\08_临界启动电压损失分解.pdf",
+      "sha256": "2426aa2ad3881e0a63514e2788efdfa07cbd2229e364a7c2e86e8854c83339c4"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\10_时间空间离散收敛性.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\10_时间空间离散收敛性.pdf",
+      "sha256": "612ea349a8e4aa18e250976ae0976310f357b81d961aaae9368ce3c7f827554a"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\06_主策略关键指标对比.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\06_主策略关键指标对比.pdf",
+      "sha256": "7f6914b8f27ff03af82fa9ced7a45afe40c86665fe853443c5e48a6594a69527"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\01_主策略温度历程.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\01_主策略温度历程.pdf",
+      "sha256": "892932b36dc2314c4dd5683b02a3ee5b845a2b1216c75367ed8b82a4222a6eee"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\02_分片加热功率与能耗.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\02_分片加热功率与能耗.pdf",
+      "sha256": "66c4a39572f107089a5c8ce2b0d31702729f4eedf11d08fc9a59aa2f255568d8"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\03_主策略电压与结冰.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\03_主策略电压与结冰.pdf",
+      "sha256": "6c58cfa3a1371cbb19435e0d341f862179f40f5b2fa751c534c586e99aad210e"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\04_关热后回落与稳健验证.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\04_关热后回落与稳健验证.pdf",
+      "sha256": "3175f0303f88a94d20eeed5bf74e41ef3b4f9462afc1f9d019737889acf36094"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\05_能量预算与守恒.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\05_能量预算与守恒.pdf",
+      "sha256": "2cc3e092cdd363791283c7d164324f56857e822bd511fe59eecd423a322da4cc"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图01_预冷温度场族.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图01_预冷温度场族.pdf",
+      "sha256": "1e01495eecd9923edf0dfb710cc1a023e6270139d58207c6c8b52ba9ec270af5"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图04_case1_动态控制轨迹.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图04_case1_动态控制轨迹.pdf",
+      "sha256": "c299ca49f05de4245e62028cb85e303bec200173b808184696ded7a14fc9306f"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图05_case2_动态控制轨迹.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图05_case2_动态控制轨迹.pdf",
+      "sha256": "adb10fae08472e695f5a47250c55fa7860d196ab766f1aac9ae0d73e47eec4ae"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图06_case3_动态控制轨迹.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图06_case3_动态控制轨迹.pdf",
+      "sha256": "97cce82d5367bdcea99a7ce230dd70cda82c5631cb090a5cbd198e682348d5f0"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图14_重优化恒功率与推荐动态.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图14_重优化恒功率与推荐动态.pdf",
+      "sha256": "17b6bbb59ab925a0f1dfa3da87e626786af436c4c6a93ec5d4701db6029a45a3"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图08_预冷时间扫描.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图08_预冷时间扫描.pdf",
+      "sha256": "4996c92e930337ae96d87588a6e932cece5cf9c58b8c7bc86cca37e66bf1b68d"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图11_物理参数与控制器敏感性.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图11_物理参数与控制器敏感性.pdf",
+      "sha256": "b3b95a76a35a84c812292462f03de39e1e8bcfd7ec2756ca58b8af0a9ca67cfc"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图13_名义与留裕度备选.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图13_名义与留裕度备选.pdf",
+      "sha256": "99ecb604379f721690561d93041d48f431e62d7d73f691d3e7d0a2e0ea9e2cf6"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图16_观测器误差与测量停机.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图16_观测器误差与测量停机.pdf",
+      "sha256": "f95df275b790878bd5f24fceb575c16f1c9e827bb7b9d63ea2d46f165db3ba76"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图09_能量收支与累积能耗.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图09_能量收支与累积能耗.pdf",
+      "sha256": "13c1cc7ff888d1eb13c48c00440317c5befefe18b6bed0838e5bd71594b806a9"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\问题4_求解结果\\figures\\图10_网格步长与控制周期检验.pdf",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\图10_网格步长与控制周期检验.pdf",
+      "sha256": "ede21cdd6210534a9421114239c020b2f09feeef3172ff0651c0868c7bf01fae"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\gmcmthesis.cls",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\gmcmthesis.cls",
+      "sha256": "c3dca02b2f194c49819d3b141dce3d77fb407d17b527a29165fa5436f6ee8f93"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\figures\\picture.eps",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\figures\\picture.eps",
+      "sha256": "8c8b66649f357f8b3c3fc6b80888ef85ef23a7f62dfda92a233e57d4c4561b9f"
+    },
+    {
+      "source": "D:\\shumo\\26比赛\\解题\\2026建模比赛\\figures\\wenzi.eps",
+      "destination": "D:\\shumo\\26比赛\\解题\\初稿\\figures\\wenzi.eps",
+      "sha256": "7ea5aa7aa404b10598b576f54767a2c6e1e71e7a7d3c715aa26dcee7c3de9ef0"
+    }
+  ],
+  "cross_reference_labels": 101,
+  "undefined_cross_references": []
+}

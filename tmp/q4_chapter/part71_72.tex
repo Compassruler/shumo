@@ -1,0 +1,434 @@
+\subsection{问题描述和分析}
+
+问题四要求在问题三恒定功率协同启动模型的基础上，进一步允许各片电热丝功率随时间独立调节，利用单片温度、电压及其变化信息设计动态辅助加热策略，并在满足冷启动成功与安全约束的条件下，以辅助加热总能耗最小为主要目标，比较不同预冷工况下动态控制与恒功率控制的启动性能。同时，还需建立电堆由常温向低温环境冷却的传热模型，研究预冷时间对初始温度场及后续恒功率冷启动结果的影响。
+
+与前一问相比，本问的关键变化在于初始状态由均匀低温扩展为预冷形成的非均匀温度场，辅助加热则由固定功率输入转变为根据运行状态实时调整的反馈控制。预冷程度决定电堆的初始储热量及端部与中部的温度差异；启动过程中，各片温升、反应产水与结冰状态又随电流加载和辅助功率不断变化。因此，固定功率难以同时适应不同初温及各片的瞬时热量需求，而动态控制需要在增强低温单片加热、抑制冰堵风险与接近目标时及时降功率之间进行协调。
+
+基于上述特点，本文首先建立复合层状电堆的预冷传热模型，将其终态温度场映射为五片单电池及两块端板的初始温度；随后在已有水—冰—热—电耦合模型基础上，引入温度、电压滤波与独立状态观测，构建前馈与PI反馈相结合的分片功率控制律，并通过离线参数搜索确定节能且具有一定安全裕度的控制方案。最后，在统一电流加载、成功判据和评价窗口下比较三种预冷工况的启动结果，并通过预冷时间扫描分析初始储热、片间温差与冷启动性能之间的关系。
+
+\subsection{电堆预冷与动态辅助冷启动模型的建立}
+
+问题四继续采用第五章的七节点电堆热网络和第六章的辅助热源模型，各片内部水冰相变、气体输运、极化损失及电压计算关系保持一致。本问新增的模型包括预冷初始温度场、仅依赖可测信号的状态识别，以及随时间更新的分片辅助功率。为区分两个先后发生的过程，以 $\tau$ 表示预冷时间，以 $t$ 表示电流加载后的启动时间；预冷结束时重新令 $t=0$，并将预冷终态作为冷启动初态。
+
+\subsubsection{预冷传热模型及初边界条件}
+
+电堆在预冷阶段不加载电流，各片电热丝均关闭，内部不存在电化学反应产热。沿用吹扫后的初始状态，忽略该阶段的水相变及辐射换热，仅考虑沿堆叠方向的导热和端板外表面与环境之间的对流。五片电堆由两块端板、六块双极板及五片MEA组成，其中每片MEA仍分为阳极气体扩散层、阳极催化层、质子交换膜、阴极催化层和阴极气体扩散层，共形成33个实际材料区。内部双极板由相邻单电池共享，不重复计算其厚度和热质量。因此，整堆厚度为
+\begin{equation}
+L_s=2L_{\mathrm{EP}}+6L_{\mathrm{BP}}+5L_{\mathrm{MEA}}
+=2\times10+6\times2+5\times0.3267=33.6335\ \mathrm{mm}.
+\tag{7-1}\label{eq:q4:stack_length}
+\end{equation}
+
+在第 $j$ 个材料区 $\Omega_j$ 内，采用附件给定的密度、比热容与导热系数，温度场满足
+\begin{equation}
+(\rho c_p)_j\frac{\partial T}{\partial\tau}
+=\frac{\partial}{\partial x}\left(k_j\frac{\partial T}{\partial x}\right),
+\qquad x\in\Omega_j,\quad 0<x<L_s.
+\tag{7-2}\label{eq:q4:precool_pde}
+\end{equation}
+
+相邻材料间取理想热接触，界面处温度和导热通量连续，即
+\begin{equation}
+T(x_j^-,\tau)=T(x_j^+,\tau),\qquad
+k_j\left.\frac{\partial T}{\partial x}\right|_{x_j^-}
+=k_{j+1}\left.\frac{\partial T}{\partial x}\right|_{x_j^+}.
+\tag{7-3}\label{eq:q4:precool_interface}
+\end{equation}
+
+两端对流边界按照向外散热为正确定符号。由于左端外法向与 $x$ 轴正方向相反，左右边界分别为
+\begin{equation}
+\left\{\begin{aligned}
+k_{\mathrm{EP}}\left.\frac{\partial T}{\partial x}\right|_{x=0}
+&=h\big[T(0,\tau)-T_{\mathrm{amb}}\big],\\
+-k_{\mathrm{EP}}\left.\frac{\partial T}{\partial x}\right|_{x=L_s}
+&=h\big[T(L_s,\tau)-T_{\mathrm{amb}}\big],
+\end{aligned}\right.
+\qquad h=40\ \mathrm{W\,m^{-2}K^{-1}}.
+\tag{7-4}\label{eq:q4:precool_robin}
+\end{equation}
+
+预冷开始时全堆为均匀常温，环境温度恒为 $-30^\circ\mathrm C$，故初始条件为
+\begin{equation}
+T(x,0)=T_{\mathrm{init}}=298.15\ \mathrm K,\qquad
+T_{\mathrm{amb}}=243.15\ \mathrm K.
+\tag{7-5}\label{eq:q4:precool_initial}
+\end{equation}
+
+数值计算保留MEA的五层材料结构。为分析电堆热惯性，仍可将其单位面积热容与串联热阻分别合并为
+\begin{equation}
+\begin{aligned}
+C_{A,\mathrm{MEA}}&=\sum_{\ell\in\mathrm{MEA}}(\rho c_p)_\ell L_\ell
+=60.75966\ \mathrm{J\,m^{-2}K^{-1}},\\
+k_{\mathrm{MEA}}^{\mathrm{eq}}&=\frac{L_{\mathrm{MEA}}}{\displaystyle\sum_{\ell\in\mathrm{MEA}}L_\ell/k_\ell}
+\approx0.296\ \mathrm{W\,m^{-1}K^{-1}},\\
+C_{A,\mathrm{tot}}&=2C_{A,\mathrm{EP}}+6C_{A,\mathrm{BP}}+5C_{A,\mathrm{MEA}}
+=97503.96\ \mathrm{J\,m^{-2}K^{-1}}.
+\end{aligned}
+\tag{7-6}\label{eq:q4:precool_capacity}
+\end{equation}
+
+其中，单块端板与双极板的面热容分别为 $39500$ 和 $3033.36\ \mathrm{J\,m^{-2}K^{-1}}$，两块端板合计约占全堆热容的 $81\%$。因此，预冷温度不仅取决于MEA本身，还受到板体储热及端部散热过程的显著影响，不能仅以单片初始温度的统一平移代替完整预冷计算。
+
+\subsubsection{非均匀初始温度场与电堆热网络的衔接}
+
+预冷模型得到的是沿堆叠方向连续分布的温度场，而启动模型采用五个单电池温度和两个独立端板温度。为保持两种空间描述之间的热量对应关系，将每块内部共享双极板沿几何中面等分，并分别归入左右相邻单电池；两块终端双极板全部归入相应端部单电池，端板则保留独立节点。记第 $a$ 个热节点所属空间范围为 $\Omega_a$，预冷持续时间为 $\tau_c$，则节点初始温度取热容加权平均：
+\begin{equation}
+\begin{aligned}
+T_a^0&=\frac{\displaystyle\int_{\Omega_a}\rho(x)c_p(x)T(x,\tau_c)\,\mathrm dx}
+{\displaystyle\int_{\Omega_a}\rho(x)c_p(x)\,\mathrm dx}
+=\frac{\displaystyle\sum_{i\in\Omega_a}C_iT_i(\tau_c)}
+{\displaystyle\sum_{i\in\Omega_a}C_i},\\
+C_i&=(\rho c_p)_i\Delta x_i.
+\end{aligned}
+\tag{7-7}\label{eq:q4:temperature_map}
+\end{equation}
+
+由于各控制体只归属于一个节点，式\eqref{eq:q4:temperature_map}满足预冷物性下的显热恒等关系
+\begin{equation}
+\sum_{a=1}^{7}C_{A,a}^{\mathrm{pre}}(T_a^0-T_{\mathrm{amb}})
+=\sum_iC_i\big[T_i(\tau_c)-T_{\mathrm{amb}}\big],\qquad
+C_{A,a}^{\mathrm{pre}}=\sum_{i\in\Omega_a}C_i.
+\tag{7-8}\label{eq:q4:map_energy}
+\end{equation}
+
+由此构造完全冷却、预冷20 min和预冷40 min三种初态。采用与前章一致的空间排列 $\boldsymbol T=[T_{\mathrm{EL}},T_1,T_2,T_3,T_4,T_5,T_{\mathrm{ER}}]^{\mathrm T}$，记上述映射为 $\mathcal M$，则
+\begin{equation}
+\boldsymbol T^0=\begin{cases}
+T_{\mathrm{amb}}\boldsymbol 1, & \text{完全冷却工况},\\
+\mathcal M[T(x,1200\ \mathrm s)], & \text{预冷20 min工况},\\
+\mathcal M[T(x,2400\ \mathrm s)], & \text{预冷40 min工况}.
+\end{cases}
+\tag{7-9}\label{eq:q4:three_initial_states}
+\end{equation}
+
+启动时各片孔隙液水和冰初值仍取零，膜初始含水量取 $\lambda_0=3$。各片气体、水冰及膜水状态组成内部状态向量 $\boldsymbol X$，随后按第四至第六章的方程演化。辅助功率改为随时间变化后，七节点能量方程可统一写为
+\begin{equation}
+\begin{aligned}
+\boldsymbol C(\boldsymbol X)\frac{\mathrm d\boldsymbol T}{\mathrm dt}
+&=-\boldsymbol G(\boldsymbol X)\boldsymbol T
++\boldsymbol hT_{\mathrm{amb}}+\boldsymbol b_{\mathrm{gen}}
++\boldsymbol b_{\mathrm{pc}}+10^4\boldsymbol B\boldsymbol q(t),\\
+b_{\mathrm{gen},k}&=10^4j(t)\big(E_{\mathrm{th}}-V_k\big),\qquad
+E_{\mathrm{th}}=1.48\ \mathrm V,\qquad k=1,\ldots,5.
+\end{aligned}
+\tag{7-10}\label{eq:q4:plant_heat}
+\end{equation}
+
+其中，$\boldsymbol B$ 将五片电热丝功率输入对应单电池节点，其端板行均为零；$\boldsymbol G$ 包含片间、片板导热及环境散热，$\boldsymbol b_{\mathrm{pc}}$ 表示水相变化的热效应。$j$ 与 $q_k$ 分别以 $\mathrm{A\,cm^{-2}}$ 和 $\mathrm{W\,cm^{-2}}$ 计，因而进入单位面积热网络时均须乘以 $10^4$。
+
+这里保留了前章启动模型的两项继承设置：启动阶段采用含水气有效物性的节点热容，对流散热作用于首尾单电池节点；预冷阶段则采用附件材料热容，对流作用于实际端板外表面。因此，式\eqref{eq:q4:map_energy}保证预冷温度场在其自身物性下的热量加权一致性，但不意味着两阶段具有完全相同的热容或严格相同的初始焓。这一处理使不同辅助控制策略能够在同一启动模型上比较，其近似影响通过后续传热参数扰动与数值检验加以考察。
+
+\subsubsection{温度、电压反馈与单电池运行状态识别}
+
+控制器可直接获取的反馈量为各片温度和电压，冰含量及端板温度则需通过模型估计。为避免将仿真中的真实内部状态作为控制输入，另设具有独立水、气和热状态的名义模型观测器。观测器由已知电流与上一时段实际施加的加热功率推进，每个采样时刻仅用测得的五片温度校正对应温度节点；其端板温度及内部水气状态保留模型预测值。记控制时刻 $t_n=n\Delta t_c$，可写为
+\begin{equation}
+\begin{aligned}
+\widehat{\boldsymbol x}^{\,n,-}
+&=\mathcal P_{\widehat{\boldsymbol p}}\!\left(
+\widehat{\boldsymbol x}^{\,n-1,+},j|_{[t_{n-1},t_n]},\boldsymbol q^{n-1},\Delta t_c\right),
+\\
+\widehat T_k^{n,+}&=T_{k,\mathrm m}^n,\qquad k=1,\ldots,5.
+\end{aligned}
+\tag{7-11}\label{eq:q4:independent_observer}
+\end{equation}
+
+式中，$\widehat{\boldsymbol p}$ 为名义物性参数，$\mathcal P$ 表示水—热—电耦合模型的预测算子；实际电堆中的冰、水、气库存和扰动物性均不传入观测器。其预测电压 $\widehat V_k^n$ 由独立内部状态、采样温度与已知电流共同计算，作为后续冰风险修正的依据。
+
+为减弱采样噪声对控制动作的影响，首先对测温和测压信号进行一阶低通滤波：
+\begin{equation}
+\begin{aligned}
+\widetilde T_k^n&=\beta\widetilde T_k^{n-1}+(1-\beta)T_{k,\mathrm m}^n,\\
+\widetilde V_k^n&=\beta\widetilde V_k^{n-1}+(1-\beta)V_{k,\mathrm m}^n,
+\qquad \beta=\exp\!\left(-\frac{\Delta t_c}{0.15\ \mathrm s}\right).
+\end{aligned}
+\tag{7-12}\label{eq:q4:signal_filter}
+\end{equation}
+
+再由滤波信号的后向差分估计温升速率与电压变化率，并对差分结果继续滤波：
+\begin{equation}
+\begin{aligned}
+r_{T,k}^n&=\beta_r r_{T,k}^{n-1}+(1-\beta_r)
+\frac{\widetilde T_k^n-\widetilde T_k^{n-1}}{\Delta t_c},\\
+r_{V,k}^n&=\beta_r r_{V,k}^{n-1}+(1-\beta_r)
+\frac{\widetilde V_k^n-\widetilde V_k^{n-1}}{\Delta t_c},\qquad
+\beta_r=\exp\!\left(-\frac{\Delta t_c}{0.20\ \mathrm s}\right).
+\end{aligned}
+\tag{7-13}\label{eq:q4:rate_filter}
+\end{equation}
+
+设 $\widehat\varepsilon_{k,\mathrm{mod}}^n$ 为独立模型给出的片内最大冰体积分数，采用预测电压与测量电压的有符号残差修正冰风险标量：
+\begin{equation}
+\begin{aligned}
+\widehat\varepsilon_k^n
+&=\operatorname{sat}_{[0,1]}\!\left[
+\widehat\varepsilon_{k,\mathrm{mod}}^n
++L_\varepsilon\frac{\widehat V_k^n-V_{k,\mathrm m}^n}{\delta V_{\mathrm{obs}}}\right],
+\\
+&\qquad L_\varepsilon=0.02,\quad\delta V_{\mathrm{obs}}=0.10\ \mathrm V.
+\end{aligned}
+\tag{7-14}\label{eq:q4:ice_estimator}
+\end{equation}
+
+其中，$\operatorname{sat}_{[a,b]}(z)=\min\{b,\max(a,z)\}$。当实测电压低于模型预测时，修正项提高冰风险估计；反向残差则降低估计值。该修正只作用于控制器使用的风险标量，不直接改写观测器的水冰库存，也不等价于从电压唯一重建真实冰场。
+
+以 $T_f=273.15\ \mathrm K$ 表示冰点，$T_{\mathrm{targ}}$ 和 $t_{\mathrm{plan}}$ 分别表示参考目标温度和规划升温时间。温度偏低程度、当前所需温升速率及温升不足程度定义为
+\begin{equation}
+\begin{aligned}
+D_{T,k}^n&=\max\!\left(0,\frac{T_f-\widetilde T_k^n}{30\ \mathrm K}\right),\\
+r_{\mathrm{req},k}^n&=\max\!\left(0,\frac{T_{\mathrm{targ}}-\widetilde T_k^n}
+{\max(t_{\mathrm{plan}}-t_n,1\ \mathrm s)}\right),\\
+D_{r,k}^n&=\max\!\left(0,\frac{r_{\mathrm{req},k}^n-r_{T,k}^n}
+{r_{\mathrm{req},k}^n+0.01\ \mathrm{K\,s^{-1}}}\right).
+\end{aligned}
+\tag{7-15}\label{eq:q4:temperature_deficit}
+\end{equation}
+
+进一步将冰量估计、电压裕度和电压下降速率组合为风险指标
+\begin{equation}
+\begin{aligned}
+R_k^n={}&0.4\frac{\widehat\varepsilon_k^n}{\varepsilon_{\mathrm{crit}}}
++0.4\max\!\left(0,\frac{V_{\mathrm{safe}}+\delta_V-\widetilde V_k^n}{\delta_V}\right)
+\\
+&{}+0.2\min\!\left(1,\frac{\max(0,-r_{V,k}^n)}{0.10\ \mathrm{V\,s^{-1}}}\right).
+\end{aligned}
+\tag{7-16}\label{eq:q4:ice_risk}
+\end{equation}
+
+其中，$V_{\mathrm{safe}}=0.30\ \mathrm V$、$\varepsilon_{\mathrm{crit}}=0.99$ 为安全阈值，$\delta_V=0.10\ \mathrm V$ 为电压预警带宽。当冰量、电压、下降速率或综合风险任一项触发预警时，判为需要优先增强加热：
+\begin{equation}
+\begin{aligned}
+\mathcal D_k^n={}&
+\big\{\widehat\varepsilon_k^n>0.8\big\}
+\ \cup\ \big\{\widetilde V_k^n<0.40\ \mathrm V\big\}
+\ \cup\ \big\{R_k^n>0.7\big\}\\
+&{}\cup\ \big\{r_{V,k}^n<-0.10\ \mathrm{V\,s^{-1}},\
+\widetilde V_k^n<0.60\ \mathrm V\big\}.
+\end{aligned}
+\tag{7-17}\label{eq:q4:danger_condition}
+\end{equation}
+
+上述判据将低温但温升正常、温升不足、冰堵或低压风险以及接近目标等情形区分开来，使控制器能够依据当前状态分配辅助功率。其作用是提前响应风险，是否真正满足题设安全约束仍须由被控对象的真实状态独立检验。
+
+\subsubsection{前馈与PI结合的动态功率控制律}
+
+动态控制以参考温升轨迹为基本目标，在初期弥补升温所需热量，在临近目标时降低输入，并在低压或冰堵预警时保留安全增强通道。各片采用自身初温建立分段线性参考轨迹：
+\begin{equation}
+\begin{aligned}
+T_{\mathrm{ref},k}(t)&=T_k^0+
+(T_{\mathrm{targ}}-T_k^0)\min\!\left(\frac{t}{t_{\mathrm{plan}}},1\right),
+\\
+\dot T_{\mathrm{ref},k}(t)&=\begin{cases}
+(T_{\mathrm{targ}}-T_k^0)/t_{\mathrm{plan}}, & t<t_{\mathrm{plan}},\\
+0, & t\geq t_{\mathrm{plan}}.
+\end{cases}
+\end{aligned}
+\tag{7-18}\label{eq:q4:temperature_reference}
+\end{equation}
+
+目标温度和规划时间作为离线搜索参数，不预先假定某一轨迹具有全局最优性。以滤波温度构造跟踪误差，并根据低温程度调整比例增益：
+\begin{equation}
+e_k^n=T_{\mathrm{ref},k}(t_n)-\widetilde T_k^n,
+\qquad
+K_{P,k}^n=K_P\big[0.6+0.4\min(1,D_{T,k}^n)\big].
+\tag{7-19}\label{eq:q4:tracking_error_gain}
+\end{equation}
+
+前馈项利用独立模型的节点热容、导热损失、估计端板温度及反应产热，补偿沿参考轨迹升温时的净热量缺口：
+\begin{equation}
+\begin{aligned}
+q_{\mathrm{ff},k}^n
+&=\frac{\alpha_{\mathrm{ff}}}{10^4}
+\left[\widehat C_{A,k}^n\dot T_{\mathrm{ref},k}(t_n)
++\widehat\ell_k^n-10^4j(t_n)\big(E_{\mathrm{th}}-V_{k,\mathrm m}^n\big)\right],
+\\
+\widehat{\boldsymbol\ell}^{\,n}
+&=\widehat{\boldsymbol G}^{\,n}\widehat{\boldsymbol T}^{\,n,+}
+-\widehat{\boldsymbol h}T_{\mathrm{amb}}.
+\end{aligned}
+\tag{7-20}\label{eq:q4:feedforward}
+\end{equation}
+
+其中，$\widehat\ell_k^n$ 表示对应电池节点通过热网络净流出的面热流，$\alpha_{\mathrm{ff}}$ 为前馈系数，常规分支取1。式\eqref{eq:q4:feedforward}显式扣除了反应产热，使电流加载带来的升温贡献能够减少辅助热需求；相变及模型误差造成的偏差由反馈项进一步修正。
+
+控制器采用位置式PI，并对积分量实施限幅和饱和方向判断。先计算试探积分量及相应未限幅输出：
+\begin{equation}
+\begin{aligned}
+I_{k,\mathrm{tr}}^n&=I_k^{n-1}+K_Ie_k^n\Delta t_c,\\
+u_{k,\mathrm{tr}}^n&=q_{\mathrm{ff},k}^n+K_{P,k}^ne_k^n+I_{k,\mathrm{tr}}^n
++K_r\min(D_{r,k}^n,2)\min(D_{T,k}^n,1).
+\end{aligned}
+\tag{7-21}\label{eq:q4:trial_integral}
+\end{equation}
+
+令 $q_{\max}=1\ \mathrm{W\,cm^{-2}}$、$I_{\max}=2\ \mathrm{W\,cm^{-2}}$。仅当积分更新不会继续加剧上下限饱和时接受该增量，即
+\begin{equation}
+I_k^n=\begin{cases}
+\operatorname{sat}_{[-I_{\max},I_{\max}]}(I_{k,\mathrm{tr}}^n),
+& \begin{aligned}
+&(u_{k,\mathrm{tr}}^n\leq q_{\max}\ \text{或}\ e_k^n<0)\\[-2pt]
+&\quad\text{且}\ (u_{k,\mathrm{tr}}^n\geq0\ \text{或}\ e_k^n>0),
+\end{aligned}\\
+I_k^{n-1}, & \text{其他情况}.
+\end{cases}
+\tag{7-22}\label{eq:q4:antiwindup}
+\end{equation}
+
+由此得到名义功率
+\begin{equation}
+q_{\mathrm{nom},k}^n=q_{\mathrm{ff},k}^n+K_{P,k}^ne_k^n+I_k^n
++K_r\min(D_{r,k}^n,2)\min(D_{T,k}^n,1).
+\tag{7-23}\label{eq:q4:nominal_power}
+\end{equation}
+
+最后一项为温升不足补偿，$K_r$ 为相应增益。该项同时受低温程度和温升不足程度调节，因而主要在冰点以下且升温滞后时增加加热，避免仅依据温度误差而忽略升温速度。前馈每次直接参与当前名义功率计算，不向上一时刻功率重复累加。
+
+当滤波温度已越过冰点、估计冰量较低且电压不再快速下降时，按温度距目标的剩余量设置渐缩因子：
+\begin{equation}
+\psi_k^n=\begin{cases}
+\displaystyle\operatorname{sat}_{[0,1]}\!\left(
+\frac{T_{\mathrm{targ}}-\widetilde T_k^n}{\Delta T_{\mathrm{taper}}}\right),
+&\begin{aligned}
+&\widetilde T_k^n>T_f,\ \widehat\varepsilon_k^n<0.5,\\[-2pt]
+&r_{V,k}^n>-0.05\ \mathrm{V\,s^{-1}},
+\end{aligned}\\
+1, &\text{其他情况}.
+\end{cases}
+\tag{7-24}\label{eq:q4:taper_factor}
+\end{equation}
+
+其中，$\Delta T_{\mathrm{taper}}$ 为渐缩温度带宽。对于式\eqref{eq:q4:danger_condition}识别的风险状态，则由综合风险计算增强功率下限：
+\begin{equation}
+\begin{aligned}
+q_{\mathrm{boost},k}^n={}&q_{\mathrm b}
++(q_{\max}-q_{\mathrm b})\operatorname{sat}_{[0,1]}\!\left(
+\frac{R_k^n-R_{\mathrm w}}{1-R_{\mathrm w}}\right),
+\\
+&\qquad q_{\mathrm b}=0.6\ \mathrm{W\,cm^{-2}},\quad R_{\mathrm w}=0.7.
+\end{aligned}
+\tag{7-25}\label{eq:q4:safety_boost}
+\end{equation}
+
+最终执行功率先对名义输入限幅并渐缩，再与安全增强下限取大值，保证近目标降功率不会抵消已经触发的风险响应：
+\begin{equation}
+\begin{aligned}
+q_k^n&=\operatorname{sat}_{[0,q_{\max}]}\!\left[
+\max\!\left\{\psi_k^n\operatorname{sat}_{[0,q_{\max}]}(q_{\mathrm{nom},k}^n),
+\ \boldsymbol 1_{\mathcal D_k^n}q_{\mathrm{boost},k}^n\right\}\right],
+\\
+q_k(t)&=q_k^n,\qquad t_n\leq t<t_{n+1}.
+\end{aligned}
+\tag{7-26}\label{eq:q4:applied_power}
+\end{equation}
+
+式中，$\boldsymbol 1_{\mathcal D_k^n}$ 为风险状态指示量。各片独立执行相同形式的反馈律，但由于测量温度、电压及估计状态不同，其输出功率可以不同。控制状态与相应动作归纳于表\ref{tab:q4:states}。关热锁存一旦完成即覆盖所有加热动作；在尚未关热时，安全增强具有最高优先级。该优先级设计能够避免逻辑冲突，但有限功率下是否有足够升温能力仍取决于实际工况，不能仅凭控制结构保证任意扰动下均满足安全约束。
+
+\begin{table}[htbp]
+    \centering
+    \caption{单电池运行状态识别及动态辅助加热动作}
+    \vspace{0.3cm}
+    \label{tab:q4:states}
+    \renewcommand{\arraystretch}{1.4}
+    \small
+    \setlength{\tabcolsep}{4pt}
+    \begin{tabular}{c p{2.7cm} p{6.0cm} p{4.8cm}}
+        \toprule
+        \textbf{状态码} & \textbf{运行状态} & \textbf{识别依据} & \textbf{控制动作} \\
+        \midrule
+        1 & 低压或冰堵风险 & 冰量、电压、下降速率或综合风险触发式\eqref{eq:q4:danger_condition} & 在渐缩后施加安全功率下限，优先增强加热 \\
+        2 & 温升不足 & 未触发更高优先级动作，且 $D_{r,k}>0.1$ & 前馈与PI跟踪，低温时叠加温升不足补偿 \\
+        3 & 正常跟踪 & 未触发风险及渐缩条件，且温升不足程度较低 & 按参考轨迹调节名义功率 \\
+        4 & 接近目标 & 满足式\eqref{eq:q4:taper_factor}中的低冰量、稳定电压及越过冰点条件 & 逐步降低名义功率，风险触发时仍执行增强 \\
+        5 & 测量保持完成 & 全部单片连续满足测量停机条件2 s & 五片功率统一置零并永久锁存 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsubsection{辅助加热能耗、安全约束与停机判据}
+
+设实际关热时刻为 $t_{\mathrm{off}}$，第 $k$ 片辅助能耗以及电堆总辅助能耗分别为
+\begin{equation}
+E_{\mathrm{aux},k}=A\int_0^{t_{\mathrm{off}}}q_k(t)\,\mathrm dt,
+\qquad E_{\mathrm{aux}}=\sum_{k=1}^{5}E_{\mathrm{aux},k},
+\qquad A=25\ \mathrm{cm^2}.
+\tag{7-27}\label{eq:q4:auxiliary_energy}
+\end{equation}
+
+由于 $q_k$ 以 $\mathrm{W\,cm^{-2}}$ 计，式\eqref{eq:q4:auxiliary_energy}使用面积的 $\mathrm{cm^2}$ 数值后直接得到焦耳。能耗只计电热丝消耗的电能，电化学反应热另行记账。加热功率、电压及冰量约束要求在整个主评价窗口内均成立：
+\begin{equation}
+\left\{\begin{aligned}
+&0\leq q_k(t)\leq1\ \mathrm{W\,cm^{-2}},\\
+&\min_{k,\,0\leq t\leq t_{\mathrm{off}}}V_k(t)\geq0.30\ \mathrm V,\\
+&\max_{k,\,x,\,0\leq t\leq t_{\mathrm{off}}}\varepsilon_{\mathrm{ice},k}(x,t)<0.99.
+\end{aligned}\right.
+\tag{7-28}\label{eq:q4:path_constraints}
+\end{equation}
+
+其中，冰体积分数沿用前章以局部总体积为基准的定义，不与孔隙冰饱和度混用。除题设安全量外，还检查局部加载电流小于极限电流、有效气相孔隙率非负、质子电导为正及各相库存非负，以排除虽满足温度条件但内部物理状态已经失效的数值解。
+
+为与问题三形成可比结果，五片单电池采用相同的给定电流加载，累计电荷可直接积分为
+\begin{equation}
+\begin{aligned}
+j(t)&=\min(0.005t,0.3)\ \mathrm{A\,cm^{-2}},\\
+Q(t)&=\int_0^tj(s)\,\mathrm ds
+=0.0025[\min(t,60)]^2+0.3\max(t-60,0)
+\quad\big(\mathrm{C\,cm^{-2}}\big),
+\end{aligned}
+\tag{7-29}\label{eq:q4:load_charge}
+\end{equation}
+
+式中时间数值以秒计。本文延续问题三的启动电荷比较预算 $Q(t_s)\leq20\ \mathrm{C\,cm^{-2}}$，由前60 s消耗电荷 $9\ \mathrm{C\,cm^{-2}}$ 可得首次成功期限
+\begin{equation}
+t_s\leq t_Q=60+\frac{20-9}{0.3}=96.6667\ \mathrm s.
+\tag{7-30}\label{eq:q4:startup_deadline}
+\end{equation}
+
+该预算用于统一前后两问的比较边界，不另行解释为问题四新增的题设约束。为区分物理启动结果与控制器的测量判断，记 $\mathcal P(t)$ 表示截至时刻 $t$ 的真实电压、冰量及内部物理有效性均满足要求，则真实首次成功时刻定义为
+\begin{equation}
+t_s=\inf\left\{t\geq0:\ \min_{1\leq k\leq5}T_k(t)>T_f,
+\quad\mathcal P(t)\ \text{成立}\right\}.
+\tag{7-31}\label{eq:q4:true_first_success}
+\end{equation}
+
+式\eqref{eq:q4:true_first_success}用于评价和事件定位，不直接触发关热。控制器仅在采样时刻检查可获得的滤波温度、滤波电压与冰量估计，并留出 $0.2\ \mathrm K$ 的测温裕度：
+\begin{equation}
+\begin{aligned}
+b_n=\boldsymbol 1\big\{&
+\min_k\widetilde T_k^n>T_f+0.2\ \mathrm K,
+\quad\min_k\widetilde V_k^n\geq0.30\ \mathrm V,
+\\
+&\max_k\widehat\varepsilon_k^n<0.99\big\}.
+\end{aligned}
+\tag{7-32}\label{eq:q4:sensor_condition}
+\end{equation}
+
+设 $H_n$ 为连续满足测量条件的已确认时长，初值 $H_0=0$。当任一次采样不满足条件时清零；连续两个采样均满足时才累计采样间隔：
+\begin{equation}
+H_n=\begin{cases}
+H_{n-1}+\Delta t_c, & b_n=b_{n-1}=1,\\
+0, & \text{其他情况},
+\end{cases}
+\qquad n\geq1.
+\tag{7-33}\label{eq:q4:hold_counter}
+\end{equation}
+
+当全部单片连续满足测量条件达到 $t_{\mathrm{hold}}=2\ \mathrm s$ 后，统一关闭五片电热丝并永久锁存，即
+\begin{equation}
+t_{\mathrm{off}}=\min\{t_n:H_n\geq t_{\mathrm{hold}}\},
+\qquad q_k(t)=0,\quad t\geq t_{\mathrm{off}},\quad k=1,\ldots,5.
+\tag{7-34}\label{eq:q4:shutdown_latch}
+\end{equation}
+
+在每次仿真结束后，另以真实物理状态验证关热前是否确实连续成功至少2 s；若测量条件提前成立而真实保持不满足要求，则该组参数判为不可行。因此，$t_s$ 表示真实状态首次达到启动要求的时刻，$t_{\mathrm{off}}$ 表示测量保持确认后的实际关热时刻，二者通常不满足简单的 $t_{\mathrm{off}}=t_s+2\ \mathrm s$。首次事件须满足式\eqref{eq:q4:startup_deadline}，常规测量保持窗口最多延至 $t_Q+t_{\mathrm{hold}}$；$Q(t_s)$ 与 $Q(t_{\mathrm{off}})$ 分别保存，避免把保持阶段的额外加载混入首次启动预算。若预冷初态已温暖且初始真实状态与可用测量均通过检查，则直接记 $t_s=t_{\mathrm{off}}=0$，不施加冷启动辅助加热。
+
+用于策略主比较的最低电压、最大冰体积分数和电堆最大温差，均在 $[0,t_{\mathrm{off}}]$ 内统计：
+\begin{equation}
+\begin{aligned}
+V_{\min}&=\min_{0\leq t\leq t_{\mathrm{off}}}\min_kV_k(t),\\
+\varepsilon_{\max}&=\max_{0\leq t\leq t_{\mathrm{off}}}\max_{k,x}\varepsilon_{\mathrm{ice},k}(x,t),\\
+\Delta T_{\max}&=\max_{0\leq t\leq t_{\mathrm{off}}}
+\left[\max_kT_k(t)-\min_kT_k(t)\right].
+\end{aligned}
+\tag{7-35}\label{eq:q4:comparison_metrics}
+\end{equation}
+
+其中，温差取同一时刻五片单电池的最高与最低温度之差，再对时间取最大值，不将不同时刻的温度极值相减，也不混入端板温度。真实首次成功窗口 $[0,t_s]$ 的能耗及极值另行记录，用于与第六章原有口径对照。关热后继续按给定电流加载观察60 s，其温度、电压和冰量作为持续运行特性的后验结果单独分析；完成启动及2 s保持并不自动意味着关热后始终维持在冰点以上。
