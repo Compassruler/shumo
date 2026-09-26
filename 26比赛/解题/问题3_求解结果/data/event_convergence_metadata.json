@@ -1,0 +1,19 @@
+{
+  "first_crossing_definition": "First min(T1,...,T5) >= 1e-7 C with continuous constant heating; full state reintegration in crossing step.",
+  "controls": "final_controls.json; frozen powers, no reoptimization",
+  "R_first_crossing_s": 25.713451018861196,
+  "R_heat_off_s": 51.92539241070928,
+  "R_first_crossing_basis": "R and P have identical initial state, power vector, and zero-current input before this crossing.",
+  "legacy_first_success_s": "For preheat-kind simulations this field is gated until heat-off; use first_crossing_s for R physical first crossing.",
+  "all_events_passed": true,
+  "main_P_legacy_startup_s": 25.713581802940332,
+  "main_P_legacy_temperature_tolerance_C": 0.0001,
+  "new_event_temperature_tolerance_C": 1e-07,
+  "trajectory_note": "Trajectory CSV times and state fields retain the original main runs. No event timestamp is inferred from sparse output rows; independent events are stored separately.",
+  "trajectory_field_definitions": {
+    "cellN_ice_bulk": "maximum local control-volume ice fraction across one cell, including membrane; not volume average",
+    "cellN_pore_ice_bulk": "maximum local ice fraction over porous layers",
+    "cellN_pore_ice_saturation": "maximum local ice fraction divided by local dry porosity, porous layers only",
+    "heater_on": "actual saved control, 1 before heat_off_s and 0 after"
+  }
+}

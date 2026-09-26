@@ -1,4 +1,4 @@
-"""图04：纯预热和附加稳健预热在关热加载后的温度回落与电压验证。"""
+"""图04：纯预热和附加延长预热在关热加载后的温度回落与电压验证。"""
 import numpy as np
 import matplotlib.pyplot as plt
 from common import (COLORS, NAMES, cells, cli, configure_style, decorate,
@@ -6,7 +6,7 @@ from common import (COLORS, NAMES, cells, cli, configure_style, decorate,
                     read_summary, read_traces, temperatures)
 
 # ===== 常用调节区 =====
-FIGSIZE = (11.3, 4.15)
+FIGSIZE = (7.2, 3.3)
 MARKER_SIZE = 2.0
 MINIMUM_MARKER_SIZE = 5.0
 
@@ -30,10 +30,7 @@ def build_figure():
         index = np.flatnonzero(keep)[np.argmin(minimum_temperature[keep])]
         discrete_points(axes[0], [tau[index]], [minimum_temperature[index]], COLORS[key],
                         size=MINIMUM_MARKER_SIZE, zorder=5)
-        axes[0].annotate(f"{minimum_temperature[index]:.2f} ℃",
-                         (tau[index], minimum_temperature[index]),
-                         xytext=(5, -15 if key == "P" else 7),
-                         textcoords="offset points", color=COLORS[key], fontsize=9)
+
 
     axes[0].axhline(0, color=COLORS["danger"], linestyle="--", linewidth=1)
     axes[1].axhline(.30, color=COLORS["danger"], linestyle="--", linewidth=1)
@@ -44,7 +41,7 @@ def build_figure():
         panel_title(ax, title)
         decorate(ax, ylabel, r"关热后加载时间 $\tau=t-t_h$ / s")
         ax.set_xlim(left=0)
-        ax.legend(frameon=False, loc="best")
+        ax.legend(frameon=False, loc="upper right", fontsize=8)
     note(fig, r"$\tau=0$ 时关热并开始规定电流爬升；验证持续至累计电荷 20 C·cm$^{-2}$（$\tau=96.6667$ s）。" "\nP 的后续回落不改变首次成功记录；R 另加全过程不低于 0 ℃ 的稳健约束。")
     return fig
 
@@ -53,4 +50,4 @@ if __name__ == "__main__":
     args = cli(__doc__)
     configure_style()
     export_and_show(build_figure(), "04_关热后回落与稳健验证", args,
-                    dict(left=.085, right=.98, bottom=.25, top=.90, wspace=.26))
+                    dict(left=.085, right=.98, bottom=.20, top=.90, wspace=.45))

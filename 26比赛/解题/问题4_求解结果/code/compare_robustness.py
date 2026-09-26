@@ -16,7 +16,7 @@ def main():
             def trial(z):
                 shift,G,Gep,h,seed=z;thermal=m.THERMAL.copy()
                 thermal[0]*=G;thermal[1]*=Gep;thermal[5]*=h
-                s=m.simulate(temp+shift,kind='constant',power=q,dt=.025,scale=2,
+                s=m.simulate(temp+shift,observer_temp0=temp,kind='constant',power=q,dt=.025,scale=2,
                      thermal=thermal,noise_T=.2,noise_V=.005,seed=seed)[0]
                 return dict(case=case,strategy=strategy,initial_shift_K=shift,G_factor=G,
                      G_EP_factor=Gep,h_factor=h,seed=seed,noise_T_K=.2,noise_V_V=.005,**s)

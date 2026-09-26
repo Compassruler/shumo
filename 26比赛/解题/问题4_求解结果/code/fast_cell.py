@@ -6,7 +6,7 @@ The first invocation includes Numba compilation; subsequent calls are compiled.
 """
 from pathlib import Path
 import sys
-sys.path.insert(0, str(Path(__file__).resolve().parents[1] / '.python_deps'))
+import bootstrap
 from typing import NamedTuple
 import numpy as np
 from numba import njit

@@ -17,7 +17,7 @@ P为题面纯预热：电流为零直至全部电池首次超过0 ℃，随后�
 
 主表中的P冰量和最低电压仅统计预热启动区间，不能视为加载后的表现。P之后的电流曲线题面没有唯一指定；本计算遵循MD，将C的斜坡平移，用作可复现的后验检查。C也另做关热后的继续加载验证。
 
-热容使用六处物理双极板版本，端片分配1.5块板，中间片1块。端板不要求达到0 ℃。冰体积分数包含MEA内的膜冰；孔隙冰饱和度另列，不能混用。
+热容使用六处物理双极板版本，端片分配1.5块板，中间片1块。端板不要求达到0 ℃。最大冰体积分数为全部MEA网格局部最大值，包含膜冰，绝不是MEA体积平均；孔隙冰饱和度另列，不能混用。
 
 ## 代码位置与复算
 
@@ -49,10 +49,14 @@ python3 code/figure_scripts/fig01_main_strategy_temperatures.py
 - `final_fields_P/C/R.csv`：各片MEA网格上的水、冰库存及位置。
 - `optimization_search_P/R.csv`、`cooperative_search.csv`：参数搜索与约束余量。
 - `cooperative_multistart.csv`、`preheat_linear_scan.csv`、`fine_center_power_search.csv`：不同初值、线性筛选及细网格中心功率搜索。
-- `convergence.csv`：固定最终参数的网格/时间步加密。
+- convergence.csv：固定功率与关热时刻的状态检查，能耗恒定不作为事件收敛证据。
+- event_convergence.csv：固定功率各网格独立首次过零验证，运行code/verify_event_convergence.py，不进行优化。
+- event_convergence_metadata.json：事件定义、R首次过零与关热、旧字段兼容说明。
 - `model_validation.csv`：与问题二回归、镜像、单位、守恒检验。
 - `sensitivity.csv`：固定功率分配、重算达到首次成功所需加热时长的敏感性，不是每个扰动都重新优化。
 - `energy_budget.csv`：辅助、电化学、相变、对流及显热收支。
 - `source_manifest.csv`与`inputs/`：模型来源快照与SHA-256记录。
 
 CSV采用UTF-8 BOM，表头含单位；保留数字精度供复算，报告中适度舍入。`heater_on`表示该行终点之前时间步的加热状态，开关瞬间可结合功率向量与`th_s`确定左右极限。热平衡残差验证的是所实现的离散方程，不等于已完成新工况实验验证。
+
+新增first_crossing_s与heat_off_s区分物理首次过零与关热。R约25.71 s过零、51.93 s关热；关热端板−13.76 ℃，加载96.67 s后端板才−0.58 ℃。保留旧字段兼容，但旧R first_success_s不得解释为物理首次过零。

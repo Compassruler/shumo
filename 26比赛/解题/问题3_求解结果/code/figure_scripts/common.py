@@ -3,6 +3,7 @@ from pathlib import Path
 import argparse
 import csv
 import os
+import sys
 
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / "data"
@@ -23,7 +24,7 @@ COLORS = {
     "cell1": "#316D9C", "cell2": "#C77835", "cell3": "#398476",
     "purple": "#9B8AAD", "gray": "#B8BDC1",
 }
-NAMES = {"P": "P 纯预热", "C": "C 协同加热", "R": "R 稳健预热（附加）"}
+NAMES = {"P": "P 纯预热", "C": "C 协同加热", "R": "R 延长预热"}
 CELL_COLORS = [COLORS["cell1"], COLORS["cell2"], COLORS["cell3"]]
 
 # 与问题一图01一致：实心圆、无连接线、细白边。
@@ -43,11 +44,11 @@ def configure_style():
         font = next((name for name in candidates if name in available), "DejaVu Sans")
     plt.rcParams.update({
         "font.family": "sans-serif", "font.sans-serif": [font, "DejaVu Sans"],
-        "font.size": 10, "axes.labelsize": 10, "axes.titlesize": 11,
+        "font.size": 10, "axes.labelsize": 10, "axes.titlesize": 10,
         "xtick.labelsize": 9, "ytick.labelsize": 9, "legend.fontsize": 9,
         "axes.unicode_minus": False, "axes.spines.top": False,
         "axes.spines.right": False, "axes.edgecolor": "#555B61",
-        "axes.linewidth": .7, "axes.grid": True, "grid.alpha": .35,
+        "axes.linewidth": .7, "axes.grid": False, "grid.alpha": .35,
         "grid.color": COLORS["grid"], "grid.linewidth": .55,
         "savefig.facecolor": "white", "figure.facecolor": "white",
         "pdf.fonttype": 42, "svg.fonttype": "none",
@@ -110,7 +111,7 @@ def discrete_points(ax, x, y, color, label=None, size=DISCRETE_MARKER_SIZE,
     """按问题一图01样式绘制离散实心圆点，不添加连接线。"""
     return ax.plot(x, y, linestyle="None", marker="o", markersize=size,
                    markerfacecolor=color, markeredgecolor="white",
-                   markeredgewidth=.25, color=color, alpha=alpha,
+                   markeredgewidth=.25 if np.size(x) < 100 else 0, color=color, alpha=alpha,
                    label=label, zorder=zorder)[0]
 
 
@@ -130,7 +131,8 @@ def panel_title(ax, text):
 
 
 def note(fig, text):
-    fig.text(.08, .015, text, va="bottom", ha="left", fontsize=8.5, color="#545B62")
+    # 长解释移入正文与图注；论文图仅保留必要坐标、图例和面板标题。
+    return None
 
 
 def num(value, digits=3):
@@ -155,6 +157,11 @@ def export_and_show(fig, stem, args, adjust=None):
         fig.subplots_adjust(**adjust)
     if not args.no_save:
         OUTPUT.mkdir(parents=True, exist_ok=True)
+        audit_dir = Path(os.environ.get("NATURE_FIGURE_SCRIPTS", str(Path.home()/".codex/skills/nature-figure/scripts")))
+        sys.path.insert(0, str(audit_dir))
+        from audit_panel_alignment import require_matplotlib_panel_alignment
+        require_matplotlib_panel_alignment(fig, json_out=OUTPUT/f"{stem}.alignment.json",
+            tolerance_pt=1.5, gutter_tolerance_pt=1.5, strict=True)
         fig.savefig(OUTPUT / f"{stem}.pdf", bbox_inches="tight", pad_inches=.13)
         fig.savefig(OUTPUT / f"{stem}.svg", bbox_inches="tight", pad_inches=.13)
         fig.savefig(OUTPUT / f"{stem}.png", dpi=300, bbox_inches="tight", pad_inches=.13)

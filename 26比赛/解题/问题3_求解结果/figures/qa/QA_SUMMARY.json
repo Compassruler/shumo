@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "figures": [
+    {
+      "figure": "01_主策略温度历程.pdf",
+      "sha256": "726fcef3284b7b689ab548935008ba439c84e01e254b75bd234b06091b9c34fd",
+      "alignment": "PASS",
+      "collision": "PASS",
+      "collision_fail": 0,
+      "collision_warn": 0,
+      "minimum_font_pt": 9.0,
+      "manuscript_copy_identical": true
+    },
+    {
+      "figure": "02_分片加热功率与能耗.pdf",
+      "sha256": "6fcbbc1d3f91fdcafc164f09deb91fb91f585feb9b275a8435548ab7a598ee6d",
+      "alignment": "PASS",
+      "collision": "PASS",
+      "collision_fail": 0,
+      "collision_warn": 0,
+      "minimum_font_pt": 7.0,
+      "manuscript_copy_identical": true
+    },
+    {
+      "figure": "03_主策略电压与结冰.pdf",
+      "sha256": "179185beeda752a97fdd61c7ae24a3479687ca1620cf638db5fb1fbb3e37e4ee",
+      "alignment": "PASS",
+      "collision": "PASS",
+      "collision_fail": 0,
+      "collision_warn": 0,
+      "minimum_font_pt": 8.0,
+      "manuscript_copy_identical": true
+    },
+    {
+      "figure": "04_关热后回落与稳健验证.pdf",
+      "sha256": "2d421b19af1b8e838940ddd2461e39bbf9cbd6822748cfebc65d091be6840e81",
+      "alignment": "PASS",
+      "collision": "PASS",
+      "collision_fail": 0,
+      "collision_warn": 0,
+      "minimum_font_pt": 7.0,
+      "manuscript_copy_identical": true
+    },
+    {
+      "figure": "05_能量预算与守恒.pdf",
+      "sha256": "69cd7db7cccd415d69baf69aa78f75c63e58489001bd3e60f02e18c6a60bb989",
+      "alignment": "PASS",
+      "collision": "PASS",
+      "collision_fail": 0,
+      "collision_warn": 0,
+      "minimum_font_pt": 8.0,
+      "manuscript_copy_identical": true
+    },
+    {
+      "figure": "06_主策略关键指标对比.pdf",
+      "sha256": "7bbeb3405c47ee8184c9ae3911619bfb80f1cda7303308f8cd2041920b905a2e",
+      "alignment": "PASS",
+      "collision": "PASS",
+      "collision_fail": 0,
+      "collision_warn": 0,
+      "minimum_font_pt": 7.0,
+      "manuscript_copy_identical": true
+    }
+  ],
+  "source_static": "All six combined source/helper pipelines: 19 PASS, 2 WARN, 0 FAIL.",
+  "accepted_static_warnings": "PDF/SVG are the publication deliverables. PNG is a 300 dpi preview; no TIFF or 600 dpi raster was requested. The two nonblocking warnings refer only to those optional raster exports.",
+  "visual_review": "All six PNGs inspected; local ice labels and units retained, no empty panels or long prose notes; dense trajectories have no white marker borders.",
+  "numerical": "16 fixed-power independent event runs passed. Legacy fields in all 3 summary, 3 postload, 21 fixed-control convergence rows exactly match baseline. aux_model.py, fast_cell.py and final_controls.json hashes match baseline.",
+  "scope": "No optimization rerun; physics and main power/energy results unchanged. P new event has 1e-7 C tolerance vs original main 1e-4 C. R first crossing and heat-off explicitly separated."
+}

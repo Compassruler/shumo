@@ -18,3 +18,4 @@
 图14_重优化恒功率与推荐动态,同工况恒功率再优化与推荐动态的能耗和时间比较,optimized_constant_results.csv;guarded_results.csv;main_results.csv,300,图14_重优化恒功率与推荐动态.png,图14_重优化恒功率与推荐动态.svg,图14_重优化恒功率与推荐动态.pdf,共同采样停机规则：固定功率、有限搜索重优化恒功率与推荐动态
 图15_能耗时间候选前沿,共同规则下的有限候选能耗时间比较,constant_time_frontier.csv;constant_optimization_search.csv;main_results.csv;guarded_results.csv;constant_baselines.csv,300,图15_能耗时间候选前沿.png,图15_能耗时间候选前沿.svg,图15_能耗时间候选前沿.pdf,有限搜索的能耗—时限边界；允许相同最优候选形成平段，不是全局最优证明
 图16_观测器误差与测量停机,独立观测器误差与真实首次成功、测量保持停机的区分,observer_example_results.csv;trajectory_case1_observer_example.csv;trajectory_case2_observer_example.csv;trajectory_case3_observer_example.csv,300,图16_观测器误差与测量停机.png,图16_观测器误差与测量停机.svg,图16_观测器误差与测量停机.pdf,独立观测器：未参与训练的参数失配与测量噪声样例
+图17_动态启动期限敏感性,动态能耗与启动期限的有限候选敏感性,dynamic_deadline_frontier.csv,300,图17_动态启动期限敏感性.png,图17_动态启动期限敏感性.svg,图17_动态启动期限敏感性.pdf,点为正式精度复算的可行候选优选值；阴影内120 s超出主比较电荷预算。

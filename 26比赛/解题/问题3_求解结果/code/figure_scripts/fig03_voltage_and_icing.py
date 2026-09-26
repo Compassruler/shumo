@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 from matplotlib.ticker import MaxNLocator, ScalarFormatter
 
 # ===== 常用调节区 =====
-FIGSIZE = (11.3, 6.8)
+FIGSIZE = (7.2, 5.0)
 MARKER_SIZE = 2.6
 VOLTAGE_LIMIT = 0.30
 
@@ -56,7 +56,7 @@ def build_figure():
     visible_points(axes[1, 1], time, np.max(saturation[:, [0, 4]], axis=1), COLORS["C"],
                    "端部孔隙冰饱和度")
     for col, (values, ylabel, title) in enumerate((
-            (ice, "MEA 体积平均冰体积分数", "(c) C 协同加热 · 冰体积分数"),
+            (ice, "最大局部冰体积分数", "(c) C 协同加热 · 冰体积分数"),
             (saturation[:, [0, 4]], "端部孔隙冰饱和度", "(d) C 协同加热 · 孔隙冰饱和度"))):
         ax = axes[1, col]
         top = max(float(np.max(values)) * 1.15, 1e-12)
@@ -76,4 +76,4 @@ if __name__ == "__main__":
     args = cli(__doc__)
     configure_style()
     export_and_show(build_figure(), "03_主策略电压与结冰", args,
-                    dict(left=.09, right=.98, bottom=.10, top=.94, hspace=.40, wspace=.25))
+                    dict(left=.09, right=.98, bottom=.10, top=.94, hspace=.55, wspace=.40))

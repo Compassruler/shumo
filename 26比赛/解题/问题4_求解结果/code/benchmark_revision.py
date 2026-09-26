@@ -14,5 +14,5 @@ if __name__ == '__main__':
         temp = r[cols].to_numpy(float)
         for q in ([0,0,0,0,0], [.2,.2,.2,.2,.2], [.4,.2,0,.2,.4], m.CONSTANT):
             start=time.perf_counter()
-            s,*_=m.simulate(temp,kind='constant',power=np.asarray(q),dt=.05,scale=1)
+            s,*_=m.simulate(temp,observer_temp0=temp,kind='constant',power=np.asarray(q),dt=.05,scale=1)
             print(r['case'],list(q), {k: s[k] for k in ('feasible','first_success_s','stop_s','E_aux_J','min_voltage_V','max_ice_bulk')},'wall',time.perf_counter()-start,flush=True)

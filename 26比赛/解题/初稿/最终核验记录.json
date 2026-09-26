@@ -1,0 +1,389 @@
+{
+  "date": "2026-09-27",
+  "checks": {
+    "labels_unique": true,
+    "references_resolve": true,
+    "citations_resolve": true,
+    "bibliography_keys_unique": true,
+    "manual_equation_tags_removed": true,
+    "manual_figure_table_refs_removed": true,
+    "red_edits_removed": true,
+    "placeholder_removed": true,
+    "all_figures_exist": true,
+    "all_result_figure_copies_match": true,
+    "root_md_inputs_synchronized": true,
+    "no_control_characters": true,
+    "compile_has_no_errors_or_bad_references": true,
+    "q1_q2_code_data_preserved": true,
+    "q4_controls_frozen": true
+  },
+  "label_count": 315,
+  "equation_label_count": 254,
+  "references": [
+    "mao2007",
+    "buck1996manual",
+    "springer1991",
+    "pasaogullari2004"
+  ],
+  "figure_count": 37,
+  "figures": [
+    {
+      "line": 141,
+      "name": "问题一解决问题流程图 (3).pdf",
+      "exists": true,
+      "matches_source": null
+    },
+    {
+      "line": 1096,
+      "name": "算法流程图222.pdf",
+      "exists": true,
+      "matches_source": null
+    },
+    {
+      "line": 1191,
+      "name": "01_五层基线电压温度计算值与实验采样值对比.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 1202,
+      "name": "02_实验值五层基线与含双极板修订模型对比.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 1281,
+      "name": "03_电压和温度相对误差.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 1295,
+      "name": "04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 1305,
+      "name": "08_含双极板修订模型温度与结冰时空分布.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 1316,
+      "name": "05_模型电压与活化欧姆浓差损失分解.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 1331,
+      "name": "06_含双极板修订模型水量热量收支与守恒残差.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 1391,
+      "name": "电堆模型.pdf",
+      "exists": true,
+      "matches_source": null
+    },
+    {
+      "line": 2031,
+      "name": "01_加载策略与累计电荷.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2044,
+      "name": "12_线性升载斜率极限.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2059,
+      "name": "02_各单电池与端板温度.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2071,
+      "name": "03_各单电池电压与安全约束.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2083,
+      "name": "04_总体积基准冰体积分数.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2097,
+      "name": "09_最低初温可行性搜索.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2139,
+      "name": "07_最低启动温度两侧轨迹.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2156,
+      "name": "08_临界启动电压损失分解.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2173,
+      "name": "10_时间空间离散收敛性.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2579,
+      "name": "06_主策略关键指标对比.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2589,
+      "name": "01_主策略温度历程.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2599,
+      "name": "02_分片加热功率与能耗.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2611,
+      "name": "03_主策略电压与结冰.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2635,
+      "name": "04_关热后回落与稳健验证.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 2649,
+      "name": "05_能量预算与守恒.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3334,
+      "name": "图01_预冷温度场族.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3349,
+      "name": "图04_case1_动态控制轨迹.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3358,
+      "name": "图05_case2_动态控制轨迹.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3367,
+      "name": "图06_case3_动态控制轨迹.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3412,
+      "name": "图14_重优化恒功率与推荐动态.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3429,
+      "name": "图08_预冷时间扫描.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3495,
+      "name": "图11_物理参数与控制器敏感性.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3506,
+      "name": "图13_名义与留裕度备选.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3517,
+      "name": "图16_观测器误差与测量停机.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3580,
+      "name": "图17_动态启动期限敏感性.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3598,
+      "name": "图09_能量收支与累积能耗.pdf",
+      "exists": true,
+      "matches_source": true
+    },
+    {
+      "line": 3611,
+      "name": "图10_网格步长与控制周期检验.pdf",
+      "exists": true,
+      "matches_source": true
+    }
+  ],
+  "q1_q2_core_file_count": 130,
+  "changed_core": [],
+  "control_character_findings": [],
+  "limits": [
+    "数值实现核验不替代局部冰场独立实验",
+    "有限候选搜索不证明任意控制函数的全局最优",
+    "封面信息及当届提交规范由作者确认"
+  ],
+  "pdf_visual_review": {
+    "pages": 92,
+    "all_pages_rendered": true,
+    "all_pages_visually_reviewed": true,
+    "modified_pages_rechecked": true,
+    "text_outside_page": 0,
+    "replacement_characters": 0,
+    "q3_small_table_reformatted": true,
+    "reference_page_split_fixed": true
+  },
+  "题面表格填充增量核验": {
+    "time_local": "2026-09-27T06:47:19",
+    "task": "按B题原表格式填写五张必填表",
+    "source_scope": "仅MathModel.tex五个目标table环境及表注发生改变，正文/代码/CSV/图表资产不变",
+    "tables": [
+      {
+        "label": "B12",
+        "start_line": 1212,
+        "end_line": 1241
+      },
+      {
+        "label": "B13",
+        "start_line": 1244,
+        "end_line": 1277
+      },
+      {
+        "label": "B91",
+        "start_line": 2013,
+        "end_line": 2036
+      },
+      {
+        "label": "tab:opt_results",
+        "start_line": 2567,
+        "end_line": 2588
+      },
+      {
+        "label": "tab:q4:main",
+        "start_line": 3302,
+        "end_line": 3331
+      }
+    ],
+    "line_diff_operations": [
+      {
+        "operation": "replace",
+        "old_start": 1213,
+        "old_end": 1240,
+        "new_start": 1213,
+        "new_end": 1240
+      },
+      {
+        "operation": "replace",
+        "old_start": 1245,
+        "old_end": 1273,
+        "new_start": 1245,
+        "new_end": 1276
+      },
+      {
+        "operation": "replace",
+        "old_start": 2011,
+        "old_end": 2026,
+        "new_start": 2014,
+        "new_end": 2035
+      },
+      {
+        "operation": "replace",
+        "old_start": 2560,
+        "old_end": 2560,
+        "new_start": 2569,
+        "new_end": 2569
+      },
+      {
+        "operation": "replace",
+        "old_start": 2562,
+        "old_end": 2571,
+        "new_start": 2571,
+        "new_end": 2582
+      },
+      {
+        "operation": "insert",
+        "old_start": 2573,
+        "old_end": 2572,
+        "new_start": 2584,
+        "new_end": 2587
+      },
+      {
+        "operation": "replace",
+        "old_start": 3288,
+        "old_end": 3305,
+        "new_start": 3303,
+        "new_end": 3330
+      }
+    ],
+    "original_column_counts": [
+      8,
+      8,
+      8,
+      8,
+      9
+    ],
+    "original_data_row_counts": [
+      8,
+      8,
+      3,
+      2,
+      6
+    ],
+    "all_prefilled_cells_preserved": true,
+    "independent_numeric_review": "通过；Q1 128个显示单元格及Q2-Q4全部行与最终CSV/核数JSON匹配",
+    "q1_error_note": "表内相对误差按题面预填精度计算；原始全采样拟合统计不变",
+    "q4_window_note": "启动时间为first_success_s；能耗与路径极值统计至实际关热时刻",
+    "compiler": "existing Tectonic 0.17.0 with project class file",
+    "compile_success": true,
+    "pdf_pages": 92,
+    "visual_check_pdf_pages": [
+      26,
+      27,
+      45,
+      60,
+      77
+    ],
+    "overfull_or_undefined_reference_or_missing_character": false,
+    "artifacts": {
+      "MathModel.tex": "b57729298881166d8f1275f32c8464ac3c5bacce283adf553bf7bbc476eb23dc",
+      "MathModel.pdf": "aa5943d798b79f4b14e79206b8bedaa7dfade9941f206e3e33d3056df5e6ecd6",
+      "MathModel.synctex": "35e77e225c12f5c4b97eccb80adbbefa1cd8632eecc1c716d1359ac3186ccee4",
+      "编译核查.log": "18ce8ca10c83227a4e13a4ccabd087290f79f15075739cd7953f12b285d40057"
+    }
+  }
+}

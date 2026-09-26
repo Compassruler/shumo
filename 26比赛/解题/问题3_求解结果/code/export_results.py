@@ -112,6 +112,8 @@ def main():
                            sha256=hashlib.sha256(src.read_bytes()).hexdigest()))
     save_csv(DATA/'source_manifest.csv',hashes)
     (DATA/'final_controls.json').write_text(json.dumps({k:{'power':v[0].tolist(),'th_s':v[1]} for k,v in controls.items()},indent=2),encoding='utf-8')
-    print('All final data exported',flush=True)
+    from verify_event_convergence import main as verify_events
+    verify_events()
+    print('All final data exported and first-crossing fields verified',flush=True)
 
 if __name__=='__main__':main()

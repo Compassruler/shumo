@@ -26,10 +26,10 @@ def save(rows,name):
 def optimize(case,temp,starts,workers=4):
     trace=[];lock=Lock();start=time.perf_counter()
     # Compile each fidelity before parallel execution.
-    reference=m.simulate(temp,kind='constant',dt=.1,scale=1)[0]
+    reference=m.simulate(temp,observer_temp0=temp,kind='constant',dt=.1,scale=1)[0]
     Eref=max(reference['E_aux_J'],1.)
     passive=m.DEFAULT.copy();passive[[2,3,11,12]]=0.
-    zero=m.simulate(temp,params=passive,dt=.025,scale=2)[0]
+    zero=m.simulate(temp,observer_temp0=temp,params=passive,dt=.025,scale=2)[0]
     if zero['feasible'] and zero['E_aux_J']==0:
         trace.append(dict(case=case,stage='zero_energy_lower_bound',evaluation_dt_s=.025,
              evaluation_scale=2,J=0.,**dict(zip(m.PARAM_NAMES,passive)),**zero))
@@ -37,7 +37,7 @@ def optimize(case,temp,starts,workers=4):
         return passive,trace
     def evaluate(x,stage,dt=.1,scale=1):
         p=m.DEFAULT.copy();p[IDX]=np.clip(x,np.array(BOUNDS)[:,0],np.array(BOUNDS)[:,1])
-        s=m.simulate(temp,params=p,dt=dt,scale=scale)[0]
+        s=m.simulate(temp,observer_temp0=temp,params=p,dt=dt,scale=scale)[0]
         J=s['E_aux_J']/Eref if s['feasible'] else (10.+max(0.,-s['final_min_T_C'])/30.+s['E_aux_J']/Eref)
         record=dict(case=case,stage=stage,evaluation_dt_s=dt,evaluation_scale=scale,J=J,
                     **dict(zip(m.PARAM_NAMES,p)),**s)

@@ -18,10 +18,22 @@ TRAIN=[(-1.,1.,1.2,1.2,2000),(0.,1.,1.2,1.,2001),(1.,.8,1.,.8,2002),
 def trial(temp,p,z,dt=.05):
     shift,G,Gep,h,seed=z
     thermal=m.THERMAL.copy();thermal[0]*=G;thermal[1]*=Gep;thermal[5]*=h
-    s=m.simulate(temp+shift,params=p,dt=dt,scale=2,thermal=thermal,
+    s=m.simulate(temp+shift,observer_temp0=temp,params=p,dt=dt,scale=2,thermal=thermal,
                  noise_T=.2,noise_V=.005,seed=seed)[0]
     return dict(seed=seed,noise_T_K=.2,noise_V_V=.005,initial_shift_K=shift,
                 G_factor=G,G_EP_factor=Gep,h_factor=h,**s)
+def validated_cache(name):
+    """Reject pre-isolation cached trials instead of silently reusing true priors."""
+    frame=pd.read_csv(DATA/name)
+    required={'observer_initialization':'nominal_precooling_prior',
+              'reference_initialization':'initial_temperature_measurement'}
+    for key,value in required.items():
+        if key not in frame or not frame[key].eq(value).all():
+            raise RuntimeError(f'{name}: incompatible pre-isolation cache ({key}); '
+                'retain it as historical evidence. Use --reuse-controls to validate '
+                'frozen parameters, or start a fresh search without --reselect/--resume.')
+    return frame
+
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--resume',action='store_true')
     parser.add_argument('--reselect',action='store_true');parser.add_argument('--reuse-controls',action='store_true');args=parser.parse_args()
@@ -32,15 +44,15 @@ def main():
     params=[];results=[];search=[];checks=[];training=[];physical=[]
     cached_search={};cached_trials=[]
     if args.reselect:
-        cached_search={(r['case'],int(r['candidate'])):r for r in pd.read_csv(DATA/'guarded_design_search.csv').to_dict('records')}
-        cached_trials=pd.read_csv(DATA/'guarded_training_trials.csv').to_dict('records')
+        cached_search={(r['case'],int(r['candidate'])):r for r in validated_cache('guarded_design_search.csv').to_dict('records')}
+        cached_trials=validated_cache('guarded_training_trials.csv').to_dict('records')
     if args.resume and (DATA/'guarded_parameters.csv').exists():
         params=pd.read_csv(DATA/'guarded_parameters.csv').to_dict('records')
-        results=pd.read_csv(DATA/'guarded_results.csv').to_dict('records')
+        results=validated_cache('guarded_results.csv').to_dict('records')
         completed={r['case'] for r in params}
         def prior(name):
             if not (DATA/name).exists():return []
-            return [r for r in pd.read_csv(DATA/name).to_dict('records') if r['case'] in completed]
+            return [r for r in validated_cache(name).to_dict('records') if r['case'] in completed]
         search=prior('guarded_design_search.csv');checks=prior('guarded_robustness.csv')
         training=prior('guarded_training_trials.csv');physical=prior('guarded_parameter_validation.csv')
     names=[f'T{k}_C' for k in range(1,6)]+['TEL_C','TER_C']
@@ -65,11 +77,11 @@ def main():
             for n,p in enumerate(candidates):
                 old=cached_search.get((case,n))
                 if old is not None and all(abs(float(old[k])-v)<1e-8 for k,v in zip(m.PARAM_NAMES,p)):
-                    nom={k:old[k] for k in list(m.SUMMARY)+['feasible','shutdown_mode','sensor_stop_margin_C']}
+                    nom={k:old[k] for k in list(m.SUMMARY)+['feasible','shutdown_mode','sensor_stop_margin_C','observer_initialization','reference_initialization']}
                     trials=[{k:v for k,v in z.items() if k not in ('case','candidate','stage')} for z in cached_trials if z['case']==case and int(z['candidate'])==n and z['stage']=='training']
                     if len(trials)!=len(TRAIN):raise RuntimeError('Incomplete cached training')
                 else:
-                    nom=m.simulate(temp,params=p,dt=.05,scale=2)[0]
+                    nom=m.simulate(temp,observer_temp0=temp,params=p,dt=.05,scale=2)[0]
                     trials=list(pool.map(lambda z:trial(temp,p,z),TRAIN))
                 for z in trials:training.append(dict(case=case,candidate=n,stage='training',**z))
                 passed=sum(z['feasible'] and z['first_success_s']<=m.Q_TIME-2. and z['stop_s']<=m.Q_TIME-2. for z in trials)
@@ -83,7 +95,7 @@ def main():
             if not survivors:raise RuntimeError('No control passes training: '+case)
             confirmed=[]
             for _,p,n in sorted(survivors,key=lambda z:z[0])[:4]:
-                nom=m.simulate(temp,params=p,dt=.025,scale=2)[0]
+                nom=m.simulate(temp,observer_temp0=temp,params=p,dt=.025,scale=2)[0]
                 trials=list(pool.map(lambda z:trial(temp,p,z,.025),TRAIN))
                 for z in trials:training.append(dict(case=case,candidate=n,stage='fine_confirmation',**z))
                 if nom['feasible'] and all(z['feasible'] and z['first_success_s']<=m.Q_TIME-2. and z['stop_s']<=m.Q_TIME-2. for z in trials):
@@ -91,7 +103,7 @@ def main():
             if not confirmed:raise RuntimeError('Fine training confirmation failed: '+case)
             _,p,chosen=min(confirmed,key=lambda z:z[0])
             params.append(dict(case=case,selected_training_candidate=chosen,**dict(zip(m.PARAM_NAMES,p))))
-            s,h,*_=m.simulate(temp,params=p,dt=.025,scale=2,post=60,record=True)
+            s,h,*_=m.simulate(temp,observer_temp0=temp,params=p,dt=.025,scale=2,post=60,record=True)
             results.append(dict(case=case,strategy='guarded',**s))
             save(pd.DataFrame(h,columns=m.HISTORY),f'trajectory_{case}_guarded.csv')
             validation=[(shift,1.,1.,1.,seed) for shift in (-1.,0.,1.) for seed in range(6000,6010)]
@@ -116,7 +128,7 @@ def reproduce():
     names=[f'T{k}_C' for k in range(1,6)]+['TEL_C','TER_C'];rows=[];noise=[];physical=[]
     for _,r in initial.iterrows():
         case=r['case'];temp=r[names].to_numpy(float);p=controls.loc[case,m.PARAM_NAMES].to_numpy(float)
-        s,h,*_=m.simulate(temp,params=p,dt=.025,scale=2,post=60.,record=True)
+        s,h,*_=m.simulate(temp,observer_temp0=temp,params=p,dt=.025,scale=2,post=60.,record=True)
         rows.append(dict(case=case,strategy='guarded',**s))
         save(pd.DataFrame(h,columns=m.HISTORY),f'trajectory_{case}_guarded.csv')
         scenarios=[(shift,1.,1.,1.,seed) for shift in (-1.,0.,1.) for seed in range(6000,6010)]

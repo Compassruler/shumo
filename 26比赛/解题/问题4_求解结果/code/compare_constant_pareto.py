@@ -61,7 +61,7 @@ class Evaluator:
             cached = self.cache.get(key)
         if cached is not None:
             return cached
-        summary = m.simulate(self.temp, kind='constant', power=power,
+        summary = m.simulate(self.temp,observer_temp0=self.temp, kind='constant', power=power,
                              params=self.params, dt=dt, scale=scale)[0]
         item = dict(case=self.case, stage=stage or self.stage,
                     search_deadline_s=self.deadline, dt_s=dt, mesh_scale=scale,
@@ -116,14 +116,14 @@ def main():
     start = time.perf_counter()
     # Compile before several threads reach Numba's compilation lock together.
     warm_temp = initial.iloc[0][TEMP_NAMES].to_numpy(float)
-    m.simulate(warm_temp, kind='constant', dt=.05, scale=1, horizon=.1)
+    m.simulate(warm_temp,observer_temp0=warm_temp, kind='constant', dt=.05, scale=1, horizon=.1)
     for index, row in initial.iterrows():
         case, temp = row['case'], row[TEMP_NAMES].to_numpy(float)
         ev = Evaluator(case, temp)
         for kind, power in [('zero_heater', np.zeros(5)),
                             ('inherited_constant_C', m.CONSTANT),
                             ('full_power', np.ones(5))]:
-            s, h, *_ = m.simulate(temp, kind='constant', power=power,
+            s, h, *_ = m.simulate(temp,observer_temp0=temp, kind='constant', power=power,
                                  params=ev.params, dt=.025, scale=2,
                                  post=60., record=True)
             baselines.append(dict(case=case, strategy=kind,
@@ -191,7 +191,7 @@ def main():
                 save(frontier, 'constant_time_frontier.csv')
         r = ev.feasible_rows(m.Q_TIME, fine=True)[0]
         power = np.array([r[n] for n in POWER_NAMES])
-        s,h,*_ = m.simulate(temp, kind='constant', power=power, params=ev.params,
+        s,h,*_ = m.simulate(temp,observer_temp0=temp, kind='constant', power=power, params=ev.params,
                              dt=.025, scale=2, post=60., record=True)
         parameters.append(dict(case=case, hold_s=2., deadline_s=m.Q_TIME,
                                **dict(zip(POWER_NAMES, power))))
@@ -236,7 +236,7 @@ def reuse_controls(initial):
         q=params.loc[case,POWER_NAMES].to_numpy(float)
         for strategy,power in [('constant_optimized',q),('zero_heater',np.zeros(5)),
                                ('inherited_constant_C',m.CONSTANT),('full_power',np.ones(5))]:
-            summary,h,*_=m.simulate(temp,kind='constant',power=power,params=p,
+            summary,h,*_=m.simulate(temp,observer_temp0=temp,kind='constant',power=power,params=p,
                                     dt=.025,scale=2,post=60.,record=True)
             output=dict(case=case,strategy=strategy,**dict(zip(POWER_NAMES,power)),**summary)
             if strategy=='constant_optimized':rows.append(output)
@@ -304,7 +304,7 @@ def refine_rays(initial, args):
                   f'first={best["first_success_s"]:.6f}, stop={best["stop_s"]:.6f}',flush=True)
         best = ev.feasible_rows(m.Q_TIME,fine=True)[0]
         power = np.array([best[n] for n in POWER_NAMES])
-        s,h,*_ = m.simulate(temp,kind='constant',power=power,params=ev.params,
+        s,h,*_ = m.simulate(temp,observer_temp0=temp,kind='constant',power=power,params=ev.params,
                             dt=.025,scale=2,post=60.,record=True)
         results.append(dict(case=case,strategy='constant_optimized',**dict(zip(POWER_NAMES,power)),**s))
         params_out.append(dict(case=case,hold_s=HOLD,deadline_s=m.Q_TIME,**dict(zip(POWER_NAMES,power))))

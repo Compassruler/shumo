@@ -2,86 +2,86 @@
   {
     "figure": "图01_预冷温度场族",
     "raw_summary": {
-      "fail": 1,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 5,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 1,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "5067038eebd011b7d1375f31f4abe5a49d7a29a71d72ba79c7fd064285051966"
   },
   {
     "figure": "图02_预冷均温与温差",
     "raw_summary": {
-      "fail": 7,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 0,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 7,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "9b0fbf5ac2ef5233a159c8c0e03897cb96b144e20157ba676b21c074c7a39aff"
   },
   {
     "figure": "图03_三工况初始温度",
     "raw_summary": {
-      "fail": 6,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 0,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 6,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "e3518a2be1eeb9aa096c328b6908f31af2f4dc1b812704e909cdc5fb7c85a874"
   },
   {
     "figure": "图04_case1_动态控制轨迹",
     "raw_summary": {
-      "fail": 9,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 13,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 9,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "fc8e269dd56ed637f090f3d61382fedb55e4ef74fcf42d2832123c22f2f5901d"
   },
   {
     "figure": "图05_case2_动态控制轨迹",
     "raw_summary": {
-      "fail": 4,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 13,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 4,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "b71375a474ef8aaaee7ea925ce03b43444a4aa5152bea2b4824626d03ab03d14"
   },
   {
     "figure": "图06_case3_动态控制轨迹",
     "raw_summary": {
-      "fail": 7,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 13,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 7,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "db18cc3e8f43929c221dbefa952f7a8a25666f2e0f6e5e37e53b3d4178230db2"
   },
   {
     "figure": "图07_三工况主指标比较",
     "raw_summary": {
-      "fail": 11,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 38,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 11,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "f4dae7948e8dfd270ae647f62dd4890a5c81ba25ea25b25d2db2f399a9a92a89"
   },
   {
     "figure": "图08_预冷时间扫描",
@@ -91,93 +91,93 @@
       "contained_fill_overlays": 0,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 0,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "3b88d6d1962b36c275ed3d9dedf97dcd4aae77ac9f610026961dd97302ea9820"
   },
   {
     "figure": "图09_能量收支与累积能耗",
     "raw_summary": {
-      "fail": 5,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 0,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 5,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "c15f009b2be89ac9fa044d06b8ee495fa03f495ff53baf5a2d00b65f039b581f"
   },
   {
     "figure": "图10_网格步长与控制周期检验",
     "raw_summary": {
-      "fail": 7,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 11,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 7,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "0e1d52fc0ea6978d6ad3b1db608f6ad4ee191e63c33ba4b4a8802e3b821c7910"
   },
   {
     "figure": "图11_物理参数与控制器敏感性",
     "raw_summary": {
-      "fail": 7,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 7,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 7,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "8cd80b6fbf443908957b24ca8724f94bc76a0d55766fa927dc366607172cc2da"
   },
   {
     "figure": "图12_测量噪声与初场扰动",
     "raw_summary": {
-      "fail": 6,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 6,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 6,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "103a8a67454a7fb4c6c650ca7d65037eca050d2ae6a5f5a463e90e56c955dd98"
   },
   {
     "figure": "图13_名义与留裕度备选",
     "raw_summary": {
-      "fail": 9,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 26,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 9,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "00c08431617546029da93661aa5db9ac4acbc2ad2842392e8d8e51b335947c45"
   },
   {
     "figure": "图14_重优化恒功率与推荐动态",
     "raw_summary": {
-      "fail": 16,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 39,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 16,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "113b8eceda40ef00be9fb6d2f98186dcf6959658d7a381c634eb9272fc1dc8e3"
   },
   {
     "figure": "图15_能耗时间候选前沿",
     "raw_summary": {
-      "fail": 21,
+      "fail": 0,
       "warn": 0,
       "contained_fill_overlays": 0,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 21,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "93ea84b87c72fa18f7e42fc2204c542414f7da5f655a8c66ae526d1c45d5dea0"
   },
   {
     "figure": "图16_观测器误差与测量停机",
@@ -187,8 +187,20 @@
       "contained_fill_overlays": 0,
       "contained_image_overlays": 0
     },
-    "intentional_background_grid_findings": 0,
     "unresolved": [],
-    "reviewed_verdict": "PASS"
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "b4307436c26ccc52486c8233a1e4a862a9354d16c5334df609f10cfe2cd91108"
+  },
+  {
+    "figure": "图17_动态启动期限敏感性",
+    "raw_summary": {
+      "fail": 0,
+      "warn": 0,
+      "contained_fill_overlays": 0,
+      "contained_image_overlays": 0
+    },
+    "unresolved": [],
+    "reviewed_verdict": "PASS",
+    "final_pdf_sha256": "4b9b5a010db4a6512e8fdb3d7bf2f010515ec20b5884d45570c6102e1732fb6e"
   }
 ]

@@ -38,7 +38,7 @@ def configure_style():
         'xtick.labelsize': 9, 'ytick.labelsize': 9, 'legend.fontsize': 9,
         'axes.unicode_minus': False, 'axes.spines.top': False,
         'axes.spines.right': False, 'axes.edgecolor': '#555B61',
-        'axes.linewidth': .7, 'axes.grid': True, 'grid.alpha': .35,
+        'axes.linewidth': .7, 'axes.grid': False, 'grid.alpha': .35,
         'grid.color': '#D9DEE3', 'grid.linewidth': .55,
         'axes.axisbelow': True, 'xtick.direction': 'out', 'ytick.direction': 'out',
         'legend.frameon': False, 'savefig.facecolor': 'white',

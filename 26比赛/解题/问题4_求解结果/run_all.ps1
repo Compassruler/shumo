@@ -27,7 +27,7 @@ if ($Reoptimize) {
     & $Q4Runtime (Join-Path $Q4Root 'code\robust_design.py') --reuse-controls
 }
 if ($LASTEXITCODE -ne 0) { throw 'Guarded controller stage failed.' }
-foreach ($Q4Script in @('compare_robustness.py','observer_examples.py','refine_convergence.py','normalize_event_fields.py','verify_model.py','verify_exports.py','verify_revision.py','finalize_tables.py','plot_results.py','build_report.py','verify_delivery.py')) {
+foreach ($Q4Script in @('compare_robustness.py','observer_examples.py','revision_studies.py','refine_convergence.py','normalize_event_fields.py','verify_model.py','verify_exports.py','verify_revision.py','finalize_tables.py','plot_results.py','build_report.py','verify_delivery.py')) {
     & $Q4Runtime (Join-Path $Q4Root ('code\' + $Q4Script))
     if ($LASTEXITCODE -ne 0) { throw ('Stage failed: ' + $Q4Script) }
 }

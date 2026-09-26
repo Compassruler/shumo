@@ -5,7 +5,7 @@ from common import (COLORS, NAMES, cli, configure_style, decorate, discrete_poin
                     export_and_show, note, panel_title, read_summary)
 
 # ===== 常用调节区 =====
-FIGSIZE = (11.3, 4.0)
+FIGSIZE = (7.2, 3.2)
 MARKER_SIZE = 5.0
 STRATEGY_OFFSETS = {"P": -.16, "C": 0.0, "R": .16}
 
@@ -41,4 +41,4 @@ if __name__ == "__main__":
     args = cli(__doc__)
     configure_style()
     export_and_show(build_figure(), "02_分片加热功率与能耗", args,
-                    dict(left=.08, right=.98, bottom=.24, top=.90, wspace=.30))
+                    dict(left=.08, right=.98, bottom=.17, top=.90, wspace=.40))

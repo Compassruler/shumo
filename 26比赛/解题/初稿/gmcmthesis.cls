@@ -28,7 +28,7 @@
 \ExecuteOptions{colorprint}
 \ProcessOptions\relax
 %% Loading Class
-\LoadClass[a4paper,cs4size]{ctexart}
+\LoadClass[a4paper,cs4size,fontset=fandol]{ctexart}
 %% Loading Package
 \RequirePackage{ifxetex}
 \RequireXeTeX
@@ -147,14 +147,26 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
 \setmainfont{Times New Roman}
 \setmonofont{Courier New}
 \setsansfont{Arial}
-\setCJKmainfont[AutoFakeBold = {2.15},ItalicFont={KaiTi}]{SimSun}
+\IfFontExistsTF{SimSun}{
+  \IfFontExistsTF{KaiTi}{
+    \setCJKmainfont[AutoFakeBold=2.15,ItalicFont=KaiTi]{SimSun}
+  }{
+    \setCJKmainfont[AutoFakeBold=2.15,ItalicFont=FandolKai-Regular.otf]{SimSun}
+  }
+}{
+  \setCJKmainfont[BoldFont=FandolSong-Bold.otf,ItalicFont=FandolKai-Regular.otf]{FandolSong-Regular.otf}
+}
 
-\setCJKfamilyfont{xw}{STXinwei}
+\IfFontExistsTF{STXinwei}{\setCJKfamilyfont{xw}{STXinwei}}{
+  \setCJKfamilyfont{xw}{FandolKai-Regular.otf}
+}
 
 %
 %\setCJKfamilyfont{zhyou}{YouYuan}
 \ifx\lishu\undefined%
- \setCJKfamilyfont{zhli}{LiSu}
+ \IfFontExistsTF{LiSu}{\setCJKfamilyfont{zhli}{LiSu}}{
+   \setCJKfamilyfont{zhli}{FandolHei-Regular.otf}
+ }
  \newcommand*{\lishu}{\CJKfamily{zhli}} %% Do this if it is undefined
 \else
   %% Do this if it is defined
@@ -281,7 +293,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
   \def\thepage{0}
   \thispagestyle{empty}%
  \begin{center}
- {\includegraphics[width=\textwidth]{picture.eps}}
+ {\includegraphics[width=\textwidth]{picture.pdf}}
  
   \vskip1.75cm
  {\xinwei\zihao{2} \gmcm@ges@string@contents \par}
@@ -428,7 +440,7 @@ Just choose `xelatex', no `pdflatex' or `latex' and so on.}
  %%%常量
 
 %\newcommand\gmcm@ges@string@contents{“华为杯”第十五届全国研究生\par 数学建模竞赛}
-\newcommand\gmcm@ges@string@contents{\includegraphics[width=10cm]{wenzi.eps}}
+\newcommand\gmcm@ges@string@contents{\includegraphics[width=10cm]{wenzi.pdf}}
 
 
  

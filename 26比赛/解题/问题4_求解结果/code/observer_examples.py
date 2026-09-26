@@ -11,10 +11,10 @@ def main():
     controls=pd.read_csv(DATA/'guarded_parameters.csv').set_index('case')
     cols=[f'T{k}_C' for k in range(1,6)]+['TEL_C','TER_C'];rows=[]
     for _,r in initial.iterrows():
-        case=r['case'];temp=r[cols].to_numpy(float)-1.
+        case=r['case'];prior=r[cols].to_numpy(float);temp=prior-1.
         p=controls.loc[case,m.PARAM_NAMES].to_numpy(float)
         thermal=m.THERMAL.copy();thermal[0]*=.8;thermal[1]*=1.2;thermal[5]*=1.2
-        s,h,*_=m.simulate(temp,params=p,thermal=thermal,dt=.025,scale=2,
+        s,h,*_=m.simulate(temp,observer_temp0=prior,params=p,thermal=thermal,dt=.025,scale=2,
                           noise_T=.2,noise_V=.005,seed=7010,post=60.,record=True)
         rows.append(dict(case=case,strategy='observer_example',seed=7010,initial_shift_K=-1.,
              G_factor=.8,G_EP_factor=1.2,h_factor=1.2,noise_T_K=.2,noise_V_V=.005,**s))

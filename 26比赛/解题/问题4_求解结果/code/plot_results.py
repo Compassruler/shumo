@@ -49,6 +49,8 @@ OPTIONS = {'figure': None, 'no_show': True, 'no_save': False}
 
 def configure():
     configure_style()
+    # Keep export-critical settings explicit for source-only preflight tools.
+    plt.rcParams.update({"font.family": "sans-serif", "pdf.fonttype": 42, "svg.fonttype": "none"})
 
 
 
@@ -509,18 +511,38 @@ def observer_diagnostics(root):
          ['observer_example_results.csv' if example else 'guarded_results.csv']+[f'trajectory_{c}_{dataset}.csv' for c in CASE_NAMES],root)
 
 
+def deadline_sensitivity(root):
+    data=read('dynamic_deadline_frontier.csv',root)
+    if data is None:return
+    fig,axes=plt.subplots(1,2,figsize=(12.6,4.8),layout='constrained')
+    for case,color in zip(CASE_NAMES,COLORS):
+        g=data[(data['case']==case)&feasible(data)].sort_values('deadline_s')
+        points(axes[0],g.deadline_s,g.E_aux_J,color=color,label=CASE_NAMES[case])
+        points(axes[1],g.deadline_s,g.first_success_s,color=color,label=CASE_NAMES[case])
+    for ax in axes:
+        ax.set_xticks([60,90,96.6666667,120],['60','90','96.7','120'])
+        ax.axvspan(98,124,color='#DDE6EB',alpha=.5,zorder=0)
+        ax.set_xlabel('首次启动期限 / s');ax.legend(loc='best')
+    axes[0].set(ylabel='辅助加热总能耗 / J',title='(a) 有限候选集合的最低可行能耗')
+    axes[1].set(ylabel='真实首次启动时间 / s',title='(b) 对应方案实际启动时间')
+    axes[1].plot([55,125],[55,125],ls='--',color='#737A80',lw=1)
+    fig._q4_note='点为正式精度复算的可行候选优选值；阴影内120 s超出主比较电荷预算。'
+    save(fig,'图17_动态启动期限敏感性','动态能耗与启动期限的有限候选敏感性',['dynamic_deadline_frontier.csv'],root)
+
+
 def main(root=ROOT, precooling_only=False, figure=None, no_show=True, no_save=False):
     root = Path(root)
     if figure is not None:
         figure = f'{int(figure):02d}'
-        if figure not in {f'{i:02d}' for i in range(1,17)}:
-            raise ValueError('figure must be 01..16')
+        if figure not in {f'{i:02d}' for i in range(1,18)}:
+            raise ValueError('figure must be 01..17')
         if precooling_only and int(figure)>3:
             raise ValueError('--precooling-only only supports figures 01..03')
     OPTIONS.update(figure=figure, no_show=no_show, no_save=no_save)
     configure(); MANIFEST.clear(); precooling(root)
     if not precooling_only:
         startup_figures(root)
+        deadline_sensitivity(root)
     if not no_save:
         manifest_path = root/'figures'/'figure_manifest.csv'
         updated = pd.DataFrame(MANIFEST)
@@ -541,7 +563,7 @@ if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,default=ROOT)
     parser.add_argument('--precooling-only',action='store_true')
-    parser.add_argument('--figure',choices=[f'{i:02d}' for i in range(1,17)],help='只导出指定单图，不覆盖其他图或清单条目。')
+    parser.add_argument('--figure',choices=[f'{i:02d}' for i in range(1,18)],help='只导出指定单图，不覆盖其他图或清单条目。')
     display=parser.add_mutually_exclusive_group()
     display.add_argument('--show',action='store_true',help='导出后打开交互预览。')
     display.add_argument('--no-show',action='store_true',help='只导出，不打开窗口（默认）。')

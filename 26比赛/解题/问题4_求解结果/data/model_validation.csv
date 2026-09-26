@@ -2,7 +2,7 @@
 Q3_constant_success_time_error_s,2.980073077196721e-09,1e-06,True
 Q3_constant_heater_energy_error_J,3.445347829256207e-07,0.0001,True
 Q3_constant_voltage_error_V,3.2884805989397137e-13,1e-07,True
-Q3_constant_ice_error,8.175751742278692e-15,1e-07,True
+Q3_constant_ice_error,8.082076674575944e-15,1e-07,True
 initially_warm_first_success_zero,0.0,0.0,True
 initially_warm_energy_zero,0.0,0.0,True
 initially_warm_heater_locked_zero,0.0,0.0,True
@@ -27,4 +27,7 @@ observer_does_not_receive_true_thermal_parameter,0.0,0.0,True
 recorded_observer_temperature_error_recomputable,0.0,1e-10,True
 recorded_observer_ice_error_recomputable,0.0,1e-10,True
 sensor_stop_filtered_margin_exported,0.0,0.0,True
+unknown_endplate_initial_offset_not_copied,0.0,1e-12,True
+initial_endplate_estimation_error_is_one_kelvin,0.0,1e-12,True
+first_control_independent_of_true_endplate_initial_state,0.0,1e-12,True
 invalid_inputs_rejected,0.0,0.0,True

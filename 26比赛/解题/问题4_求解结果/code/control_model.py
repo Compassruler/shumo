@@ -180,12 +180,17 @@ def control(t,period,temp0,estimated_temp,measured_voltage,estimated_states,cfg,
     return q
 
 @njit(cache=True,nogil=True)
-def simulate_raw(cfg,observer_cfg,temp0,kind,p,power,dt,period,horizon,post,record,thermal,noise,sensor_shutdown):
-    temp=temp0.copy();states=[initial_state(cfg,temp[k]+273.15) for k in range(5)]
+def simulate_raw(cfg,observer_cfg,plant_temp0,observer_temp0,kind,p,power,dt,period,horizon,post,record,thermal,noise,sensor_shutdown):
+    temp=plant_temp0.copy();states=[initial_state(cfg,temp[k]+273.15) for k in range(5)]
     e,d=evaluate(cfg,states,temp,0.,thermal)
     # Independent estimator: no references to the plant's internal state arrays.
     sensor=np.empty((5,2));sensor[:,0]=temp[:5]+noise[0,:,0];sensor[:,1]=e[:,0]+noise[0,:,1]
-    estimated_temp=temp0.copy();estimated_temp[:5]=sensor[:,0]
+    estimated_temp=observer_temp0.copy();estimated_temp[:5]=sensor[:,0]
+    # Unknown endplate priors fall back to measured adjacent cell temperatures.
+    # The plant initial vector never supplies hidden endplate information.
+    if not np.isfinite(estimated_temp[5]):estimated_temp[5]=sensor[0,0]
+    if not np.isfinite(estimated_temp[6]):estimated_temp[6]=sensor[4,0]
+    reference_temp0=estimated_temp.copy()
     estimated_states=[initial_state(observer_cfg,estimated_temp[k]+273.15) for k in range(5)]
     estimated_e,estimated_d=evaluate(observer_cfg,estimated_states,estimated_temp,0.,THERMAL)
     en=np.zeros(5);water=np.zeros(2);w0=np.sum(d[:,7]);wb=0.;maxwb=0.
@@ -217,7 +222,7 @@ def simulate_raw(cfg,observer_cfg,temp0,kind,p,power,dt,period,horizon,post,reco
             sample_noise=noise[min(ctrl_index,len(noise)-1)]
             sensor[:,0]=temp[:5]+sample_noise[:,0];sensor[:,1]=e[:,0]+sample_noise[:,1]
             estimated_temp[:5]=sensor[:,0]
-            dynamic_q=control(t,period,temp0,estimated_temp,sensor[:,1],estimated_states,
+            dynamic_q=control(t,period,reference_temp0,estimated_temp,sensor[:,1],estimated_states,
                               observer_cfg,p,cs,integral)
             q=power.copy() if kind==0 else dynamic_q
             if kind==0:cs[:,4]=0.  # Constant actuation; diagnostics still feed the common sensor detector.
@@ -307,11 +312,14 @@ def simulate_raw(cfg,observer_cfg,temp0,kind,p,power,dt,period,horizon,post,reco
       hold_ok,actual_hold,observer_t_error,observer_i_error,posterr,startup_end])
     return summary,hist[:count],states,temp
 
-def simulate(temp0,kind='dynamic',params=None,power=CONSTANT,dt=.05,period=.2,scale=1,
+def simulate(plant_temp0,kind='dynamic',params=None,power=CONSTANT,dt=.05,period=.2,scale=1,
              horizon=Q_TIME,post=0.,record=False,thermal=None,noise_T=0.,noise_V=0.,seed=42,
-             shutdown_mode='auto',**config):
-    temp0=np.asarray(temp0,float);p=DEFAULT.copy() if params is None else np.asarray(params,float).copy()
+             shutdown_mode='auto',observer_temp0=None,**config):
+    temp0=np.asarray(plant_temp0,float);p=DEFAULT.copy() if params is None else np.asarray(params,float).copy()
     power=np.asarray(power,float)
+    prior=np.full(7,np.nan) if observer_temp0 is None else np.asarray(observer_temp0,float).copy()
+    if prior.shape!=(7,):raise ValueError('Invalid observer initial vector')
+    if observer_temp0 is not None and not np.all(np.isfinite(prior)):raise ValueError('Nonfinite observer prior')
     if temp0.shape!=(7,) or p.shape!=(13,) or power.shape!=(5,):raise ValueError('Invalid vector shape')
     if kind not in ('constant','dynamic'):raise ValueError('Unknown strategy')
     if shutdown_mode not in ('auto','sensor','ideal'):raise ValueError('Unknown shutdown mode')
@@ -323,7 +331,7 @@ def simulate(temp0,kind='dynamic',params=None,power=CONSTANT,dt=.05,period=.2,sc
     sensor_shutdown=(shutdown_mode=='sensor' or (shutdown_mode=='auto' and not (kind=='constant' and p[5]==0.)))
     rng=np.random.default_rng(seed);noise=rng.normal(size=(int((horizon+p[5])/period)+10,5,2))
     noise[:,:,0]*=noise_T;noise[:,:,1]*=noise_V
-    s,h,states,temp=simulate_raw(cfg,observer_cfg,temp0,0 if kind=='constant' else 1,p,power,float(dt),float(period),
+    s,h,states,temp=simulate_raw(cfg,observer_cfg,temp0,prior,0 if kind=='constant' else 1,p,power,float(dt),float(period),
            float(horizon),float(post),record,THERMAL if thermal is None else np.asarray(thermal,float),noise,sensor_shutdown)
     result=dict(zip(SUMMARY,s.tolist()))
     result['feasible']=bool(result['first_success_s']>=0 and result['first_success_s']<=horizon+1e-7
@@ -333,6 +341,8 @@ def simulate(temp0,kind='dynamic',params=None,power=CONSTANT,dt=.05,period=.2,sc
        and result['min_inventory']>=-1e-8 and result['min_gas_porosity']>=0 and result['min_kappa_S_m']>0
        and result['max_iteration_error_K']<1e-6)
     result['shutdown_mode']='sensor' if sensor_shutdown else 'ideal'
+    result['observer_initialization']='nominal_precooling_prior' if observer_temp0 is not None else 'adjacent_initial_measurement'
+    result['reference_initialization']='initial_temperature_measurement'
     result['sensor_stop_margin_C']=SENSOR_STOP_MARGIN if sensor_shutdown else 0.
     # Event-conditioned quantities are undefined when the event never occurs;
     # retain negative time sentinels, but do not turn absent event costs into 0.

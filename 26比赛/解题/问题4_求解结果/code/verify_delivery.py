@@ -25,10 +25,10 @@ def main():
     add('report_local_links_exist',not missing,missing)
     figure_dir=ROOT/'figures'
     formats={ext:sorted(figure_dir.glob('*.'+ext)) for ext in ('pdf','svg','png')}
-    add('16_pdf_16_svg_and_16_png',all(len(paths)==16 for paths in formats.values()),
+    add('17_pdf_17_svg_and_17_png',all(len(paths)==17 for paths in formats.values()),
         {ext:len(paths) for ext,paths in formats.items()})
     stems={ext:{path.stem for path in paths} for ext,paths in formats.items()}
-    add('figure_format_stems_match',len(stems['png'])==16 and stems['pdf']==stems['svg']==stems['png'],
+    add('figure_format_stems_match',len(stems['png'])==17 and stems['pdf']==stems['svg']==stems['png'],
         {ext:sorted(names) for ext,names in stems.items()})
     manifest_path=figure_dir/'figure_manifest.csv'
     add('figure_manifest_exists',manifest_path.is_file(),manifest_path.name)
@@ -36,7 +36,7 @@ def main():
         figures=pd.read_csv(manifest_path,encoding='utf-8-sig')
         required={'figure','png','svg','pdf','png_dpi'}
         add('figure_manifest_required_columns',required.issubset(figures.columns),list(figures.columns))
-        add('figure_manifest_16_rows',len(figures)==16,len(figures))
+        add('figure_manifest_17_rows',len(figures)==17,len(figures))
         if required.issubset(figures.columns):
             names=figures['figure'].astype(str)
             add('figure_manifest_unique_and_complete',names.is_unique and set(names)==stems['png'],
@@ -74,10 +74,18 @@ def main():
     for name,count in [('main_results.csv',9),('constant_scan.csv',19),('guarded_results.csv',3),
                         ('robustness.csv',90),('guarded_robustness.csv',90),('coupled_convergence.csv',9),
                         ('optimized_constant_results.csv',3),('guarded_parameter_validation.csv',24),('guarded_convergence.csv',21),
-                        ('constant_robustness.csv',180),('constant_parameter_validation.csv',48),('observer_example_results.csv',3)]:
+                        ('constant_robustness.csv',180),('constant_parameter_validation.csv',48),('observer_example_results.csv',3),('independent_initialization_validation.csv',108),('guarded_training_recheck.csv',18),('structural_comparison.csv',36),('structural_initial_temperatures.csv',12),('dynamic_deadline_frontier.csv',12)]:
         df=pd.read_csv(ROOT/'data'/name);add('rows_'+name,len(df)==count,len(df))
     for name in ('independent_export_validation.csv','model_validation.csv','precooling_validation.csv','revision_validation.csv'):
         df=pd.read_csv(ROOT/'data'/name);add('checks_'+name,df.passed.all(),f'{df.passed.sum()}/{len(df)}')
+    for name in ('guarded_robustness.csv','guarded_parameter_validation.csv','independent_initialization_validation.csv','guarded_training_recheck.csv','structural_comparison.csv','dynamic_deadline_frontier.csv'):
+        current=pd.read_csv(ROOT/'data'/name)
+        add('independent_prior_'+name,current.observer_initialization.eq('nominal_precooling_prior').all() and current.reference_initialization.eq('initial_temperature_measurement').all(),'Separated plant initial condition and measured reference')
+        add('feasible_'+name,current.feasible.all(),f'{current.feasible.sum()}/{len(current)}')
+    current=pd.read_csv(ROOT/'data/dynamic_deadline_frontier.csv')
+    add('120s_excluded_from_main_budget',not current.loc[current.deadline_s>100,'within_main_budget'].any(),'120 s is an additional scenario')
+    current=pd.read_csv(ROOT/'data/guarded_training_recheck.csv')
+    add('frozen_training_time_reserve',current.training_reserve_passed.all(),f'{current.training_reserve_passed.sum()}/{len(current)}')
     summaries=pd.concat([pd.read_csv(ROOT/'data'/name) for name in
         ('main_results.csv','guarded_results.csv','optimized_constant_results.csv')])
     states=pd.read_csv(ROOT/'data/controller_state_duration.csv')

@@ -1,6 +1,6 @@
 # 问题四逐图绘图入口
 
-本目录提供16张图的独立入口。每个入口只替换对应图的PDF、SVG与PNG；保留现有文件名和报告链接，不重新运行模型或优化。
+本目录提供17张图的独立入口。每个入口只替换对应图的PDF、SVG与PNG；保留现有文件名和报告链接，不重新运行模型或优化。
 
 样式沿用问题三：中文黑体，柔和蓝橙绿配色，离散结果为实心圆、无连接线、细白边；科学阈值线、空间连续温度场及后验观察阴影保留。统一样式在上一级common_style.py，各图绘制逻辑在上一级plot_results.py。
 
@@ -35,3 +35,5 @@
 - fig14_constant_and_dynamic.py：重优化恒功率与推荐动态
 - fig15_energy_time_candidates.py：能耗时间候选前沿
 - fig16_observer_diagnostics.py：观测器误差与测量停机
+
+- fig17_dynamic_deadline_sensitivity.py：动态启动期限敏感性（120 s为主预算外附加情景）

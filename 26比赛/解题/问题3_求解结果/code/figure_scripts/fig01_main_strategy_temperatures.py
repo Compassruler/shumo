@@ -6,7 +6,7 @@ from common import (CELL_COLORS, COLORS, NAMES, cli, configure_style, decorate,
                     read_traces)
 
 # ===== 常用调节区 =====
-FIGSIZE = (11.3, 4.0)
+FIGSIZE = (7.2, 3.2)
 MARKER_SIZE = 2.0
 ZERO_LINE_COLOR = "#30373D"
 
@@ -46,9 +46,7 @@ def build_figure():
         panel_title(ax, f"({chr(97 + index)}) {NAMES[key]}")
         decorate(ax, "温度 / ℃" if index == 0 else None)
         ax.set_xlim(0, trace["time_s"][-1])
-        ax.text(.03, .97, f"统计至 {trace['time_s'][-1]:.2f} s",
-                transform=ax.transAxes, va="top", fontsize=9)
-    axes[1].legend(loc="lower right", frameon=False)
+    axes[1].legend(loc="upper left", frameon=False)
     note(fig, "P：预热至关热 / 加载开始；C：从通电至首次启动成功。端板温度不计入全部单电池超过 0 ℃ 的判据。")
     return fig
 
@@ -57,4 +55,4 @@ if __name__ == "__main__":
     args = cli(__doc__)
     configure_style()
     export_and_show(build_figure(), "01_主策略温度历程", args,
-                    dict(left=.08, right=.98, bottom=.20, top=.90, wspace=.15))
+                    dict(left=.08, right=.98, bottom=.17, top=.90, wspace=.15))

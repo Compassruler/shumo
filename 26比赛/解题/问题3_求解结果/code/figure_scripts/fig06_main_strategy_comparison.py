@@ -5,7 +5,7 @@ from common import (COLORS, NAMES, cells, cli, configure_style, discrete_points,
                     export_and_show, note, num, panel_title, read_summary, read_traces)
 
 # ===== 常用调节区 =====
-FIGSIZE = (11.3, 6.6)
+FIGSIZE = (7.2, 5.0)
 MARKER_SIZE = 7.0
 
 
@@ -18,7 +18,7 @@ def build_figure():
         ("总启动时间 / s", lambda key: summary[key]["startup_s"], 2),
         (r"累计电荷 / (C·cm$^{-2}$)", lambda key: traces[key]["charge_C_cm2"][-1], 3),
         ("最低单片电压 / V", lambda key: np.min(cells(traces[key], "V")), 3),
-        ("最大 MEA 冰体积分数", lambda key: np.max(cells(traces[key], "ice_bulk")), 5),
+        ("最大局部冰体积分数", lambda key: np.max(cells(traces[key], "ice_bulk")), 5),
         ("最大端部孔隙冰饱和度",
          lambda key: np.max(cells(traces[key], "pore_ice_saturation")[:, [0, 4]]), 5),
     ]
@@ -43,4 +43,4 @@ if __name__ == "__main__":
     args = cli(__doc__)
     configure_style()
     export_and_show(build_figure(), "06_主策略关键指标对比", args,
-                    dict(left=.08, right=.98, bottom=.16, top=.97, hspace=.40, wspace=.36))
+                    dict(left=.08, right=.98, bottom=.13, top=.97, hspace=.50, wspace=.60))
