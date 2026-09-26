@@ -1,0 +1,2266 @@
+\documentclass[bwprint]{gmcmthesis}
+\usepackage{amsmath} % 必须引入此宏包以支持 \text 和 \tag 命令
+\usepackage[version=4]{mhchem} % 核心宏包
+\usepackage{booktabs}   % 三线表
+\usepackage{geometry}  % 调整页边距
+\geometry{a4paper, left=2cm, right=2cm, margin=2.5cm} % 减小页边距以留出更多空间
+\usepackage{pdfpages}
+\numberwithin{figure}{section}
+\renewcommand{\thefigure}{\arabic{section}-\arabic{figure}} 
+% \documentclass[withoutpreface,bwprint]{cumcmthesis}
+% 去掉封面与编号页
+
+
+\title{中国研究生数学建模竞赛论文标题}
+\baominghao{No. 20260073564} %参赛队号
+\schoolname{上海大学}%学校名称
+\membera{王浩天} %队员A
+\memberb{谭政} %队员B
+\memberc{马汗青} %队员C
+\begin{document}
+ \maketitle
+ \begin{abstract}
+第一段：针对自己选择的题目，说明自己用了什么方法来解决的（这类题属于哪种典型的问题），其中利用了哪些关键的算法，再说出自己的所建模型的创新点。没有创新点，也可以说自己所建的模型相比较于其它的是一个很好的方案。
+
+第二段：问题一中，针对具体问题，进行分析和求解，几句话介绍自己是怎么解决的，有数字结果的也可以直接贴结果。
+
+第三段：问题二中，类比于第二段。
+
+第四段：问题三中，类比于第三段。
+
+第五段：问题四中，类比于第四段。
+
+第六段：如果有问题五，类比于第五段，没有就结束，也可以写一下团队的想法。
+
+
+
+
+
+
+\keywords{针对具体的问题列一到两个关键字\quad  建模算法列出\quad }
+\end{abstract}
+
+%\pagestyle{plain}
+
+%目录
+\tableofcontents
+
+\clearpage
+
+\section{问题重述}
+\subsection{问题背景}
+氢燃料电池具有能量转化效率高、响应速度快、运行噪声低和排放清洁等特点，在新能源汽车、无人装备、船舶动力、航天动力及寒区供能等领域具有较大的应用潜力。本文所研究的氢燃料电池为质子交换膜燃料电池，其在正常工作过程中通过氢氧电化学反应持续输出电能并生成水。然而，当环境温度低于冰点时，电池内部残余水及反应生成水容易发生冻结，形成的冰会逐渐占据催化层（CL）和气体扩散层（GDL）中的有效孔隙，阻碍反应气体传输，严重时可造成单电池电压快速下降甚至启动失败。
+
+低温冷启动是一个典型的多物理场耦合过程，涉及电化学反应、传热、气体扩散、水迁移以及水–冰相变等多个过程。其中，反应产热与环境散热决定温升速率和温度场分布，反应产水与低温冻结共同决定冰相的积累程度；冰相进一步改变多孔介质的有效传质能力，并影响电池的电化学性能。因此，冷启动过程本质上表现为“产热$\leftrightarrows$散热”和“产水$\leftrightarrows$冻结”两组动态竞争关系。
+
+当研究对象由单电池扩展到电堆后，各片单电池之间还存在热传导以及端部散热差异。受端板热容、环境换热及初始温度分布等因素影响，不同单电池的温升速度、电压变化和冰积累程度可能存在明显差异，尤其是端部单电池通常更容易出现温升滞后和局部冰堵。与此同时，虽然增加加载电流或采用辅助加热均可提高升温速率，但前者会增加反应产水，后者又会带来额外能耗，因此需要在启动速度、安全性和能量消耗之间进行权衡。
+
+基于上述背景，本题以单电池低温瞬态模型为基础，逐步扩展至电堆自冷启动、电加热辅助启动及动态反馈控制，研究不同低温条件下氢燃料电池的水热演化规律、冰堵机理及冷启动控制策略。
+
+\subsection{问题重述}
+根据题目给出的常温一维燃料电池参考模型、材料参数和冷启动实验数据，围绕单电池低温建模、电堆自启动及辅助加热控制问题，本文主要解决以下四个问题。
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {问题1： 一维单电池瞬态自冷启动模型建立及验证}
+
+在题目给出的常温一维燃料电池模型基础上，引入低温水–冰相变及冰堵效应，将总水量划分为水蒸气、液态水和固态冰，并建立相应的相变控制关系。根据冰相累积情况修正多孔介质有效孔隙率、有效扩散系数及催化层有效反应面积，建立热量传递、水冰状态、气体传输和电化学性能相互耦合的单电池瞬态冷启动模型。利用附件 1 中的参数进行数值计算，获得单电池平均温度（即局部温度在计算域内的空间平均值）、冰体积分数和单电池电压随时间的变化，并结合附件 2 中的实验数据进行参数校准与模型验证，计算相对误差并分析预测能力。
+\item \textbf {问题2： 给定电荷量约束下的电堆自冷启动策略建模与优化}
+
+将问题1中的单电池模型推广至由5片单电池串联构成的电堆，并考虑相邻单电池之间的导热以及端部单电池与环境之间的对流换热。在固定初始温度 $-10^\circ\mathrm{C}$ 下，给定 $0 \leq j(t) \leq j_{\max} = 0.5 \ \mathrm{A}\cdot\mathrm{cm}^{-2}$、$\int_0^{t_s} j(t) dt \leq q_{\max} = 20 \ \mathrm{C}\cdot\mathrm{cm}^{-2}$ 的约束，分别设计恒流加载、线性升载和分段阶梯形式的电流加载策略 $j(t)$，以缩短达到启动成功条件的时刻 $t_s$ 为目标，比较启动时间、累计电荷量、最大电流密度、最低电压、最大冰体积分数和启动结果。在此基础上，进一步确定电堆在 $q_{\max} = 20\ \mathrm{C}\cdot\mathrm{cm}^{-2}$ 和 $j_{\max} = 0.5\ \mathrm{A}\cdot\mathrm{cm}^{-2}$ 约束下，能够实现自冷启动的最低初始温度$T_0$，并分析低于该温度时导致启动失败的关键单电池及原因。
+
+
+\item \textbf {问题3： 电堆辅助冷启动策略建模与优化}
+
+针对极低温条件下仅依靠反应产热难以完成自冷启动的问题，在各片单电池双极板内布置功率可独立调节的电热丝，并在电堆瞬态模型中增加辅助加热项。分别研究纯预加热启动和恒定功率协同启动两种方式，以各片加热功率密度及加热时间为决策变量，在满足问题 2 规定的电堆冷启动成功条件约束下，确定两种策略的最小辅助加热总能耗、总启动时间及各片能耗分配，并比较其能耗、启动速度和端部单电池冰堵抑制效果。
+\item \textbf {问题4： 电堆动态辅助加热控制策略优化}
+
+在恒功率辅助启动基础上，进一步允许各片电热丝功率随时间独立调节，以单片温度、电压及其变化率作为反馈信息，建立动态辅助加热控制策略（其中动态功率控制策略 $q_k(t)$ 应满足 $0 \leq q_k \leq 1 \ \mathrm{W} \cdot \mathrm{cm}^{-2}$、冰体积分数不超过严重冰堵阈值、单电池电压不低于安全下限，并在达到启动目标后及时降低或关闭辅助加热）。针对完全冷却及不同预冷时间形成的非均匀初始温度场等三种工况，以辅助加热总能耗最小为主要目标，综合考虑启动时间、电堆最大温差、最低单片电压和最大冰体积分数等指标，对动态控制策略与恒功率策略进行比较；进一步改变预冷时间，研究不同预冷程度对电堆初始温度场及后续冷启动性能的影响。
+\end{itemize}
+
+
+
+\section{模型假设}
+模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设模型假设。
+
+%\begin{table}[htbp]
+%    \centering
+%    \caption{一维单电池瞬态自冷启动模型预测与实验验证结果（-20 \textcelsius）}
+%    \vspace{0.2cm} 
+%    \renewcommand{\arraystretch}{1.3} % 调整行高
+%    \setlength{\tabcolsep}{4pt}       % 【防超页神器】缩小列间距（默认是6pt）
+%    \small                            % 【防超页】稍微缩小字体
+%    \begin{tabular}{|c|c|c|c|c|c|c|}
+%        \hline
+%        时间/s & 实验电压/V & 模型电压/V & 电压相对误差/\% & 实验温度/\textcelsius & 模型温度/\textcelsius & 温度相对误差/\% \\
+%        \hline
+%        0  & 0.799 & 0.777 & 2.796  & \(-20\)    & \(-19.999\) & 0.023 \\
+%        \hline
+%        5  & 0.801 & 0.769 & 3.936  & \(-19.96\) & \(-19.964\) & 0.011 \\
+%        \hline
+%        10 & 0.538 & 0.626 & 16.449 & \(-19.65\) & \(-19.681\) & 0.151 \\
+%        \hline
+%        15 & 0.521 & 0.590 & 13.257 & \(-18.41\) & \(-18.548\) & 0.751 \\
+%        \hline
+%        20 & 0.599 & 0.603 & 0.590  & \(-17.08\) & \(-17.246\) & 0.968 \\
+%        \hline
+%        25 & 0.626 & 0.601 & 3.983  & \(-15.90\) & \(-16.026\) & 0.763 \\
+%        \hline
+%        30 & 0.633 & 0.589 & 7.009  & \(-14.27\) & \(-14.330\) & 0.396 \\
+%        \hline
+%        35 & 0.666 & 0.596 & 10.463 & \(-12.67\) & \(-12.588\) & 0.616 \\
+%        \hline
+%    \end{tabular}
+%\end{table}
+
+%\begin{figure}[!h]
+%\centering
+%\includegraphics[width=.7\textwidth]{test.jpg}
+%\caption{对雷达实施距离多假目标欺骗干扰示意图}
+%\label{fig1}
+%\end{figure}
+\section{符号说明}
+符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明符号说明。
+\section{问题一的分析与求解}
+\subsection{问题描述和分析}
+问题一要求在常温一维氢燃料电池模型基础上，引入低温条件下水–冰相变及冰堵效应，建立单电池瞬态自冷启动模型，并利用实验数据对模型进行校准与验证。题目要求模型能够给出单电池平均温度、冰体积分数及电压随时间的变化，因此建模的关键在于建立温度、水冰状态与电化学性能之间的动态耦合关系。
+
+低温冷启动过程本质上存在两组竞争关系：一是反应产热与环境散热的竞争，决定电池能否持续升温；二是反应产水与低温冻结的竞争，决定冰是否会在电池升温前大量积累。冰生成后将占据多孔介质孔隙，降低气体扩散能力并覆盖催化层有效反应区域，进而加剧极化损失并引起电压下降。
+
+因此，本文以题给常温模型为基础，将总水量划分为水蒸气、液态水和固态冰三相，建立水–冰相变方程，并根据冰累积量动态修正有效孔隙率、气体扩散系数和催化层有效反应面积；同时将相变潜热及双极板热惯性纳入能量守恒，使温度场、水冰状态与电压响应形成闭环耦合。最终通过 $-20^ {\circ}\mathrm{C}$和$-25^ {\circ}\mathrm{C}$实验数据检验模型的预测能力。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.7\textwidth]{问题一解决问题流程图 (3).eps}
+\caption{问题一：一维单电池瞬态自冷启动模型数值求解与验证流程图}
+\label{F4-1}
+\end{figure}
+
+\subsection{一维单电池瞬态自冷启动模型的建立}
+根据前述分析，低温冷启动与常温运行的根本差异在于水–冰相变及冰积累对传质、电化学反应和热过程的反馈作用。因此，本文以题目给出的常温一维模型为基础，在保留氢氧传输、电荷守恒、产水、能量守恒及电压模型基本结构的同时，将水相扩展为水蒸气、液态水和固态冰三相，并进一步引入冰占孔、催化层冰覆盖、膜水冻结以及相变潜热等低温机制。
+
+此外，考虑到实际单电池在短时冷启动过程中两侧双极板具有不可忽略的热惯性，本文在原五层膜电极组件 MEA 的质量传输域之外，将两侧双极板纳入热传递计算域，形成“五层质量传输域—七层热传递域”的一维瞬态冷启动模型。该处理既保持题目给出的电化学与传质框架，又能够更完整地描述低温环境下单电池的实际升温过程。模型区域及双极板处理方式与现有推导保持一致。
+
+\subsubsection{求解区域、基本假设及初边界条件}
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {求解区域}
+
+以膜电极厚度方向为 $x$ 轴，原始质量传输和电化学反应区域依次由阳极气体扩散层、阳极催化层、质子交换膜、阴极催化层和阴极气体扩散层构成，即
+\begin{equation}
+\Omega = \Omega_{\text{aGDL}} \cup \Omega_{\text{aCL}} \cup \Omega_{\text{PEM}} \cup \Omega_{\text{cCL}} \cup \Omega_{\text{cGDL}}.
+\tag{4-1}
+\end{equation}
+各功能层及双极板厚度如表\ref{B4-1}所示。
+
+\begin{table}[htbp]
+    \centering
+    \caption{各功能层厚度参数}
+    \label{B4-1}
+    \setlength{\tabcolsep}{24pt}  % 默认是6pt，这里调到24pt。如果觉得还不够宽，可以继续调大。
+    \renewcommand{\arraystretch}{1.5} % 增加行高（垂直高度）
+    
+    \begin{tabular}{l c r} % l:左对齐 c:居中 r:右对齐
+        \toprule
+        \textbf{功能层} & \textbf{符号} & \textbf{厚度} \\
+        \midrule
+        阳极双极板       & \(L_{\text{BP}}\)  & 2.0 mm     \\
+        阳极气体扩散层   & \(L_{\text{GDL}}\) & 150 \(\mu\)m \\
+        阳极催化层       & \(L_{\text{aCL}}\) & 3.4 \(\mu\)m \\
+        质子交换膜       & \(L_{\text{PEM}}\) & 12 \(\mu\)m  \\
+        阴极催化层       & \(L_{\text{cCL}}\) & 11.3 \(\mu\)m \\
+        阴极气体扩散层   & \(L_{\text{GDL}}\) & 150 \(\mu\)m \\
+        阴极双极板       & \(L_{\text{BP}}\)  & 2.0 mm     \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+ 由此，五层 MEA 的总厚度为
+\begin{equation}
+L_{\text{MEA}} = 2L_{\text{GDL}} + L_{\text{aCL}} + L_{\text{PEM}} + L_{\text{cCL}} = 326.7 \, \mu\text{m}.
+\tag{4-2}
+\end{equation}
+
+ 将上述区域记为 \(\Omega_{\text{MEA}}\)。氢气、氧气及水的迁移和电化学反应均在该区域内求解。为考虑双极板的储热和导热作用，将热传递区域进一步扩展为
+\begin{equation}
+\Omega_T = \Omega_{\text{aBP}} \cup \Omega_{\text{MEA}} \cup \Omega_{\text{cBP}},
+\tag{4-3}
+\end{equation}
+\begin{equation}
+L_{\text{cell}} = 2L_{\text{BP}} + L_{\text{MEA}} = 4.3267 \, \text{mm}.
+\tag{4-4}
+\end{equation}
+
+ 为保持题目给定五层模型的原坐标形式，我们依旧取阳极 GDL 外侧为 \(x = 0\)，则阳极双极板位于
+\begin{equation}
+-L_{\text{BP}} \leq x \leq 0,
+\tag{4-5}
+\end{equation}
+ 阴极双极板位于
+\begin{equation}
+L_{\text{MEA}} \leq x \leq L_{\text{MEA}} + L_{\text{BP}}.
+\tag{4-6}
+\end{equation}
+
+ 需要强调的是，双极板在本文中仅扩展热计算区域。其内部不设置气体、水和电化学反应源项，反应气体仍由 GDL 外侧的等效流道边界进入 MEA，而不沿厚度方向穿过致密双极板。因此，气体和水的外边界与热传递域的外边界并不重合。
+
+ 根据附件给出的双极板厚度、密度与比热容，两侧双极板对应的单位面积热容为
+\begin{equation}
+C_{A,\text{BP}} = 2 \times 0.002 \times 1980 \times 766 = 6066.72 \, \text{J m}^{-2}\text{K}^{-1}.
+\tag{4-7}
+\end{equation}
+
+
+\item \textbf {基本假设}
+
+\renewcommand{\labelenumi}{\arabic{enumi}.}
+
+ 在题目常温参考模型基本假设的基础上，为使低温模型具有明确的物理边界，并避免引入过多不可识别参数，作如下补充假设：
+
+\begin{enumerate}
+    \item GDL 与 CL 均视为连续、均匀的多孔介质，PEM 采用题给膜模型；双极板视为连续、均匀致密固体；
+    \item 仅考虑沿膜电极厚度方向的传质与传热，忽略面内非均匀性；
+    \item 反应气体满足理想气体状态方程；
+    \item 催化层内采用平均电化学反应速率，反应电流沿催化层厚度均匀分布；
+    \item 外部加载电流密度 \(j(t)\) 为已知输入；
+    \item 冰为静止、刚性的固相，不发生宏观迁移，只能通过冻结、融化、凝华和升华生成或消失；
+    \item 在 GDL 和 CL 中，液态水与冰共同占据原始孔隙，冰生成后固定于当前位置；
+    \item 水的三类相变均采用有限速率非平衡模型，相变方向由局部温度、饱和状态和当前相库存共同确定；
+    \item 初始孔隙液态水、孔隙水蒸气及冰均取零，PEM 保留附件给定的初始膜含水量；
+    \item 十种相变过程采用统一的一阶有限速率框架，不额外引入成核等待或 JMAK 型结晶动力学；
+    \item 双极板内只考虑储热和导热，不发生水迁移、相变和电化学反应；
+    \item BP/GDL 界面采用理想热接触，温度及法向热流连续，不另设置热接触电阻；
+    \item 双极板电学上作为理想集流体处理，原模型中的面积比接触电阻 \(R_c\) 保持不变，不重复设置板体附加接触电阻；
+    \item 含双极板模型的环境对流边界作用于两侧 BP 外表面，MEA 与双极板初温均等于环境温度。
+\end{enumerate}
+
+ 这一处理使模型在保持一维性的同时，将真正影响短时冷启动的水--冰相变、冰堵和热惯性纳入统一框架。
+
+\item \textbf {初始条件}
+
+ 温度、总含水量及反应气体初始状态分别满足
+\begin{align}
+\begin{cases}
+T(x,0)= T_0,  m_w(x,0) = m_{w,0}(x),\\
+c_{\text{H}_2}(x,0)=c_{\text{H}_2,0}(x),  c_{\text{O}_2}(x,0) = c_{\text{O}_2,0}(x). \tag{4-8}
+\end{cases}
+\end{align}
+
+ 对于 \(-20\,^\circ\text{C}\) 和 \(-25\,^\circ\text{C}\) 两种实验工况，分别取
+\begin{equation}
+T_0 = 253.15\,\text{K}, \qquad T_0 = 248.15\,\text{K}.
+\tag{4-9}
+\end{equation}
+
+ 含双极板模型中，该初始温度同时赋予 MEA 和两侧 BP。初始孔隙液态水及冰满足
+\begin{equation}
+m_l(x,0) = 0, \qquad m_i(x,0) = 0.
+\tag{4-10}
+\end{equation}
+
+ PEM 初始膜含水量取附件给定的$\lambda_0 = 3$， 相应未冻束缚水质量浓度为$38.7 \times 3 = 116.1\,\text{kg}\,\text{m}^{-3}$。
+
+ 阳、阴极均采用干气入口，因此孔隙初始水蒸气取零；初始气体浓度根据 \(p = 101325\,\text{Pa}\)、入口气体组成及理想气体状态方程计算。
+
+\item \textbf {边界条件}
+
+气体方面，阳极和阴极 GDL 外边界的氢气、氧气浓度由入口压力、温度和组成确定，各相邻功能层界面满足质量通量连续。水传输方面，GDL 外侧按干气入口处理，液态水与冰的法向通量均为零，各功能层之间保持水通量连续。
+
+热传递方面，含 BP 模型的环境对流边界移至两侧双极板外表面，而 BP/GDL 内部界面仅施加温度连续和热流连续条件。电荷方面，外部给定的总电流密度 \(j(t)\) 经双极板集流后作用于 MEA；由于不单独求解 BP 电势，因此 GDL 外边界仍施加相同的电流密度条件。
+
+
+\end{itemize}
+
+
+\subsubsection{三相水相变与质量守恒}
+常温参考模型仅区分水蒸气和液态水，无法描述冰的生成及其累积过程。为此，将局部总含水量进一步划分为水蒸气、液态水和固态冰三部分，从质量守恒、相态转化以及膜水输运三个层次建立三相水模型。
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {三相水变量及冰体积分数}
+
+ 记 \(m_v(x,t)\)、\(m_l(x,t)\) 和 \(m_i(x,t)\) 分别为单位控制体总体积内水蒸气、液态水和固态水的质量浓度，则有
+\begin{equation}
+m_w(x,t) = m_v(x,t) + m_l(x,t) + m_i(x,t). 
+\tag{4-11}
+\end{equation}
+
+ 其中下标 \(i\) 专指冰相。液态水和冰所占据的控制体体积分数分别定义为
+\begin{equation}
+\theta_l = \frac{m_l}{\rho_l}, \qquad \theta_i = \frac{m_i}{\rho_i}.
+\tag{4-12}
+\end{equation}
+
+ 附件参数取 $\rho_l = 990\text{kg m}^{-3}$,  $\rho_i = 920\text{kg m}^{-3}$。
+
+ 对第 \(i\) 个一维控制体，题目要求的局部冰体积分数可直接表示为
+\begin{equation}
+\varepsilon_{\text{ice},i}(t) = \frac{V_{\text{ice},i}(t)}{V_{\text{cell},i}} = \frac{\Delta x_{\text{ice},i}(t)}{\Delta x_i} = \theta_i(x_i, t) = \frac{m_i(x_i, t)}{\rho_i}. 
+\tag{4-13}
+\end{equation}
+
+
+ 进一步以干燥状态初始孔隙率 \(\varepsilon_0\) 为基准，定义液相饱和度和冰相饱和度
+\begin{equation}
+s_l = \frac{\theta_l}{\varepsilon_0} = \frac{m_l}{\rho_l \varepsilon_0}, \qquad s_i = \frac{\theta_i}{\varepsilon_0} = \frac{m_i}{\rho_i \varepsilon_0}. 
+\tag{4-14}
+\end{equation}
+
+ 其中附件1给出的 GDL、aCL 和 cCL 初始孔隙率分别为 0.8、0.3916 和 0.4207。液态水与冰共同占据孔隙后，可供气体传输的剩余孔隙率为
+\begin{equation}
+\varepsilon_g = \varepsilon_0 - \theta_l - \theta_i = \varepsilon_0(1 - s_l - s_i).
+ \tag{4-15}
+\end{equation}
+
+ 因此模型状态必须满足如下物理条件：
+\begin{equation}
+s_l \geq 0, \qquad s_i \geq 0, \qquad s_l + s_i \leq 1, \qquad 0 \leq \varepsilon_g \leq \varepsilon_0. 
+\tag{4-16}
+\end{equation}
+
+
+
+\item \textbf {三相质量守恒}
+
+ 设 \(J_v\) 和 \(J_l\) 分别表示水蒸气和液态水沿 \(x\) 方向的质量通量。由于冰被视为静止固相，其宏观质量通量满足 \(J_i = 0\)。
+
+ 分别记冷凝、蒸发、冻结、融化、凝华和升华速率为
+\[
+r_{\text{cond}}, \quad r_{\text{evap}}, \quad r_{\text{frz}}, \quad r_{\text{mlt}}, \quad r_{\text{dep}}, \quad r_{\text{sub}},
+\]
+单位均为 \(\text{kg m}^{-3}\text{s}^{-1}\)。同时记 \(S_{\text{prod}}\) 为阴极电化学反应产生水的体积源项。
+
+ 对三相分别建立质量守恒方程。水蒸气满足
+\begin{equation}
+\frac{\partial m_v}{\partial t} = -\frac{\partial J_v}{\partial x} - r_{\text{cond}} + r_{\text{evap}} - r_{\text{dep}} + r_{\text{sub}}. \tag{4-17}
+\end{equation}
+
+ 液态水满足
+\begin{equation}
+\frac{\partial m_l}{\partial t} = -\frac{\partial J_l}{\partial x} + r_{\text{cond}} - r_{\text{evap}} - r_{\text{frz}} + r_{\text{mlt}} + S_{\text{prod}}. \tag{4-18}
+\end{equation}
+
+ 固态冰不发生宏观迁移，其质量变化完全来自相变：
+\begin{equation}
+\frac{\partial m_i}{\partial t} = r_{\text{frz}} - r_{\text{mlt}} + r_{\text{dep}} - r_{\text{sub}}. \tag{4-19}
+\end{equation}
+
+ 将（4-17）--（4-19）相加，六个内部相变项相互抵消，可得
+\begin{equation}
+\frac{\partial(m_v + m_l + m_i)}{\partial t} = -\frac{\partial(J_v + J_l)}{\partial x} + S_{\text{prod}}. \tag{4-20}
+\end{equation}
+
+ 令
+\[
+N_w = J_v + J_l, \qquad S_w = S_{\text{prod}},
+\]
+结合（4-11）即有
+\begin{equation}
+\frac{\partial m_w}{\partial t} = -\frac{\partial N_w}{\partial x} + S_w. \tag{4-21}
+\end{equation}
+
+ 可见，所建立的三相模型与题目常温模型中的总水守恒方程严格相容，相变只改变水在气、液、固三相之间的分配，并不改变水的总质量。
+
+
+
+\item \textbf {电化学产水}
+
+ 水仅由阴极催化层的氧还原反应生成，阴极氧还原反应的产水化学方程式为：
+\begin{equation}
+\ce{O2 + 4H+ + 4e- -> 2H2O}. \tag{4-22}
+\end{equation}
+根据备注一有，
+\begin{equation}
+S_{\text{prod}} = S_w = \frac{M_w j}{2F L_{\text{cCL}}}, \qquad x \in \Omega_{\text{cCL}}, \tag{4-23}
+\end{equation}
+
+ 其他区域取 \(S_w = 0\)。其中
+\[
+M_w = 0.018 \, \text{kg mol}^{-1}, \qquad F = 96485 \, \text{C mol}^{-1}.
+\]
+
+ 本题将电化学生成水首先计入阴极 CL 的液态水，再由有限速率相变模型重新进行相态分配。
+
+\item \textbf {水蒸气扩散及饱和状态}
+
+
+ 由于 \(m_v\) 是按控制体总体积定义的蒸气质量浓度，而真正参与气相扩散的是孔隙气相中的浓度，故定义$c_v = m_v/\varepsilon_g$ 。
+
+ 水蒸气扩散通量与储存方程写为
+\begin{equation}
+J_v = -D_{v,\text{eff}} \frac{\partial c_v}{\partial x}, \qquad \frac{\partial(\varepsilon_g c_v)}{\partial t} = -\frac{\partial J_v}{\partial x} + S_v. \tag{4-24}
+\end{equation}
+
+ 因此，当孔隙率随冰和液态水动态变化时，不能简单用 \(\partial m_v/\partial x\) 代替气相浓度梯度。阳极和阴极参考水蒸气扩散系数分别取$8.69 \times 10^{-5}$、 $2.48 \times 10^{-5} \, \text{m}^2\text{s}^{-1}$，
+并根据局部温度及 \(\varepsilon_g^{1.5}\) 进行修正。
+
+ 零下环境中，过冷液态水表面和冰表面的平衡蒸气压并不相同。因此分别采用液水面和冰面的 Buck 关系。令$T_c = T - 273.15$，
+则液水面饱和蒸气压为
+\begin{equation}
+p_{\text{sat},l} = 611.21 \exp\left[ \left(18.678 - \frac{T_c}{234.5}\right) \frac{T_c}{257.14 + T_c} \right],
+\tag{4-25}
+\end{equation}
+冰面饱和蒸气压为
+\begin{equation}
+p_{\text{sat},i} = 611.15 \exp\left[ \left(23.036 - \frac{T_c}{333.7}\right) \frac{T_c}{279.82 + T_c} \right], \qquad T < T_f. \tag{4-26}
+\end{equation}
+
+ 对应的单位总体积饱和蒸气含量分别为
+\begin{equation}
+m_{\text{sat},l} = \frac{\varepsilon_g M_w p_{\text{sat},l}}{RT}, \qquad m_{\text{sat},i} = \frac{\varepsilon_g M_w p_{\text{sat},i}}{RT}. \tag{4-27}
+\end{equation}
+
+ 其中 \(m_{\text{sat},l}\) 用于气-液过程，\(m_{\text{sat},i}\) 用于气-冰过程，从而避免低温条件下将两种不同平衡界面混为一体。
+
+
+
+
+\item \textbf {气-液、液-固和气-固的有限速率相变}
+
+ 记
+\[
+[z]_+ = \max(z, 0)
+\]
+和
+\[
+\mathbf{1}_{z} = 
+\begin{cases} 
+1, & z > 0, \\ 
+0, & z = 0.
+\end{cases}
+\]
+ 则气-液相变速率写为
+\begin{equation}
+r_{\text{cond}} = k_c [m_v - m_{\text{sat},l}]_+, \tag{4-28}
+\end{equation}
+\begin{equation}
+r_{\text{evap}} = k_e [m_{\text{sat},l} - m_v]_+ \mathbf{1}_{m_l > 0}. \tag{4-29}
+\end{equation}
+
+ 液态水与冰之间的冻结、融化过程分别满足
+\begin{equation}
+r_{\text{frz}} = k_f m_{\text{free}} \left[ \frac{T_f - T}{T_f} \right]_+, \tag{4-30}
+\end{equation}
+\begin{equation}
+r_{\text{mlt}} = k_m m_i \left[ \frac{T - T_f}{T_f} \right]_+. \tag{4-31}
+\end{equation}
+
+ 对于孔隙水，
+\[
+m_{\text{free}} = m_l;
+\]
+{\color{red} 对于膜内束缚水，考虑一定比例的非冻结膜水，有
+\[
+m_{\text{free}} = [m_l - W_\lambda \lambda_{\text{nf}}]_+,
+\]
+ 其中
+\[
+W_\lambda = \frac{\rho_{\text{PEM}} M_w}{EW} = 38.7 \, \text{kg m}^{-3},
+\]
+ 依照附件1 我们主计算取
+\[
+\lambda_{\text{nf}} = 3.
+\]
+
+ 令局部冻结与融化的一阶速率分别为 \(a_f\)、\(a_m\)，则采用后向欧拉库存限制后，一个时间步内的实际转移量为
+\begin{equation}
+\Delta m_f = m_{\text{free}} \frac{\Delta t a_f}{1 + \Delta t a_f}, \qquad \Delta m_m = m_i \frac{\Delta t a_m}{1 + \Delta t a_m}. \tag{4-32}
+\end{equation}
+
+ 该形式可以保证相变转移量不超过供体相当前库存。
+
+ 当 \(T < T_f\) 时，气-固相变满足
+\begin{equation}
+r_{\text{dep}} = k_d [m_v - m_{\text{sat},i}]_+, \qquad r_{\text{sub}} = k_s [m_{\text{sat},i} - m_v]_+ \mathbf{1}_{m_i > 0}. \tag{4-33}
+\end{equation}
+
+ 当 \(T \geq T_f\) 时，模型关闭气-冰直接相变，由融化过程描述冰相的消失。
+
+ 为保证有限时间步下相变过程不产生负库存，实际计算中按“气-液—气-冰—液-冰”的顺序进行相态更新。以气-液过程为例：
+\begin{equation}
+\Delta m_c = [m_v - m_{\text{sat},l}]_+ \frac{\Delta t k_c}{1 + \Delta t k_c},
+\tag{4-34}
+\end{equation}
+\begin{equation}
+\Delta m_e = \min\left(m_l, [m_{\text{sat},l} - m_v]_+ \frac{\Delta t k_e}{1 + \Delta t k_e}\right).
+\tag{4-35}
+\end{equation}
+
+ 气-冰过程采用相同的库存约束思想。各次相变均从供体相减去相同质量并加入受体相，因此局部相变过程中严格保持水质量守恒。}
+
+
+\item \textbf {PEM内膜水输运和膜-CL水交换}
+
+ PEM 中不存在独立气相孔隙，因此将 \(m_l\) 定义为未冻束缚水，将 \(m_i\) 定义为冻结膜水。膜内未冻水含量和总水含量分别为
+\begin{equation}
+\lambda_l = \frac{m_l}{W_\lambda}, \qquad \lambda_{\text{tot}} = \frac{m_l + m_i}{W_\lambda}, \qquad EW = 1 \, \text{kg mol}^{-1}. \tag{4-36}
+\end{equation}
+
+ 膜内水通量由浓度扩散与电渗拖曳共同组成：
+\begin{equation}
+N_w^{\text{mem}} = -D_{w,\text{mem}} \frac{\partial m_l}{\partial x} + \frac{n_d M_w j}{F}, \qquad n_d = \frac{2.5\lambda_l}{22}. \tag{4-37}
+\end{equation}
+
+ 膜水扩散系数采用
+\begin{equation}
+D_{w,\text{mem}} = 10^{-10} e^{2416(1/303.15 - 1/T)} \left( 2.563 - 0.33\lambda_l + 0.0264\lambda_l^2 - 0.000671\lambda_l^3 \right). \tag{4-38}
+\end{equation}
+
+{\color{red}  为避免该经验关系在低温、低含水区间外推时失去正性，数值计算设置
+\[
+D_{w,\text{mem}} \ge 10^{-13} \, \text{m}^2\text{s}^{-1},
+\]
+ 该值仅作为数值保护下限。
+
+ PEM 中冰体积分数直接定义为
+\begin{equation}
+\theta_{i,\text{PEM}} = \frac{m_i}{\rho_i}. \tag{4-39}
+\end{equation}
+
+ 膜与相邻催化层之间采用有限速率水交换。令
+\[
+\ell_* = \frac{L_{\text{PEM}}}{2}, \qquad \chi = 1,
+\]
+ 并规定正值表示水进入膜，则液态水交换量为
+\begin{equation}
+\Delta M_l = \chi(0.5 \, \text{s}^{-1})\ell_* W_\lambda s_l(14 - \lambda_l)\Delta t,
+\tag{4-40}
+\end{equation}
+ 水蒸气吸附/脱附量为
+\begin{equation}
+\Delta M_v = \chi(0.001 \, \text{s}^{-1})\ell_* W_\lambda [1 - \min(s_l, 1)](\lambda_{\text{eq}} - \lambda_l)\Delta t.
+\tag{4-41}
+\end{equation}
+
+ 其中水活度及对应膜平衡含水量取
+\begin{equation}
+a_w = \text{clip}\left\{ \frac{m_v / \varepsilon_g}{M_w p_{\text{sat},l} / (RT)}, 0, 1 \right\},
+\tag{4-42}
+\end{equation}
+\begin{equation}
+\lambda_{\text{eq}} = 0.043 + 17.81 a_w - 39.85 a_w^2 + 36 a_w^3.
+\tag{4-43}
+\end{equation}
+ 膜-CL 交换同样实施供体库存限制，并在界面两侧进行等质量增减，从而保证水质量守恒。}
+
+
+\end{itemize}
+
+\subsubsection{冰占孔效应、反应物传输及电化学反应修正}
+冰的形成不仅改变局部含水状态，还会直接缩小气体输运通道、降低液态水迁移能力并覆盖催化剂活性位点。因此，需要将冰体积分数进一步反馈至孔隙率、扩散系数、液水渗透率和催化层有效反应面积中，使水–冰状态与电化学性能形成闭环耦合。
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {有效孔隙率}
+
+常温模型只考虑液态水占据孔隙，而冷启动过程中冰同样占据多孔空间。由（4-11），冷启动状态下剩余气相有效孔隙率为
+\begin{equation}
+\varepsilon_g(x,t) = \varepsilon_0 [1 - s_l(x,t) - s_i(x,t)] = \varepsilon_0 - \frac{m_l}{\rho_l} - \frac{m_i}{\rho_i}. \tag{4-44}
+\end{equation}
+随着冰不断生成，\(\varepsilon_g\) 单调减小，可供氢气和氧气扩散的实际通道逐渐收缩。
+
+
+\item \textbf {有效气体扩散系数}
+
+氢气和氧气扩散继续采用题目给出的 Bruggeman 型关系，并以冰修正后的 \(\varepsilon_g\) 替代常温孔隙率，即
+\begin{equation}
+D_{k,\text{eff}} = D_{k,\text{ref}} \left( \frac{T}{298.15} \right)^{1.5} \frac{101325}{p} \varepsilon_g^{1.5}, \qquad k = \text{H}_2, \text{O}_2. \tag{4-45}
+\end{equation}
+
+ 代入（1-29）可得
+\begin{equation}
+D_{k,\text{eff}} = D_{k,\text{ref}} \left( \frac{T}{298.15} \right)^{1.5} \frac{101325}{p} [\varepsilon_0(1 - s_l - s_i)]^{1.5}. \tag{4-46}
+\end{equation}
+
+ 参考扩散系数取
+\[
+D_{\text{H}_2,\text{ref}} = 1.10 \times 10^{-4} \, \text{m}^2\text{s}^{-1},
+\]
+\[
+D_{\text{O}_2,\text{ref}} = 2.20 \times 10^{-5} \, \text{m}^2\text{s}^{-1}.
+\]
+
+ 水蒸气扩散系数采用相同的孔隙率指数进行修正。由于 Bruggeman 指数为 1.5，冰堵对扩散能力具有非线性放大作用。例如在暂不考虑液态水时，若阴极 CL 中 \(s_i = 0.3\)，则扩散系数相对于无冰状态降低为
+\[
+(1 - 0.3)^{1.5} = 0.7^{1.5} \approx 0.586.
+\]
+
+\item \textbf {催化层有效反应面积}
+
+冰在阴极催化层内还会覆盖反应活性位点。根据附件给出的阴极冰覆盖指数 \(n_{\text{ice}} = 3.5\)，定义局部有效电化学反应面积为
+\begin{equation}
+a_{\text{ec}}(x,t) = a_0[1 - s_i(x,t)]^{3.5}, \qquad x \in \Omega_{\text{cCL}}. \tag{4-46}
+\end{equation}
+
+ 考虑冰分布在催化层内可能存在空间差异，先对局部面积修正因子沿 cCL 厚度进行平均，再用于修正整电池交换电流密度：
+\begin{equation}
+f_a = \frac{1}{L_{\text{cCL}}} \int_{\text{cCL}} (1 - s_i)^{3.5} \, \mathrm{d}x, \qquad j_{0,\text{eff}} = j_0(T_{\text{cCL}}) f_a. \tag{4-47}
+\end{equation}
+
+ 由于非线性关系的存在，
+\[
+\langle (1 - s_i)^{3.5} \rangle \neq (1 - \langle s_i \rangle)^{3.5},
+\]
+因此模型直接根据局部冰状态计算有效面积，而不以平均冰饱和度代替局部修正。
+
+\item \textbf {液态水迁移能力}
+
+GDL 与 CL 内液态水主要受毛细压力驱动。附件给出的绝对渗透率分别为
+\[
+K_{\text{GDL}} = 6.2 \times 10^{-12} \, \text{m}^2, \qquad K_{\text{CL}} = 6.2 \times 10^{-13} \, \text{m}^2,
+\]
+对应接触角分别为 \(110^\circ\) 与 \(100^\circ\)。液态水 Darcy 通量写为
+\begin{equation}
+J_l = \frac{\rho_l K K_{rl}(s_l)}{\mu_l} \frac{\partial p_c}{\partial x}. \tag{4-48}
+\end{equation}
+
+采用
+\[
+\mu_l = 1.8 \times 10^{-3} \, \text{Pa s}, \qquad \sigma = 0.075 \, \text{N m}^{-1}, \qquad K_{rl} = s_l^3,
+\]
+并引入冰对液水迁移率的修正因子 \((1 - s_i)^3\)。利用
+\begin{equation}
+J(s_l) = 1.417s_l - 2.120s_l^2 + 1.263s_l^3 \tag{4-49}
+\end{equation}
+闭合毛细压力关系后，得到程序实际采用的等效液水扩散系数
+\begin{equation}
+D_l = \frac{K s_l^3}{\mu_l \varepsilon_0} \sigma |\cos \theta| \sqrt{\frac{\varepsilon_0}{K}} J'(s_l)(1 - s_i)^3, \qquad J_l = -D_l \partial_x m_l. \tag{4-50}
+\end{equation}
+
+因此，冰生成不仅压缩气相空间，同时也降低孔隙液态水的迁移能力。
+
+\item \textbf {氢气、氧气质量守恒}
+
+经上述冰占孔修正后，氢气和氧气在 GDL 和 CL 中满足
+\begin{equation}
+\frac{\partial(\varepsilon_g c_k)}{\partial t} = \frac{\partial}{\partial x} \left( D_{k,\text{eff}} \frac{\partial c_k}{\partial x} \right) + S_k, \qquad k = \text{H}_2, \text{O}_2. \tag{4-51}
+\end{equation}
+
+阳极催化层中氢气消耗源项为
+\begin{equation}
+S_{\text{H}_2} = -\frac{j}{2F L_{\text{aCL}}}, \qquad x \in \Omega_{\text{aCL}}, \tag{4-52}
+\end{equation}
+
+阴极催化层氧气消耗源项为
+\begin{equation}
+S_{\text{O}_2} = -\frac{j}{4F L_{\text{cCL}}}, \qquad x \in \Omega_{\text{cCL}}. \tag{4-53}
+\end{equation}
+
+其他区域相应源项均取零。
+
+由（4-44）--（4-50）可知，冰累积首先降低 \(\varepsilon_g\)，继而降低 \(D_{\text{O}_2,\text{eff}}\)，最终使阴极 CL 中氧气浓度下降。这一传质链条构成冰堵引起浓差极化增强的重要物理机制。
+
+\item \textbf {电荷守恒及电化学反应}
+
+电子电流密度 \(i_s\)、质子电流密度 \(i_m\) 与外部加载电流密度满足
+\begin{equation}
+i_s + i_m = j(t). \tag{4-54}
+\end{equation}
+
+其中 GDL 仅承担电子传导，PEM 仅承担质子传导，催化层通过电化学反应实现电子电流与质子电流之间的转换。按照题目给出的平均反应假设，阳极和阴极催化层中的体积反应电流密度分别为
+\begin{equation}
+\dot{i}_{v,a} = \frac{j}{L_{\text{aCL}}}, \qquad \dot{i}_{v,c} = \frac{j}{L_{\text{cCL}}}. \tag{4-55}
+\end{equation}
+
+（4-55）同时用于氢气消耗、氧气消耗及阴极产水速率的计算。
+
+本模型不再单独求解电子电势和质子电势偏微分方程，而采用给定总电流、催化层均匀体积反应以及膜电阻积分构成约化电化学模型。
+
+附件 2 同时提供电流与两种单位的电流密度，其中
+\[
+j_{\text{A/m}^2} = 10^4 j_{\text{A/cm}^2}.
+\]
+
+由于附件中部分电流值与附件 1 给出的 25 cm\(^2\) 活性面积不能一致反推，因此正式计算直接以附件 2 的 A/m\(^2\) 电流密度列（此列是将原先A/cm\(^2\) 电流密度E列$*10000$换算得到的）作为输入，不再利用总电流除以 25 cm\(^2\) 二次换算，以避免引入额外数据矛盾。
+
+\end{itemize}
+
+
+\subsubsection{能量守恒与低温热效应}
+冷启动过程中，电池温度由电化学反应产热、相变潜热、内部导热、双极板储热及外界对流散热共同决定。与常温模型相比，本节重点增加水–冰相变热效应和双极板瞬态热惯性。
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {含相变热的一维能量守恒}
+
+{\color{red} 完整热域内局部温度满足
+\begin{equation}
+(\rho c_p)_{\text{eff}} \frac{\partial T}{\partial t} = \frac{\partial}{\partial x} \left( k_{\text{eff}} \frac{\partial T}{\partial x} \right) + \dot{q}_{\text{gen}} + \dot{q}_{\text{pc}} + \dot{q}_{\text{ads}}. \tag{4-56}
+\end{equation}}
+
+问题一研究自冷启动过程，不施加额外电加热，因此
+\[
+\dot{q}_{\text{aux}} = 0.
+\]
+
+在双极板区域不存在电化学反应及水相变化，因而
+\[
+\dot{q}_{\text{gen}} = \dot{q}_{\text{pc}} = \dot{q}_{\text{ads}} = 0.
+\]
+
+双极板满足独立的瞬态导热方程
+\begin{equation}
+\rho_{\text{BP}} c_{p,\text{BP}} \frac{\partial T}{\partial t} = \frac{\partial}{\partial x} \left( k_{\text{BP}} \frac{\partial T}{\partial x} \right), \qquad x \in \Omega_{\text{aBP}} \cup \Omega_{\text{cBP}}. \tag{4-57}
+\end{equation}
+
+由此，双极板并非简单附加一个静态热阻，而是通过时间导数项显式参与冷启动过程中的热量储存与释放。
+
+\item \textbf {等效体积热容}
+
+对于 GDL 等不含独立离聚物相的多孔层，等效体积热容按固相、气相、液态水和冰相体积分数加权：
+\begin{equation}
+(\rho c_p)_{\text{eff}} = (\rho c_p)_s(1 - \varepsilon_0) + (\rho c_p)_g \varepsilon_g + (\rho c_p)_l \theta_l + (\rho c_p)_i \theta_i. \tag{4-58}
+\end{equation}
+
+CL 中另外考虑体积分数为 0.3 的离聚物，因此其固体骨架体积分数取
+\[
+1 - \varepsilon_0 - 0.3.
+\]
+
+PEM 则按离聚物主体叠加未冻水和冰相热容处理。
+
+附件给出的典型体积热容包括
+\[
+\rho_i c_{p,i} = 920 \times 2050,
+\]
+\[
+\rho_l c_{p,l} = 990 \times 4182,
+\]
+以及离聚物、GDL 骨架、CL 骨架和双极板相应材料参数。
+
+双极板不进行孔隙相体积分数加权，直接采用
+\[
+\rho_{\text{BP}} = 1980 \, \text{kg m}^{-3}, \qquad c_{p,\text{BP}} = 766 \, \text{J kg}^{-1}\text{K}^{-1},
+\]
+\begin{equation}
+(\rho c_p)_{\text{BP}} = 1.51668 \times 10^6 \, \text{J m}^{-3}\text{K}^{-1}. \tag{4-59}
+\end{equation}
+
+于是两侧双极板合计单位面积热容以及单电池完整热域单位面积热容分别为
+\[
+C_{A,\text{BP}} = 2 L_{\text{BP}} (\rho c_p)_{\text{BP}} = 6066.72 \, \text{J m}^{-2}\text{K}^{-1},
+\]
+\begin{equation}
+C_{A,\text{cell}}(t) = C_{A,\text{BP}} + \int_{\Omega_{\text{MEA}}} (\rho c_p)_{\text{eff}}(x,t) \, \mathrm{d}x. \tag{4-60}
+\end{equation}
+
+其中 MEA 部分热容随局部水、冰状态变化，而双极板热容由固定材料参数决定。
+
+
+\item \textbf {含冰状态下的导热系数}
+
+对于多孔层内部，各相导热系数按体积分数作并联加权：
+\begin{equation}
+k_{\text{layer}} = k_s(1 - \varepsilon_0) + k_g \varepsilon_g + k_l \theta_l + k_i \theta_i. \tag{4-61}
+\end{equation}
+
+附件给出的主要参数为
+\[
+k_i = 2.3 \, \text{W m}^{-1}\text{K}^{-1}, \qquad k_l = 0.6 \, \text{W m}^{-1}\text{K}^{-1},
+\]
+GDL 固体骨架导热系数取 0.3，CL 骨架取 0.27，离聚物取 0.24，双极板取
+\[
+k_{\text{BP}} = 95 \, \text{W m}^{-1}\text{K}^{-1}.
+\]
+
+若从单电池整体尺度考察沿厚度方向的等效导热系数，则不同层之间按串联热阻计算：
+\begin{equation}
+k_{\text{eff}} = \frac{\sum\limits_i \delta_i}{\sum\limits_i (\delta_i / k_i)}. \tag{4-62}
+\end{equation}
+
+需要强调的是，数值求解时仍保留各层局部 \(k\) 值，式（1-43）主要用于整体热阻解释，而不以单一均匀 \(k_{\text{eff}}\) 取代七层材料分布。
+
+在 BP/GDL 界面 \(x = x_\Gamma\)，采用理想热接触条件：
+\begin{equation}
+T(x_\Gamma^-, t) = T(x_\Gamma^+, t), \qquad -k_- \left.\frac{\partial T}{\partial x}\right|_{x_\Gamma^-} = -k_+ \left.\frac{\partial T}{\partial x}\right|_{x_\Gamma^+}. \tag{4-63}
+\end{equation}
+
+即界面处温度和法向热流连续，而两侧温度梯度允许由于材料导热系数不同而发生跃变。
+
+\item \textbf {电化学反应热}
+
+为避免分别计算反应热、活化热和欧姆热，将电化学产生的总热量统一写为
+\begin{equation}
+\dot{q}_{\text{gen}} = \frac{j(E_{\text{th}} - V_{\text{cell}})}{L}. \tag{4-64}
+\end{equation}
+
+ 其中
+\[
+E_{\text{th}} = 1.48 \, \text{V}, \qquad L = L_{\text{MEA}}.
+\]
+该热源均匀施加在五层 MEA 热域内，双极板中不设置此项。其沿 MEA 厚度积分得到单位面积热流$j(E_{\text{th}} - V_{\text{cell}})$ 。
+
+
+\item \textbf {水–冰相变潜热}
+
+冷凝、冻结和凝华释放热量，而蒸发、融化和升华吸收热量。因此，相变体积热源统一写为
+\begin{equation}
+\dot{q}_{\text{pc}} = L_c(r_{\text{cond}} - r_{\text{evap}}) + L_f(r_{\text{frz}} - r_{\text{mlt}}) + L_s(r_{\text{dep}} - r_{\text{sub}}). \tag{4-65}
+\end{equation}
+
+附件1给出凝结潜热与冻结潜热分别为
+\[
+L_c = 2.5 \times 10^6 \, \text{J kg}^{-1},
+\]
+\[
+L_f = 3.336 \times 10^5 \, \text{J kg}^{-1}.
+\]
+
+因此凝华或升华潜热取
+\begin{equation}
+L_s = L_c + L_f = 2.8336 \times 10^6 \, \text{J kg}^{-1}. \tag{4-66}
+\end{equation}
+
+对于膜端水蒸气吸附和脱附过程，根据实际接口转移量单独加入等效吸附热。对 PEM 端部控制体 \(p\)，有
+\begin{equation}
+\dot{q}_{\text{ads},p} = \frac{L_c \Delta M_v}{\Delta x_p \Delta t}. \tag{4-67}
+\end{equation}
+
+其中 \(\Delta M_v > 0\) 表示蒸气进入膜，\(\Delta M_v < 0\) 表示由膜脱附。最终热方程中的相变相关源项为 $\dot{q}_{\text{pc}} + \dot{q}_{\text{ads}}$ 。
+这一处理使水相变化不仅改变水质量分布，也能够通过潜热重新反馈温度场。
+
+
+\item \textbf {双极板外表面对流边界}
+
+ 无 BP 基线模型中，对流边界位于两侧 GDL 外表面；加入 BP 后，将环境边界移至
+\[
+x_L = -L_{\text{BP}}, \qquad x_R = L_{\text{MEA}} + L_{\text{BP}}.
+\]
+
+ 两侧满足
+\begin{equation}
+-k_{\text{BP}} \frac{\partial T}{\partial n} = h(T_{\text{BP,out}} - T_{\text{amb}}), \qquad x = x_L, x_R. \tag{4-68}
+\end{equation}
+
+ 其中
+\[
+h = 40 \, \text{W m}^{-2}\text{K}^{-1}.
+\]
+
+ 对应单位活性面积的双侧对流散热功率为
+\begin{equation}
+q_{\text{loss},A} = h[T(x_L, t) - T_{\text{amb}}] + h[T(x_R, t) - T_{\text{amb}}]. \tag{4-69}
+\end{equation}
+
+ 若两侧表面温度近似相同，则有
+\[
+q_{\text{loss},A} \approx 2h(T - T_{\text{amb}}),
+\]
+我们不能在整体能量平衡中遗漏任意一侧环境散热。
+
+\item \textbf {双极板导热热阻与热惯性}
+
+为比较双极板自身导热热阻和环境对流热阻，对单侧 BP 定义等效传热系数
+\[
+\frac{1}{U} = \frac{L_{\text{BP}}}{k_{\text{BP}}} + \frac{1}{h},
+\]
+\[
+\frac{L_{\text{BP}}}{k_{\text{BP}}} = 2.1053 \times 10^{-5} \, \text{m}^2\text{K W}^{-1},
+\]
+\begin{equation}
+U \approx 39.97 \, \text{W m}^{-2}\text{K}^{-1}. \tag{4-70}
+\end{equation}
+
+ 由于
+\[
+\frac{1}{h} = 0.025 \, \text{m}^2\text{K W}^{-1},
+\]
+BP 自身厚度方向导热热阻仅约为单侧对流热阻的 0.084\%。这说明双极板内部导热温降较小，但并不意味着其热容量可以忽略。相反，在几十秒尺度冷启动过程中，较大的单位面积热容量会显著影响温升速率。因此，本文仍通过（4-69）显式求解 BP 瞬态储热，而不将其简单等效为稳态热阻。
+
+
+\item \textbf {双极板热容量级诊断}
+
+
+为独立判断双极板热惯性的量级是否合理，可利用实验电压、电流密度和温度估算表观单位面积热容。暂时忽略相变热、吸附热、热容变化以及内部温差，并以实验平均温度近似两侧表面温度，则在 \(t_* = 35 \, \text{s}\) 时有
+\begin{equation}
+C_{A,\text{app}} \approx \frac{\int_0^{t_*} [j(t)(E_{\text{th}} - V_{\text{exp}}(t)) - 2h(T_{\text{exp}}(t) - T_{\text{amb}})] \, \mathrm{d}t}{T_{\text{exp}}(t_*) - T_0}. \tag{4-71}
+\end{equation}
+
+ 由现有实验数据计算，\(-20^\circ\text{C}\) 与 \(-25^\circ\text{C}\) 工况对应的表观面热容约为
+\[
+6117.77, \qquad 6309.90 \, \text{J m}^{-2}\text{K}^{-1},
+\]
+与两侧 BP 理论面热容
+\[
+6066.72 \, \text{J m}^{-2}\text{K}^{-1}
+\]
+处于同一量级。这一结果为将双极板热质量纳入瞬态模型提供了量级支持，但该估算仅作为结构合理性诊断，不用于反向拟合双极板物性参数。
+
+\end{itemize}
+
+\subsubsection{冰影响下的单电池电压模型}
+低温冷启动时，冰不仅通过堵塞孔隙限制氧气输运，还会覆盖催化层活性区域，并使部分膜水冻结，从而分别影响活化极化、欧姆极化和浓差极化。因此，在保持题给常温电压模型总体形式不变的基础上，将前述水–冰状态引入各极化项，实现冰状态到输出电压的动态反馈。
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {电池总电压}
+
+ 单电池电压由可逆电压减去活化、欧姆和浓差三类损失：
+\begin{equation}
+V_{\text{cell}} = E_{\text{rev}} - \eta_{\text{act}} - \eta_{\text{ohm}} - \eta_{\text{con}}. \tag{4-72}
+\end{equation}
+
+ 因此，冰并不以独立“冰损失项”的形式直接叠加，而是通过改变局部气体浓度、交换电流密度、膜质子电导率和极限电流密度进入原有三类极化损失。
+
+\item \textbf {可逆电压}
+
+ 采用简化 Nernst 方程：
+\begin{equation}
+E_{\text{rev}} = 1.229 - 8.5 \times 10^{-4}(T - 298.15) + \frac{RT}{2F} \ln \left[ \left( \frac{p_{\text{H}_2}}{p_0} \right) \left( \frac{p_{\text{O}_2}}{p_0} \right)^{1/2} \right], \tag{4-73}
+\end{equation}
+
+ 其中
+\[
+p_0 = 101325 \, \text{Pa}.
+\]
+\(p_{\text{H}_2}\) 和 \(p_{\text{O}_2}\) 分别取阳极和阴极催化层局部气体分压。冰通过式（1-29）—式（1-37）改变反应气体浓度，因此会间接作用于 \(E_{\text{rev}}\)，但这一作用相对于对三类极化损失的影响较弱。
+
+
+\item \textbf {活化损失及冰覆盖修正}
+
+交换电流密度首先按照 Arrhenius 关系进行温度修正：
+\begin{equation}
+j_0(T) = j_{0,\text{ref}} \exp \left[ -\frac{E_a}{R} \left( \frac{1}{T} - \frac{1}{298.15} \right) \right], \tag{4-74}
+\end{equation}
+
+ 其中
+\[
+E_a = 67000 \, \text{J mol}^{-1}.
+\]
+
+ 低温状态下，再利用式（1-33）中催化层有效反应面积因子得到
+\[
+j_{0,\text{eff}} = j_0(T_{\text{cCL}}) f_a.
+\]
+
+ 由此，活化极化采用简化 Butler--Volmer 关系
+\begin{equation}
+\eta_{\text{act}} = \frac{RT_c}{\alpha F} \operatorname{arsinh} \left( \frac{j}{2j_{0,\text{eff}}} \right), \qquad \alpha = 0.5. \tag{4-75}
+\end{equation}
+
+ 随着冰在 cCL 中累积，\(f_a\) 减小，进而使 \(j_{0,\text{eff}}\) 下降；在相同外部电流密度下，所需活化过电位随之增加。因此，（4-75）给出了“冰覆盖—有效反应面积减少—活化损失增加”的定量表达。
+
+
+
+\item \textbf {欧姆损失及膜水冻结修正}
+
+ 欧姆损失主要来自质子交换膜和面积比接触电阻。考虑 PEM 内水冰状态存在空间差异，对局部膜电阻沿厚度积分：
+\begin{equation}
+\eta_{\text{ohm}} = j \left[ \int_{\text{PEM}} \frac{\mathrm{d}x}{\kappa_{\text{pem,eff}}(x)} + R_c \right]. \tag{4-76}
+\end{equation}
+
+ 其中
+\[
+R_c = 0.01 \, \Omega\text{cm}^2 = 10^{-6} \, \Omega\text{m}^2.
+\]
+
+ 未冻结膜水含量
+\[
+\lambda_l = \frac{m_l}{W_\lambda}
+\]
+
+ 决定膜的本征质子电导率。采用 Springer 关系：
+\begin{equation}
+\kappa_{\text{pem}} = (0.5139\lambda_l - 0.326)e^{1268(1/303.15 - 1/T)}. \tag{4-77}
+\end{equation}
+
+ 进一步考虑膜中冰相对质子传输通道的阻断作用，定义有效质子电导率
+\begin{equation}
+\kappa_{\text{pem,eff}} = \kappa_{\text{pem}}(1 - \theta_{i,\text{PEM}}). \tag{4-78}
+\end{equation}
+
+ 由此，膜欧姆性能受到两方面共同影响：一方面，水冻结后可参与质子传导的未冻水减少；另一方面，冰体积分数增加又进一步降低有效导电通道。两种作用共同推动 \(\eta_{\text{ohm}}\) 增大。
+
+
+\item \textbf {浓差损失及冰堵修正}
+
+ 阴极供氧受限所造成的浓差损失表示为
+\begin{equation}
+\eta_{\text{con}} = -\frac{RT}{4F} \ln \left( 1 - \frac{j}{j_{\text{lim}}} \right). \tag{4-79}
+\end{equation}
+
+ 题目给出的极限电流密度为
+\begin{equation}
+j_{\text{lim}} = \frac{4 F D_{\text{O}_2,\text{eff}} C_{\text{O}_2,\text{cCL}}}{L_{\text{diff}}}. \tag{4-80}
+\end{equation}
+
+ 其中 \(C_{\text{O}_2,\text{cCL}}\) 由氧气质量守恒方程求得，\(L_{\text{diff}}\) 为阴极侧等效扩散距离。
+
+ 由于 $D_{\text{O}_2,\text{eff}} \propto \varepsilon_g^{1.5}$ ，
+冰占孔将同时降低有效扩散系数和阴极催化层氧气浓度，从而使 \(j_{\text{lim}}\) 持续降低。当外部加载电流逐渐接近冰堵压低后的极限电流时，
+（4-79）中的对数项迅速增大，造成浓差过电位快速上升，这对应冷启动过程中严重冰堵所引起的电压骤降。
+
+ 实际数值模型进一步按照阴极 CL 中心至 GDL 外表面的分层扩散阻力求取等效传质能力，以
+\[
+R_D = \sum \frac{\Delta x}{D_{\text{O}_2,\text{eff}}}
+\]
+替代单一均匀介质近似中的
+\[
+\frac{L_{\text{diff}}}{D_{\text{O}_2,\text{eff}}}.
+\]
+
+ 若某时刻出现$\frac{j}{j_{\text{lim}}} \geq 1$，
+则说明在当前冰堵和供氧状态下给定电流已经超过局部物理传质极限，模型将该状态判定为无效，而不通过人为截断 \(j / j_{\text{lim}}\) 的方式维持虚假的可行电压。
+
+ 最后，单电池电压模型与前述三相水、冰占孔及热模型形成完整闭环：外部电流驱动电化学反应并产生水和热；水在低温下发生三相转化形成冰；冰通过孔隙率、扩散系数、反应面积和膜质子电导率改变各类极化损失；电压变化又直接改变反应产热 \(\dot{q}_{\text{gen}}\)，进而反馈局部温度和后续相变过程。由此构成一维单电池瞬态自冷启动模型的完整耦合体系。
+
+\end{itemize}
+
+
+\subsection{一维单电池瞬态自冷启动模型的建立}
+上一节建立的冷启动模型同时包含气体传输、水的三相迁移与相变、冰堵反馈、热量传递以及电化学反应等过程，各状态变量之间存在较强的非线性耦合。其中，水和冰的累积会改变有效孔隙率及传质参数，进而影响电池电压；电压又通过反应产热作用于温度场，而温度进一步决定水-冰相变方向及速率。针对这一特点，本文采用有限体积法进行空间离散，并结合隐式时间推进、顺序分裂和 Picard 迭代完成各物理场的耦合求解。在此基础上，利用 \(-20^\circ\text{C}\) 实验数据进行参数校准，并将所得参数直接用于 \(-25^\circ\text{C}\) 工况，以检验模型对不同初始温度的预测能力。
+
+\subsubsection{模型离散与耦合求解}
+
+ 考虑到 MEA 各功能层厚度及物理性质差异较大，本文采用控制体中心有限体积法对厚度方向进行分层离散。对于任意守恒变量 \(\phi\)，第 \(j\) 个控制体的离散形式统一写为
+\begin{equation}
+\frac{\mathrm{d}\phi_j}{\mathrm{d}t} = \frac{J_{j-1/2} - J_{j+1/2}}{\Delta x_j} + S_j, \tag{4-81}
+\end{equation}
+
+ 其中，\(\Delta x_j\) 为控制体厚度，\(J_{j-1/2}\) 和 \(J_{j+1/2}\) 分别为左右界面通量，\(S_j\) 为相应源项。该形式使相邻控制体公共界面上的质量通量或热流以等量反向形式进入两侧控制体，从而保证离散层面的局部守恒。
+
+ 根据催化层和质子交换膜厚度较小、状态梯度较大的特点，对这些区域适当加密。最终计算中，aGDL、aCL、PEM、cCL 和 cGDL 分别划分为 16、6、12、8、16 个控制体，五层 MEA 共设置 58 个质量传输节点；在含双极板热模型中，两侧 BP 各增加 8 个温度控制体，因此完整热域共包含 74 个温度节点。气体和水仍只在原 MEA 网格内求解，双极板仅参与热传导和储热计算。
+
+对于跨材料界面的热传递，为正确反映不同材料之间的串联热阻，相邻控制体 \(p\) 和 \(q\) 的界面导度取为
+\begin{equation}
+G_{pq} = \left( \frac{\Delta x_p}{2k_p} + \frac{\Delta x_q}{2k_q} \right)^{-1}, \tag{4-82}
+\end{equation}
+
+ 相应热流为
+\begin{equation}
+q_{p\to q} = G_{pq}(T_p - T_q). \tag{4-83}
+\end{equation}
+
+ 对于最外侧双极板控制体，还需同时计及半个控制体的导热热阻和环境对流热阻，其边界等效导度写为
+\begin{equation}
+G_b = \left[ \frac{\Delta x_b}{2k_{\text{BP}}} + \frac{1}{h} \right]^{-1}. \tag{4-84}
+\end{equation}
+
+ 气体扩散、水蒸气扩散、膜水扩散及热传导均采用类似的界面通量处理方式，从而保证材料界面处传输通量连续。
+
+ 时间方向采用一阶向后欧拉格式。对于一般形式的储存变量 \(u\)，其离散形式为
+\begin{equation}
+\frac{b^{n+1}u^{n+1} - b^n u^n}{\Delta t} = F(u^{n+1}), \tag{4-85}
+\end{equation}
+
+ 其中 \(b\) 表示与孔隙率或热容有关的容量系数。由于冰和液态水的累积会导致孔隙率随时间变化，因此气体储存项采用 \(\varepsilon_g c\) 的完整形式进行离散，而不将 \(\varepsilon_g\) 视为常数，以避免破坏冰占孔条件下的质量守恒。膜内电渗拖曳采用守恒隐式迎风形式，各扩散和传热子问题离散后形成的三对角线性方程组直接求解。
+ 
+ 由于模型中各物理过程之间具有明显的先后依赖关系，本文采用顺序分裂方法完成一个时间步内的状态更新。首先根据附件 2 的电流密度曲线插值得到当前时刻的加载电流，并根据法拉第定律在阴极催化层中加入反应产水；随后依次计算孔隙液态水迁移、膜水扩散及电渗拖曳，并处理膜—催化层间的水交换；在此基础上求解水蒸气扩散，并依次完成气–液、气–冰和液–冰相变。完成水相更新后，根据新的液水和冰分布重新计算有效孔隙率及气体扩散系数，进而求解氢气、氧气传输。最后固定当前时间步的水相和气体状态，对温度、电池电压及反应产热进行迭代求解。
+
+在最后的热--电耦合过程中，由于电化学产热满足
+\begin{equation}
+\dot{q}_{\text{gen}} = \frac{j(E_{\text{th}} - V_{\text{cell}})}{L}, \tag{4-86}
+\end{equation}
+
+而 \(V_{\text{cell}}\) 又与温度、气体浓度、膜含水量及冰覆盖状态有关，因此采用 Picard 迭代更新温度和电压。设第 \(k\) 次迭代温度为 \(T^{(k)}\)，则依次计算
+\begin{equation}
+T^{(k)} \to V_{\text{cell}}^{(k)} \to \dot{q}_{\text{gen}}^{(k)} \to T^{(k+1)}. \tag{4-87}
+\end{equation}
+
+当
+\begin{equation}
+\max_j \left| T_j^{(k+1)} - T_j^{(k)} \right| < 10^{-7} \, \text{K} \tag{4-88}
+\end{equation}
+
+\noindent 时认为当前时间步收敛。每一时间步最多迭代 30 次；若达到最大迭代次数后温度增量仍大于 \(10^{-6} \, \text{K}\)，则判定当前计算未收敛并停止推进。由此，本文的数值算法可概括为
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.5\textwidth]{算法流程图222.eps}
+\caption{数值算法流程图}
+\label{F111}
+\end{figure}
+
+
+为兼顾参数搜索效率和最终计算精度，参数校准首先采用较粗网格及最大时间步 0.05 s 搜索参数范围，随后在上述 58 个 MEA 控制体的加密网格上，以最大时间步 0.0125 s 进行参数精修，最终正式结果同样采用该精细配置。由于实验数据每 0.2 s 给出一个采样点，各采样区间内部按照最大时间步进行均匀细分，使数值解能够准确落在实验采样时刻。
+
+模型输出的单电池平均温度采用完整热域的厚度平均，即
+\begin{equation}
+\bar{T}(t) = \frac{\sum\limits_j T_j(t) \Delta x_j}{\sum\limits_j \Delta x_j}. \tag{4-89}
+\end{equation}
+
+对于含双极板模型，上式遍历全部 74 个热控制体，其结果记为 \(\bar{T}_{\text{cell}}\)。此外，为分析内部温度状态，分别定义 MEA 和双极板平均温度
+\begin{equation}
+\bar{T}_{\text{MEA}} = \frac{\sum\limits_{j \in \text{MEA}} T_j \Delta x_j}{L_{\text{MEA}}}, \tag{4-90}
+\end{equation}
+\begin{equation}
+\bar{T}_{\text{BP}} = \frac{\sum\limits_{j \in \text{aBP} \cup \text{cBP}} T_j \Delta x_j}{2 L_{\text{BP}}}, \tag{4-91}
+\end{equation}
+
+三者满足
+\begin{equation}
+\bar{T}_{\text{cell}} = \frac{L_{\text{MEA}} \bar{T}_{\text{MEA}} + 2 L_{\text{BP}} \bar{T}_{\text{BP}}}{L_{\text{cell}}}. \tag{4-92}
+\end{equation}
+
+ 题目要求的最大冰体积分数则由各 MEA 控制体局部冰量计算：
+\begin{equation}
+\varepsilon_{\text{ice,max}}(t) = \max_{j \in \text{MEA}} \frac{m_{i,j}(t)}{\rho_i}. \tag{4-93}
+\end{equation}
+
+除上述主要输出外，计算过程中同时记录孔隙冰、膜冰以及各类相变累计量，用于后续分析不同区域的冻结特征。
+
+\subsubsection{参数校准与留出验证}
+
+冷启动模型中包含冷凝、蒸发、冻结、融化、凝华和升华六类相变过程。由于附件 2 仅提供单电池电压和平均温度实验数据，并未给出局部冰量或相变速率的直接观测，如果同时将多个相变系数作为自由参数拟合，容易产生严重的参数相关性，使不同参数组合得到相近的电压和温度曲线而对应完全不同的内部冰状态。为降低这一不可识别性，本文将六种相变速率系数固定为前述基准值，仅选择对电压响应影响直接且具有明确电化学意义的参考交换电流密度 \(j_{0,\text{ref}}\) 作为待校准参数，即
+\begin{equation}
+\boldsymbol{\theta} = [j_{0,\text{ref}}]. \tag{4-94}
+\end{equation}
+
+因此，参数校准的目的并非利用实验数据重新拟合水-冰相变动力学，而是在保持低温相变模型结构不变的前提下确定电化学模型中的有效交换电流尺度。该处理可以减少自由参数数量，避免利用有限的 \(V-T\) 数据过度调整冰相动力学。
+
+为进一步区分参数拟合能力和模型预测能力，将附件 2 中 \(-20^\circ\text{C}\) 和 \(-25^\circ\text{C}\) 两组实验数据分别作为校准集和验证集。首先利用 \(-20^\circ\text{C}\) 工况 \(0 \sim 35 \, \text{s}\) 内全部 176 个采样点校准 \(j_{0,\text{ref}}\)，而 \(-25^\circ\text{C}\) 数据在优化过程中完全不参与参数更新。完成校准后，将所得参数保持不变，直接用于 \(-25^\circ\text{C}\) 初始温度下的模型计算。由此形成
+\[
+-20^\circ\text{C} \implies \text{参数校准},
+\]
+\[
+-25^\circ\text{C} \implies \text{留出验证}.
+\]
+与分别针对两个温度工况单独拟合相比，该处理能够更客观地评价模型对初始温度变化的预测能力。
+
+
+由于 \(j_{0,\text{ref}}\) 的合理范围可能跨越多个数量级，令$x = \log_{10} j_{0,\text{ref}} $
+并在对数空间中完成参数搜索。为了同时利用实验电压和温度信息，又避免二者量纲及数值尺度差异导致某一变量在目标函数中占据主导，按照题目给出的相对误差思想构造联合目标函数
+\begin{equation}
+J(x) = \frac{1}{N} \sum_{r=1}^N \left[ \left( \frac{V_r - V_{r,\text{exp}}}{V_{r,\text{exp}}} \right)^2 + \left( \frac{T_{r,C} - T_{r,\text{exp},C}}{T_{r,\text{exp},C}} \right)^2 \right], \qquad N = 176, \tag{4-95}
+\end{equation}
+其中，\(V_r\) 和 \(T_{r,C}\) 分别为第 \(r\) 个采样时刻的模型电压与模型摄氏温度，\(V_{r,\text{exp}}\) 和 \(T_{r,\text{exp},C}\) 为对应实验值。该目标函数同时约束电压动态和温升过程，使所得到的参数不只服务于单一输出变量。
+参考交换电流密度的搜索范围取
+\[
+10^{-5} \leq j_{0,\text{ref}} \leq 10^3 \text{ A m}^{-2}.
+\]
+求解过程中先利用粗网格在整个参数范围内搜索目标函数较小的区域，再采用有界一维优化方法进行局部精修；最后在正式加密网格和 0.0125 s 最大时间步下重新计算并确定最终参数。若某一候选参数使模型出现孔隙率越界、负质量、膜电导率失效、极限电流不足或热迭代不收敛等情况，则认为该候选状态不满足模型物理约束，并在优化过程中予以排除。
+
+
+\noindent 按照上述方法，含双极板主模型最终得到
+\begin{equation}
+j_{0,\text{ref}} = 0.10255839 \, \text{A m}^{-2}. \tag{4-96}
+\end{equation}
+
+\noindent 该参数由 \(-20^\circ\text{C}\) 工况确定，并在后续 \(-25^\circ\text{C}\) 模型计算中保持不变，不再进行二次校准。
+
+\noindent 模型预测结果与实验数据之间的逐点相对误差按照题目定义计算：
+\begin{equation}
+\varepsilon_X = \frac{|X_{\text{sim}} - X_{\text{exp}}|}{|X_{\text{exp}}|} \times 100\%, \tag{4-97}
+\end{equation}
+
+\noindent 其中 \(X\) 分别取电池电压或平均温度。除逐点相对误差外，后续还通过均方根误差和平均相对误差评价整个时间序列的总体拟合水平，从而同时反映局部预测偏差和整体预测能力。
+
+
+为保证所得结果并非由特定空间网格或时间步长造成，在确定最终参数后进一步进行时间步减半、空间网格加密及二者联合加密计算，并检查水质量守恒、冰相转移关系以及离散热量预算。上述检验只用于确认数值实现和离散求解的一致性，而模型对实验现象的实际预测效果仍需通过下一节的电压、温度和冰体积分数结果进行评价。
+
+最后，本文通过有限体积离散和顺序耦合求解，将三相水迁移、冰堵、气体传输及热—电反馈统一到同一瞬态计算框架中；随后采用 \(-20^\circ\text{C}\) 工况校准唯一自由电化学参数，并以 \(-25^\circ\text{C}\) 工况进行留出验证。该处理既降低了多参数同时拟合造成的不可识别问题，也为后续从实验误差、冰量演化及模型预测能力三个方面评价冷启动模型奠定了基础。
+
+
+\subsection{模型结果与实验验证}
+
+在完成参数校准后，分别对初始温度为 \(-20\,^\circ\mathrm C\) 和 \(-25\,^\circ\mathrm C\) 的冷启动过程进行数值计算。其中，\(-20\,^\circ\mathrm C\) 工况用于参数校准，\(-25\,^\circ\mathrm C\) 工况不再调整任何参数，直接用于检验模型在不同初始温度下的预测能力。为完整评价模型性能，本文首先比较五层基线模型与实验结果，进一步分析引入双极板热惯性后的修订效果；随后结合相对误差、冰相演化、电压损失分解及时空分布，对模型预测结果及其物理合理性进行分析。
+
+\subsubsection{模型预测结果及实验对比}
+
+首先考察仅采用题目五层 MEA 作为热计算区域时的结果。图 4-1 给出了五层基线模型在两种初始温度下的电压、平均温度与实验采样值对比。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{01_五层基线电压温度计算值与实验采样值对比.pdf}
+\caption{五层基线电压温度计算值与实验采样值对比图}
+\label{F4-2}
+\end{figure}
+
+由图\ref{F4-2} 可以看出，五层基线模型虽然能够反映加载电流变化后电压下降以及电池升温的基本趋势，但计算结果与实验存在明显的系统性偏差。尤其是温度响应方面，五层模型在约 \(10\sim15\,\mathrm s\) 后出现快速升温，并在 \(30\,\mathrm s\) 左右已接近 \(0\,^\circ\mathrm C\)；而实验中，\(-20\,^\circ\mathrm C\) 工况在 \(35\,\mathrm s\) 时温度仍为约 \(-12.67\,^\circ\mathrm C\)，\(-25\,^\circ\mathrm C\) 工况仍约为 \(-17.59\,^\circ\mathrm C\)。这表明只考虑 MEA 自身热容量会显著低估实际单电池的热惯性，从而高估短时冷启动过程中的升温速度。与此同时，温度预测偏差又进一步影响反应动力学和极化损失，使五层基线模型的电压始终明显高于实验值。图中这一现象说明，在几十秒量级的冷启动过程中，仅使用五层 MEA 热域不足以描述实际单电池的瞬态热响应。
+
+考虑到单电池两侧双极板具有较大的材料体积和热容量，本文进一步将其纳入热传递区域。图 \ref{F4-3} 给出了实验值、五层基线模型及含双极板修订模型的统一对比。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{02_实验值五层基线与含双极板修订模型对比.pdf}
+\caption{实验数据与五层基线与含双极板修订模型对比图}
+\label{F4-3}
+\end{figure}
+
+由图\ref{F4-3}可见，加入双极板后模型的温升速度显著降低，与两种工况下实验温度曲线基本重合；与此同时，电压预测也由五层基线模型的明显高估修正至实验数据附近。特别是在未参与参数校准的 \(-25\,^\circ\mathrm C\) 工况下，修订模型仍能够保持与 \(-20\,^\circ\mathrm C\) 工况相近的预测精度，说明所建立模型并非只针对单一初始温度进行拟合，而具有一定的跨温度预测能力。
+
+进一步结合表 \ref{B12} 和表 \ref{B13} 可以定量评价修订模型的预测效果。对于 \(-20\,^\circ\mathrm C\) 工况，模型温度由初始的 \(-20.00\,^\circ\mathrm C\) 上升至 \(35\,\mathrm s\) 时的 \(-12.30\,^\circ\mathrm C\)，实验值为 \(-12.67\,^\circ\mathrm C\)；对应各主要采样时刻的温度相对误差总体较小。对于 \(-25\,^\circ\mathrm C\) 留出验证工况，\(35\,\mathrm s\) 时模型预测温度为 \(-16.90\,^\circ\mathrm C\)，实验值为 \(-17.59\,^\circ\mathrm C\)，仍保持较高的一致性。全时序统计结果表明，含双极板模型在 \(-20\,^\circ\mathrm C\) 和 \(-25\,^\circ\mathrm C\) 下的温度 RMSE 分别为 \(0.1162\,^\circ\mathrm C\) 和 \(0.2323\,^\circ\mathrm C\)，MAPE 分别为 \(0.5271\%\) 和 \(0.6946\%\)；相比之下，五层基线模型的温度 RMSE 分别达到 \(9.72\,^\circ\mathrm C\) 和 \(10.62\,^\circ\mathrm C\)。因此，双极板热惯性的引入是准确描述短时冷启动温升过程的关键。
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{含双极板模型的\(-20^\circ\text{C}\) 工况模型预测与实验结果对比}
+    \vspace{0.3cm}
+    \label{B12}
+    \renewcommand{\arraystretch}{1.5} % 增加行高，匹配原图
+    \resizebox{\textwidth}{!}{ % 自动缩放表格以适应页面宽度
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            时间/s & 实验电压/V & 模型电压/V & 电压相对误差/\% & 实验温度/\(^\circ\text{C}\) & 模型温度/\(^\circ\text{C}\) & 温度相对误差/\% & 最大冰体积分数 \\
+            \hline
+            0  & 0.799000 & 0.769731 & 3.663190  & -19.995355 & -20.000000 & 0.023232 & 0.000000 \\
+            \hline
+            5  & 0.801000 & 0.762745 & 4.775911  & -19.962098 & -19.965883 & 0.018959 & 0.000465 \\
+            \hline
+            10 & 0.538000 & 0.624812 & 16.136054 & -19.651712 & -19.675824 & 0.122697 & 0.002372 \\
+            \hline
+            15 & 0.521000 & 0.579803 & 11.286608 & -18.409761 & -18.519738 & 0.597384 & 0.012507 \\
+            \hline
+            20 & 0.599000 & 0.585546 & 2.246155  & -17.080544 & -17.178850 & 0.575544 & 0.029526 \\
+            \hline
+            25 & 0.626000 & 0.580184 & 7.318929  & -15.904149 & -15.908433 & 0.026938 & 0.049906 \\
+            \hline
+            30 & 0.633000 & 0.560552 & 11.445124 & -14.273271 & -14.132645 & 0.985239 & 0.074231 \\
+            \hline
+            35 & 0.666000 & 0.565082 & 15.152841 & -12.665591 & -12.302080 & 2.870064 & 0.099520 \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{含双极板模型：\(-25^\circ\text{C}\) 工况模型预测与实验结果对比}
+    \vspace{0.3cm}
+    \label{B13}
+    \vspace{0.3cm}
+    \renewcommand{\arraystretch}{1.5} % 增加行高，匹配原图
+    \resizebox{\textwidth}{!}{ % 自动缩放表格以适应页面宽度
+        \begin{tabular}{|c|c|c|c|c|c|c|c|}
+            \hline
+            时间/s & 实验电压/V & 模型电压/V & 电压相对误差/\% & 实验温度/\(^\circ\text{C}\) & 模型温度/\(^\circ\text{C}\) & 温度相对误差/\% & 最大冰体积分数 \\
+            \hline
+            0  & 0.799000 & 0.751969 & 5.886215  & -24.995416 & -25.000000 & 0.018337 & 0.000000 \\
+            \hline
+            5  & 0.800000 & 0.751914 & 6.010688  & -24.962128 & -24.962845 & 0.002871 & 0.000595 \\
+            \hline
+            10 & 0.537000 & 0.607482 & 13.125135 & -24.645267 & -24.646270 & 0.004072 & 0.003115 \\
+            \hline
+            15 & 0.518000 & 0.562155 & 8.524082  & -23.380583 & -23.427279 & 0.199721 & 0.018212 \\
+            \hline
+            20 & 0.592000 & 0.567582 & 4.124711  & -22.032555 & -22.025768 & 0.030803 & 0.041527 \\
+            \hline
+            25 & 0.618000 & 0.560438 & 9.314254  & -20.846074 & -20.692829 & 0.735130 & 0.068589 \\
+            \hline
+            30 & 0.621000 & 0.539458 & 13.130775 & -19.201220 & -18.819982 & 1.985489 & 0.101085 \\
+            \hline
+            35 & 0.644000 & 0.543360 & 15.627382 & -17.587999 & -16.898513 & 3.920203 & 0.135035 \\
+            \hline
+        \end{tabular}
+    }
+\end{table}
+
+电压预测的总体误差高于温度预测。由表 \ref{B12}和表\ref{B13} 可知，\(-20\,^\circ\mathrm C\) 工况下，模型电压在 \(10\,\mathrm s\) 和 \(15\,\mathrm s\) 分别为 \(0.6248\,\mathrm V\) 和 \(0.5798\,\mathrm V\)，实验值分别为 \(0.538\,\mathrm V\) 和 \(0.521\,\mathrm V\)；而在 \(20\,\mathrm s\) 附近二者差异明显减小。至 \(35\,\mathrm s\)，模型电压为 \(0.5651\,\mathrm V\)，实验值为 \(0.666\,\mathrm V\)。\(-25\,^\circ\mathrm C\) 工况表现出相似规律。全部采样点统计得到两种工况的电压 RMSE 分别为 \(0.0595\,\mathrm V\) 和 \(0.0608\,\mathrm V\)，MAPE 分别为 \(8.66\%\) 和 \(9.02\%\)。尽管电压误差大于温度误差，但 \(-25\,^\circ\mathrm C\) 留出工况并未出现明显误差放大，说明模型能够较稳定地预测不同初温下的总体电压水平。
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{03_电压和温度相对误差.pdf}
+\caption{电压和温度相对误差图}
+\label{F4-4}
+\end{figure}
+图 \ref{F4-4} 进一步给出了两种热域下逐时刻的电压和温度相对误差。可以更清晰地看出模型修订前后的差异。五层基线模型在中后期的温度相对误差迅速增大，部分时段接近或达到 \(100\%\)，电压误差也长期维持在较高水平；而加入双极板后，两种初始温度下的温度相对误差在绝大部分时间内均保持较低水平，电压误差也显著下降。修订模型的电压误差在约 \(10\sim15\,\mathrm s\) 以及启动后期相对较大，表明当前模型对电压变化的总体量级能够描述，但对局部动态转折仍存在一定偏差。
+
+从实验和模型曲线的时间位置看，这种偏差主要表现为电压谷值时刻未被完全复现。实验中，\(-20\,^\circ\mathrm C\) 和 \(-25\,^\circ\mathrm C\) 工况的最低电压分别约出现在 \(13.6\,\mathrm s\) 和 \(13.4\,\mathrm s\)；而修订模型中的最低电压分别出现在约 \(28.2\,\mathrm s\) 和 \(28.0\,\mathrm s\)。因此，现有模型对温升过程的刻画较为准确，但对电压谷值形成及恢复的动态机制仍存在一定滞后。
+
+
+\subsubsection{冰相演化及其对电压变化的影响}
+温度与电压的实验对比只能反映模型的宏观响应，而低温冷启动的关键内部状态是冰的生成与累积。图 \ref{F4-5} 给出了五层基线模型与含双极板修订模型在两种初始温度下的最大总冰体积分数、最大孔隙冰体积分数、最大膜相冰体积分数以及最大孔隙冰饱和度。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{04_总冰孔隙冰膜相冰体积分数与孔隙冰饱和度.pdf}
+\caption{总冰孔隙冰膜相冰体积分数与孔隙冰饱和度图}
+\label{F4-5}
+\end{figure}
+
+由图 \ref{F4-5} 可以看出，在含双极板修订模型中，两种工况下冰量在 \(0\sim35\,\mathrm s\) 内均持续增加，且 \(-25\,^\circ\mathrm C\) 工况的冰积累始终高于 \(-20\,^\circ\mathrm C\) 工况。这与较低初始温度下液态水冻结驱动力更强、低温持续时间更长的物理规律相一致。由表 \ref{B12} 和表 \ref{B13} 可知，\(35\,\mathrm s\) 时最大总冰体积分数分别达到 \(0.0995\) 和 \(0.1350\)，即 \(-25\,^\circ\mathrm C\) 工况的最终最大冰量明显高于 \(-20\,^\circ\mathrm C\) 工况。
+另一方面，图 \ref{F4-5}也说明“最大总冰体积分数”与“实际孔隙堵塞程度”并非同一概念。含双极板模型在 \(35\,\mathrm s\) 时，\(-20\,^\circ\mathrm C\) 和 \(-25\,^\circ\mathrm C\) 的最大总冰体积分数分别约为 \(9.95\%\) 和 \(13.50\%\)，而最大孔隙冰体积分数仅约为 \(3.39\%\) 和 \(4.41\%\)，对应最大孔隙冰饱和度约为 \(8.07\%\) 和 \(10.48\%\)。总冰最大值主要来源于膜内冻结水，因此不能直接把总冰体积分数解释为 GDL 或 CL 的气体孔道堵塞比例。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{08_含双极板修订模型温度与结冰时空分布.pdf}
+\caption{含双极板修订模型温度与结冰时空分布图}
+\label{F4-6}
+\end{figure}
+
+由图 \ref{F4-6} 的温度场可以看出，含双极板后沿整个单电池厚度方向的温度分布较为平缓，其主要变化发生在时间维度；这与双极板较高的导热系数及较大的热容量相吻合。两种初温下温度均随时间持续升高，但整个 \(35\,\mathrm s\) 计算窗口内仍低于冰点。冰相空间分布则明显集中在 MEA 中部附近，主要位于 PEM 与阴极催化层邻近区域；其中 \(-25\,^\circ\mathrm C\) 工况的局部冰体积分数更高、累积范围更明显。
+
+这一时空分布结果与图 \ref{F4-5} 相互印证：当前模型中最大冰量主要出现在膜相附近，而真正能够直接占据多孔介质孔道的孔隙冰相对较小。因此，虽然冰堵会降低有效孔隙率和氧气扩散系数，但当前 \(0\sim35\,\mathrm s\) 时间范围内电压变化并不能简单归因于“孔隙完全堵塞”。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{05_模型电压与活化欧姆浓差损失分解.pdf}
+\caption{模型电压与活化欧姆浓差损失分解图}
+\label{F4-7}
+\end{figure}
+
+为进一步分析电压下降机制，图 \ref{F4-7}给出了可逆电压、模型输出电压及活化、欧姆和浓差损失的分解结果。由图 \ref{F4-7} 可知，在当前模型参数与闭合关系下，三类极化损失中活化损失占主导地位，欧姆损失次之，浓差损失整体较小。随着电流加载增加，活化损失明显增大，使电池电压迅速下降；与此同时，温度升高会改善反应动力学和膜质子传导，而冰积累又通过催化层有效反应面积、膜水状态及有效扩散系数产生反向作用，因此模型电压实际上是升温有利效应与结冰不利效应共同作用的结果。
+
+由模型计算可知，两种含双极板工况在 \(0\sim35\,\mathrm s\) 内局部温度均未超过冰点，累计融化质量为零；同时冰体积分数由图 \ref{F4-5} 可见始终保持增长。因此，当前实验中约 \(14\,\mathrm s\) 后的电压回升并非由冰融化引起，更可能是温升对电化学动力学、膜电导率等有利作用逐渐增强并超过部分冻结负面效应的综合结果。
+
+
+\subsubsection{模型守恒性与结果可靠性}
+除与实验数据进行外部验证外，还需检查所建立多物理场模型在数值计算中的内部一致性。图 \ref{F4-8} 给出了含双极板修订模型的水量和热量收支。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{06_含双极板修订模型水量热量收支与守恒残差.pdf}
+\caption{含双极板模型水量热量收支与守恒残差图}
+\label{F4-8}
+\end{figure}
+
+由图 \ref{F4-8}(a)、(b) 可见，两种工况下累计电化学产水与域内储水量变化基本保持一致，累计排水量较小，而水量收支残差始终维持在接近机器精度的数量级；由图 \ref{F4-8}(c)、(d) 可见，累计反应产热随时间持续增加，相变热和边界散热被同步计入能量收支，能量残差同样保持在极小范围内。数值结果中，总水质量残差绝对值低于 \(1.4\times10^{-16}\,\mathrm{kg\,m^{-2}}\)，离散热量预算残差低于 \(2.5\times10^{-7}\,\mathrm{J\,m^{-2}}\)。由此说明三相质量转移、跨界面通量和热量离散在当前算法中保持了较好的守恒一致性。
+
+进一步的网格和时间步加密检验表明，含双极板模型相对于正式工作网格的联合加密结果中，\(-20\,^\circ\mathrm C\) 与 \(-25\,^\circ\mathrm C\) 工况的电压最大差异分别仅为 \(1.78\times10^{-4}\,\mathrm V\) 和 \(2.54\times10^{-4}\,\mathrm V\)，温度最大差异分别约为 \(0.0010\,^\circ\mathrm C\) 和 \(0.0015\,^\circ\mathrm C\)。因此，电压和平均温度的数值离散误差已经远小于模型与实验之间的实际偏差，说明上述宏观结果不是由当前网格或时间步选择造成的。
+
+需要指出的是，冰量预测的不确定性高于温度和电压。最大冰体积分数在联合加密后的变化约占正式结果峰值的 \(3\%\sim4\%\)，且冻结速率、膜非冻结水阈值以及膜—CL 水交换关系均会对冰量产生较明显影响。由于附件实验未提供局部冰量或膜含水量的直接测量，因此表\ref{B12}、表 \ref{B13} 对温度和电压的验证并不能等价为对内部冰体积分数的独立实验验证。本文所给冰量应理解为在当前相变动力学和膜水闭合条件下得到的模型预测状态，其主要作用是描述不同低温工况的结冰趋势和评价冰堵风险。
+
+综合表 \ref{B12}、表 \ref{B13} 及图 \ref{F4-3}--图 \ref{F4-8} 可以得到：五层基线模型由于忽略双极板热质量，明显高估短时冷启动中的温升速度，进而难以正确预测电压；加入双极板热惯性后，两种初始温度下的平均温度均得到较准确预测，并使电压误差显著降低。模型进一步表明，低温越低，冰相累积越明显，其中总冰主要集中于膜及阴极催化层邻近区域，而孔隙冰占比相对较低；在当前模型下，电压损失主要受活化极化控制，温升改善与持续结冰共同决定了电压的动态变化。虽然模型仍未准确再现实验电压谷值的具体时刻，但其对热响应、电压量级及不同初温下结冰趋势具有较好的描述能力，可作为后续电堆冷启动建模与加载策略优化的单电池基础模型。
+\subsection{问题一小结}
+针对低温条件下氢燃料电池自冷启动过程中“产热—散热”与“产水—冻结”相互竞争的问题，本文在题目所给常温一维模型基础上，引入水蒸气、液态水和固态冰三相水描述，建立了包含冻结/融化、冷凝/蒸发及凝华/升华过程的相变模型，并通过冰体积分数动态修正有效孔隙率、气体扩散系数、催化层有效反应面积及膜质子电导率，使水冰状态能够反馈至传质过程和电化学性能。同时，将相变潜热纳入能量守恒，并进一步考虑双极板的储热与导热作用，形成“五层质量传输域—七层热传递域”的一维瞬态自冷启动模型。
+
+在数值求解方面，采用有限体积法进行空间离散，结合后向欧拉时间推进、顺序分裂及热—电 Picard 迭代完成各物理场耦合计算；利用 \(-20\,^\circ\mathrm C\) 实验数据校准参考交换电流密度，并将所得参数直接用于 \(-25\,^\circ\mathrm C\) 工况进行留出验证。结果表明，若仅采用五层 MEA 热域，会明显低估实际单电池的热惯性，导致温升速度和电压均产生较大偏差；引入双极板后，两种工况下模型温度曲线与实验结果显著接近，\(-20\,^\circ\mathrm C\) 和 \(-25\,^\circ\mathrm C\) 工况的温度 RMSE 分别降至 \(0.1162\,^\circ\mathrm C\) 和 \(0.2323\,^\circ\mathrm C\)，电压 MAPE 分别为 \(8.66\%\) 和 \(9.02\%\)，说明模型能够较好描述不同初始温度下的整体热响应和电压变化水平。
+
+进一步分析表明，在 \(0\sim35\,\mathrm s\) 冷启动过程中，两种工况的冰体积分数均持续增加，且 \(-25\,^\circ\mathrm C\) 工况结冰更为严重；\(35\,\mathrm s\) 时最大总冰体积分数分别约为 \(0.0995\) 和 \(0.1350\)。冰量主要集中于膜及阴极催化层邻近区域，而真正占据多孔介质孔道的孔隙冰相对较小。电压损失分解显示，当前模型中活化极化占主要部分，电压变化由升温带来的动力学改善与持续结冰造成的传质、电荷传递恶化共同决定，而不能简单归因于融冰。
+
+此外，水量和热量收支残差均保持在极小数量级，网格和时间步加密后温度、电压变化很小，说明数值实现具有较好的守恒性与稳定性。需要指出的是，模型对实验电压谷值出现时刻仍存在一定偏差，且附件缺少局部冰量的直接测量，因此冰体积分数应视为当前相变动力学和膜水闭合条件下的模型预测状态，而非独立实验测量值。总体而言，所建立模型能够较好刻画单电池低温自冷启动过程中温度、电压与结冰状态的耦合演化，可作为后续五片电堆冷启动建模及电流加载策略优化的基础。
+
+\section{问题二的分析与求解}
+\subsection{问题描述和分析}
+问题二要求在问题一单电池瞬态自冷启动模型的基础上，将研究对象扩展为由 5 片单电池串联组成的电堆，并在给定最大电流密度和累计电荷量约束下，优化恒流、线性升载和分段阶梯三类电流加载策略，以尽可能缩短电堆达到启动成功条件的时间。进一步还需确定电堆能够实现自冷启动的最低初始温度，并分析低于该温度时导致启动失败的关键单电池及原因。
+
+与问题一相比，问题二的关键变化在于引入了电堆尺度上的热耦合与端部效应。各片单电池在相同电流密度下具有相同的反应产热和产水机制，但相邻单电池之间存在热传导，端部单电池还受到环境散热及端板热惯性的影响，因此不同位置单电池的温升速度、电压和冰积累程度可能出现差异。尤其端部单电池更容易出现温升滞后，从而成为限制整堆启动的薄弱环节。
+
+此外，电流加载同时具有促进产热和增加产水的双重作用：提高电流有利于加快升温，但也会增加低温下的结冰风险并降低电压。因此，本文在问题一水—热—电耦合模型基础上，引入片间导热和端部热效应，建立五片电堆瞬态自冷启动模型；随后对三类加载策略进行参数优化，并通过逐步降低初始温度搜索电堆自冷启动的临界温度，从而分析不同加载方式下的启动性能及临界失效机理。
+\subsection{五片电堆瞬态自冷启动模型的建立}
+问题一已经建立了包含水—冰相变、冰占孔、气体输运、能量守恒及电化学极化过程的一维单电池瞬态冷启动模型。问题二在此基础上进一步考虑五片单电池串联形成电堆后的片间热传递及端部效应。由于题目假定各片反应气体分配均匀，五片单电池内部仍采用第四章建立的相同水—热—电耦合模型，其差异主要来源于堆叠方向的传热边界：相邻单电池之间通过双极板传导热量，而首尾单电池还受到端板热质量及低温环境散热的共同影响。因而，本文在单片模型之外建立电堆尺度集中参数热网络，并利用各片平均温度与原单片模型进行双向耦合。
+
+\subsubsection{电堆结构、节点划分及基本假设}
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {电堆结构}
+
+沿电堆堆叠方向，从左至右依次包括左端板、左侧终端双极板、5片膜电极组件、4块内部共用双极板、右侧终端双极板以及右端板。相邻两片MEA共用一块双极板，其两侧分别服务于相邻电池，故不能按照两块独立双极板重复计算。五片电堆共包含4块内部共用双极板和2块终端流场板，共计6个板位置。其结构如图\ref{F5-1}所示。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.9\textwidth]{电堆模型.eps}
+\caption{五片电堆结构及热耦合模型示意图}
+\label{F5-1}
+\end{figure}
+
+问题一中的孤立单电池采用两块独立外侧双极板，而本问则按照实际共享板结构重新分配板体热容量，以避免对内部双极板热质量重复计量。
+
+
+\noindent 由第四章可知，单片MEA总厚度为
+\begin{equation}
+L_{\text{MEA}} = 2L_{\text{GDL}} + L_{\text{aCL}} + L_{\text{PEM}} + L_{\text{cCL}} = 326.7 \, \mu\text{m}. \tag{5-1}
+\end{equation}
+
+\noindent 在电堆集中参数热网络中，以各片MEA中心作为单电池代表平面。因此，相邻两片单电池代表平面之间的距离即电池节距：
+\begin{equation}
+\delta = L_{\text{MEA}} + L_{\text{BP}} = 0.3267 \, \text{mm} + 2 \, \text{mm} = 2.3267 \, \text{mm}. \tag{5-2}
+\end{equation}
+
+\noindent 电堆各层的有效换热面积取题目给出的单电池截面积：
+\begin{equation}
+A = 25 \, \text{cm}^2 = 2.5 \times 10^{-3} \, \text{m}^2. \tag{5-3}
+\end{equation}
+
+\noindent 为兼顾端板较大的热惯性和计算效率，本文采用7节点集中参数热网络，包括5个单电池节点 \(T_k(t)\) (\(k = 1,\dots,5\)) 和2个端板节点 \(T_{\text{EL}}(t)\)、\(T_{\text{ER}}(t)\)。其连接关系为
+\begin{equation}
+\text{EL} \overset{g_E}{\longleftrightarrow} 1 \overset{g_c}{\longleftrightarrow} 2 \overset{g_c}{\longleftrightarrow} 3 \overset{g_c}{\longleftrightarrow} 4 \overset{g_c}{\longleftrightarrow} 5 \overset{g_E}{\longleftrightarrow} \text{ER}. \tag{5-4}
+\end{equation}
+
+\noindent 其中，\(g_c\) 为相邻单电池间单位面积热导，\(g_E\) 为端部单电池与端板之间的单位面积耦合热导。端部单电池1和5同时按照题给条件与低温环境进行对流换热。
+
+\noindent 端板不能简单并入端部单电池作为同一等温节点。端板单位面积热容约为 \(3.95 \times 10^4 \, \text{J m}^{-2}\text{K}^{-1}\)，明显高于单电池节点热容，其与端部单电池之间的传热过程与冷启动时间处于相近时间尺度。因此若将端板和端部单电池强制等温，会忽略端板的瞬态吸热特性，并高估端部单电池的实际升温能力。源模型因此采用独立端板节点处理。
+
+
+\item \textbf {基本假设}
+
+\noindent 在问题一模型假设基础上，对电堆进一步作如下假设：
+
+\begin{enumerate}
+    \item 电堆由5片结构和材料参数相同的MEA串联组成，相邻MEA共用一块双极板，两端各设置一块终端流场板；
+    \item 五片单电池串联工作并承受相同电流密度 \(j(t)\)，各片内部电化学反应、水迁移及相变方程形式相同；
+    \item 反应气体在各片之间均匀分配，不考虑歧管和流道造成的气体分配差异，电堆非均匀性主要来源于端部效应及片间传热；
+    \item 相邻单电池以及单电池与端板之间采用理想热接触，忽略界面接触热阻；
+    \item 端板视为均匀致密固体，只参与储热和导热，不发生水迁移、相变和电化学反应；
+    \item 五片电池及两块端板初始温度均为 \(T_0\)，环境温度取 \(T_{\text{amb}} = T_0\)；
+\end{enumerate}
+
+\end{itemize}
+
+\subsubsection{片间导热及端部热效应}
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {相邻单电池间导热}
+
+\noindent 题目给出的相邻单电池导热功率为
+\begin{equation}
+\dot{Q}_{k,k+1} = \frac{k_{\text{eff}}A}{\delta} [T_k(t) - T_{k+1}(t)], \qquad k = 1, 2, 3, 4. \tag{5-5}
+\end{equation}
+
+\noindent 式中，\(k_{\text{eff}}\) 为相邻单电池代表平面之间的等效导热系数。定义相邻电池之间的单位面积热导 \(g_c\)，则有
+\begin{equation}
+g_c = \frac{k_{\text{eff}}}{\delta}, \qquad \dot{Q}_{k,k+1} = A g_c (T_k - T_{k+1}). \tag{5-6}
+\end{equation}
+
+\noindent 为避免将 \(k_{\text{eff}}\) 简单等同于某一材料的导热系数，本文从相邻两个 MEA 中心之间的实际串联热阻出发确定 \(g_c\)。热量从第 \(k\) 片 MEA 中心传至第 \(k+1\) 片 MEA 中心，依次经过半片 MEA、一块内部共用双极板以及另一半片 MEA。因此单位面积总热阻为
+\begin{equation}
+R_{\text{pitch}} = \frac{L_{\text{MEA}}/2}{k_{\text{MEA}}} + \frac{L_{\text{BP}}}{k_{\text{BP}}} + \frac{L_{\text{MEA}}/2}{k_{\text{MEA}}} = \frac{L_{\text{MEA}}}{k_{\text{MEA}}} + \frac{L_{\text{BP}}}{k_{\text{BP}}}. \tag{5-7}
+\end{equation}
+
+\noindent 于是
+\begin{equation}
+g_c = \frac{1}{R_{\text{pitch}}}, \qquad k_{\text{eff}} = \frac{\delta}{R_{\text{pitch}}} = \delta g_c. \tag{5-8}
+\end{equation}
+
+\noindent 其中，MEA 本身由 aGDL、aCL、PEM、cCL 和 cGDL 沿厚度方向串联，其单位面积热阻和等效贯穿导热系数分别为
+\begin{equation}
+R_{\text{MEA}} = \sum_j \frac{\delta_j}{k_j}, \qquad k_{\text{MEA}} = \frac{L_{\text{MEA}}}{R_{\text{MEA}}}. \tag{5-9}
+\end{equation}
+
+\noindent 在干燥初始状态下，各功能层内部按照第四章中的体积分数加权方法计算层内导热系数，结果如表\ref{B5-1}所示。
+
+\begin{table}[htbp]
+    \centering
+    \caption{MEA各功能层干燥状态下的等效导热系数}
+    \renewcommand{\arraystretch}{1.5} % 增加行高，匹配原图
+        \label{B5-1}
+    \begin{tabular}{l c l r}
+        \toprule
+        功能层 & 干孔隙率 \(\varepsilon_0\) & 骨架/离聚物分率 & \(k_j / (\text{W m}^{-1}\text{K}^{-1})\) \\
+        \midrule
+        aGDL & 0.8 & 骨架0.2 & \(0.3(0.2) + 0.1672(0.8) = 0.1938\) \\
+        aCL & 0.3916 & 骨架0.3084、离聚物0.3 & \shortstack[r]{\(0.27(0.3084) + 0.24(0.3) +\) \\ \(0.1672(0.3916) = 0.2207\)} \\
+        PEM & --- & 全离聚物 & \(0.2400\) \\
+        cCL & 0.4207 & 骨架0.2793、离聚物0.3 & \shortstack[r]{\(0.27(0.2793) + 0.24(0.3) +\) \\ \(0.0235(0.4207) = 0.1573\)} \\
+        cGDL & 0.8 & 骨架0.2 & \(0.3(0.2) + 0.0235(0.8) = 0.0788\) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\noindent 代入各层厚度和导热系数，可得
+\begin{equation}
+R_{\text{MEA}} = \frac{150\mu}{0.1938} + \frac{3.4\mu}{0.2207} + \frac{12\mu}{0.24} + \frac{11.3\mu}{0.1573} + \frac{150\mu}{0.0788} = 2.815 \times 10^{-3} \, \text{m}^2\text{K W}^{-1}. \tag{5-10}
+\end{equation}
+
+\noindent 由此得到MEA初始等效贯穿导热系数
+\begin{equation}
+k_{\text{MEA}} = \frac{326.7\mu}{2.815 \times 10^{-3}} = 0.1161 \, \text{W m}^{-1}\text{K}^{-1}. \tag{5-11}
+\end{equation}
+
+\noindent 进一步有
+\begin{equation}
+R_{\text{pitch}} = \underbrace{\frac{326.7\mu}{0.1161}}_{\text{\footnotesize \(2.815\times 10^{-3}\) (两半MEA)}} + \underbrace{\frac{2 \, \text{mm}}{95}}_{\text{\footnotesize \(2.105\times 10^{-5}\) (一块共用BP)}} = 2.836 \times 10^{-3} \, \text{m}^2\text{K W}^{-1}. \tag{5-12}
+\end{equation}
+
+\noindent 因此，初始片间单位面积热导及相应等效导热系数分别为
+\begin{equation}
+g_c = \frac{1}{R_{\text{pitch}}} = 352.6 \, \text{W m}^{-2}\text{K}^{-1}, \qquad k_{\text{eff}} = \delta g_c = 0.8204 \, \text{W m}^{-1}\text{K}^{-1}. \tag{5-13}
+\end{equation}
+
+\noindent 可以看出，片间总热阻主要由MEA贡献，其中高孔隙率的阴极GDL由于气相导热系数较低，对贯穿热阻贡献较大。随着启动过程中液态水和冰相发生变化，各功能层导热系数亦会随之改变，因此正式计算中片间热导并不固定，而按照各片实时水冰状态更新为
+\begin{equation}
+g_{k,k+1}(t) = \left[ \frac{1}{2} R_{\text{MEA},k}(t) + \frac{L_{\text{BP}}}{k_{\text{BP}}} + \frac{1}{2} R_{\text{MEA},k+1}(t) \right]^{-1}. \tag{5-14}
+\end{equation}
+
+\noindent 这样既保留了问题一含水、含冰状态对材料热物性的动态影响，也保证同一片间边的传热功率在相邻两节点之间等量反向出现。
+
+
+\item \textbf {端板—端部电池热耦合}
+
+\noindent 端板中心与相邻端部MEA中心之间依次经过半片MEA、终端流场板以及半块机械端板，因此单位面积串联热阻为
+\begin{equation}
+R_E = \frac{L_{\text{MEA}}/2}{k_{\text{MEA}}} + \frac{L_{\text{BP}}}{k_{\text{BP}}} + \frac{L_{\text{EP}}/2}{k_{\text{EP}}}, \qquad k_{\text{EP}} = 15 \, \text{W m}^{-1}\text{K}^{-1}. \tag{5-15}
+\end{equation}
+
+\noindent 代入各参数得
+\begin{align}
+R_E &= \frac{163.35 \, \mu}{0.1161} + \frac{2 \, \text{mm}}{95} + \frac{5 \, \text{mm}}{15} \nonumber \\
+    &= 1.407 \times 10^{-3} + 2.11 \times 10^{-5} + 3.333 \times 10^{-4} \nonumber \\
+    &= 1.761 \times 10^{-3} \, \text{m}^2\text{K W}^{-1}. \tag{5-16}
+\end{align}
+
+\noindent 因此端板与端部电池之间的单位面积耦合热导为
+\begin{equation}
+g_E = \frac{1}{R_E} = 567.7 \, \text{W m}^{-2}\text{K}^{-1}. \tag{5-17}
+\end{equation}
+
+\noindent 机械端板单位面积热容为
+\begin{equation}
+C_{A,\text{EP}} = L_{\text{EP}} \rho_{\text{EP}} c_{p,\text{EP}} = 0.01 \times 7900 \times 500 = 39500 \, \text{J m}^{-2}\text{K}^{-1}. \tag{5-18}
+\end{equation}
+
+\noindent 单块完整双极板或终端流场板的单位面积热容为
+\begin{equation}
+C_{A,\text{BP}} = L_{\text{BP}} \rho_{\text{BP}} c_{p,\text{BP}} = 0.002 \times 1980 \times 766 = 3033.36 \, \text{J m}^{-2}\text{K}^{-1}. \tag{5-19}
+\end{equation}
+
+\noindent 为保证共享板热质量只计算一次，每块内部双极板的热容平均分配给其两侧单电池，而两端终端流场板的全部热容分别归入相邻端部电池。因此第 \(k\) 个电池节点的单位面积热容写为
+\begin{equation}
+C_{A,k}(t) = C_{A,\text{MEA},k}(t) + w_k C_{A,\text{BP}}, \qquad w_k = \begin{cases} 3/2, & k = 1, 5, \\ 1, & k = 2, 3, 4. \end{cases} \tag{5-20}
+\end{equation}
+
+\noindent 以干燥MEA面热容 \(C_{A,\text{MEA}} \approx 50.23 \, \text{J m}^{-2}\text{K}^{-1}\) 估算，端部电池节点面热容约为 \(4600.27 \, \text{J m}^{-2}\text{K}^{-1}\)，中间电池节点约为 \(3083.59 \, \text{J m}^{-2}\text{K}^{-1}\)。5个电池节点对应的板体权重满足 \(\sum_{k=1}^5 w_k =6\)，与电堆实际6个板位置一致。
+
+\noindent 因此，五个单电池节点总面热容为
+\begin{equation}
+C_{A,\text{cells}} = \sum_{k=1}^5 C_{A,k} = \sum_{k=1}^5 C_{A,\text{MEA},k} + 6C_{A,\text{BP}} \approx 18451.31 \, \text{J m}^{-2}\text{K}^{-1}. \tag{5-21}
+\end{equation}
+
+\noindent 考虑两块端板后，干燥参考状态下整个电堆的总单位面积热容约为 \(97451.31 \, \text{J m}^{-2}\text{K}^{-1}\)。正式计算中，MEA部分热容随水、冰状态实时更新，而双极板和端板热容均采用附件所给固定材料参数。
+
+\noindent 题目规定首尾单电池还与环境发生对流换热，其功率表示为
+\begin{equation}
+\dot{Q}_{\text{conv},k} = hA[T_k(t) - T_{\text{amb}}], \qquad k = 1, 5. \tag{5-22}
+\end{equation}
+
+\noindent 其中 \(h = 40 \, \text{W m}^{-2}\text{K}^{-1}\)。本文主计算按照题目给定形式，将该对流项直接作用于端部单电池节点，而端板节点仅通过 \(g_E\) 与端部单电池进行热交换，从而避免对环境散热重复计量。
+
+\noindent 若将环境对流严格设置于机械端板外表面，则端板中心至环境之间的等效单位面积热导可表示为
+\(u_E = [(L_{\text{EP}}/2)/k_{\text{EP}} + 1/h]^{-1} = 39.47 \, \text{W m}^{-2}\text{K}^{-1}\)。
+该值与题目给定的 \(h = 40 \, \text{W m}^{-2}\text{K}^{-1}\) 十分接近，因此本文保留题面简化作为正式计算边界。
+
+\noindent 为判断机械端板是否可以与端部单电池合并为同一热节点，定义其热弛豫时间常数：
+\begin{equation}
+\tau_E = \frac{C_{A,\text{EP}}}{g_E} = \frac{39500}{567.7} = 69.6 \, \text{s}. \tag{5-23}
+\end{equation}
+
+\noindent 该时间尺度与燃料电池冷启动过程的数十秒时间尺度相当，说明启动过程中端板与相邻单电池不能视为瞬时等温。因此，将两块端板设置为独立热节点是必要的。
+
+
+
+\end{itemize}
+
+\subsubsection{电堆能量守恒及七节点热网络}
+
+\noindent 对第 \(k\) 片单电池，将第四章建立的局部能量守恒方程在MEA区域积分，并加入分配给该节点的双极板热容，可得到集中参数形式的能量方程。定义第 \(k\) 片单电池单位面积上的内部热源为
+\begin{equation}
+\bar{q}_k = \frac{1}{A} \int_{\text{cell } k} (\dot{q}_{\text{gen}} + \dot{q}_{\text{pc}}) \, \mathrm{d}V = j(E_{\text{th}} - V_k) + \bar{q}_{\text{pc},k}. \tag{5-24}
+\end{equation}
+
+\noindent 其中，\(j(E_{\text{th}} - V_k)\) 为电化学反应产生的单位面积热流，\(\bar{q}_{\text{pc},k}\) 为冻结、融化等水冰相变产生的单位面积潜热源。冻结时该项为正，融化时为负。
+
+\noindent 对端部单电池1，其能量守恒关系为
+\begin{equation}
+C_{A,1} \frac{\mathrm{d}T_1}{\mathrm{d}t} = \bar{q}_1 + g_c(T_2 - T_1) + g_E(T_{\text{EL}} - T_1) - h(T_1 - T_{\text{amb}}). \tag{5-25}
+\end{equation}
+
+\noindent 第2片单电池满足
+\begin{equation}
+C_{A,2} \frac{\mathrm{d}T_2}{\mathrm{d}t} = \bar{q}_2 + g_c(T_1 - T_2) + g_c(T_3 - T_2). \tag{5-26}
+\end{equation}
+
+\noindent 中心单电池3满足
+\begin{equation}
+C_{A,3} \frac{\mathrm{d}T_3}{\mathrm{d}t} = \bar{q}_3 + g_c(T_2 - T_3) + g_c(T_4 - T_3). \tag{5-27}
+\end{equation}
+
+\noindent 第4片单电池满足
+\begin{equation}
+C_{A,4} \frac{\mathrm{d}T_4}{\mathrm{d}t} = \bar{q}_4 + g_c(T_3 - T_4) + g_c(T_5 - T_4). \tag{5-28}
+\end{equation}
+
+\noindent 端部单电池5满足
+\begin{equation}
+C_{A,5} \frac{\mathrm{d}T_5}{\mathrm{d}t} = \bar{q}_5 + g_c(T_4 - T_5) + g_E(T_{\text{ER}} - T_5) - h(T_5 - T_{\text{amb}}). \tag{5-29}
+\end{equation}
+
+\noindent 左、右机械端板只与相邻端部单电池发生导热，其能量方程分别为
+\begin{equation}
+C_{A,\text{EP}} \frac{\mathrm{d}T_{\text{EL}}}{\mathrm{d}t} = g_E(T_1 - T_{\text{EL}}). \tag{5-30}
+\end{equation}
+\begin{equation}
+C_{A,\text{EP}} \frac{\mathrm{d}T_{\text{ER}}}{\mathrm{d}t} = g_E(T_5 - T_{\text{ER}}). \tag{5-31}
+\end{equation}
+
+
+\noindent 为便于数值求解，将7个温度节点组成状态向量。下文矩阵表示中为简化符号，记 \(C_k = C_{A,k}\)、\(C_{\text{EP}} = C_{A,\text{EP}}\)，则
+\begin{equation}
+\boldsymbol{\theta} = [T_{\text{EL}}, T_1, T_2, T_3, T_4, T_5, T_{\text{ER}}]^{\text{T}}, \qquad \mathbf{C} = \text{diag}(C_{\text{EP}}, C_1, C_2, C_3, C_4, C_5, C_{\text{EP}}). \tag{5-32}
+\end{equation}
+
+\noindent 热网络可统一写为
+\begin{equation}
+\mathbf{C} \frac{\text{d}\boldsymbol{\theta}}{\text{d}t} = -\mathbf{G}\boldsymbol{\theta} + \mathbf{b}. \tag{5-33}
+\end{equation}
+
+\noindent 其中电导矩阵为
+\begin{equation}
+\mathbf{G} = \begin{pmatrix}
+g_E & -g_E & 0 & 0 & 0 & 0 & 0 \\
+-g_E & g_E + g_c + h & -g_c & 0 & 0 & 0 & 0 \\
+0 & -g_c & 2g_c & -g_c & 0 & 0 & 0 \\
+0 & 0 & -g_c & 2g_c & -g_c & 0 & 0 \\
+0 & 0 & 0 & -g_c & 2g_c & -g_c & 0 \\
+0 & 0 & 0 & 0 & -g_c & g_c + g_E + h & -g_E \\
+0 & 0 & 0 & 0 & 0 & -g_E & g_E
+\end{pmatrix}. \tag{5-34}
+\end{equation}
+
+\noindent 相应的热源与环境向量为
+\begin{equation}
+\mathbf{b} = [0, \bar{q}_1 + hT_{\text{amb}}, \bar{q}_2, \bar{q}_3, \bar{q}_4, \bar{q}_5 + hT_{\text{amb}}, 0]^{\text{T}}. \tag{5-35}
+\end{equation}
+
+\noindent 矩阵 \(\mathbf{G}\) 具有对称的网络导热结构，其内部导热项均以等量反向形式作用于相邻节点。因此，将5个单电池及2个端板的能量方程相加后，所有片间导热项和端板耦合项均相互抵消，只剩电堆内部总产热及首尾单电池与环境的对流换热：
+\begin{equation}
+\frac{\text{d}}{\text{d}t} \left[ \sum_{k=1}^5 C_{A,k}T_k + C_{A,\text{EP}}(T_{\text{EL}} + T_{\text{ER}}) \right] = \sum_{k=1}^5 \bar{q}_k - h(T_1 - T_{\text{amb}}) - h(T_5 - T_{\text{amb}}). \tag{5-36}
+\end{equation}
+
+\noindent （5-36）表明，片间导热和端板耦合只负责电堆内部热量重新分配，不改变系统总能量；该式同时可作为数值程序进行全局能量守恒检验的重要依据。
+
+\noindent 由于电堆结构、加载电流和初始条件均关于中心单电池镜面对称，理论上应满足
+\begin{equation}
+T_1 = T_5, \qquad T_2 = T_4, \qquad T_{\text{EL}} = T_{\text{ER}}. \tag{5-37}
+\end{equation}
+
+\noindent 因此完整7节点系统可进一步降为 \(T_{\text{EL}}, T_1, T_2, T_3\) 四个独立温度变量。正式计算仍保留完整节点结构，以便直接输出五片单电池状态；上述对称关系则用于检验数值实现的一致性。由于1、5号电池具有相同的端部边界条件，两者在当前对称模型中具有相同的热力学地位。
+
+\subsubsection{各片水冰状态及电压模型}
+
+五片单电池内部均继续采用第四章建立的三相水质量守恒、冰占孔修正、反应气体传输、电荷守恒及冰影响下的电压模型，不再重复推导。问题二新增的电堆热网络通过各片平均温度 \(T_k(t)\) 与单片模型耦合：不同的温度将进一步改变饱和蒸气压、冻结和融化速率、交换电流密度、膜质子电导率以及氧气极限传质能力，使各片产生不同的冰体积分数和输出电压。问题二正是通过这种“堆叠方向传热—单片水冰状态—电化学性能”的反馈关系刻画电堆内部非均匀性。
+
+\noindent 第 \(k\) 片单电池第 \(i\) 个离散控制体内的局部冰体积分数及该片最大冰体积分数分别定义为
+\begin{equation}
+\varepsilon_{\text{ice},k,i}(t) = \frac{m_{i,k}(x_i, t)}{\rho_i}, \qquad \varepsilon_{\text{ice},k}^{\text{max}}(t) = \max_{i \in \text{MEA}_k} \varepsilon_{\text{ice},k,i}(t). \tag{5-38}
+\end{equation}
+
+\noindent 附件1进一步给出了首尾单电池与中间单电池不同的浓差极化系数。定义位置修正因子
+\begin{equation}
+\beta_k = \begin{cases} 10, & k = 1, 5, \\ 1, & k = 2, 3, 4. \end{cases} \tag{5-39}
+\end{equation}
+
+\noindent 将其作用于浓差损失，则第 \(k\) 片单电池的浓差极化表示为
+\begin{equation}
+\eta_{\text{con},k} = -\beta_k \frac{RT_k}{4F} \ln \left( 1 - \frac{j}{j_{\text{lim},k}} \right). \tag{5-40}
+\end{equation}
+
+\noindent 其中，\(j_{\text{lim},k}\) 仍由第四章中含冰状态下的阴极氧气浓度和有效扩散系数确定。该位置修正与“端部温升较慢—低温持续时间较长—冰量和传质阻力增大”的物理机制共同影响端部单电池电压。
+
+\noindent 因此，第 \(k\) 片单电池输出电压仍由可逆电压减去活化、欧姆及浓差三类损失得到：
+\begin{equation}
+V_k = E_{\text{rev},k} - \eta_{\text{act},k} - \eta_{\text{ohm},k} - \eta_{\text{con},k}. \tag{5-41}
+\end{equation}
+
+\noindent 为评价整个启动过程中最危险的单片电压状态，定义电堆最低单片电压为
+\begin{equation}
+V_{\text{min}} = \min_{0 \le t \le t_s} \min_{1 \le k \le 5} V_k(t). \tag{5-42}
+\end{equation}
+
+\noindent 该量既用于比较不同加载策略的安全裕度，也用于后续识别低温条件下限制电堆启动的关键单电池。
+
+\subsubsection{电荷约束与启动成功判据}
+
+\noindent 问题二中的加载电流不仅决定各片反应产热和产水速率，还受到最大电流密度和累计电荷量的双重限制。任意加载策略均须满足
+\begin{equation}
+0 \leq j(t) \leq j_{\text{max}} = 0.5 \, \text{A cm}^{-2}, \qquad \int_0^{t_s} j(t) \, \mathrm{d}t \leq q_{\text{max}} = 20 \, \text{C cm}^{-2}. \tag{5-43}
+\end{equation}
+
+\noindent 启动成功时实际消耗的单位面积累计电荷量为
+\begin{equation}
+q_{\text{use}} = \int_0^{t_s} j(t) \, \mathrm{d}t. \tag{5-44}
+\end{equation}
+
+\noindent 由于五片单电池串联，同一电流同时流经所有单电池，因此累计电荷量只按外部回路计算一次，而每片单电池均分别产生反应热。
+
+\noindent 根据题目定义，电堆启动成功要求全部5片单电池同时满足温度和冰量条件，并且整个启动过程中任意单片电压始终不低于安全下限。首先，启动时刻各片温度必须全部越过冰点：
+\begin{equation}
+\min_{1 \leq k \leq 5} T_k(t) > 0^\circ\text{C}. \tag{5-45}
+\end{equation}
+
+\noindent 其次，各片最大冰体积分数应满足
+\begin{equation}
+\max_{1 \leq k \leq 5} \varepsilon_{\text{ice},k}(t) < 0.99. \tag{5-46}
+\end{equation}
+
+\noindent 与此同时，单片电压属于全过程路径约束，要求
+\begin{equation}
+\min_{1 \leq k \leq 5} V_k(t) \geq 0.30 \, \text{V}, \qquad 0 \leq t \leq t_s. \tag{5-47}
+\end{equation}
+
+\noindent 其中，温度条件和冰量条件属于启动终端条件，而电压条件必须在 \(0 \sim t_s\) 整个启动过程中持续满足。也就是说，只要任一单电池曾经跌破 \(0.30 \, \text{V}\)，即使其后电压恢复，也不再判为成功启动。
+
+
+\noindent 为统一描述启动成功状态，定义温度和冰量终端条件指示函数为
+\begin{equation}
+\chi_s(t) = \mathbf{1}_{\{\min\limits_k T_k(t) > 0\}} \mathbf{1}_{\{\max\limits_k \varepsilon_{\text{ice},k}(t) < 0.99\}}. \tag{5-48}
+\end{equation}
+
+\noindent 定义截至时刻 \(t\) 的电压路径安全指示函数为
+\begin{equation}
+\chi_v(t) = \mathbf{1}_{\{\min\limits_{0 \leq \tau \leq t} \min\limits_k V_k(\tau) \geq 0.30\}}. \tag{5-49}
+\end{equation}
+
+\noindent 则电堆启动成功时刻严格定义为
+\begin{equation}
+t_s = \inf \{t \geq 0 : \chi_s(t) = 1 \text{ 且 } \chi_v(t) = 1\}. \tag{5-50}
+\end{equation}
+
+\noindent 数值计算中，在每一时间步同步检查五片单电池的温度、冰量和历史最低电压。当首次出现全部单电池温度高于 \(0^\circ\text{C}\)、冰体积分数低于0.99，且此前从未发生单片电压低于 \(0.30 \, \text{V}\) 时，即判定电堆启动成功，并采用时间步内线性插值确定更精确的 \(t_s\)。
+
+\noindent 若累计电荷达到 \(q_{\text{max}}\) 后仍未满足式（5-50），则认为当前加载策略启动失败。根据首先触发的限制，可进一步将失败状态区分为：单片电压跌破安全下限的电压失效、局部冰体积分数达到严重冰堵阈值的冰量失效，以及累计电荷已耗尽而端部或其他单电池仍未越过冰点的电荷量失效。该分类将在后续最低自启动初温搜索中用于识别电堆冷启动的关键限制因素和瓶颈单电池。
+
+\noindent 至此，问题一建立的单片水—冰—热—电模型与问题二新增的堆叠方向热网络完成耦合，形成五片电堆瞬态自冷启动模型。模型以外部加载电流密度 \(j(t)\) 为输入，同时输出五片单电池温度 \(T_k(t)\)、电压 \(V_k(t)\)、冰体积分数 \(\varepsilon_{\text{ice},k}(t)\) 以及累计电荷量，为下一节不同电流加载策略的参数化和优化求解提供统一的状态方程与约束基础。
+
+\subsection{电流加载策略优化与数值求解}
+
+在5.2建立五片电堆瞬态自冷启动模型后，问题二进一步需要在最大电流密度与累计电荷量约束下确定合理的加载电流 \(j(t)\)，使五片单电池尽可能早地同时满足启动成功条件。由于加载电流不仅决定电化学反应产热，也直接影响阴极产水和低温结冰过程，因此该问题本质上属于由瞬态水—热—电状态方程约束的动态优化问题。
+考虑到直接对连续函数 \(j(t)\) 进行无限维最优控制求解计算量较大，本文采用控制向量参数化方法，将电流曲线分别限制为恒流、线性升载和分段阶梯三类低维形式，并以各类策略的参数作为决策变量。在每组参数下调用5.2建立的五片电堆瞬态模型，完整推进各片温度、水冰状态和电压，并依据启动成功判据计算启动时间 \(t_s\)。在此基础上，通过外层参数搜索获得各策略下的最短启动时间，并进一步搜索给定电流、电荷约束下电堆能够实现自冷启动的最低初始温度。
+\subsubsection{三类电流加载策略参数化}
+策略优化层统一采用 \(\mathrm{A\,cm^{-2}}\) 作为电流密度单位、\(\mathrm{C\,cm^{-2}}\) 作为累计电荷量单位；输入各片单电池内部控制方程时按照
+\(j[\mathrm{A\,m^{-2}}]=10^4j[\mathrm{A\,cm^{-2}}]\)
+进行换算。
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {恒流加载策略}
+
+\noindent 恒流策略在冷启动开始后立即施加恒定电流密度，并保持至成功启动或触发失败条件。其表达式为
+\begin{equation}
+j(t) = j_c, \qquad 0 \leq t \leq t_s, \qquad 0 \leq j_c \leq j_{\text{max}}. \tag{5-51}
+\end{equation}
+
+\noindent 此时决策变量仅为
+\[
+\mathbf{p}_{\text{const}} = (j_c).
+\]
+
+\noindent 恒流策略参数最少、控制形式最简单，但整个启动过程中只能采用一个固定电流，因此需要同时兼顾初始低温阶段的电压与结冰安全性以及后期的升温需求。
+
+
+\item \textbf {线性升载策略}
+
+\noindent 为使加载电流能够随冷启动过程逐渐提高，定义线性加载策略为电流从零开始以固定斜率 \(a\) 增加，达到平台电流 \(j_p\) 后保持不变：
+\begin{equation}
+j(t) = \min(at, j_p), \qquad a > 0, \qquad 0 < j_p \leq j_{\text{max}}. \tag{5-52}
+\end{equation}
+
+\noindent 其决策变量为
+\[
+\mathbf{p}_{\text{ramp}} = (a, j_p),
+\]
+达到平台电流的时刻为 \(t_p = j_p / a\)。当 \(j_p = j_{\text{max}}\) 时，即得到直接升至最大允许电流的线性加载形式。
+
+\item \textbf {分段阶梯加载策略}
+
+\noindent 分段阶梯策略利用多个常值电流阶段逼近更一般的时变加载曲线。本文采用三段阶梯形式：
+\begin{equation}
+j(t) = \begin{cases}
+j_1, & 0 \leq t < t_1, \\
+j_2, & t_1 \leq t < t_2, \\
+j_3, & t \geq t_2,
+\end{cases} \qquad 0 \leq j_m \leq j_{\text{max}}. \tag{5-53}
+\end{equation}
+
+\noindent 相应决策变量为
+\[
+\mathbf{p}_{\text{step}} = (j_1, t_1, j_2, t_2, j_3).
+\]
+与恒流和线性加载相比，该策略具有更多自由度，可分别调整三个阶段的电流大小及两个切换时刻。
+
+\noindent 从控制函数的表达能力看，恒流可视为线性加载在 \(a \to \infty\)、\(j_p = j_c\) 时的极限形式，而线性加载又可由足够多的阶梯段逐渐逼近。因此从参数化控制集合的理论包络关系可写为
+\begin{equation}
+t_s^{\text{step}} \leq t_s^{\text{ramp}} \leq t_s^{\text{const}}. \tag{5-54}
+\end{equation}
+
+\noindent 需要说明的是，（5-54）描述的是理想参数空间下不同控制形式的表达能力关系，并不意味着本题有限参数范围和硬约束条件下实际数值最优解必然严格满足不等号。若最优控制恰位于最大电流边界，较复杂的加载或阶梯形式也可能退化为恒流形式。因此三种策略的实际性能仍以后续数值优化结果为准。
+
+
+\end{itemize}
+\subsubsection{最短启动时间优化模型}
+
+\noindent 对于 \(s \in \{\text{const}, \text{ramp}, \text{step}\}\) 三类策略，在题目规定的初始温度
+\[
+T_0 = -10^\circ\text{C} = 263.15 \, \text{K}
+\]
+下，以电堆首次满足全部启动条件的时刻 \(t_s\) 为优化目标，即
+\begin{equation}
+\min_{\mathbf{p}_s} t_s(\mathbf{p}_s). \tag{5-55}
+\end{equation}
+
+\noindent 优化过程同时受到5.2建立的五片电堆瞬态状态方程、电流与累计电荷量约束以及温度、冰量和电压安全条件限制。统一写为
+\begin{equation}
+\begin{aligned}
+& \text{动力学约束：} \quad \text{五片电堆热网络方程及各片水/冰/电化学状态方程,} \\
+& 0 \leq j(t; \mathbf{p}_s) \leq j_{\text{max}}, \quad \int_0^{t_s} j(t; \mathbf{p}_s) \, \mathrm{d}t \leq q_{\text{max}}, \\
+& \min_k T_k(t_s) > 0, \quad \max_k \varepsilon_{\text{ice},k}(t_s) < 0.99, \\
+& \min_k V_k(t) \geq 0.30 \, \text{V}, \quad \forall t \in [0, t_s], \\
+& \mathbf{p}_s \in \mathcal{P}_s.
+\end{aligned}
+\tag{5-56}
+\end{equation}
+
+\noindent 其中，温度和最大冰体积分数为终端约束，最低单片电压为全过程路径约束；\(\mathcal{P}_s\) 表示相应策略的参数可行域。三类策略对应的决策变量维数见表\ref{B90}。
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{三类加载策略的决策变量}
+        \vspace{0.3cm}
+        \label{B90}
+    \renewcommand{\arraystretch}{1.5} % 增加行高，匹配原图
+    \begin{tabular}{l c c l}
+        \toprule
+        加载策略 & 决策变量 & 维数 & 参数范围 \\
+        \midrule
+        恒流 & \(j_c\) & 1 & \(0 \leq j_c \leq 0.5\) \\
+        线性升载 & \((a, j_p)\) & 2 & \(0 < a \leq j_{\text{max}}/t_{\text{min}}, \ 0 < j_p \leq 0.5\) \\
+        三段阶梯 & \((j_1, t_1, j_2, t_2, j_3)\) & 5 & \(0 \leq j_m \leq 0.5, \ 0 < t_1 < t_2\) \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+其中 \(t_{\min}\) 为升载斜率参数搜索中采用的最小时间尺度。由此，问题二第一部分被转化为低维参数化控制条件下、含终端约束与路径约束的动态优化问题。
+
+\begin{itemize}
+\renewcommand{\labelitemi}{$\blacktriangleright$}
+\item \textbf {冰堵特征时间尺度}
+
+\noindent 为了在数值优化前判断不同电流尺度对冷启动过程的可能影响，可比阴极催化层理论冰堵时间与电池升温时间。
+
+\noindent 阴极催化层单位面积孔隙体积为 \(L_{\text{cCL}}\varepsilon_{\text{cCL}}\)，若全部孔隙均被冰填满，对应单位面积冰质量为
+\begin{equation}
+m_{\text{fill}} = \rho_i L_{\text{cCL}} \varepsilon_{\text{cCL}} = 920 \times 4.75 \times 10^{-6} = 4.37 \times 10^{-3} \, \text{kg m}^{-2}. \tag{5-57}
+\end{equation}
+
+\noindent 当外部电流密度为 \(j\) (A cm\(^{-2}\)) 时，阴极单位面积电化学产水速率为
+\begin{equation}
+\dot{m}_{\text{prod}} = \frac{M_w(10^4 j)}{2F} = 9.33 \times 10^{-4} j \, \text{kg m}^{-2}\text{s}^{-1}. \tag{5-58}
+\end{equation}
+
+\noindent 若作极限估计，认为新生成的水全部在阴极催化层原位冻结且不存在迁移和排出，则得到理论冰堵特征时间
+\begin{equation}
+\tau_{\text{block}}(j) = \frac{m_{\text{fill}}}{9.33 \times 10^{-4} j} = \frac{4.68}{j} \, \text{s}, \qquad j \text{ 以 A cm}^{-2} \text{ 计}. \tag{5-59}
+\end{equation}
+
+\noindent 例如，当 \(j = 0.3 \, \text{A cm}^{-2}\) 时，
+\(\tau_{\text{block}} \approx 15.6 \, \text{s}\)；
+当 \(j = 0.5 \, \text{A cm}^{-2}\) 时约为 \(9.4 \, \text{s}\)。
+该估算采用“全部产水立即原位结冰”的极限假设，因此主要用于判断电流和结冰时间尺度的相对量级，而不作为实际冰堵时间的直接预测。
+
+\noindent 另一方面，忽略片间导热、端板吸热、对流散热和相变潜热时，第 \(k\) 片单电池由反应产热产生的初始升温速率可近似为
+\begin{equation}
+\left.\frac{\text{d}T_k}{\text{d}t}\right|_j = \frac{j(10^4)(E_{\text{th}} - V_k)}{C_{A,k}}. \tag{5-60}
+\end{equation}
+
+\noindent 以 \(E_{\text{th}} - V_k \approx 0.88 \, \text{V}\) 估算，
+当 \(j = 0.3 \, \text{A cm}^{-2}\) 时，端部和中间单电池的理想升温速率约为 \(0.57 \text{ 和 } 0.86 \, \text{K s}^{-1}\)；
+当 \(j = 0.5 \, \text{A cm}^{-2}\) 时分别约为 \(0.96 \text{ 和 } 1.43 \, \text{K s}^{-1}\)。
+因此，提高电流确实能够明显增加反应产热，但同时也会按近似相同比例提高产水速率。实际最优策略需要由完整耦合模型判定两种作用的竞争结果。
+
+\noindent 进一步地，若由单片电压约束
+\[
+V_k(j,t) \geq 0.30 \, \text{V}
+\]
+反求某时刻第 \(k\) 片电池能够承受的最大安全电流 \(j_{V,k}(t)\)，则不限制具体策略形式时，可定义理论安全电流包络
+\begin{equation}
+j^*(t) = \min \left\{ j_{\text{max}}, \min_k j_{V,k}(t) \right\}. \tag{5-61}
+\end{equation}
+
+\noindent （5-61）给出了参数化策略可参考的理论上界：任何实际加载策略既不能超过最大电流密度，也不能超过由最薄弱单电池电压安全条件决定的瞬时允许电流。但这包络是否呈明显的“先低后高”结构仍取决于当前模型计算得到的温度、冰量及电压轨迹，不能预先作为数值结果。
+
+\item \textbf {电荷量的能量尺度校验}
+
+\noindent 除冰堵时间尺度外，还可由电堆全局能量守恒估算自冷启动所需累计电荷量的理论量级。
+
+\noindent 五片单电池从 \(T_0\) 升高至冰点所需的单位面积显热近似为
+\begin{equation}
+Q_{\text{cells}} \approx (2C_{A,\text{end}} + 3C_{A,\text{mid}})(T_f - T_0) = C_{A,\text{cells}}(T_f - T_0). \tag{5-62}
+\end{equation}
+
+\noindent 由于串联电堆中同一次外部电荷在5片单电池内均产生反应热，每单位电荷对应的整堆产热近似为 \(5(E_{\text{th}} - \bar{V})\)。
+
+\noindent 因此，仅考虑五片单电池本身升温所需的累计电荷量可估算为
+\begin{equation}
+q_{\text{cells}} \approx \frac{(2C_{A,\text{end}} + 3C_{A,\text{mid}})(T_f - T_0)}{5(E_{\text{th}} - \bar{V}) \cdot 10^4} = \frac{C_{A,\text{cells}}(T_f - T_0)}{5(E_{\text{th}} - \bar{V}) 10^4}. \tag{5-63}
+\end{equation}
+
+\noindent 对于 \(T_0 = -10^\circ\text{C}\)，取 \(E_{\text{th}} - \bar{V} = 0.8 \, \text{V}\)，可得
+\[
+q_{\text{cells}} \approx 4.61 \, \text{C cm}^{-2}.
+\]
+
+\noindent 由于实际启动过程中两侧端板也会被部分加热，若以 \(\eta_{\text{EP}}\) 表示端板热容在启动时间尺度内的有效参与比例，同时考虑环境对流损失，则进一步有
+\begin{equation}
+q_{\text{need}} \approx \frac{[C_{A,\text{cells}} + 2C_{A,\text{EP}}\eta_{\text{EP}}](T_f - T_0)}{5(E_{\text{th}} - \bar{V}) 10^4} + q_{\text{conv}}. \tag{5-64}
+\end{equation}
+
+\noindent 当 \(\eta_{\text{EP}} = 0.3,0.4,0.5\) 时，不计对流损失的估算值分别约为 \(10.54,12.51,14.49 \, \text{C cm}^{-2}\)，均低于题目给定的 \(q_{\text{max}} = 20 \, \text{C cm}^{-2}\)。
+
+\noindent 该结果仅用于优化前的数量级校验；端板实际吸热比例、相变热及环境散热均由完整瞬态模型自动计算。因此，最终可行性及最优累计电荷量以后续数值解为准。若数值计算得到的成功策略出现明显低于式（5-63）所给基本显热尺度的电荷消耗，则需要重新检查热量计算及单位换算。
+
+\noindent 优化完成后，三类策略统一记录启动时间 \(t_s\)、实际累计电荷量 \(q_{\text{use}}\)、最大电流密度、全过程最低单片电压、最大冰体积分数以及最终启动状态，并据此进行5.4中的结果比较。
+
+\end{itemize}
+
+
+\subsubsection{最低自启动初始温度搜索}
+
+\noindent 完成 \(-10^\circ\text{C}\) 下的电流策略优化后，需要进一步确定在 \(j_{\text{max}} = 0.5 \, \text{A cm}^{-2}\)、\(q_{\text{max}} = 20 \, \text{C cm}^{-2}\) 条件下电堆能够依靠自身反应热实现冷启动的最低初始温度。
+
+\noindent 定义初始温度 \(T_0\) 下的可行性函数
+\begin{equation}
+\Phi(T_0) = \begin{cases}
+1, & \exists j(t) \text{ 满足全部电流、电荷及启动约束，并使 } t_s < \infty, \\
+0, & \text{不存在满足上述条件的加载策略.}
+\end{cases} \tag{5-65}
+\end{equation}
+
+\noindent 随着初始温度降低，电堆越过冰点所需显热增加、低温持续时间延长，启动难度总体增加。因此将成功与失败之间的临界初始温度定义为
+\begin{equation}
+T_0^* = \inf \{T_0 : \Phi(T_0) = 1\}. \tag{5-66}
+\end{equation}
+
+\noindent 即 \(T_0 \geq T_0^*\) 时存在可行的自冷启动策略，而 \(T_0 < T_0^*\) 时在当前电流及电荷约束下无法完成自冷启动。
+
+\noindent 数值搜索时首先以 \(-10^\circ\text{C}\) 为暖起点，按照约 1 K 的步长逐步降低初始温度，并在每个 \(T_0\) 下重新运行相应加载策略及电堆瞬态模型。找到首次由成功转为失败的温度区间后，再采用二分法逐步缩小可行—不可行区间，直至温差小于预设容差。临界点附近统一采用相同空间网格、时间步和约束判定标准进行复算，并以是否满足全部硬约束作为可行性判据，而不以优化目标值大小代替成功判定。
+
+\noindent 为进一步分析临界失败位置，对每一失败工况记录各片单电池首次违反约束的时间以及温度、电压和冰体积分数状态。定义关键单电池为
+\begin{equation}
+k^* = \arg\min_k [\text{第 } k \text{ 片满足成功条件的最晚时刻或首个失效时刻}]. \tag{5-67}
+\end{equation}
+
+\noindent 在左右完全对称的模型中，1、5号端部电池具有相同的热边界和位置修正，因此理论上二者应同时表现出相同的临界状态；最终瓶颈位置仍由实际数值轨迹确认，而不预先作为失效结论。
+
+\noindent 从模型结构上看，降低初始温度可能通过以下热—水—电耦合链条放大端部不利效应：
+\begin{equation}
+T_0 \downarrow \Rightarrow \begin{cases} \Delta T = T_f - T_0 \uparrow, \\ j_0(T_0) \downarrow, \\ \text{端板初温降低、端部加热负荷增加} \end{cases} \Rightarrow \text{端部单电池温升减慢、零下停留时间延长} \tag{5-68}
+\end{equation}
+
+\noindent 随后，较长的零下停留时间可能进一步造成冰积累和传质能力下降：
+\begin{equation}
+\text{冰持续累积} \Rightarrow \varepsilon_g \downarrow \Rightarrow D_{\text{O}_2,\text{eff}} \downarrow \Rightarrow j_{\text{lim}} \downarrow \Rightarrow \eta_{\text{con}} \uparrow \Rightarrow V_k \downarrow. \tag{5-69}
+\end{equation}
+
+\noindent 需要强调的是，（5-68）--（5-69）描述的是可能存在的耦合失效路径，并不预先断定临界启动必然由冰堵或电压崩溃触发。临界工况还可能表现为累计电荷量首先达到 \(20 \, \text{C cm}^{-2}\)，而最冷单电池仍未升至 \(0^\circ\text{C}\) 的能量受限状态。因此后续5.4将依据实际计算结果区分“电压/冰堵约束先触发”与“电荷量耗尽但温度未达标”两类失效模式。
+
+\subsubsection{瞬态模型数值积分与外层优化算法}
+
+\noindent 由于每一次策略评价均需完整求解五片单电池内部水冰输运、电化学状态及七节点热网络，本文采用“内层瞬态仿真—外层策略优化”的求解结构。
+
+\noindent 在内层瞬态计算中，继续采用问题一经过验证的有限体积空间离散、后向欧拉时间推进、顺序分裂及热—电 Picard 迭代框架。对于电堆七节点热网络，第 \(n\) 至 \(n+1\) 时间步采用隐式格式：
+\begin{equation}
+\mathbf{C}^{n+1} \frac{\boldsymbol{\theta}^{n+1} - \boldsymbol{\theta}^n}{\Delta t} = -\mathbf{G}^{n+1} \boldsymbol{\theta}^{n+1} + \mathbf{b}^{n+1}. \tag{5-70}
+\end{equation}
+
+\noindent 每一时间步内，首先依据当前策略参数计算 \(j(t)\)，并在五片阴极催化层中加入相应反应产水；随后依次求解液态水迁移、膜水输运、水蒸气扩散以及气—液、气—冰和液—冰相变；完成水相状态更新后，根据新的液水和冰分布重新计算孔隙率和有效扩散系数，并求解氢气、氧气传输。最后根据各片当前电压和相变热组装 \(\bar{q}_k\)、\(\mathbf{G}\) 和 \(\mathbf{b}\)，求解式（5-70）更新七节点温度，并再次更新各片电压。由此完成一个时间步内水—冰—气体—热—电状态的耦合推进。
+
+\noindent 每一时间步结束后，同时执行三类判断：其一，累计
+\[
+q(t) = \int_0^t j(\tau) \, \mathrm{d}\tau
+\]
+并检查是否达到 \(q_{\text{max}}\)；其二，检查各片历史最低电压是否低于 \(0.30 \, \text{V}\)；其三，检查全部单电池的温度和冰量是否首次满足启动终端条件。当发生温度跨越 \(0^\circ\text{C}\) 时，在当前时间步内采用线性插值提高 \(t_s\) 的定位精度。
+
+\noindent 外层优化针对三类策略的决策维数分别选择相应搜索方法。恒流策略仅包含一个决策变量，因此先在 \([0, 0.5]\) 范围进行网格扫描，再采用黄金分割或有界一维搜索精确定位最优 \(j_c\)。线性升载策略包含 \(a\) 和 \(j_p\) 两个参数，采用多起点粗网格确定优良区域后，再利用 Nelder--Mead、模式搜索或相应有约束直接搜索方法进行局部精修。三段阶梯策略包含5个参数，则在保证 \(0 < t_1 < t_2\) 和 \(0 \leq j_m \leq 0.5\) 的条件下采用多起点无梯度搜索，并对电流档位和切换时间同时优化。
+
+\noindent 由于启动时间 \(t_s\) 中包含“成功—失败”状态切换，并受最低电压、冰量和累计电荷等硬约束影响，其关于策略参数通常不是光滑函数。因此本文以无梯度直接搜索和多起点策略作为主优化方法，梯度型方法仅作为可行区域内的局部精修手段，以降低在约束边界附近因梯度失真造成的局部搜索误差。
+
+\noindent 在约束处理方面，电流上界通过参数范围和策略函数直接保证；累计电荷量在时间推进过程中逐步积分，一旦预算耗尽而尚未成功即停止当前仿真并标记为不可行；若任一单电池电压低于 \(0.30 \, \text{V}\)，或冰量达到规定上限，同样直接将该候选策略判为不可行。数值计算中设置的膜电导率下限、非负库存等保护仅用于防止数值求值失败，不改变题目规定的物理硬约束。
+
+\subsubsection{数值收敛与结果一致性检验}
+
+\noindent 为了保证得到的最优策略并非由某一特定时间步、空间网格或控制参数离散方式造成，在确定候选最优参数后进一步进行数值加密检验。
+
+\noindent 首先固定最优加载参数，对时间步减半、空间网格加密以及二者联合加密，比较启动时间 \(t_s\)、累计电荷量 \(q_{\text{use}}\)、最低单片电压 \(V_{\text{min}}\) 和最大冰体积分数的变化，以判断瞬态状态求解的离散误差。
+
+\noindent 其次，对分段控制进行策略加密，即逐步增加阶梯段数，检查启动时间是否趋于稳定以及最优电流曲线是否逐渐逼近式（5-61）所定义的安全电流包络。该检验用于判断三段阶梯的参数自由度是否已经足以描述本题最优控制的主要特征。
+
+\noindent 同时，利用模型的左右镜面对称性检查
+\[
+T_1 = T_5, \qquad T_2 = T_4, \qquad T_{\text{EL}} = T_{\text{ER}},
+\]
+并结合5.2中的全局热量守恒关系，检查所有片间导热项及端板耦合项在全局求和是否成对抵消。此外，各片内部继续沿用问题一中的水量守恒与相变供体—受体质量检查。只有在时间—空间加密、热量与水量守恒以及左右对称性均满足要求后，才采用相应优化结果进行下一节的三类加载策略比较和最低自启动温度分析。
+
+\subsection{优化结果与冷启动特性分析}
+
+ 基于5.2建立的五片电堆瞬态自冷启动模型及5.3给出的控制向量参数化方法，分别对恒流、线性升载和三段阶梯三类加载策略进行优化，并进一步向低温方向搜索电堆自冷启动的可行边界。所有结果均基于修正后的共享双极板结构重新计算，即5片MEA之间设置4块内部共用双极板、两端各设置1块终端流场板，并按照共享关系重新分配板体热容。
+
+本节首先比较 \(-10^\circ\mathrm C\) 条件下三种策略的最优启动性能，随后分析电堆内部温度、电压与结冰状态的空间非均匀性，最后确定最低可自启动初始温度并揭示临界低温下的主导失效机理。
+
+\subsubsection{不同电流加载策略的优化结果}
+三种电流加载策略在 \(-10^\circ\mathrm C\) 初始环境下的优化结果如表\ref{B91}所示。
+
+
+\begin{table}[htbp]
+    \centering
+    \caption{不同电流加载策略下电堆自冷启动优化结果}
+    \vspace{0.3cm}
+    \label{B91}
+    \renewcommand{\arraystretch}{1.6} % 增加行高，匹配原图宽松排版
+    \resizebox{\textwidth}{!}{ % 自动缩放表格以适应页面宽度
+        \begin{tabular}{l l c c c c c c}
+            \toprule
+            加载策略 & 最优加载参数 & 启动时间/s & 累计电荷量/\(\text{C cm}^{-2}\) & 最大电流密度/\(\text{A cm}^{-2}\) & 最低电压/V & 最大冰体积分数 & 启动结果 \\
+            \midrule
+            恒流 & \(j = 0.5\) & 16.3956 & 8.19782 & 0.500 & 0.497135 & 0.019578 & 成功 \\
+            线性升载 & \shortstack{\(a = 2.5, j_p = 0.5,\) \\ \(t_p =0.2 \, \text{s}\)} & 16.5021 & 8.20104 & 0.500 & 0.497143 & 0.019598 & 成功 \\
+            三段阶梯 & \(j_1 = j_2 = j_3 = 0.5\) & 16.3956 & 8.19782 & 0.500 & 0.497135 & 0.019578 & 成功 \\
+            \bottomrule
+        \end{tabular}
+    }
+\end{table}
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{01_加载策略与累计电荷.pdf}
+\caption{三种最优加载策略及累计电荷量随时间变化图\\恒流加载与阶梯加载数据图重合}
+\label{F5-2}
+\end{figure}
+
+由表\ref{B91}和图\ref{F5-2}可以看出，在当前模型和约束条件下，恒流策略的优化结果直接达到题目允许的最大电流密度 \(0.5\,\mathrm{A\,cm^{-2}}\)，并以16.3956 s首先完成启动。三段阶梯策略经过优化后得到 \(j_1=j_2=j_3=0.5\,\mathrm{A\,cm^{-2}}\)，因此实际上退化为与恒流完全相同的控制曲线，其16.3956 s的启动时间和8.19782 \(\mathrm{C\,cm^{-2}}\) 的累计电荷量均与恒流一致。此时 \(t_1=8\) s、\(t_2=16\) s仅为三档电流相等情况下的一种等价参数表示，不具有唯一的物理切换意义。
+
+有限搜索范围内的线性升载策略在0.2 s内由零升至 \(0.5\,\mathrm{A\,cm^{-2}}\)，启动时间为16.5021s，仅比恒流增加0.1065s，增幅约0.65\%；累计电荷量增加约0.00322 \(\mathrm{C\,cm^{-2}}\)，差异同样很小。从图5-1可以直观看出，三种策略除线性升载开始阶段存在极短的爬升过程外，随后基本均在最大允许电流下运行，因此其累计电荷曲线也高度接近。
+
+需要特别说明线性升载策略的“最优斜率”含义。题目本身并未规定升载斜率上限，而本次有限范围搜索将达到 \(0.5\,\mathrm{A\,cm^{-2}}\) 平台的最短时间限定为0.2s，因此 \(a=2.5\,\mathrm{A\,cm^{-2}s^{-1}}\) 实际上是该有限参数域上的边界解。进一步减小平台到达时间至0.1、0.05、0.02和0.01s后，其启动时间持续逼近恒流的16.3956s。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{12_线性升载斜率极限.pdf}
+\caption{线性升载平台到达时间对启动性能的影响}
+\label{F5-3}
+\end{figure}
+
+由图\ref{F5-3}可见，随着平台到达时间逐渐减小，线性升载的启动时间和累计电荷量均单调趋近恒流结果。因而，在题目未额外限定电流变化速率的条件下，不应将 \(a=2.5\) 解释为线性升载策略在无限斜率范围内唯一的全局最优值；更合理的结论是：线性升载的最优性能下确界趋近于立即施加 \(0.5\,\mathrm{A\,cm^{-2}}\) 的恒流策略。
+这一结果与单纯依据“先小电流抑制结冰、后大电流加速升温”的经验判断有所不同。其根本原因在于，本题 \(-10^\circ\mathrm C\) 条件下冰堵和电压约束均没有成为活跃约束。满载恒流全过程最低单片电压仍为0.497135 V，比0.30 V安全下限高约0.197 V；最大冰体积分数仅为0.019578，最大孔隙冰饱和度仅约0.0175，均远离失效边界。
+
+因此，在当前参数范围内，减小初期电流所带来的结冰抑制收益不足以抵消产热减少造成的升温损失，优化器最终倾向于尽可能早地达到最大电流，以提高反应产热并减少端板吸热和环境散热的累计作用。
+
+\subsubsection{电堆温度、电压与结冰状态的空间非均匀性}
+
+三种最优策略的宏观性能十分接近，但五片单电池内部存在明显的堆叠方向温度非均匀性。图5-3给出了各片单电池及机械端板的温度演化。
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{02_各单电池与端板温度.pdf}
+\caption{三种加载策略下各单电池与端板温度随时间变化图}
+\label{F5-4}
+\end{figure}
+
+由图\ref{F5-4}可见，电堆始终保持关于中心单电池3的镜面对称关系，即第1、5片温度重合，第2、4片温度重合，而中心单电池3升温最快。在最优恒流条件下，中心单电池首先越过 \(0^\circ\mathrm C\)，随后为第2、4片，而端部第1、5片最后越过冰点，因此整堆启动时刻实际上由端部单电池决定。与此同时，两块端板在启动结束时仍明显处于零下，说明冷启动期间端部单电池始终需要向大热容端板传递热量。
+这一空间温差与5.2建立的热网络结构相一致。中间单电池的反应热主要用于自身升温，并可通过片间导热向外传递；而端部单电池除自身升温外，一方面需要经 \(g_E\) 向低温大热容端板供热，另一方面还承受环境对流散热，因此其有效净得热量最低。由此形成“中心片升温最快—次端部居中—端部片最慢”的稳定温度梯度。端部效应也说明，仅以电堆平均温度作为启动判据会高估实际冷启动能力，必须检查全部单电池是否同时越过冰点。
+
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{03_各单电池电压与安全约束.pdf}
+\caption{不同加载策略下各单电池电压及安全裕度图}
+\label{F5-5}
+\end{figure}
+温度非均匀性进一步传递至各片单电池的电化学状态。图\ref{F5-5}给出了三种最优策略下5片单电池的电压变化。
+由图\ref{F5-5}可见，恒流和阶梯策略的电压轨迹几乎完全重合；线性升载因初始电流由零逐渐提高，在极短的升载阶段出现与另外两种策略不同的瞬态响应，但升至平台后同样逐渐趋于一致。5片单电池电压同样呈对称分布，其中端部第1、5片电压最低，第2、4片次之，中心第3片最高。
+
+整个启动过程中所有单片电压均显著高于0.30 V安全下限，恒流最低值为0.497135 V，因此在 \(-10^\circ\mathrm C\) 条件下电压安全约束具有较大裕度。
+随着启动进行，各片电压总体呈恢复上升趋势。这是因为温度升高后交换电流密度提高、膜质子电导增强，活化和欧姆损失逐渐下降；虽然反应产水会造成一定冰积累，但其程度不足以引起严重氧气传质受阻。因此本工况下，升温带来的电化学性能改善明显强于冰积累的不利影响。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{04_总体积基准冰体积分数.pdf}
+\caption{各单电池冰积累程度图}
+\label{F5-6}
+\end{figure}
+
+由图\ref{F5-6}可知，端部第1、5片冰体积分数最高，最大值约0.0196；第2、4片和中心第3片明显较低。其形成原因与温度场完全对应：端部单电池长期处于较低温度，新生成水冻结持续时间更长，而中间单电池较早升温后开始抑制继续冻结甚至出现部分融化，因此中部冰量在达到峰值后有所回落。从与实际气体传输更直接相关的孔隙冰饱和度看，端部最大值仅约0.0175，第2、4片和第3片还要更低。图中三类策略的孔隙冰轨迹同样十分接近。因此，\(-10^\circ\mathrm C\) 优化工况并不存在接近完全冰堵的情况，这进一步解释了为什么降低初始加载电流并不能换取明显的安全收益。
+
+综合图\ref{F5-4}--图\ref{F5-6}可见，五片电堆中的首尾单电池是温度最低、冰量最大且电压最低的位置，因而是最值得关注的潜在瓶颈；但在 \(-10^\circ\mathrm C\) 工况下，其电压和冰量均仍具有较大裕度，真正决定启动时间的主要因素是端部热负荷，而非电化学失效。
+
+\subsubsection{最低自启动初温及临界失效机理}
+\noindent 在完成 \(-10^\circ\text{C}\) 三类策略优化后，进一步降低初始温度并在每个温度点重新进行策略搜索，以确定给定 \(j_{\text{max}} = 0.5 \, \text{A cm}^{-2}\) 和 \(q_{\text{max}} = 20 \, \text{C cm}^{-2}\) 条件下的最低可自启动初温。搜索首先在较大的温度区间内确定可行与不可行状态，随后在分界附近进行二分细化。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{09_最低初温可行性搜索.pdf}
+\caption{不同初始温度下电堆冷启动可行性搜索结果图}
+\label{F5-7}
+\end{figure}
+
+如图\ref{F5-7}所示，随着初始温度降低，启动或终止时间总体增加，最终在约 \(-16.4^\circ\mathrm C\) 附近由成功状态转入失败状态。
+
+三类策略的最终临界区间如表\ref{B95}所示。
+
+
+\begin{table}[htbp]
+    \centering
+   \caption{三类加载策略的最低自启动初温搜索结果} 
+    \vspace{0.3cm}
+    \label{B95}
+    \renewcommand{\arraystretch}{1.5} % 增加行高，匹配原图宽松排版
+    \begin{tabular}{l c c}
+        \toprule
+        \textbf{加载策略} & \textbf{失败侧初温/\(^\circ\text{C}\)} & \textbf{成功侧初温/\(^\circ\text{C}\)} \\
+        \midrule
+        恒流 & -16.425781 & -16.420898 \\
+        线性升载 & -16.425781 & -16.420898 \\
+        三段阶梯 & -16.425781 & -16.420898 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\noindent 三类策略的临界区间完全一致，位于
+\[
+(-16.425781, -16.420898]^\circ\text{C},
+\]
+数值上可取
+\[
+T_0^* \approx -16.4^\circ\text{C}.
+\]
+
+\noindent 需要强调的是，上述区间宽度仅约 \(0.0049^\circ\text{C}\)，它表示二分搜索的数值分辨率，并不意味着模型能够以 \(10^{-3} \, {}^\circ\text{C}\) 的实际物理精度预测燃料电池最低启动温度，最低自启动初温约为 \(-16.4^\circ\text{C}\)。
+
+
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{07_最低启动温度两侧轨迹.pdf}
+\caption{临界初温两侧各单电池温度与电压演化图}
+\label{F5-8}
+\end{figure}
+为了确定临界温度以下的直接失效原因，图\ref{F5-8}比较了临界成功侧和失败侧的温度与电压轨迹。
+从图\ref{F5-8}可以看到，无论临界成功侧还是失败侧，中心单电池3均较早越过冰点，第2、4片随后越过，而第1、5片始终升温最慢。
+
+\noindent 当 \(T_0 = -16.420898^\circ\text{C}\) 时，端部单电池能够在电荷预算耗尽前刚好越过 \(0^\circ\text{C}\)，电堆实现启动；而当初温仅降低至 \(-16.425781^\circ\text{C}\) 时，累计电荷已经达到 \(20.000000 \, \text{C cm}^{-2}\)，端部最低温度仍为 \(-0.001425^\circ\text{C}\)，因此无法满足全部单电池同时高于冰点的启动条件。此时全过程最低电压仍为 \(0.471291 \, \text{V}\)，远高于 \(0.30 \, \text{V}\) 安全下限。
+
+\noindent 由此可以明确判断：本模型下最低自启动初温附近首先触发的并不是电压崩溃或严重冰堵，而是累计电荷预算耗尽；第1、5片端部单电池由于仍未越过冰点而成为整堆启动失败的关键单电池。
+
+\noindent 为使这一失效机理更加清楚，可以进一步考察更低的 \(-18^\circ\text{C}\) 工况。在最大恒流 \(0.5 \, \text{A cm}^{-2}\) 下运行 40 s 后，累计电荷恰好耗尽 \(20 \, \text{C cm}^{-2}\)。此时端部第1、5片温度仍仅为 \(-1.5527^\circ\text{C}\)，而中心第3片已经升至 \(12.4066^\circ\text{C}\)，二者温差达到约 \(14^\circ\text{C}\)；全过程最低电压仍为 \(0.464365 \, \text{V}\)，最大孔隙冰饱和度仅 \(0.099345\)，同样未触及电压或冰堵约束。
+
+\noindent 该结果揭示出低温电堆冷启动具有明显的“内部过热—端部欠热”特征：中心区域已经获得了远超越冰点所需的热量，而端部单电池仍在持续向低温端板传热并承担环境散热，最终导致有限电荷量不能被有效地全部用于抬升瓶颈单电池温度。因此进一步降低初温后，制约整堆自启动能力的核心并非总产热绝对不足，而是热量沿堆叠方向分配不均以及端部额外热负荷造成的局部能量不足。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{08_临界启动电压损失分解.pdf}
+\caption{临界启动工况端部与中心单电池电压损失分解图}
+\label{F5-9}
+\end{figure}
+
+进一步利用电压损失分解可以检验是否存在潜在的冰堵失压机制。由图\ref{F5-9}可见，无论在临界成功侧还是失败侧，电压损失始终以活化损失为主，欧姆损失次之，浓差损失最小；端部单电池的各项损失总体高于中心单电池，但并未出现浓差极化突增所对应的传质崩溃特征。以 \(-18^\circ\mathrm C\) 终止状态为例，端部单电池活化、欧姆和浓差损失分别为0.646002、0.035676和0.001253 V，而中心单电池分别为0.592058、0.022743和0.000127 V。端部浓差损失虽然约为中心片的一个数量级，但绝对值仍只有毫伏量级，并不足以造成电压跌破0.30 V。这说明随着初温降低，冰量增加和低温极化确实恶化了端部电化学性能，但在当前电流与电荷约束下，它们仍是次要效应，尚未先于热量约束触发失效。
+
+因此，最低温度附近的主导失效链条可以概括为：
+初始温度降低 → 跨越冰点所需显热增加，同时端板保持更低温度 → 端部单电池向端板供热及环境散热增加 → 端部温升显著落后于中部 → 累计电荷达到20 \(\mathrm{C\,cm^{-2}}\) 时端部仍未越过0 ℃ → 整堆启动失败。
+该机理同时解释了为什么临界低温下第1、5片始终是关键单电池，也说明若希望进一步拓展电堆的自冷启动温度范围，相比单纯调整电流加载曲线，降低端板热负荷、改善端部保温或引入针对端部的辅助加热可能更为有效。
+
+\subsubsection{数值收敛性与结果稳健性分析}
+为保证上述策略比较和最低初温判断并非由离散参数造成，进一步对时间步和空间网格进行了加密计算。正式结果采用每片232个输运网格和
+\(\Delta t=0.003125\,\mathrm s\)；进一步加密至464个网格、\(\Delta t=0.0015625\,\mathrm s\) 后，恒流最优方案的启动时间仅变化0.001473 s，而最大冰体积分数变化约1.070\%。
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=.95\textwidth]{10_时间空间离散收敛性.pdf}
+\caption{时间—空间离散加密下主要输出量的收敛性图}
+\label{F5-10}
+\end{figure}
+
+由图\ref{F5-10}可见，随着时间步减小和空间网格加密，启动时间与最低电压均逐渐趋于稳定，其中启动时间的离散敏感性很小；相比之下，最大冰体积分数对离散精度更加敏感。因此，本文关于启动时间、最优策略和最低初温的宏观结论具有较好的数值稳定性。
+
+
+综合上述结果，问题二的两个核心结论可以统一概括为：在 \(-10^\circ\mathrm C\) 条件下，冰堵和最低电压约束均具有较大裕度，提高初始电流的产热收益占据主导，因此最短启动对应于尽早施加
+\(0.5\,\mathrm{A\,cm^{-2}}\) 的满载控制，恒流与退化后的三段阶梯均在约16.40 s内完成启动，而无斜率上限时线性升载的性能下确界同样趋近该结果；在
+\(20\,\mathrm{C\,cm^{-2}}\)
+累计电荷约束下，五片电堆最低可自冷启动初温约为
+\(-16.4^\circ\mathrm C\)，低于该温度后首先失效的是第1、5片端部单电池，其直接原因是端板吸热和环境散热使端部温升严重滞后，导致电荷预算耗尽时仍未越过冰点。
+
+\subsection{问题二小结}
+针对有限电流密度和累计电荷量约束下五片燃料电池电堆的自冷启动问题，本文在问题一单电池水—冰—热—电耦合模型基础上，进一步引入相邻单电池间导热、共享双极板热容量分配、端板热惯性及端部环境散热，建立了由5个单电池节点和2个端板节点组成的电堆瞬态热网络，实现了堆叠方向传热与各片水冰状态、电压响应之间的双向耦合。在此基础上，采用控制向量参数化方法描述恒流、线性升载和三段阶梯三类加载策略，并通过“内层瞬态仿真—外层参数优化”确定不同策略下的最短启动时间。
+
+在初始温度为 \(-10^\circ\mathrm C\) 时，恒流策略的最优电流密度达到允许上限 \(0.5\,\mathrm{A\,cm^{-2}}\)，电堆在16.3956 s完成启动，累计消耗电荷量为8.19782 \(\mathrm{C\,cm^{-2}}\)；三段阶梯策略优化后退化为相同的满载恒流形式，得到完全一致的启动结果。有限搜索范围内线性升载的启动时间为16.5021 s，而随着升载时间进一步缩短，其性能持续趋近恒流结果。该结果表明，在本题 \(-10^\circ\mathrm C\) 工况下，最低单片电压和冰量约束均具有较大安全裕度，减小初期电流所获得的结冰抑制作用不足以抵消产热下降，因此尽早达到最大允许电流更有利于缩短启动时间。
+
+进一步分析五片单电池的状态演化发现，电堆存在明显的轴向热非均匀性：中心第3片升温最快，第2、4片次之，而第1、5片端部单电池升温最慢，同时表现出较低的电压和较高的冰积累。其根本原因在于端部单电池除自身升温外，还需向大热容端板供热并承担环境散热，使端部有效净得热量低于中部。因此，在当前参数范围内，整堆启动时刻主要由两端单电池能否越过冰点决定，而不是由严重冰堵或电压安全约束决定。
+在 \(j_{\max}=0.5\,\mathrm{A\,cm^{-2}}\)、\(q_{\max}=20\,\mathrm{C\,cm^{-2}}\) 的约束下，通过逐级降温与二分搜索得到电堆最低可自冷启动初温约为 \(-16.4^\circ\mathrm C\)。临界失败侧在累计电荷量耗尽时，第1、5片端部单电池仍未升至 \(0^\circ\mathrm C\)，而最低电压仍明显高于0.30 V，冰堵程度亦未达到失效阈值，因此临界低温下的直接失效机制属于端部局部能量不足导致的电荷预算耗尽，而非电压崩溃或孔隙完全冰堵。
+
+同时，时间—空间加密结果表明启动时间对离散参数已基本收敛，说明最优策略及临界初温等宏观结论具有较好的数值稳定性。由此可见，若需进一步拓展更低温度下的启动能力，仅依靠调整自启动电流的改善空间有限，后续应重点针对端部热负荷和温度非均匀性引入辅助加热措施，这也为问题三的电堆辅助冷启动优化提供了直接依据。
+
+\section{问题三的分析与求解}
+\subsection{问题三 xxx}
+\subsubsection{问题描述和分析}
+问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析。
+\subsubsection{模型建立与求解}
+模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解。
+
+
+\section{问题四的分析与求解}
+\subsection{问题四 xxx}
+\subsubsection{问题描述和分析}
+问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析问题的分析。
+\subsubsection{模型建立与求解}
+模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解模型建立与求解。
+
+\section{模型的评价}
+\subsection{模型的优点}
+模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点模型的优点。
+\subsection{模型的缺点}
+模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点模型的缺点。
+
+
+
+\section{写作参考格式}
+写作过程中可能要用到一些格式参考，正式写作的时候，可以直接将这一章删掉即可。
+
+\textbf{无序列表格式}
+\begin{itemize}
+\item 无序列表1
+\item 无序列表2
+\item 无序列表3
+\item 无序列表4
+\end{itemize}
+
+
+\textbf{表格格式}
+
+\begin{tabular}{cc}
+ \hline
+ \makebox[0.4\textwidth][c]{符号}	&  \makebox[0.5\textwidth][c]{意义} \\ \hline
+ D	    & 宽度（cm） \\ \hline
+ L	    & 长度（cm）  \\ \hline
+\end{tabular}
+
+
+%
+%\textbf{图片格式}
+%\begin{figure}[h]
+%\centering
+%\includegraphics[width=5cm]{xxx.jpg}
+%\caption{图片标题}
+%\end{figure}
+
+\section{参考文献}
+%参考文献
+\begin{thebibliography}{1.2}%宽度9
+\setlength{\itemsep}{-2mm}
+ \bibitem{bib:one} 
+ 韩中庚. 数学建模方法及其应用[M]. 高等教育出版社, 2005.
+ \bibitem{bib:two}
+ 韩中庚. 数学建模方法及其应用[M]. 高等教育出版社, 2005.
+  \bibitem{bib:two}
+ 韩中庚. 数学建模方法及其应用[M]. 高等教育出版社, 2005.
+\end{thebibliography}
+
+\newpage
+
+\appendix
+\section{人工智能软件使用情况说明}
+
+本研究在建模和论文整理过程中使用了人工智能工具作为辅助。所用工具为 OpenAI 公司提供的 Codex（GPT-6，在线服务版本，使用日期为 2026 年 9 月 26 日）。该工具主要用于比较建模思路、核查部分公式的量纲与推导、辅助编写和调试程序、检索文献线索以及检查论文表述。人工智能工具未直接替代模型选择、参数确定和结果判断，最终建模方案及结论均由参赛队员讨论后确定。
+
+\begin{table}[htbp]
+    \centering
+    \caption{人工智能工具的输入、用途及输出处理情况}
+    \label{tab:ai_disclosure}
+    \small
+    \renewcommand{\arraystretch}{1.25}
+    \setlength{\tabcolsep}{5pt}
+    \begin{tabular}{p{2.7cm}p{5.0cm}p{7.0cm}}
+        \toprule
+        项目 & 输入或采用内容 & 后续处理策略 \\
+        \midrule
+        建模与算法分析 & 赛题文本、附件参数、实验数据特征，以及参赛队提出的水热耦合、冰堵和电堆传热假设 & 对建议逐项进行物理意义、量纲和边界条件核查；模型公式以题目、正式文献和守恒定律为依据，不直接采用来源不明的公式 \\
+        程序实现 & 已确定的控制方程、参数范围、约束条件和计算流程 & 使用 Python 3.x 及 NumPy、SciPy、Numba、Matplotlib 等开源软件完成数值计算和绘图；队员独立运行程序，并检查质量与能量守恒、约束可行性以及网格和时间步收敛性 \\
+        计算路线 & 一维有限体积离散、隐式时间推进、电堆热网络，以及电流加载和辅助加热策略的约束优化需求 & 根据各小问分别实现瞬态仿真、参数校准、策略搜索和反馈控制；优化结果重新代入模型进行完整时域验证，并比较不同工况和参数扰动下的稳定性 \\
+        论文整理 & 参赛队撰写的模型说明、计算结果、图表和参考文献条目 & 对生成文字进行删改和重写，统一符号、公式编号及术语；文献来源由队员复核，所有表格数值和结论均与最终程序输出再次核对 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+模型中的几何尺寸、材料参数和运行约束优先采用题目附件给定值；附件未给出的物性参数和经验关系通过公开文献选取。需要校准的参数以实验数据和合理数量级为约束，并通过敏感性分析检验；网格数、时间步长和优化迭代次数等数值超参数依据收敛性与计算稳定性确定。人工智能给出的中间建议仅作为候选方案，未经来源核验、数值复算或物理检查的内容未写入最终论文。
+
+
+\end{document} 

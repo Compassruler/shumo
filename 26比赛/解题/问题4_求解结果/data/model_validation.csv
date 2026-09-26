@@ -1,0 +1,14 @@
+﻿test,value,tolerance,passed
+Q3_constant_success_time_error_s,2.980073077196721e-09,1e-06,True
+Q3_constant_heater_energy_error_J,3.445347829256207e-07,0.0001,True
+Q3_constant_voltage_error_V,3.2884805989397137e-13,1e-07,True
+Q3_constant_ice_error,8.175751742278692e-15,1e-07,True
+initially_warm_first_success_zero,0.0,0.0,True
+initially_warm_energy_zero,0.0,0.0,True
+initially_warm_heater_locked_zero,0.0,0.0,True
+shutdown_latch_power_zero,0.0,0.0,True
+shutdown_latch_energy_zero,0.0,1e-10,True
+hold_duration_error_s,0.0,1e-07,True
+safety_priority_survives_zero_taper,0.0,1e-12,True
+per_cell_power_bounds,0.0,0.0,True
+invalid_inputs_rejected,0.0,0.0,True
