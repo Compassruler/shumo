@@ -1,0 +1,49 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图01_预冷温度场族.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 54,
+  "text_trace_count": 66,
+  "stroke_path_count": 108,
+  "filled_region_count": 49,
+  "image_region_count": 1,
+  "summary": {
+    "fail": 1,
+    "warn": 0,
+    "contained_fill_overlays": 5,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "预冷时间",
+      "text_bbox": [
+        785.48974609375,
+        35.39748001098633,
+        821.4895629882812,
+        44.39748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        462.7522888183594,
+        27.2974853515625,
+        840.6506958007812,
+        307.2554931640625
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        70,
+        88
+      ]
+    }
+  ]
+}

@@ -1,0 +1,240 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图13_名义与留裕度备选.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 75,
+  "text_trace_count": 94,
+  "stroke_path_count": 114,
+  "filled_region_count": 95,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 9,
+    "warn": 0,
+    "contained_fill_overlays": 26,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "2855.41",
+      "text_bbox": [
+        88.44789123535156,
+        47.455081939697266,
+        117.28643798828125,
+        55.455081939697266
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        54.01055908203125,
+        450.7879333496094,
+        54.01055908203125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        22
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "293.61",
+      "text_bbox": [
+        260.04620361328125,
+        197.070556640625,
+        284.44720458984375,
+        205.070556640625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        200.01681518554688,
+        450.7879333496094,
+        200.01681518554688
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        12
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "1767.15",
+      "text_bbox": [
+        339.3805847167969,
+        111.0123062133789,
+        368.2191467285156,
+        119.0123062133789
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        112.41305541992188,
+        450.7879333496094,
+        112.41305541992188
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        18
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "推荐留裕度策略",
+      "text_bbox": [
+        379.6879577636719,
+        48.89751052856445,
+        442.6875915527344,
+        57.89751052856445
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        54.01055908203125,
+        450.7879333496094,
+        54.01055908203125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        22
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "1855.38",
+      "text_bbox": [
+        383.2937927246094,
+        105.85895538330078,
+        412.1323547363281,
+        113.85895538330078
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        112.41305541992188,
+        450.7879333496094,
+        112.41305541992188
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        18
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "98.40",
+      "text_bbox": [
+        538.2569580078125,
+        43.098941802978516,
+        558.2203979492188,
+        51.098941802978516
+      ],
+      "other_text": null,
+      "other_bbox": [
+        495.1690673828125,
+        44.544921875,
+        896.1595458984375,
+        44.544921875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        57
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "88.80",
+      "text_bbox": [
+        663.7233276367188,
+        124.42288970947266,
+        683.686767578125,
+        132.42288208007812
+      ],
+      "other_text": null,
+      "other_bbox": [
+        495.1690673828125,
+        129.25738525390625,
+        896.1595458984375,
+        129.25738525390625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        53
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "98.40",
+      "text_bbox": [
+        789.1896362304688,
+        43.098941802978516,
+        809.153076171875,
+        51.098941802978516
+      ],
+      "other_text": null,
+      "other_bbox": [
+        495.1690673828125,
+        44.544921875,
+        896.1595458984375,
+        44.544921875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        57
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "-1.70",
+      "text_bbox": [
+        790.0802612304688,
+        412.0108642578125,
+        808.262451171875,
+        420.0108642578125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        495.1690673828125,
+        414.51953125,
+        896.1595458984375,
+        414.51953125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        122
+      ]
+    }
+  ]
+}

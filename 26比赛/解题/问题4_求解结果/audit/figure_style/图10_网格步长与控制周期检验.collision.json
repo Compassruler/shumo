@@ -1,0 +1,193 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图10_网格步长与控制周期检验.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 61,
+  "text_trace_count": 103,
+  "stroke_path_count": 184,
+  "filled_region_count": 213,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 7,
+    "warn": 0,
+    "contained_fill_overlays": 11,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "工况1：完全冷却",
+      "text_bbox": [
+        367.1831359863281,
+        316.197509765625,
+        435.16558837890625,
+        325.197509765625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        47.86000061035156,
+        308.0975036621094,
+        453.20501708984375,
+        535.4595336914062
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        135,
+        149
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "工况2：预冷20 min",
+      "text_bbox": [
+        367.1831359863281,
+        329.697509765625,
+        445.11041259765625,
+        338.697509765625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        434.7802429199219,
+        308.0975036621094,
+        434.7802429199219,
+        535.4595336914062
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        135
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "工况3：预冷40 min",
+      "text_bbox": [
+        367.1831359863281,
+        343.197509765625,
+        445.11041259765625,
+        352.197509765625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        434.7802429199219,
+        308.0975036621094,
+        434.7802429199219,
+        535.4595336914062
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        135
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "联合减半dt（浅色大圆）",
+      "text_bbox": [
+        803.2407836914062,
+        424.02850341796875,
+        902.455078125,
+        433.02850341796875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        892.134765625,
+        308.0975036621094,
+        892.134765625,
+        535.4595336914062
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        200
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "20 min",
+      "text_bbox": [
+        869.5376586914062,
+        35.39751052856445,
+        897.4805908203125,
+        44.39751052856445
+      ],
+      "other_text": null,
+      "other_bbox": [
+        892.134765625,
+        27.2974853515625,
+        892.134765625,
+        254.65951538085938
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        76
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "40 min",
+      "text_bbox": [
+        869.5376586914062,
+        48.89751052856445,
+        897.4805908203125,
+        57.89751052856445
+      ],
+      "other_text": null,
+      "other_bbox": [
+        892.134765625,
+        27.2974853515625,
+        892.134765625,
+        254.65951538085938
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        76
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "100 min",
+      "text_bbox": [
+        869.5376586914062,
+        62.39751052856445,
+        902.4649658203125,
+        71.39751434326172
+      ],
+      "other_text": null,
+      "other_bbox": [
+        892.134765625,
+        27.2974853515625,
+        892.134765625,
+        254.65951538085938
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        76
+      ]
+    }
+  ]
+}

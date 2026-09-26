@@ -1,0 +1,194 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图11_物理参数与控制器敏感性.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 89,
+  "text_trace_count": 130,
+  "stroke_path_count": 224,
+  "filled_region_count": 226,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 7,
+    "warn": 0,
+    "contained_fill_overlays": 7,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "失败",
+      "text_bbox": [
+        222.36557006835938,
+        412.40130615234375,
+        238.3656768798828,
+        420.40130615234375
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        317.989501953125,
+        473.1985168457031,
+        554.7647705078125
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        159,
+        187
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "导热倍率 0.1",
+      "text_bbox": [
+        328.6610107421875,
+        34.49748611450195,
+        379.3812561035156,
+        43.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        343.9787292480469,
+        27.2974853515625,
+        343.9787292480469,
+        264.07275390625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        12
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "导热倍率 0.25",
+      "text_bbox": [
+        328.6610107421875,
+        47.49748611450195,
+        384.3656005859375,
+        56.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        343.9787292480469,
+        27.2974853515625,
+        343.9787292480469,
+        264.07275390625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        12
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "导热倍率 0.5",
+      "text_bbox": [
+        328.6610107421875,
+        60.49748611450195,
+        379.3812561035156,
+        69.49748992919922
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        27.2974853515625,
+        473.1985168457031,
+        264.07275390625
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        12,
+        26
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "导热倍率 1",
+      "text_bbox": [
+        422.7641296386719,
+        34.49748611450195,
+        466.0000305175781,
+        43.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        453.9530029296875,
+        27.2974853515625,
+        453.9530029296875,
+        264.07275390625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        16
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "导热倍率 2",
+      "text_bbox": [
+        422.7641296386719,
+        47.49748611450195,
+        466.0000305175781,
+        56.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        453.9530029296875,
+        27.2974853515625,
+        453.9530029296875,
+        264.07275390625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        16
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "失败",
+      "text_bbox": [
+        688.526611328125,
+        440.3581848144531,
+        704.5267333984375,
+        448.3581848144531
+      ],
+      "other_text": null,
+      "other_bbox": [
+        696.526611328125,
+        317.989501953125,
+        696.526611328125,
+        554.7647705078125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        242
+      ]
+    }
+  ]
+}

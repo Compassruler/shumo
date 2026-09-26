@@ -1,0 +1,172 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图12_测量噪声与初场扰动.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 66,
+  "text_trace_count": 88,
+  "stroke_path_count": 746,
+  "filled_region_count": 1335,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 6,
+    "warn": 0,
+    "contained_fill_overlays": 6,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "工况1：完全冷却",
+      "text_bbox": [
+        371.5440673828125,
+        34.49748611450195,
+        439.52655029296875,
+        43.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        27.2974853515625,
+        456.66595458984375,
+        246.01950073242188
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        10,
+        24
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "失败（红圈）",
+      "text_bbox": [
+        371.5440673828125,
+        47.49748611450195,
+        425.54376220703125,
+        56.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        396.6123352050781,
+        27.2974853515625,
+        396.6123352050781,
+        246.01950073242188
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "工况2：预冷20 min",
+      "text_bbox": [
+        371.5440673828125,
+        60.49748611450195,
+        449.4713134765625,
+        69.49748992919922
+      ],
+      "other_text": null,
+      "other_bbox": [
+        396.6123352050781,
+        27.2974853515625,
+        396.6123352050781,
+        246.01950073242188
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "工况3：预冷40 min",
+      "text_bbox": [
+        371.5440673828125,
+        73.49748992919922,
+        449.4713134765625,
+        82.49748992919922
+      ],
+      "other_text": null,
+      "other_bbox": [
+        396.6123352050781,
+        27.2974853515625,
+        396.6123352050781,
+        246.01950073242188
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "虚线：首次达标期限；红圈为任一约束失败",
+      "text_bbox": [
+        515.8970947265625,
+        213.4017333984375,
+        667.8990478515625,
+        221.4017333984375
+      ],
+      "other_text": null,
+      "other_bbox": [
+        518.0291137695312,
+        27.2974853515625,
+        601.1483154296875,
+        246.01950073242188
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        353,
+        355
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 3 stroked path(s)",
+      "text": "未找到首次事件的行显示实际仿真终点",
+      "text_bbox": [
+        515.8970947265625,
+        221.64175415039062,
+        651.8988037109375,
+        229.64175415039062
+      ],
+      "other_text": null,
+      "other_bbox": [
+        503.6910705566406,
+        27.2974853515625,
+        910.5595092773438,
+        246.01950073242188
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        353,
+        355,
+        363
+      ]
+    }
+  ]
+}

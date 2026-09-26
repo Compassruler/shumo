@@ -1,0 +1,120 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图05_case2_动态控制轨迹.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 82,
+  "text_trace_count": 113,
+  "stroke_path_count": 111054,
+  "filled_region_count": 221919,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 4,
+    "warn": 0,
+    "contained_fill_overlays": 13,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "安全下限 0.30 V",
+      "text_bbox": [
+        76.05999755859375,
+        299.781494140625,
+        140.33090209960938,
+        308.781494140625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        115.80345916748047,
+        291.6814880371094,
+        115.80345916748047,
+        502.62750244140625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        111328
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "电池5",
+      "text_bbox": [
+        208.4287567138672,
+        35.39751052856445,
+        231.41470336914062,
+        44.39751052856445
+      ],
+      "other_text": null,
+      "other_bbox": [
+        224.37791442871094,
+        27.2974853515625,
+        224.37791442871094,
+        238.24349975585938
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        9
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "严重冰堵阈值 0.99",
+      "text_bbox": [
+        531.2223510742188,
+        392.6545104980469,
+        604.9269409179688,
+        401.6545104980469
+      ],
+      "other_text": null,
+      "other_bbox": [
+        570.9657592773438,
+        291.6814880371094,
+        570.9657592773438,
+        502.62750244140625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        166661
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "恒功率最低片温",
+      "text_bbox": [
+        650.2910766601562,
+        47.49748611450195,
+        713.2907104492188,
+        56.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        679.5402221679688,
+        27.2974853515625,
+        679.5402221679688,
+        238.24349975585938
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        55348
+      ]
+    }
+  ]
+}

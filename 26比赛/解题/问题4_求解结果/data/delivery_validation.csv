@@ -1,22 +1,79 @@
 ﻿check,passed,detail
 report_local_links_exist,True,[]
-16_png_and_16_svg,True,16/16
-image_readable_图01_预冷温度场族,True,"(3844, 1534)"
-image_readable_图02_预冷均温与温差,True,"(3844, 1414)"
-image_readable_图03_三工况初始温度,True,"(3964, 1324)"
-image_readable_图04_case1_动态控制轨迹,True,"(3844, 2464)"
-image_readable_图05_case2_动态控制轨迹,True,"(3844, 2464)"
-image_readable_图06_case3_动态控制轨迹,True,"(3844, 2464)"
-image_readable_图07_三工况主指标比较,True,"(3964, 2464)"
-image_readable_图08_预冷时间扫描,True,"(3964, 2404)"
-image_readable_图09_能量收支与累积能耗,True,"(3904, 1564)"
-image_readable_图10_网格步长与控制周期检验,True,"(3844, 2404)"
-image_readable_图11_物理参数与控制器敏感性,True,"(3964, 2584)"
-image_readable_图12_测量噪声与初场扰动,True,"(3844, 2464)"
-image_readable_图13_名义与留裕度备选,True,"(3784, 2464)"
-image_readable_图14_重优化恒功率与推荐动态,True,"(3964, 2464)"
-image_readable_图15_能耗时间候选前沿,True,"(4564, 1564)"
-image_readable_图16_观测器误差与测量停机,True,"(4714, 3214)"
+16_pdf_16_svg_and_16_png,True,"{'pdf': 16, 'svg': 16, 'png': 16}"
+figure_format_stems_match,True,"{'pdf': ['图01_预冷温度场族', '图02_预冷均温与温差', '图03_三工况初始温度', '图04_case1_动态控制轨迹', '图05_case2_动态控制轨迹', '图06_case3_动态控制轨迹', '图07_三工况主指标比较', '图08_预冷时间扫描', '图09_能量收支与累积能耗', '图10_网格步长与控制周期检验', '图11_物理参数与控制器敏感性', '图12_测量噪声与初场扰动', '图13_名义与留裕度备选', '图14_重优化恒功率与推荐动态', '图15_能耗时间候选前沿', '图16_观测器误差与测量停机'], 'svg': ['图01_预冷温度场族', '图02_预冷均温与温差', '图03_三工况初始温度', '图04_case1_动态控制轨迹', '图05_case2_动态控制轨迹', '图06_case3_动态控制轨迹', '图07_三工况主指标比较', '图08_预冷时间扫描', '图09_能量收支与累积能耗', '图10_网格步长与控制周期检验', '图11_物理参数与控制器敏感性', '图12_测量噪声与初场扰动', '图13_名义与留裕度备选', '图14_重优化恒功率与推荐动态', '图15_能耗时间候选前沿', '图16_观测器误差与测量停机'], 'png': ['图01_预冷温度场族', '图02_预冷均温与温差', '图03_三工况初始温度', '图04_case1_动态控制轨迹', '图05_case2_动态控制轨迹', '图06_case3_动态控制轨迹', '图07_三工况主指标比较', '图08_预冷时间扫描', '图09_能量收支与累积能耗', '图10_网格步长与控制周期检验', '图11_物理参数与控制器敏感性', '图12_测量噪声与初场扰动', '图13_名义与留裕度备选', '图14_重优化恒功率与推荐动态', '图15_能耗时间候选前沿', '图16_观测器误差与测量停机']}"
+figure_manifest_exists,True,figure_manifest.csv
+figure_manifest_required_columns,True,"['figure', 'title', 'source_csv', 'png_dpi', 'png', 'svg', 'pdf', 'plot_note']"
+figure_manifest_16_rows,True,16
+figure_manifest_unique_and_complete,True,"['图01_预冷温度场族', '图02_预冷均温与温差', '图03_三工况初始温度', '图04_case1_动态控制轨迹', '图05_case2_动态控制轨迹', '图06_case3_动态控制轨迹', '图07_三工况主指标比较', '图08_预冷时间扫描', '图09_能量收支与累积能耗', '图10_网格步长与控制周期检验', '图11_物理参数与控制器敏感性', '图12_测量噪声与初场扰动', '图13_名义与留裕度备选', '图14_重优化恒功率与推荐动态', '图15_能耗时间候选前沿', '图16_观测器误差与测量停机']"
+figure_manifest_png_300_dpi,True,"[300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300, 300]"
+figure_manifest_pdf_files,True,"['图01_预冷温度场族.pdf', '图02_预冷均温与温差.pdf', '图03_三工况初始温度.pdf', '图04_case1_动态控制轨迹.pdf', '图05_case2_动态控制轨迹.pdf', '图06_case3_动态控制轨迹.pdf', '图07_三工况主指标比较.pdf', '图08_预冷时间扫描.pdf', '图09_能量收支与累积能耗.pdf', '图10_网格步长与控制周期检验.pdf', '图11_物理参数与控制器敏感性.pdf', '图12_测量噪声与初场扰动.pdf', '图13_名义与留裕度备选.pdf', '图14_重优化恒功率与推荐动态.pdf', '图15_能耗时间候选前沿.pdf', '图16_观测器误差与测量停机.pdf']"
+figure_manifest_svg_files,True,"['图01_预冷温度场族.svg', '图02_预冷均温与温差.svg', '图03_三工况初始温度.svg', '图04_case1_动态控制轨迹.svg', '图05_case2_动态控制轨迹.svg', '图06_case3_动态控制轨迹.svg', '图07_三工况主指标比较.svg', '图08_预冷时间扫描.svg', '图09_能量收支与累积能耗.svg', '图10_网格步长与控制周期检验.svg', '图11_物理参数与控制器敏感性.svg', '图12_测量噪声与初场扰动.svg', '图13_名义与留裕度备选.svg', '图14_重优化恒功率与推荐动态.svg', '图15_能耗时间候选前沿.svg', '图16_观测器误差与测量停机.svg']"
+figure_manifest_png_files,True,"['图01_预冷温度场族.png', '图02_预冷均温与温差.png', '图03_三工况初始温度.png', '图04_case1_动态控制轨迹.png', '图05_case2_动态控制轨迹.png', '图06_case3_动态控制轨迹.png', '图07_三工况主指标比较.png', '图08_预冷时间扫描.png', '图09_能量收支与累积能耗.png', '图10_网格步长与控制周期检验.png', '图11_物理参数与控制器敏感性.png', '图12_测量噪声与初场扰动.png', '图13_名义与留裕度备选.png', '图14_重优化恒功率与推荐动态.png', '图15_能耗时间候选前沿.png', '图16_观测器误差与测量停机.png']"
+image_readable_图01_预冷温度场族,True,"(3830, 1516)"
+png_300_dpi_图01_预冷温度场族,True,"(299.9994, 299.9994)"
+image_readable_图02_预冷均温与温差,True,"(3832, 1402)"
+png_300_dpi_图02_预冷均温与温差,True,"(299.9994, 299.9994)"
+image_readable_图03_三工况初始温度,True,"(3951, 1311)"
+png_300_dpi_图03_三工况初始温度,True,"(299.9994, 299.9994)"
+image_readable_图04_case1_动态控制轨迹,True,"(3832, 2434)"
+png_300_dpi_图04_case1_动态控制轨迹,True,"(299.9994, 299.9994)"
+image_readable_图05_case2_动态控制轨迹,True,"(3832, 2434)"
+png_300_dpi_图05_case2_动态控制轨迹,True,"(299.9994, 299.9994)"
+image_readable_图06_case3_动态控制轨迹,True,"(3832, 2434)"
+png_300_dpi_图06_case3_动态控制轨迹,True,"(299.9994, 299.9994)"
+image_readable_图07_三工况主指标比较,True,"(3952, 2434)"
+png_300_dpi_图07_三工况主指标比较,True,"(299.9994, 299.9994)"
+image_readable_图08_预冷时间扫描,True,"(3953, 2375)"
+png_300_dpi_图08_预冷时间扫描,True,"(299.9994, 299.9994)"
+image_readable_图09_能量收支与累积能耗,True,"(3892, 1552)"
+png_300_dpi_图09_能量收支与累积能耗,True,"(299.9994, 299.9994)"
+image_readable_图10_网格步长与控制周期检验,True,"(3832, 2392)"
+png_300_dpi_图10_网格步长与控制周期检验,True,"(299.9994, 299.9994)"
+image_readable_图11_物理参数与控制器敏感性,True,"(3952, 2572)"
+png_300_dpi_图11_物理参数与控制器敏感性,True,"(299.9994, 299.9994)"
+image_readable_图12_测量噪声与初场扰动,True,"(3832, 2434)"
+png_300_dpi_图12_测量噪声与初场扰动,True,"(299.9994, 299.9994)"
+image_readable_图13_名义与留裕度备选,True,"(3772, 2434)"
+png_300_dpi_图13_名义与留裕度备选,True,"(299.9994, 299.9994)"
+image_readable_图14_重优化恒功率与推荐动态,True,"(3952, 2434)"
+png_300_dpi_图14_重优化恒功率与推荐动态,True,"(299.9994, 299.9994)"
+image_readable_图15_能耗时间候选前沿,True,"(4551, 1545)"
+png_300_dpi_图15_能耗时间候选前沿,True,"(299.9994, 299.9994)"
+image_readable_图16_观测器误差与测量停机,True,"(4701, 3914)"
+png_300_dpi_图16_观测器误差与测量停机,True,"(299.9994, 299.9994)"
+svg_editable_text_图01_预冷温度场族,True,SVG with editable text
+svg_editable_text_图02_预冷均温与温差,True,SVG with editable text
+svg_editable_text_图03_三工况初始温度,True,SVG with editable text
+svg_editable_text_图04_case1_动态控制轨迹,True,SVG with editable text
+svg_editable_text_图05_case2_动态控制轨迹,True,SVG with editable text
+svg_editable_text_图06_case3_动态控制轨迹,True,SVG with editable text
+svg_editable_text_图07_三工况主指标比较,True,SVG with editable text
+svg_editable_text_图08_预冷时间扫描,True,SVG with editable text
+svg_editable_text_图09_能量收支与累积能耗,True,SVG with editable text
+svg_editable_text_图10_网格步长与控制周期检验,True,SVG with editable text
+svg_editable_text_图11_物理参数与控制器敏感性,True,SVG with editable text
+svg_editable_text_图12_测量噪声与初场扰动,True,SVG with editable text
+svg_editable_text_图13_名义与留裕度备选,True,SVG with editable text
+svg_editable_text_图14_重优化恒功率与推荐动态,True,SVG with editable text
+svg_editable_text_图15_能耗时间候选前沿,True,SVG with editable text
+svg_editable_text_图16_观测器误差与测量停机,True,SVG with editable text
+pdf_container_valid_图01_预冷温度场族,True,34959
+pdf_container_valid_图02_预冷均温与温差,True,34903
+pdf_container_valid_图03_三工况初始温度,True,22378
+pdf_container_valid_图04_case1_动态控制轨迹,True,1049224
+pdf_container_valid_图05_case2_动态控制轨迹,True,947613
+pdf_container_valid_图06_case3_动态控制轨迹,True,1060936
+pdf_container_valid_图07_三工况主指标比较,True,50001
+pdf_container_valid_图08_预冷时间扫描,True,37430
+pdf_container_valid_图09_能量收支与累积能耗,True,71568
+pdf_container_valid_图10_网格步长与控制周期检验,True,53844
+pdf_container_valid_图11_物理参数与控制器敏感性,True,46648
+pdf_container_valid_图12_测量噪声与初场扰动,True,68780
+pdf_container_valid_图13_名义与留裕度备选,True,49563
+pdf_container_valid_图14_重优化恒功率与推荐动态,True,47033
+pdf_container_valid_图15_能耗时间候选前沿,True,60065
+pdf_container_valid_图16_观测器误差与测量停机,True,546365
 rows_main_results.csv,True,9
 rows_constant_scan.csv,True,19
 rows_guarded_results.csv,True,3

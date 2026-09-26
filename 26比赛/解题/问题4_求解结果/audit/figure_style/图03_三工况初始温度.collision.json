@@ -1,0 +1,179 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图03_三工况初始温度.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 50,
+  "text_trace_count": 70,
+  "stroke_path_count": 109,
+  "filled_region_count": 84,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 6,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "五片均温差 = 0.0000 K",
+      "text_bbox": [
+        133.4927978515625,
+        252.7156982421875,
+        233.46534729003906,
+        262.7156982421875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        55.28187561035156,
+        27.2974853515625,
+        311.6724853515625,
+        278.92999267578125
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        6,
+        8,
+        10,
+        16
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "全场热容加权均温",
+      "text_bbox": [
+        158.67718505859375,
+        34.49748611450195,
+        230.6767578125,
+        43.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        183.47718811035156,
+        27.2974853515625,
+        222.32424926757812,
+        278.92999267578125
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        8,
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "五片均温差 = 0.1386 K",
+      "text_bbox": [
+        445.5726318359375,
+        252.7156982421875,
+        545.545166015625,
+        262.7156982421875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        367.3617248535156,
+        27.2974853515625,
+        623.7523193359375,
+        278.92999267578125
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        53,
+        55,
+        57,
+        63
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "全场热容加权均温",
+      "text_bbox": [
+        470.75701904296875,
+        34.49748611450195,
+        542.756591796875,
+        43.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        495.5570068359375,
+        27.2974853515625,
+        534.404052734375,
+        278.92999267578125
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        55,
+        57
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 3 stroked path(s)",
+      "text": "五片均温差 = 0.0524 K",
+      "text_bbox": [
+        757.6524658203125,
+        252.7156982421875,
+        857.625,
+        262.7156982421875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        768.789794921875,
+        27.2974853515625,
+        846.4839477539062,
+        278.92999267578125
+      ],
+      "object_count": 3,
+      "object_indexes": [
+        96,
+        98,
+        100
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "全场热容加权均温",
+      "text_bbox": [
+        782.8368530273438,
+        34.49748611450195,
+        854.83642578125,
+        43.49748611450195
+      ],
+      "other_text": null,
+      "other_bbox": [
+        807.6368408203125,
+        27.2974853515625,
+        846.4839477539062,
+        278.92999267578125
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        98,
+        100
+      ]
+    }
+  ]
+}

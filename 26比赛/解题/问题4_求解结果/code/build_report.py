@@ -12,7 +12,7 @@ import re
 import sys
 
 ROOT=Path(__file__).resolve().parents[1]
-sys.path.insert(0,str(ROOT/'.python_deps'))
+if sys.platform=='win32':sys.path.insert(0,str(ROOT/'.python_deps'))
 import numpy as np
 import pandas as pd
 
@@ -108,8 +108,8 @@ class Report:
             self.md.append(f'数据源：{mdlinks}；共 {len(df)} 行，CSV保留工作精度。\n')
             self.html.append(f'<p class="caption">数据源：{htmllinks}；共 {len(df)} 行，CSV保留工作精度。</p>')
     def image(self,name,caption):
-        self.md.append(f'![{caption}](figures/{name}.png)\n\n{caption}。矢量版：[SVG](figures/{name}.svg)。\n')
-        self.html.append(f'<figure><img src="figures/{name}.png" alt="{escape(caption)}"><figcaption>{escape(caption)}。<a href="figures/{name}.svg">SVG矢量版</a></figcaption></figure>')
+        self.md.append(f'![{caption}](figures/{name}.png)\n\n{caption}。下载：[PDF](figures/{name}.pdf)、[可编辑 SVG](figures/{name}.svg)、[300 dpi PNG](figures/{name}.png)。\n')
+        self.html.append(f'<figure><img src="figures/{name}.png" alt="{escape(caption)}"><figcaption>{escape(caption)}。下载：<a href="figures/{name}.pdf">PDF</a>、<a href="figures/{name}.svg">可编辑 SVG</a>、<a href="figures/{name}.png">300 dpi PNG</a>。</figcaption></figure>')
     def link(self,name,href):
         self.md.append(f'[{name}]({href})\n')
         self.html.append(f'<p><a href="{escape(href)}">{escape(name)}</a></p>')
@@ -400,7 +400,7 @@ def build(root=ROOT):
         files.append({'文件':path.name,'数据行':rows,'列数':cols,'字节':path.stat().st_size})
     r.table('全部CSV工作文件索引',pd.DataFrame(files))
     r.formula('完整冻结参数复算：.\\run_all.ps1\n重新搜索与复算：.\\run_all.ps1 -Reoptimize\n仅绘图：python code/plot_results.py\n仅报告：python code/build_report.py')
-    r.p('执行环境、输入快照和源文件哈希清单随目录保存。修改模型或参数后先重新计算，再做独立核验，最后生成图表与本报告。数值图片均由CSV绘制，提供300 dpi PNG与SVG矢量版本；figure_manifest.csv记录每图数据来源。当前成果是可复算的模型内结果，实际装置预测仍受前序物性、边界、相变与校准近似影响。')
+    r.p('执行环境、输入快照和源文件哈希清单随目录保存。修改模型或参数后先重新计算，再做独立核验，最后生成图表与本报告。数值图片均由CSV绘制，每图提供 PDF、可编辑 SVG 和 300 dpi PNG；figures/figure_manifest.csv记录三种格式文件及每图数据来源。当前成果是可复算的模型内结果，实际装置预测仍受前序物性、边界、相变与校准近似影响。')
     for path in sorted((root/'audit').glob('*.md')):r.link(path.stem,'audit/'+path.name)
     r.write(root);write_readme(root)
     print('Saved data-driven detailed Markdown / HTML report and README.')
@@ -416,7 +416,7 @@ def write_readme(root):
 
 - `code/`：完整可复算代码。
 - `data/`：全部工作CSV、19点预冷扫描、搜索候选、轨迹、收敛、物理扰动、名义与推荐独立噪声验证。
-- `figures/`：{n}张科研图，300 dpi PNG和SVG；图数据源见 `figure_manifest.csv`。
+- `figures/`：{n}张科研图，每图提供 PDF、可编辑 SVG 和 300 dpi PNG；三种格式文件及图数据源见 `figures/figure_manifest.csv`。
 - `inputs/`：输入及来源快照；`audit/`：逻辑和独立验证记录。
 
 ## 复算

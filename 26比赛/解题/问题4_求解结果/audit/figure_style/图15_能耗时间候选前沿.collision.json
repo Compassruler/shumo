@@ -1,0 +1,547 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图15_能耗时间候选前沿.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 75,
+  "text_trace_count": 107,
+  "stroke_path_count": 196,
+  "filled_region_count": 276,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 21,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "已评正式精度可行候选",
+      "text_bbox": [
+        76.4375,
+        235.177001953125,
+        166.43695068359375,
+        244.177001953125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        27.2974853515625,
+        343.2022399902344,
+        313.6570129394531
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        4,
+        6,
+        8,
+        24
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "失败（未达标时显示仿真终点）",
+      "text_bbox": [
+        76.4375,
+        247.77699279785156,
+        202.43670654296875,
+        256.7770080566406
+      ],
+      "other_text": null,
+      "other_bbox": [
+        94.36080169677734,
+        27.2974853515625,
+        192.39573669433594,
+        313.6570129394531
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        4,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 4 stroked path(s)",
+      "text": "期限约束下最低已找到恒功率",
+      "text_bbox": [
+        76.4375,
+        260.37701416015625,
+        193.436767578125,
+        269.37701416015625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        94.36080169677734,
+        27.2974853515625,
+        192.39573669433594,
+        313.6570129394531
+      ],
+      "object_count": 4,
+      "object_indexes": [
+        4,
+        6,
+        8,
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "固定C",
+      "text_bbox": [
+        76.4375,
+        272.9770202636719,
+        101.75444030761719,
+        281.9770202636719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        27.2974853515625,
+        343.2022399902344,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        4,
+        22
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "名义能耗优选",
+      "text_bbox": [
+        76.4375,
+        285.5770263671875,
+        130.43719482421875,
+        294.5770263671875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        94.36080169677734,
+        27.2974853515625,
+        127.03911590576172,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        4,
+        6
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "推荐动态",
+      "text_bbox": [
+        76.4375,
+        298.177001953125,
+        112.43731689453125,
+        307.177001953125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        94.36080169677734,
+        27.2974853515625,
+        94.36080169677734,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        4
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "期限30–96.7s共4点",
+      "text_bbox": [
+        95.4510498046875,
+        56.39280700683594,
+        156.4816131591797,
+        63.59280776977539
+      ],
+      "other_text": null,
+      "other_bbox": [
+        127.03911590576172,
+        27.2974853515625,
+        127.03911590576172,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        6
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "已评正式精度可行候选",
+      "text_bbox": [
+        589.5225830078125,
+        33.77748489379883,
+        679.5220336914062,
+        42.77748489379883
+      ],
+      "other_text": null,
+      "other_bbox": [
+        612.2373046875,
+        27.2974853515625,
+        673.96923828125,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        91,
+        93
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "期限约束下最低已找到恒功率",
+      "text_bbox": [
+        589.5225830078125,
+        46.37749099731445,
+        706.5218505859375,
+        55.37749099731445
+      ],
+      "other_text": null,
+      "other_bbox": [
+        612.2373046875,
+        27.2974853515625,
+        673.96923828125,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        91,
+        93
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "固定C",
+      "text_bbox": [
+        589.5225830078125,
+        58.97749710083008,
+        614.8395385742188,
+        67.97750091552734
+      ],
+      "other_text": null,
+      "other_bbox": [
+        419.59783935546875,
+        27.2974853515625,
+        713.0026245117188,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        91,
+        105
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "名义能耗优选",
+      "text_bbox": [
+        589.5225830078125,
+        71.57747650146484,
+        643.5222778320312,
+        80.57747650146484
+      ],
+      "other_text": null,
+      "other_bbox": [
+        612.2373046875,
+        27.2974853515625,
+        612.2373046875,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        91
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "推荐动态",
+      "text_bbox": [
+        589.5225830078125,
+        84.17748260498047,
+        625.5223999023438,
+        93.17748260498047
+      ],
+      "other_text": null,
+      "other_bbox": [
+        612.2373046875,
+        27.2974853515625,
+        612.2373046875,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        91
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "零加热可行基线",
+      "text_bbox": [
+        589.5225830078125,
+        96.7774887084961,
+        652.522216796875,
+        105.7774887084961
+      ],
+      "other_text": null,
+      "other_bbox": [
+        419.59783935546875,
+        27.2974853515625,
+        713.0026245117188,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        91,
+        103
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "已评正式精度可行候选",
+      "text_bbox": [
+        816.0382080078125,
+        235.177001953125,
+        906.0376586914062,
+        244.177001953125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        825.5689697265625,
+        27.2974853515625,
+        884.7512817382812,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        200,
+        202
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "失败（未达标时显示仿真终点）",
+      "text_bbox": [
+        816.0382080078125,
+        247.77699279785156,
+        942.0374145507812,
+        256.7770080566406
+      ],
+      "other_text": null,
+      "other_bbox": [
+        825.5689697265625,
+        27.2974853515625,
+        884.7512817382812,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        200,
+        202
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "期限约束下最低已找到恒功率",
+      "text_bbox": [
+        816.0382080078125,
+        260.37701416015625,
+        933.0374755859375,
+        269.37701416015625
+      ],
+      "other_text": null,
+      "other_bbox": [
+        825.5689697265625,
+        27.2974853515625,
+        884.7512817382812,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        200,
+        202
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "固定C",
+      "text_bbox": [
+        816.0382080078125,
+        272.9770202636719,
+        841.3551635742188,
+        281.9770202636719
+      ],
+      "other_text": null,
+      "other_bbox": [
+        789.398193359375,
+        27.2974853515625,
+        1082.802978515625,
+        313.6570129394531
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        200,
+        210
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "名义能耗优选",
+      "text_bbox": [
+        816.0382080078125,
+        285.5770263671875,
+        870.0379028320312,
+        294.5770263671875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        825.5689697265625,
+        27.2974853515625,
+        825.5689697265625,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        200
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "推荐动态",
+      "text_bbox": [
+        816.0382080078125,
+        298.177001953125,
+        852.0380249023438,
+        307.177001953125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        825.5689697265625,
+        27.2974853515625,
+        825.5689697265625,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        200
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "期限90.0s",
+      "text_bbox": [
+        1032.0338134765625,
+        75.71760559082031,
+        1063.163818359375,
+        82.91761016845703
+      ],
+      "other_text": null,
+      "other_bbox": [
+        1062.2979736328125,
+        27.2974853515625,
+        1062.2979736328125,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        208
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "期限96.7s",
+      "text_bbox": [
+        1051.35302734375,
+        82.89192199707031,
+        1082.4830322265625,
+        90.09192657470703
+      ],
+      "other_text": null,
+      "other_bbox": [
+        1062.2979736328125,
+        27.2974853515625,
+        1062.2979736328125,
+        313.6570129394531
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        208
+      ]
+    }
+  ]
+}

@@ -1,0 +1,288 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图07_三工况主指标比较.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 107,
+  "text_trace_count": 130,
+  "stroke_path_count": 160,
+  "filled_region_count": 137,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 11,
+    "warn": 0,
+    "contained_fill_overlays": 38,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "3260.28",
+      "text_bbox": [
+        99.84223937988281,
+        43.032413482666016,
+        128.6807861328125,
+        51.032413482666016
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        44.235107421875,
+        316.33734130859375,
+        44.235107421875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        22
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "293.61",
+      "text_bbox": [
+        156.2696533203125,
+        213.78204345703125,
+        180.670654296875,
+        221.78204345703125
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        216.90301513671875,
+        316.33734130859375,
+        216.90301513671875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "9.05",
+      "text_bbox": [
+        160.7071533203125,
+        461.5313415527344,
+        176.23304748535156,
+        469.5313415527344
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        468.82086181640625,
+        316.33734130859375,
+        468.82086181640625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        115
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "8.72",
+      "text_bbox": [
+        189.8964385986328,
+        464.293701171875,
+        205.42233276367188,
+        472.293701171875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        468.82086181640625,
+        316.33734130859375,
+        468.82086181640625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        115
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "1855.38",
+      "text_bbox": [
+        237.4488525390625,
+        123.89252471923828,
+        266.28741455078125,
+        131.89251708984375
+      ],
+      "other_text": null,
+      "other_bbox": [
+        49.79750061035156,
+        130.56906127929688,
+        316.33734130859375,
+        130.56906127929688
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        16
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "推荐留裕度动态",
+      "text_bbox": [
+        243.51858520507812,
+        35.3974494934082,
+        306.5182189941406,
+        44.3974494934082
+      ],
+      "other_text": null,
+      "other_bbox": [
+        266.4653625488281,
+        27.2974853515625,
+        266.4653625488281,
+        259.5169982910156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        6
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "恒功率＋2 s保持",
+      "text_bbox": [
+        243.51858520507812,
+        48.8974494934082,
+        308.2296142578125,
+        57.8974494934082
+      ],
+      "other_text": null,
+      "other_bbox": [
+        266.4653625488281,
+        27.2974853515625,
+        266.4653625488281,
+        259.5169982910156
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        6
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "0.74",
+      "text_bbox": [
+        501.25628662109375,
+        315.1924133300781,
+        516.7821655273438,
+        323.1924133300781
+      ],
+      "other_text": null,
+      "other_bbox": [
+        361.1573486328125,
+        316.7923583984375,
+        627.6972045898438,
+        316.7923583984375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        154
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "0.277",
+      "text_bbox": [
+        697.8101196289062,
+        315.1924133300781,
+        717.7735595703125,
+        323.1924133300781
+      ],
+      "other_text": null,
+      "other_bbox": [
+        672.5171508789062,
+        316.17889404296875,
+        939.0570068359375,
+        316.17889404296875
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        189
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "74.31",
+      "text_bbox": [
+        781.2080688476562,
+        72.3312759399414,
+        801.1715087890625,
+        80.3312759399414
+      ],
+      "other_text": null,
+      "other_bbox": [
+        672.5171508789062,
+        75.61285400390625,
+        939.0570068359375,
+        75.61285400390625
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        88
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "0.087",
+      "text_bbox": [
+        781.2080688476562,
+        432.22216796875,
+        801.1715087890625,
+        440.22216796875
+      ],
+      "other_text": null,
+      "other_bbox": [
+        672.5171508789062,
+        439.39349365234375,
+        939.0570068359375,
+        439.39349365234375
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        181
+      ]
+    }
+  ]
+}

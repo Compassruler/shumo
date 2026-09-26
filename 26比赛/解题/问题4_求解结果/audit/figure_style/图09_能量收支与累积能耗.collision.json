@@ -1,0 +1,144 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图09_能量收支与累积能耗.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 43,
+  "text_trace_count": 63,
+  "stroke_path_count": 10400,
+  "filled_region_count": 20731,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 5,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "三项输入合计",
+      "text_bbox": [
+        373.4517517089844,
+        35.39748001098633,
+        427.4514465332031,
+        44.39748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        395.1379089355469,
+        27.2974853515625,
+        395.1379089355469,
+        333.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        12
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "显热增量＋环境散热",
+      "text_bbox": [
+        373.4517517089844,
+        48.89748001098633,
+        454.4512634277344,
+        57.89748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        395.1379089355469,
+        27.2974853515625,
+        395.1379089355469,
+        333.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        12
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "工况1：完全冷却",
+      "text_bbox": [
+        545.5052490234375,
+        35.39748001098633,
+        613.4877319335938,
+        44.39748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        612.89501953125,
+        27.2974853515625,
+        612.89501953125,
+        333.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        96
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "工况2：预冷20 min",
+      "text_bbox": [
+        545.5052490234375,
+        48.89748001098633,
+        623.4324951171875,
+        57.89748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        612.89501953125,
+        27.2974853515625,
+        612.89501953125,
+        333.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        96
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "工况3：预冷40 min",
+      "text_bbox": [
+        545.5052490234375,
+        62.39748001098633,
+        623.4324951171875,
+        71.3974838256836
+      ],
+      "other_text": null,
+      "other_bbox": [
+        612.89501953125,
+        27.2974853515625,
+        612.89501953125,
+        333.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        96
+      ]
+    }
+  ]
+}

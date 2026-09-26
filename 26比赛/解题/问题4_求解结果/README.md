@@ -6,7 +6,7 @@
 
 - `code/`：完整可复算代码。
 - `data/`：全部工作CSV、19点预冷扫描、搜索候选、轨迹、收敛、物理扰动、名义与推荐独立噪声验证。
-- `figures/`：16张科研图，300 dpi PNG和SVG；图数据源见 `figure_manifest.csv`。
+- `figures/`：16张科研图，每图提供 PDF、可编辑 SVG 和 300 dpi PNG；三种格式文件及图数据源见 `figures/figure_manifest.csv`。
 - `inputs/`：输入及来源快照；`audit/`：逻辑和独立验证记录。
 
 ## 复算

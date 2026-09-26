@@ -206,13 +206,13 @@
   },
   {
     "file": "figures/03_主策略电压与结冰.png",
-    "bytes": 286213,
-    "sha256": "18c3ea1ec54a83e04b72d80ae1018db2a988cc01b0384babd1c6989b91a645c0"
+    "bytes": 302416,
+    "sha256": "e9cd053141c6df9094f3325bef4c8458c0a6a0cdc832ef5f491e54dc79074a31"
   },
   {
     "file": "figures/03_主策略电压与结冰.svg",
-    "bytes": 160103,
-    "sha256": "7c85fac73074bd2dcb013e5694b117fe3b4ac377f7c88fc01dc76e2056f73bf0"
+    "bytes": 2259575,
+    "sha256": "050a089c704753e3911e45931239e9795eb56b19a415681b60fac534cbb8be26"
   },
   {
     "file": "figures/04_关热后回落与稳健验证.png",
@@ -283,5 +283,20 @@
     "file": "交付文件清单.json",
     "bytes": 8766,
     "sha256": "5fcf98a0b5c1c9c8266b0946a01d8eb4ab84d0fedb38c0e0641af34672cfd014"
+  },
+  {
+    "file": "code/figure_scripts/fig03_voltage_and_icing.py",
+    "bytes": 4070,
+    "sha256": "99b9af28180f92a31843ce1de0dd484cbc1c2f9e4f48a8761377f09ab5b9baf1"
+  },
+  {
+    "file": "code/figure_scripts/README.md",
+    "bytes": 4804,
+    "sha256": "2e11380a2a567ef069c6731c0082b0e5d27ec6270cd4bd73c4933b235f2cedbe"
+  },
+  {
+    "file": "figures/03_主策略电压与结冰.pdf",
+    "bytes": 162927,
+    "sha256": "0c17df4d5973e12855212752228a706e00590ce0031ef59577dd7a905d5e93cb"
   }
 ]

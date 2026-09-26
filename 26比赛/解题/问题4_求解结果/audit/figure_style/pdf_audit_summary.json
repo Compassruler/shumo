@@ -1,0 +1,194 @@
+[
+  {
+    "figure": "图01_预冷温度场族",
+    "alignment": "PASS",
+    "min_font_pt": 8.5,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 1,
+      "warn": 0,
+      "contained_fill_overlays": 5,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图02_预冷均温与温差",
+    "alignment": "PASS",
+    "min_font_pt": 9.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 7,
+      "warn": 0,
+      "contained_fill_overlays": 0,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图03_三工况初始温度",
+    "alignment": "PASS",
+    "min_font_pt": 9.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 6,
+      "warn": 0,
+      "contained_fill_overlays": 0,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图04_case1_动态控制轨迹",
+    "alignment": "PASS",
+    "min_font_pt": 8.5,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 9,
+      "warn": 0,
+      "contained_fill_overlays": 13,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图05_case2_动态控制轨迹",
+    "alignment": "PASS",
+    "min_font_pt": 8.5,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 4,
+      "warn": 0,
+      "contained_fill_overlays": 13,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图06_case3_动态控制轨迹",
+    "alignment": "PASS",
+    "min_font_pt": 8.5,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 7,
+      "warn": 0,
+      "contained_fill_overlays": 13,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图07_三工况主指标比较",
+    "alignment": "PASS",
+    "min_font_pt": 8.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 11,
+      "warn": 0,
+      "contained_fill_overlays": 38,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图08_预冷时间扫描",
+    "alignment": "PASS",
+    "min_font_pt": 8.5,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 0,
+      "warn": 0,
+      "contained_fill_overlays": 0,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图09_能量收支与累积能耗",
+    "alignment": "PASS",
+    "min_font_pt": 9.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 5,
+      "warn": 0,
+      "contained_fill_overlays": 0,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图10_网格步长与控制周期检验",
+    "alignment": "PASS",
+    "min_font_pt": 6.3,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 7,
+      "warn": 0,
+      "contained_fill_overlays": 11,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图11_物理参数与控制器敏感性",
+    "alignment": "PASS",
+    "min_font_pt": 8.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 7,
+      "warn": 0,
+      "contained_fill_overlays": 7,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图12_测量噪声与初场扰动",
+    "alignment": "PASS",
+    "min_font_pt": 8.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 6,
+      "warn": 0,
+      "contained_fill_overlays": 6,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图13_名义与留裕度备选",
+    "alignment": "PASS",
+    "min_font_pt": 8.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 9,
+      "warn": 0,
+      "contained_fill_overlays": 26,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图14_重优化恒功率与推荐动态",
+    "alignment": "PASS",
+    "min_font_pt": 8.0,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 16,
+      "warn": 0,
+      "contained_fill_overlays": 39,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图15_能耗时间候选前沿",
+    "alignment": "PASS",
+    "min_font_pt": 7.2,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 21,
+      "warn": 0,
+      "contained_fill_overlays": 0,
+      "contained_image_overlays": 0
+    }
+  },
+  {
+    "figure": "图16_观测器误差与测量停机",
+    "alignment": "PASS",
+    "min_font_pt": 8.5,
+    "below_minimum_count": 0,
+    "raw_collision_summary": {
+      "fail": 0,
+      "warn": 0,
+      "contained_fill_overlays": 0,
+      "contained_image_overlays": 0
+    }
+  }
+]

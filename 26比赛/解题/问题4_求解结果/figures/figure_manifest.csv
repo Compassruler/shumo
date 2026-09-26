@@ -1,17 +1,20 @@
-﻿figure,title,source_csv,png_dpi,png,svg
-图01_预冷温度场族,预冷温度场族与空间温差细节,precooling_fields.csv,300,图01_预冷温度场族.png,图01_预冷温度场族.svg
-图02_预冷均温与温差,预冷均温及不同口径温差,precooling_nodes.csv,300,图02_预冷均温与温差.png,图02_预冷均温与温差.svg
-图03_三工况初始温度,三种工况的七节点初始温度（各子图独立纵轴）,initial_temperature_cases.csv,300,图03_三工况初始温度.png,图03_三工况初始温度.svg
-图04_case1_动态控制轨迹,工况1：完全冷却动态控制轨迹,trajectory_case1_guarded.csv;trajectory_case1_constant_hold.csv,300,图04_case1_动态控制轨迹.png,图04_case1_动态控制轨迹.svg
-图05_case2_动态控制轨迹,工况2：预冷20 min动态控制轨迹,trajectory_case2_guarded.csv;trajectory_case2_constant_hold.csv,300,图05_case2_动态控制轨迹.png,图05_case2_动态控制轨迹.svg
-图06_case3_动态控制轨迹,工况3：预冷40 min动态控制轨迹,trajectory_case3_guarded.csv;trajectory_case3_constant_hold.csv,300,图06_case3_动态控制轨迹.png,图06_case3_动态控制轨迹.svg
-图07_三工况主指标比较,推荐动态与固定C的共同测量停机比较,guarded_results.csv;main_results.csv,300,图07_三工况主指标比较.png,图07_三工况主指标比较.svg
-图08_预冷时间扫描,固定恒功率策略随预冷时间的变化,constant_scan.csv,300,图08_预冷时间扫描.png,图08_预冷时间扫描.svg
-图09_能量收支与累积能耗,推荐策略离散能量闭合与累计电能,guarded_results.csv;main_results.csv;trajectory_case1_guarded.csv;trajectory_case2_guarded.csv;trajectory_case3_guarded.csv,300,图09_能量收支与累积能耗.png,图09_能量收支与累积能耗.svg
-图10_网格步长与控制周期检验,预冷与启动阶段的数值收敛检验,precooling_convergence.csv;guarded_convergence.csv;coupled_convergence.csv,300,图10_网格步长与控制周期检验.png,图10_网格步长与控制周期检验.svg
-图11_物理参数与控制器敏感性,预冷传热参数与启动控制参数敏感性,precooling_sensitivity.csv;sensitivity.csv,300,图11_物理参数与控制器敏感性.png,图11_物理参数与控制器敏感性.svg
-图12_测量噪声与初场扰动,测量噪声和初场偏差下的能耗与安全约束,robustness.csv,300,图12_测量噪声与初场扰动.png,图12_测量噪声与初场扰动.svg
-图13_名义与留裕度备选,名义策略与留裕度备选的能耗、时间、扰动可行比例及关热后温度,main_results.csv;guarded_results.csv;robustness.csv;guarded_robustness.csv,300,图13_名义与留裕度备选.png,图13_名义与留裕度备选.svg
-图14_重优化恒功率与推荐动态,同工况恒功率再优化与推荐动态的能耗和时间比较,optimized_constant_results.csv;guarded_results.csv;main_results.csv,300,图14_重优化恒功率与推荐动态.png,图14_重优化恒功率与推荐动态.svg
-图15_能耗时间候选前沿,共同规则下的有限候选能耗时间比较,constant_time_frontier.csv;constant_optimization_search.csv;main_results.csv;guarded_results.csv;constant_baselines.csv,300,图15_能耗时间候选前沿.png,图15_能耗时间候选前沿.svg
-图16_观测器误差与测量停机,独立观测器误差与真实首次成功、测量保持停机的区分,observer_example_results.csv;trajectory_case1_observer_example.csv;trajectory_case2_observer_example.csv;trajectory_case3_observer_example.csv,300,图16_观测器误差与测量停机.png,图16_观测器误差与测量停机.svg
+﻿figure,title,source_csv,png_dpi,png,svg,pdf,plot_note
+图01_预冷温度场族,预冷温度场族与空间温差细节,precooling_fields.csv,300,图01_预冷温度场族.png,图01_预冷温度场族.svg,图01_预冷温度场族.pdf,连续空间温度场保留曲线与时间色标；浅灰区域为两端端板。
+图02_预冷均温与温差,预冷均温及不同口径温差,precooling_nodes.csv,300,图02_预冷均温与温差.png,图02_预冷均温与温差.svg,图02_预冷均温与温差.pdf,
+图03_三工况初始温度,三种工况的七节点初始温度（各子图独立纵轴）,initial_temperature_cases.csv,300,图03_三工况初始温度.png,图03_三工况初始温度.svg,图03_三工况初始温度.pdf,
+图04_case1_动态控制轨迹,工况1：完全冷却动态控制轨迹,trajectory_case1_guarded.csv;trajectory_case1_constant_hold.csv,300,图04_case1_动态控制轨迹.png,图04_case1_动态控制轨迹.svg,图04_case1_动态控制轨迹.pdf,"工况1：完全冷却｜推荐动态全过程；阴影为关热后验证
+功率圆点对应前一积分区间的实际加热；所有时刻均保留，圆点之间不连线。"
+图05_case2_动态控制轨迹,工况2：预冷20 min动态控制轨迹,trajectory_case2_guarded.csv;trajectory_case2_constant_hold.csv,300,图05_case2_动态控制轨迹.png,图05_case2_动态控制轨迹.svg,图05_case2_动态控制轨迹.pdf,"工况2：预冷20 min｜推荐动态全过程；阴影为关热后验证
+功率圆点对应前一积分区间的实际加热；所有时刻均保留，圆点之间不连线。"
+图06_case3_动态控制轨迹,工况3：预冷40 min动态控制轨迹,trajectory_case3_guarded.csv;trajectory_case3_constant_hold.csv,300,图06_case3_动态控制轨迹.png,图06_case3_动态控制轨迹.svg,图06_case3_动态控制轨迹.pdf,"工况3：预冷40 min｜推荐动态全过程；阴影为关热后验证
+功率圆点对应前一积分区间的实际加热；所有时刻均保留，圆点之间不连线。"
+图07_三工况主指标比较,推荐动态与固定C的共同测量停机比较,guarded_results.csv;main_results.csv,300,图07_三工况主指标比较.png,图07_三工况主指标比较.svg,图07_三工况主指标比较.pdf,推荐动态与固定C：相同传感温度裕度与2 s连续测量保持，统计到实际关热
+图08_预冷时间扫描,固定恒功率策略随预冷时间的变化,constant_scan.csv,300,图08_预冷时间扫描.png,图08_预冷时间扫描.svg,图08_预冷时间扫描.pdf,固定问题三功率分配，10–100 min预冷共19点扫描
+图09_能量收支与累积能耗,推荐策略离散能量闭合与累计电能,guarded_results.csv;main_results.csv;trajectory_case1_guarded.csv;trajectory_case2_guarded.csv;trajectory_case3_guarded.csv,300,图09_能量收支与累积能耗.png,图09_能量收支与累积能耗.svg,图09_能量收支与累积能耗.pdf,
+图10_网格步长与控制周期检验,预冷与启动阶段的数值收敛检验,precooling_convergence.csv;guarded_convergence.csv;coupled_convergence.csv,300,图10_网格步长与控制周期检验.png,图10_网格步长与控制周期检验.svg,图10_网格步长与控制周期检验.pdf,
+图11_物理参数与控制器敏感性,预冷传热参数与启动控制参数敏感性,precooling_sensitivity.csv;sensitivity.csv,300,图11_物理参数与控制器敏感性.png,图11_物理参数与控制器敏感性.svg,图11_物理参数与控制器敏感性.pdf,
+图12_测量噪声与初场扰动,测量噪声和初场偏差下的能耗与安全约束,robustness.csv,300,图12_测量噪声与初场扰动.png,图12_测量噪声与初场扰动.svg,图12_测量噪声与初场扰动.pdf,名义优选策略的测量/初场扰动：全部样本用圆点；红圈为任一约束失败
+图13_名义与留裕度备选,名义策略与留裕度备选的能耗、时间、扰动可行比例及关热后温度,main_results.csv;guarded_results.csv;robustness.csv;guarded_robustness.csv,300,图13_名义与留裕度备选.png,图13_名义与留裕度备选.svg,图13_名义与留裕度备选.pdf,名义能耗优选与推荐留裕度方案：独立试验通过率和关热后状态分别报告
+图14_重优化恒功率与推荐动态,同工况恒功率再优化与推荐动态的能耗和时间比较,optimized_constant_results.csv;guarded_results.csv;main_results.csv,300,图14_重优化恒功率与推荐动态.png,图14_重优化恒功率与推荐动态.svg,图14_重优化恒功率与推荐动态.pdf,共同采样停机规则：固定功率、有限搜索重优化恒功率与推荐动态
+图15_能耗时间候选前沿,共同规则下的有限候选能耗时间比较,constant_time_frontier.csv;constant_optimization_search.csv;main_results.csv;guarded_results.csv;constant_baselines.csv,300,图15_能耗时间候选前沿.png,图15_能耗时间候选前沿.svg,图15_能耗时间候选前沿.pdf,有限搜索的能耗—时限边界；允许相同最优候选形成平段，不是全局最优证明
+图16_观测器误差与测量停机,独立观测器误差与真实首次成功、测量保持停机的区分,observer_example_results.csv;trajectory_case1_observer_example.csv;trajectory_case2_observer_example.csv;trajectory_case3_observer_example.csv,300,图16_观测器误差与测量停机.png,图16_观测器误差与测量停机.svg,图16_观测器误差与测量停机.pdf,独立观测器：未参与训练的参数失配与测量噪声样例

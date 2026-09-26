@@ -1,0 +1,194 @@
+{
+  "pdf": "/Users/ygcz/Desktop/shumo/26比赛/解题/问题4_求解结果/figures/图02_预冷均温与温差.pdf",
+  "auditable": true,
+  "verdict": "FIX BEFORE DELIVERY",
+  "page_count": 1,
+  "visible_text_box_count": 36,
+  "text_trace_count": 46,
+  "stroke_path_count": 166,
+  "filled_region_count": 260,
+  "image_region_count": 0,
+  "summary": {
+    "fail": 7,
+    "warn": 0,
+    "contained_fill_overlays": 0,
+    "contained_image_overlays": 0
+  },
+  "thresholds": {
+    "text_inset_pt": 0.6,
+    "min_overlap_ratio": 0.05,
+    "clipping_tolerance_pt": 0.5
+  },
+  "findings": [
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "热容加权均温",
+      "text_bbox": [
+        393.5659484863281,
+        35.39748001098633,
+        447.5656433105469,
+        44.39748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        436.89990234375,
+        27.2974853515625,
+        436.89990234375,
+        297.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "中间电池均温",
+      "text_bbox": [
+        393.5659484863281,
+        48.89748001098633,
+        447.5656433105469,
+        57.89748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        436.89990234375,
+        27.2974853515625,
+        436.89990234375,
+        297.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "左外表面温度",
+      "text_bbox": [
+        393.5659484863281,
+        62.39748001098633,
+        447.5656433105469,
+        71.3974838256836
+      ],
+      "other_text": null,
+      "other_bbox": [
+        42.81312561035156,
+        27.2974853515625,
+        455.66595458984375,
+        297.8594970703125
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        10,
+        24
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "环境 −30 ℃",
+      "text_bbox": [
+        393.5659484863281,
+        75.89749908447266,
+        440.48779296875,
+        84.89749908447266
+      ],
+      "other_text": null,
+      "other_bbox": [
+        436.89990234375,
+        27.2974853515625,
+        436.89990234375,
+        297.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        10
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 2 stroked path(s)",
+      "text": "全场极差（含真实表面）",
+      "text_bbox": [
+        803.4595336914062,
+        35.39748001098633,
+        902.4589233398438,
+        44.39748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        808.3888549804688,
+        27.2974853515625,
+        891.79345703125,
+        297.8594970703125
+      ],
+      "object_count": 2,
+      "object_indexes": [
+        156,
+        158
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "中片—左端板均温差",
+      "text_bbox": [
+        803.4595336914062,
+        48.89748001098633,
+        884.4590454101562,
+        57.89748001098633
+      ],
+      "other_text": null,
+      "other_bbox": [
+        808.3888549804688,
+        27.2974853515625,
+        808.3888549804688,
+        297.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        156
+      ]
+    },
+    {
+      "severity": "FAIL",
+      "kind": "text-stroke",
+      "page": 1,
+      "message": "Text is crossed by 1 stroked path(s)",
+      "text": "五片电池均温极差",
+      "text_bbox": [
+        803.4595336914062,
+        62.39748001098633,
+        875.4591064453125,
+        71.3974838256836
+      ],
+      "other_text": null,
+      "other_bbox": [
+        808.3888549804688,
+        27.2974853515625,
+        808.3888549804688,
+        297.8594970703125
+      ],
+      "object_count": 1,
+      "object_indexes": [
+        156
+      ]
+    }
+  ]
+}

@@ -1,57 +1,74 @@
-"""图03：两种主策略的最低单片电压、冰体积分数和孔隙冰饱和度。"""
+"""图03论文版：两策略电压与协同加热结冰，省略纯预热近零冰量面板。"""
 import numpy as np
-import matplotlib.pyplot as plt
-from matplotlib.ticker import ScalarFormatter
 from common import (CELL_COLORS, COLORS, NAMES, cells, cli, configure_style, decorate,
-                    discrete_points, export_and_show, note, panel_title, read_traces)
+                    discrete_points, export_and_show, panel_title, read_traces)
+import matplotlib.pyplot as plt
+from matplotlib.ticker import MaxNLocator, ScalarFormatter
 
 # ===== 常用调节区 =====
-FIGSIZE = (11.3, 8.1)
-MARKER_SIZE = 2.0
+FIGSIZE = (11.3, 6.8)
+MARKER_SIZE = 2.6
 VOLTAGE_LIMIT = 0.30
+
+
+def visible_points(ax, time, values, color, label, size=MARKER_SIZE, zorder=3):
+    """密集离散点取消白边，避免后画点的白边遮掉前面点的颜色。"""
+    artist = discrete_points(ax, time, values, color, label, size,
+                             alpha=1., zorder=zorder)
+    artist.set_markeredgewidth(0)
+    artist.set_markeredgecolor(color)
+    return artist
 
 
 def build_figure():
     traces = read_traces("P", "C")
-    fig, axes = plt.subplots(3, 2, figsize=FIGSIZE, sharex="col")
+    fields = {key: {name: cells(trace, name) for name in
+                   ("V", "ice_bulk", "pore_ice_saturation")}
+              for key, trace in traces.items()}
+    for key, values in fields.items():
+        if not all(np.isfinite(array).all() for array in values.values()):
+            raise ValueError(f"{key} 轨迹存在非有限值。")
+    fig, axes = plt.subplots(2, 2, figsize=FIGSIZE)
+    voltage_top = max(1.30, max(float(v["V"].max()) for v in fields.values()) * 1.06)
+    voltage_bottom = min(.26, min(float(v["V"].min()) for v in fields.values()) - .04)
     for col, key in enumerate(("P", "C")):
-        trace = traces[key]
-        time = trace["time_s"]
-        voltage = cells(trace, "V")
-        ice = cells(trace, "ice_bulk")
-        saturation = cells(trace, "pore_ice_saturation")
-
-        discrete_points(axes[0, col], time, np.min(voltage, axis=1), COLORS[key],
-                        "全堆最低单片电压", MARKER_SIZE)
+        time = traces[key]["time_s"]
+        label = "最低无载电压" if np.all(traces[key]["j_A_cm2"] == 0) else "最低单片电压"
+        visible_points(axes[0, col], time, np.min(fields[key]["V"], axis=1), COLORS[key], label)
         axes[0, col].axhline(VOLTAGE_LIMIT, color=COLORS["danger"], linestyle="--",
                             linewidth=1, label="电压约束 0.30 V")
-        axes[0, col].set_ylim(bottom=min(.27, np.min(voltage) - .02))
-
-        discrete_points(axes[1, col], time, np.max(ice[:, [0, 4]], axis=1),
-                        CELL_COLORS[0], "端部单片最大", MARKER_SIZE)
-        discrete_points(axes[1, col], time, ice[:, 2], CELL_COLORS[2],
-                        "中心单片", MARKER_SIZE)
-        discrete_points(axes[1, col], time, np.max(ice, axis=1), COLORS["neutral"],
-                        "全堆最大", MARKER_SIZE)
-
-        discrete_points(axes[2, col], time, np.max(saturation[:, [0, 4]], axis=1),
-                        COLORS[key], "端部孔隙冰饱和度", MARKER_SIZE)
+        axes[0, col].set_ylim(voltage_bottom, voltage_top)
+        axes[0, col].set_xlim(0, time[-1])
         panel_title(axes[0, col], f"({chr(97 + col)}) {NAMES[key]}")
-        for row in range(3):
-            axes[row, col].legend(frameon=False, loc="best", fontsize=8)
-        for row, ylabel in enumerate(("最低单片电压 / V", "MEA 体积平均冰体积分数", "端部孔隙冰饱和度")):
-            decorate(axes[row, col], ylabel if col == 0 else None,
-                     "时间 / s" if row == 2 else "")
-            axes[row, col].set_xlim(0, time[-1])
-            if row > 0:
-                axes[row, col].set_ylim(bottom=0)
-                source = ice if row == 1 else saturation
-                if np.max(source) < 1e-10:
-                    axes[row, col].set_ylim(0, 1e-4)
-                formatter = ScalarFormatter(useMathText=True)
-                formatter.set_powerlimits((-3, 3))
-                axes[row, col].yaxis.set_major_formatter(formatter)
-    note(fig, "统计窗口与图01相同，未包含 P 关热后续加载。ice_bulk 含膜内冰、以整个 MEA 体积平均；\n孔隙冰饱和度仅描述多孔层局部孔隙占据，二者分母不同。体积分数启动约束为 < 0.99。")
+        decorate(axes[0, col], "最低单片电压 / V")
+        axes[0, col].legend(frameon=False, loc="lower left", fontsize=8, markerscale=1.6)
+
+    # 纯预热冰量仅为数值残差、孔隙冰为零：论文图省略这两个无变化面板。
+    # 原始CSV不改动；其统计窗口仍为首次启动前，未混入关热后的加载数据。
+    time = traces["C"]["time_s"]
+    ice = fields["C"]["ice_bulk"]
+    saturation = fields["C"]["pore_ice_saturation"]
+    visible_points(axes[1, 0], time, np.max(ice, axis=1), COLORS["neutral"],
+                   "全堆最大", size=4.2, zorder=2.5)
+    visible_points(axes[1, 0], time, np.max(ice[:, [0, 4]], axis=1), CELL_COLORS[0],
+                   "端部单片最大", zorder=3)
+    visible_points(axes[1, 0], time, ice[:, 2], CELL_COLORS[2], "中心单片", zorder=4)
+    visible_points(axes[1, 1], time, np.max(saturation[:, [0, 4]], axis=1), COLORS["C"],
+                   "端部孔隙冰饱和度")
+    for col, (values, ylabel, title) in enumerate((
+            (ice, "MEA 体积平均冰体积分数", "(c) C 协同加热 · 冰体积分数"),
+            (saturation[:, [0, 4]], "端部孔隙冰饱和度", "(d) C 协同加热 · 孔隙冰饱和度"))):
+        ax = axes[1, col]
+        top = max(float(np.max(values)) * 1.15, 1e-12)
+        ax.set_ylim(-.04 * top, top)
+        ax.set_xlim(0, time[-1])
+        decorate(ax, ylabel)
+        panel_title(ax, title)
+        ax.yaxis.set_major_locator(MaxNLocator(5, min_n_ticks=3))
+        formatter = ScalarFormatter(useMathText=True)
+        formatter.set_powerlimits((-3, 3))
+        ax.yaxis.set_major_formatter(formatter)
+        ax.legend(frameon=False, loc="upper left", fontsize=8, markerscale=1.6)
     return fig
 
 
@@ -59,4 +76,4 @@ if __name__ == "__main__":
     args = cli(__doc__)
     configure_style()
     export_and_show(build_figure(), "03_主策略电压与结冰", args,
-                    dict(left=.09, right=.98, bottom=.13, top=.95, hspace=.24, wspace=.20))
+                    dict(left=.09, right=.98, bottom=.10, top=.94, hspace=.40, wspace=.25))
