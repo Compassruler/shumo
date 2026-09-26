@@ -1,0 +1,6 @@
+numpy>=2.0,<2.8
+scipy>=1.14
+numba>=0.61
+matplotlib>=3.9
+openpyxl>=3.1
+lxml>=5
