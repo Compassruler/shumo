@@ -8,7 +8,7 @@ from pathlib import Path
 import argparse,csv,time,hashlib,platform,sys
 import numpy as np
 import pandas as pd
-from scipy.optimize import differential_evolution, minimize
+
 import control_model as m
 
 ROOT=Path(__file__).resolve().parents[1];DATA=ROOT/'data'
@@ -21,49 +21,9 @@ def save(rows,name):
 def simulate_case(temp,params,**kwargs):return m.simulate(temp,params=params,**kwargs)
 
 def optimize_case(case,temp,previous=None):
-    base=m.simulate(temp,kind='constant',dt=.1)[0]
-    refs=np.array([base['E_aux_J'],base['stop_s'],base['dTmax_K']])
-    trace=[];best=[1e10,None]
-    passive=m.DEFAULT.copy();passive[[2,3,11,12]]=0.
-    ps=m.simulate(temp,params=passive,dt=.025,scale=2)[0]
-    if ps['feasible'] and ps['E_aux_J']==0.:
-        J=.005*ps['stop_s']/refs[1]+.002*ps['dTmax_K']/refs[2]
-        trace.append(dict(case=case,stage='zero_energy_lower_bound',J=J,**dict(zip(m.PARAM_NAMES,passive)),**ps))
-        save(trace,f'optimization_search_{case}.csv')
-        print(case,'zero energy feasible: global lower bound of primary objective attained',flush=True)
-        return passive,trace
-    def objective(x,stage,dt=.1,scale=1):
-        p=m.DEFAULT.copy();p[IDX]=x
-        s=m.simulate(temp,params=p,dt=dt,scale=scale)[0]
-        if s['feasible']:
-            J=s['E_aux_J']/refs[0]+.005*s['stop_s']/refs[1]+.002*s['dTmax_K']/refs[2]
-        else:J=10.+max(0.,-s['final_min_T_C'])/30.+s['E_aux_J']/refs[0]
-        trace.append(dict(case=case,stage=stage,J=J,**dict(zip(m.PARAM_NAMES,p)),**s))
-        if J<best[0]:best[:]=[J,p.copy()]
-        if len(trace)%100==0:
-            print(f'{case}: {len(trace)} candidates; best J={best[0]:.6f}',flush=True)
-            save(trace,f'optimization_search_{case}.csv')
-        return J
-    if previous is not None:
-        # Preserve the earlier compact-domain search and audit its boundary.
-        oldpath=DATA/f'optimization_search_{case}.csv'
-        if oldpath.exists():trace=pd.read_csv(oldpath).to_dict('records')
-        objective(previous[IDX],'previous_solution_recheck')
-        for plan in (90.,95.,100.,110.,130.,160.,190.):
-            x=previous[IDX].copy();x[1]=plan;objective(x,'expanded_plan_boundary')
-    for seed in ((9026,) if previous is not None else (20260926,73)):
-        result=differential_evolution(lambda x:objective(x,f'DE_seed{seed}'),BOUNDS,
-            seed=seed,popsize=6,maxiter=18,tol=1e-5,polish=False,
-            x0=best[1][IDX] if best[1] is not None else m.DEFAULT[IDX])
-    # Refine in the same numerical fidelity used for the delivery trajectories.
-    candidates=sorted([r for r in trace if r['feasible']],key=lambda r:r['J'])[:12]
-    best[:]=[1e10,None]
-    for r in candidates:objective(np.array([r[m.PARAM_NAMES[i]] for i in IDX]),'fine_rerank',.025,2)
-    local=minimize(lambda x:objective(x,'fine_Powell',.025,2),best[1][IDX],method='Powell',
-        bounds=BOUNDS,options={'maxfev':150,'xtol':.01,'ftol':1e-5})
-    save(trace,f'optimization_search_{case}.csv')
-    print(f'{case}: selected parameters {best[1].tolist()}',flush=True)
-    return best[1],trace
+    from reoptimize_controls import optimize
+    starts=[] if previous is None else [previous]
+    return optimize(case,temp,starts)
 
 def main():
     parser=argparse.ArgumentParser();parser.add_argument('--reuse-controls',action='store_true')
@@ -144,3 +104,4 @@ def main():
 
 def hframe(h):return pd.DataFrame(h,columns=m.HISTORY)
 if __name__=='__main__':main()
+

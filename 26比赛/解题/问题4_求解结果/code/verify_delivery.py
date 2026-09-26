@@ -22,15 +22,29 @@ def main():
         if not (ROOT/unquote(link.split('#')[0])).exists():missing.append(link)
     add('report_local_links_exist',not missing,missing)
     png=list((ROOT/'figures').glob('*.png'));svg=list((ROOT/'figures').glob('*.svg'))
-    add('13_png_and_13_svg',len(png)==13 and len(svg)==13,f'{len(png)}/{len(svg)}')
+    add('16_png_and_16_svg',len(png)==16 and len(svg)==16,f'{len(png)}/{len(svg)}')
     for path in png:
         with Image.open(path) as image:
             add('image_readable_'+path.stem,min(image.size)>1000,str(image.size));image.verify()
     for name,count in [('main_results.csv',9),('constant_scan.csv',19),('guarded_results.csv',3),
-                        ('robustness.csv',90),('guarded_robustness.csv',90),('coupled_convergence.csv',9)]:
+                        ('robustness.csv',90),('guarded_robustness.csv',90),('coupled_convergence.csv',9),
+                        ('optimized_constant_results.csv',3),('guarded_parameter_validation.csv',24),('guarded_convergence.csv',21),
+                        ('constant_robustness.csv',180),('constant_parameter_validation.csv',48),('observer_example_results.csv',3)]:
         df=pd.read_csv(ROOT/'data'/name);add('rows_'+name,len(df)==count,len(df))
-    for name in ('independent_export_validation.csv','model_validation.csv','precooling_validation.csv'):
+    for name in ('independent_export_validation.csv','model_validation.csv','precooling_validation.csv','revision_validation.csv'):
         df=pd.read_csv(ROOT/'data'/name);add('checks_'+name,df.passed.all(),f'{df.passed.sum()}/{len(df)}')
+    summaries=pd.concat([pd.read_csv(ROOT/'data'/name) for name in
+        ('main_results.csv','guarded_results.csv','optimized_constant_results.csv')])
+    states=pd.read_csv(ROOT/'data/controller_state_duration.csv')
+    duration=states.groupby(['case','strategy','cell'],as_index=False).duration_s.sum()
+    duration=duration.merge(summaries[['case','strategy','stop_s']],on=['case','strategy'])
+    error=(duration.duration_s-duration.stop_s).abs().max()
+    add('state_durations_cover_startup',error<1e-7,error)
+    off=states.loc[states.state==5,'duration_s'].abs().max()
+    add('shutdown_state_has_zero_startup_duration',off<1e-9,off)
+    constant=states[states.strategy.str.contains('constant')]
+    nonzero=constant.loc[constant.state!=0,'duration_s'].abs().max()
+    add('constant_startup_state_code_zero',nonzero<1e-9,nonzero)
     result=pd.DataFrame(checks);result.to_csv(ROOT/'data/delivery_validation.csv',index=False,encoding='utf-8-sig')
     manifest=[]
     files=[]

@@ -102,8 +102,11 @@ class Report:
         table+=''.join('<tr>'+''.join('<td>'+escape(x)+'</td>' for x in row)+'</tr>' for row in rows)
         self.html.append('<div class="table-wrap">'+table+'</tbody></table></div>')
         if source:
-            self.md.append(f'数据源：[{source}](data/{source})；共 {len(df)} 行，CSV保留工作精度。\n')
-            self.html.append(f'<p class="caption">数据源：<a href="data/{escape(source)}">{escape(source)}</a>；共 {len(df)} 行，CSV保留工作精度。</p>')
+            sources=[s.strip() for s in source.split(' + ')]
+            mdlinks='、'.join(f'[{s}](data/{s})' for s in sources)
+            htmllinks='、'.join(f'<a href="data/{escape(s)}">{escape(s)}</a>' for s in sources)
+            self.md.append(f'数据源：{mdlinks}；共 {len(df)} 行，CSV保留工作精度。\n')
+            self.html.append(f'<p class="caption">数据源：{htmllinks}；共 {len(df)} 行，CSV保留工作精度。</p>')
     def image(self,name,caption):
         self.md.append(f'![{caption}](figures/{name}.png)\n\n{caption}。矢量版：[SVG](figures/{name}.svg)。\n')
         self.html.append(f'<figure><img src="figures/{name}.png" alt="{escape(caption)}"><figcaption>{escape(caption)}。<a href="figures/{name}.svg">SVG矢量版</a></figcaption></figure>')
@@ -117,326 +120,320 @@ class Report:
         (root/'问题四_完整求解报告.html').write_text(html,encoding='utf-8')
 
 
+STRATEGIES.update({'dynamic':'名义能耗优选动态','guarded':'推荐留裕度动态',
+                  'optimized_constant':'同工况重优化恒功率','constant_optimized':'同工况重优化恒功率',
+                  'zero_heat':'零辅助加热','zero_heater':'零辅助加热',
+                  'inherited_constant_C':'固定问题三C','full_power':'全片满功率'})
+NAMES.update({'stop_temperature_margin_K':'测量关热温度裕度/K',
+ 'max_observer_ice_error':'冰软测量最大绝对误差','max_observer_T_error_K':'观测温度最大误差/K',
+ 'max_observer_ice_error_bulk':'冰先验最大绝对误差','observer_initial_shift_K':'观测器初温偏差/K',
+ 'physical_first_within_budget':'真实首次达标在预算内','measurement_stop_completed':'测量保持完成',
+ 'physical_hold_s':'真实连续达标时长/s','measured_hold_s':'测量连续达标时长/s',
+ 'stop_truth_valid':'测量停机时真实状态有效','false_stop':'测量误停',
+ 'first_deadline_s':'首次达标期限/s','first_time_limit_s':'首次达标期限/s',
+ 'q1_W_cm2':'电池1功率/W·cm⁻²','q2_W_cm2':'电池2功率/W·cm⁻²',
+ 'q3_W_cm2':'电池3功率/W·cm⁻²','q4_W_cm2':'电池4功率/W·cm⁻²',
+ 'q5_W_cm2':'电池5功率/W·cm⁻²','candidate':'候选编号','stage':'搜索阶段',
+ 'training_passed':'训练通过数','training_count':'训练总数','all_training_passed':'训练全通过',
+ 'training_max_stop_s':'训练最大关热/s','seed':'随机种子'})
+NAMES.update({'first_min_voltage_V':'首次窗口最低电压/V','first_max_ice_bulk':'首次窗口最大冰量',
+ 'first_dTmax_K':'首次窗口最大温差/K','charge_at_stop_C_cm2':'关热累计电荷/C·cm⁻²',
+ 'physical_hold_completed':'真实状态连续保持完成','observer_max_temperature_error_K':'观测器最大温度误差/K',
+ 'observer_max_ice_error':'观测冰先验最大误差','post_max_iteration_error_K':'后验段最大迭代误差/K',
+ 'startup_window_end_s':'启动仿真窗口终点/s','shutdown_mode':'停机口径',
+ 'sensor_stop_margin_C':'滤波测温裕度/℃','deadline_s':'首次真实成功期限/s'})
+
+
+def good(df):
+    return df['feasible'].astype(str).str.lower().isin(['true','1'])
+
+
+def optional_table(r,root,name,title,columns=None):
+    df=load(name,root,False)
+    if df is not None:r.table(title,df,columns,name)
+    return df
+
+
+def image_if(r,root,name,caption):
+    if (root/'figures'/(name+'.png')).exists():r.image(name,caption)
+
+
+def search_stats(df):
+    rows=[]
+    group=[c for c in ('case','stage') if c in df]
+    for keys,g in df.groupby(group,sort=False):
+        if not isinstance(keys,tuple):keys=(keys,)
+        row=dict(zip(group,keys));ok=good(g) if 'feasible' in g else pd.Series(True,index=g.index)
+        row.update({'候选数':len(g),'可行候选数':int(ok.sum())})
+        for key in ('J','E_aux_J','first_success_s','stop_s'):
+            if key in g:row['最低可行'+NAMES.get(key,key)]=g.loc[ok,key].min() if ok.any() else np.nan
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
+def robust_stats(df):
+    rows=[]
+    for case,g in df.groupby('case',sort=False):
+        ok=good(g);success=g.loc[ok]
+        row={'case':case,'试验数':len(g),'可行数':int(ok.sum()),'经验通过率/%':100*ok.mean(),
+             '成功样本平均能耗/J':success.E_aux_J.mean(),'成功样本能耗标准差/J':success.E_aux_J.std(),
+             '成功样本最小能耗/J':success.E_aux_J.min(),'成功样本最大能耗/J':success.E_aux_J.max(),
+             '全部样本最低电压/V':g.min_voltage_V.min(),'全部样本最大冰量':g.max_ice_bulk.max()}
+        for key in ('noise_T_K','noise_V_V','initial_shift_K','G_factor','G_EP_factor','h_factor','observer_initial_shift_K'):
+            if key in g:row[key+'实际取值']=','.join(fmt(x) for x in sorted(g[key].dropna().unique()))
+        rows.append(row)
+    return pd.DataFrame(rows)
+
+
 def build(root=ROOT):
-    main=load('main_results.csv',root);initial=load('initial_temperature_cases.csv',root)
-    params=load('optimized_parameters.csv',root);scan=load('constant_scan.csv',root)
-    conv=load('startup_convergence.csv',root);sens=load('sensitivity.csv',root);noise=load('robustness.csv',root)
-    guarded=load('guarded_results.csv',root,False)
-    r=Report();r.heading('问题四：电堆动态辅助加热控制与预冷程度影响——完整数值求解',1)
-    r.p('本报告依据提供的《问题4_建模推导源文件.md》及问题三已审计的水—热—电化学模型重算。数值、表格和图片均由本目录CSV生成；没有沿用原问题四结果数值。正文先给出结论，再给出方程修正、数值方法、控制律、优化过程、完整结果与验证。')
-    r.heading('1. 主要数值结论')
-    savings=[]
+    main=load('main_results.csv',root);guard=load('guarded_results.csv',root)
+    initial=load('initial_temperature_cases.csv',root);scan=load('constant_scan.csv',root)
+    nominal=main[main.strategy=='dynamic'].copy();fixed=main[main.strategy=='constant_hold'].copy()
+    allrows=pd.concat([guard,main],ignore_index=True)
+    recommended=pd.concat([guard,fixed],ignore_index=True)
+    noise=load('robustness.csv',root);gnoise=load('guarded_robustness.csv',root)
+    opt=load('optimized_constant_results.csv',root,False)
+    if opt is not None:allrows=pd.concat([allrows,opt],ignore_index=True)
+    all_sources='guarded_results.csv + main_results.csv'+(' + optimized_constant_results.csv' if opt is not None else '')
+    r=Report();r.heading('问题四：动态辅助加热控制与预冷过程——修订后的完整数值求解',1)
+    r.p('本报告由本目录本轮重算的CSV自动生成。推荐结果为留温度与时间裕度的动态反馈方案；名义能耗优选、问题三固定恒功率、同工况重优化恒功率及失败候选分别保留。先报告可复核结果，再解释模型、求解过程和适用范围。全部结论只在已给物理模型、加载曲线、有限搜索及有限扰动试验范围内成立。')
+    r.heading('1. 结果概览与比较口径')
+    comparison=[]
     for case in CASES:
-        a=main[(main['case']==case)&(main.strategy=='dynamic')].iloc[0]
-        b=main[(main['case']==case)&(main.strategy=='constant_hold')].iloc[0]
-        saving=(b.E_aux_J-a.E_aux_J)/b.E_aux_J*100
-        savings.append(dict(case=case,dynamic_E_J=a.E_aux_J,constant_E_J=b.E_aux_J,energy_saving_pct=saving,
-                            dynamic_stop_s=a.stop_s,constant_stop_s=b.stop_s))
-        direction='降低' if saving>=0 else '增加'
-        r.p(f'{CASES[case]}：动态策略辅助能耗 {a.E_aux_J:.3f} J，首次达标 {a.first_success_s:.4f} s，完成保持并关热 {a.stop_s:.4f} s；相同2 s保持的恒功率策略能耗 {b.E_aux_J:.3f} J，动态能耗{direction} {abs(saving):.3f}%。动态最低单片电压 {a.min_voltage_V:.6f} V，最大冰体积分数 {a.max_ice_bulk:.6f}，最大同刻五片温差 {a.dTmax_K:.6f} K。')
-    r.p('这组解以延长启动时间换取辅助电能下降：工况1/3在接近96.6667 s预算上限才关热，期间利用了更多电化学反应热；工况2零辅助加热也需要约86.72 s才能完成保持，恒功率仅需约7.61 s。动态组累计加载电荷明显更多，因而不能把“辅助电能节约”解释为氢耗或全系统总能耗同等下降。')
-    nominal_noise=int(noise.feasible.astype(bool).sum())
-    r.p(f'必须同时报告的限制：名义策略扰动试验仅{nominal_noise}/{len(noise)}次可行，工况1/3主要因截止前未完成连续2 s保持而失败；名义关热后60 s内工况1和3又降到0 ℃以下。故名义结果可作为能耗主导的数学优选解，不能直接称为可靠工程控制方案；未满足的保持、噪声和余热维持要求在第8—9节完整保留。')
-    if guarded is not None:
-        gnoise=load('guarded_robustness.csv',root)
-        r.p(f'另给出留温度/时间裕度的备选：三工况名义辅助电能分别为'+ '、'.join(f'{x:.3f} J' for x in guarded.E_aux_J)+f'，在独立随机种子组的{len(gnoise)}次扰动试验中通过{int(gnoise.feasible.astype(bool).sum())}次。该方案改善了按时完成保持的试验表现，但工况1/3关热后仍回冷，不能声称已经满足持续暖态或任意扰动下的可靠运行；详见第9节备选完整表。')
-    count=int(scan.feasible.astype(bool).sum())
-    r.p(f'第(2)问固定问题三五片功率分配，对10、15、…、100 min共{len(scan)}个预冷点逐一仿真，可行点为{count}/{len(scan)}。10 min初场已整体高于0 ℃，按启动温度与状态判据在t=0即成功，辅助电能与冷启动时间均为0；这不等价于证明任意后续负载下都能长期稳定运行。')
-    r.p('“最优”仅指本报告给定反馈结构、参数边界、加载曲线和搜索预算内找到的最优可行候选。非线性混合控制系统的有限次差分进化与局部搜索不能提供全局最优证明；动态策略在每一指标上是否改进，以表格的实际数值为准。')
-    zero_cases=main[(main.strategy=='dynamic')&(main.E_aux_J==0)&main.feasible.astype(bool)]
-    if len(zero_cases):
-        r.p('其中'+ '、'.join(CASES[c] for c in zero_cases['case'])+'采用被动监测、风险时才启动安全后备的控制模式，名义功率为0且本次轨迹未触发补热。由于辅助电能非负，E_aux=0确实达到主目标的非负下界；该结论只针对主能耗目标和这些工况，不意味着加权目标J或其他工况也已获得全局最优。')
-    NAMES.update({'dynamic_E_J':'动态能耗/J','constant_E_J':'恒功率保持能耗/J','energy_saving_pct':'节能率/%',
-                  'dynamic_stop_s':'动态关热/s','constant_stop_s':'恒功率关热/s'})
-    r.table('表1 统一保持条件下的能耗比较',pd.DataFrame(savings))
-
-    r.heading('2. 输入、单位与必须修正的建模细节')
-    r.p('预冷阶段：全场25 ℃，环境−30 ℃，端板真实外表面换热系数40 W/(m²·K)；几何为2块10 mm端板、6块2 mm双极板和5组五层MEA，总厚度33.6335 mm，电热丝面积每片25 cm²。两个端片各分摊1.5块双极板，中间三片各分摊1块；端板作为两个独立热节点，避免重复计入热容。')
-    inventory=root/'inputs'/'parameter_inventory.csv'
-    if inventory.exists():
-        r.table('输入参数及来源清单',pd.read_csv(inventory,encoding='utf-8-sig'))
-        r.link('原始参数来源CSV','inputs/parameter_inventory.csv')
-    r.p('启动阶段继承问题三校准内核：j(t)=min(0.005t,0.3) A/cm²，各片电流相同；端电池电压传质项系数β=10，中间片β=1，交换电流参数j₀=0.10255839004732065（内核SI电流单位）。孔隙自由液水与冰初始为0，膜内保留λ=3的不可冻结结合水；“吹扫后无自由水”不能解释为膜质子电导所需水量也为0。')
-    r.p('启动搜索时限96.6667 s由问题三累计电荷预算20 C/cm²的继承口径得到：前60 s累计9 C/cm²，随后以0.3 A/cm²补足11 C/cm²。它是本次与问题三一致比较采用的仿真边界；不将其宣称为问题四单独给定的新增硬条件。')
-    fixes=pd.DataFrame([
-      ['(4.3)外法向边界符号','左端 kTₓ=h(T−Tₐ)，右端 −kTₓ=h(T−Tₐ)','确保两端向低温环境散热'],
-      ['边界半控制体热阻','g_b=(1/h+Δx/(2k))⁻¹','由控制体中心换算到真实表面对流'],
-      ['(4.34)前馈重复累加','独立保存积分修正状态；q名义=q前馈+P+I+速率补偿','不在上次实际功率上每次再叠加完整前馈'],
-      ['安全增强与渐缩顺序','先渐缩，最后q=max(q渐缩,q安全)','渐缩不能削弱最高优先级安全增强'],
-      ['最大温差定义','ΔTmax=max_t(max_k T_k(t)−min_k T_k(t))','同一时刻五片之间的极差，不是跨时全局温度极差'],
-      ['比较窗口','动态与constant_hold均到完成连续2 s保持并关热','constant_first单独作为问题三首次过零参考'],
-      ['零时刻已成功','先检查初态，满足则t_s=0、E_aux=0','避免强制走一步造成虚假时间和电能'],
-      ['长期预冷结论','分别核算全场、端板—中心、五片温差','20→40 min绝对梯度下降，不能预设一定更不均匀'],
-      ['“安全保证/全局最优”','以实际检验的约束和有限候选搜索范围表述','规则本身不构成鲁棒不变集或全局极小证明']
-    ],columns=['项目','实际采用','原因'])
-    r.table('表2 推导与实现修正',fixes)
-    r.p('预冷按文档的名义材料物性计算：MEA热容60.75966 J/(m²·K)、BP热容3033.36 J/(m²·K)，整堆97503.9583 J/(m²·K)。启动内核采用孔隙、气体、离聚物及膜含水量修正的有效物性，初态MEA热容约50.22752715 J/(m²·K)，整堆约97451.29764 J/(m²·K)。温度状态由预冷映射进入启动，未把两种物性近似混称为同一绝对焓表达；该继承近似应在论文中保留。预冷对流在端板外表面，主启动模型对流在端电池节点，沿用问题二/三约定。')
-
-    r.heading('3. 预冷有限体积模型与完整初场结果')
-    r.formula('C_i dT_i/dτ = g_(i−1/2)(T_(i−1)−T_i) + g_(i+1/2)(T_(i+1)−T_i)\nC_i=(ρc_p)_i Δx_i；g_(i+1/2)=[Δx_i/(2k_i)+Δx_(i+1)/(2k_(i+1))]⁻¹\n两端另加 g_b(T_amb−T_i)，T_amb=−30 ℃\nu=T−T_amb；(C/Δτ+L)u^(m+1)=(C/Δτ)u^m')
-    r.p('将MEA五层显式展开，共33个材料区、146个基础控制体。正式预冷后向欧拉步长0.25 s；各要求时刻精确截断步长，不以更晚时间层代替。七节点初温采用对应区域的热容加权平均；完整BP按实际几何中面分开，每个控制体只归属一个节点。')
-    r.table('表3 三工况七节点初场',initial,['case','cooling_min','TEL_C','T1_C','T2_C','T3_C','T4_C','T5_C','TER_C','mean_capacity_C','cell_range_K','field_range_K'],'initial_temperature_cases.csv')
-    r.image('图03_三工况初始温度','图3 三工况初始节点温度；各子图纵轴独立，避免掩盖细小梯度')
-    r.table('表4 三种平均温度与场的极值口径',initial,['case','mean_capacity_C','mean_length_C','mean_seven_nodes_C','field_min_C','field_max_C','center_minus_left_EP_K','surface_left_C','surface_right_C','relative_field_range','Bi_stack'],'initial_temperature_cases.csv')
-    r.table('表5 10–100 min预冷的全部19点温度结果',load('precooling_nodes.csv',root),
-            ['cooling_min','TEL_C','T1_C','T2_C','T3_C','T4_C','T5_C','TER_C','mean_capacity_C','field_range_K','cell_range_K'],'precooling_nodes.csv')
-    r.image('图01_预冷温度场族','图1 完整预冷温度场族及空间梯度细节')
-    r.image('图02_预冷均温与温差','图2 温度向−30 ℃渐近，同时10–100 min范围内绝对温差衰减')
-    r.p('用y=C^(1/2)u将热算子转换为对称三对角矩阵，再求特征分解，得到同网格矩阵指数独立参考。整堆主慢时间常数约1233.25648 s（20.5543 min）；存在116.71122 s反对称模态，但均匀初态仅激发约4.14×10⁻⁵ K，不能单看特征时间判定其主导性。全半堆热阻包含一块EP、三块BP与2.5层MEA，Bi_stack=0.13963743。')
-    r.table('表6 预冷主要特征模态',load('precooling_slow_modes.csv',root),source='precooling_slow_modes.csv')
-    r.table('表7 守恒映射后的七节点热容',load('precooling_node_capacities.csv',root),source='precooling_node_capacities.csv')
-
-    r.heading('4. 启动被控对象、成功条件与数值推进')
-    r.p('每片MEA采用水蒸气/液水/冰、氢气/氧气库存的一维有限体积离散；以蒸发/凝结、冻结/融化、凝华/升华更新相态，气相扩散与反应消耗耦合。正式每片58个控制体（基础29×网格倍率2）。温度使用七节点热网络：五片平均温度和两个端板温度，节点热容与MEA热阻随水相状态改变。模型完整核函数保存在fast_cell.py；本题新增控制器不删除原电化学可行性诊断。')
-    r.formula('C_k(X) dT_k/dt = Σ_l G_kl(T_l−T_k) − h_k(T_k−T_amb) + q_gen,k + q_phase,k + 10⁴q_k\nq_gen,k = 10⁴j(t)[1.48−V_k]；q_k单位W/cm²，j单位A/cm²\nV_k = E_rev − η_act − η_ohm − η_con\nη_act = RT/(0.5F) asinh[j_SI/(2j₀(T,ice))]\nη_ohm = j_SI R_mem；η_con = −βRT/(4F) ln(1−j/j_lim)')
-    r.p('顺序推进质量/相变状态后，对后向欧拉热方程和温度依赖电压进行Picard迭代，最大迭代30次，温度迭代终止阈值10⁻⁹ K。时间积分正式Δt=0.025 s，控制周期Δt_c=0.2 s；每个积分步按累计电荷差求该步平均电流，对控制更新、加载拐点、成功跨越和保持终点对齐。首次温度跨越采用最后子步重新积分并二分22次定位，避免简单采样量化启动时间。')
-    r.formula('主路径约束：0≤q_k≤1 W/cm²；min_(k,t)V_k≥0.30 V；max_(k,x,t)ε_ice<0.99\n附加物理诊断：j/j_lim<1；气相孔隙率≥0；质子电导>0；库存不出现超容差负值\n首次成功 t_s：五片均温均>10⁻⁷ ℃，当步状态可行，且此前路径约束均满足\n关热 t_stop：上述条件连续满足2 s；之后锁定q_k=0\nE_aux = 25 Σ_k Σ_n q_(k,n) Δt_n  [J]')
-    r.p('10⁻⁷ ℃是严格T>0判据的数值阈值。主表冰指标是全MEA所有空间控制体中的局部最大体积分数ε_ice=m_ice/ρ_ice；它不同于孔隙冰饱和度，也不同于仅多孔层冰体积分数。CSV同时保留这些分量用于辨识，主表与0.99阈值比较不混用定义。')
-    r.p('动态与constant_hold主表均统计[0,t_stop]；first_success_energy_J单独给出[0,t_s]积分。constant_first使用0 s保持，提供与问题三相同的首次达标窗口。主算例关热后继续按原加载曲线运行60 s，功率严格锁定为0，该段用于检查回落和持续状态，单独成表，不混入主表极值和辅助能耗。')
-
-    r.heading('5. 可执行的反馈控制律与离线参数整定')
-    r.p('每片只输出自己的电热丝功率，五路功率独立。控制器在温度/电压采样上叠加所设测量噪声后，以时间常数0.15 s低通滤波，再以0.20 s时间常数滤波差分速率。内部水相状态用于模型软测量；无冰参考电压与实测电压的非负残差提供有界冰量校正。本实现属于模型辅助状态估计，未将仿真的真实冰量宣称为直接传感器测量，也未声称完成实际硬件观测器辨识。')
-    r.formula('β=exp(−Δt_c/0.15)，β_r=exp(−Δt_c/0.20)\nT_ref,k=T0,k+(T_target−T0,k)min(t/t_plan,1)\ne_k=T_ref,k−T_f,k；r_req=max(0,(T_target−T_f,k)/max(t_plan−t,1))\nD_r=max(0,(r_req−r_T)/(r_req+0.01))；D_T=max(0,−T_f/30)\nq_ff=ff_factor·[C_k·dT_ref/dt+网络净散热−电化学反应热]/10⁴\nK_P,eff=K_P[0.6+0.4clip(−T_f/30,0,1)]\nI_trial=I_old+K_I e_k Δt_c（饱和方向的积分增量被抑制，I限幅[−2,2]）\nq_nom=q_ff+K_P,eff e_k+I+rate_gain·min(D_r,2)min(D_T,1)')
-    r.p('温度超过0 ℃、估计冰量低于0.5且电压下降率大于−0.05 V/s时启用渐缩：ψ=clip((T_target−T_f)/taper_K,0,1)。安全条件使用逻辑“或”：估计冰量超过ice_warn、滤波电压低于0.30+delta_V、r_V<−0.1 V/s且V_f<0.6 V、或综合风险超过risk_warn，都触发增强。先渐缩，再将功率与安全增强值取较大者，最后限幅[0,1]。')
-    r.formula('ε_est=clip[ε_model+L_obs·max(0,V_noice−V_measured)/0.1,0,1]\nR=0.4 ε_est/0.99+0.4 max(0,(0.30+delta_V−V_f)/delta_V)+0.2 min(max(0,−r_V)/0.1,1)\nq_boost=q_boost_min+(1−q_boost_min)clip((R−risk_warn)/(1−risk_warn),0,1)\nq=clip(max(q_tapered,q_boost),0,1)  （仅安全预警触发时取max）')
-    states=pd.DataFrame([[1,'冰堵/低压风险','任一安全预警成立','安全增强最高优先级'],[2,'温度偏低且温升不足','D_r>0.1，低温时补偿有效','前馈+PI+速率补偿'],[3,'正常跟踪','未触发其他状态','保持/调整名义功率'],[4,'接近目标且风险较低','温度>0、冰估计<0.5、电压下降缓和','渐缩功率'],[5,'已关热','全局成功连续保持2 s','关断锁存、功率恒为0']],columns=['状态码','识别状态','触发说明','动作'])
-    r.table('表8 控制状态机',states)
-    r.p('首先尝试零名义功率策略：令K_P、K_I、rate_gain、ff_factor均为0，保留滤波、状态识别、电压校正和最高优先级安全后备。若正式精度仿真可行且E_aux=0，则已达到主能耗的非负下界，可直接选择该模式。其他工况在六维参数域进行差分进化，随机种子20260926与73，每次18代、种群倍率6；先用Δt=0.1 s、网格倍率1筛选，再将可行候选中目标函数最低的12个以正式Δt=0.025 s、网格倍率2重新排序，最后进行Powell有界局部搜索（最多150次评估）。')
-    r.p('本次计算对规划时间的边界进行了审计：工况1保留初始[5,90] s范围搜索，增加90、95、100、110、130、160、190 s规划值的边界候选后，以种子9026在扩展域[5,190] s继续差分进化；最终参数以表9为准。规划时间是参考轨迹参数，不是允许的启动时限，即使t_plan超过96.6667 s，实际关热仍必须在96.6667 s预算内完成。所有候选及阶段标签保存在optimization_search.csv；从头运行最终脚本会直接使用扩展域，已保存参数复算可精确重建交付轨迹。')
-    r.formula('常规搜索域：T_target∈[0.2,4] ℃；t_plan∈[5,190] s；K_P∈[0.025,0.65]；\nK_I∈[0.0005,0.07]；taper_K∈[0.1,2] K；rate_gain∈[0,0.4]\n零能耗后备分支：K_P=K_I=rate_gain=ff_factor=0（独立于常规搜索域）\n可行域内 J=E_aux/E_const,hold + 0.005 t_stop/t_const,hold + 0.002 ΔTmax/ΔT_const,hold\n不可行候选使用显著更大的罚值，并不作为最终可行解\n通常固定：hold=2 s；q_boost_min=0.6；ice_warn=0.8；delta_V=0.1 V；\nrisk_warn=0.7；L_obs=0.02；ff_factor=1（零能耗分支除外）')
-    r.p('上述权重以能耗为主，但不是严格字典序最小化；启动时间和一致性只占小权重。参考量按每工况同精度粗搜索恒功率保持策略计算。恒功率基准在所有工况使用同一问题三分配q=(1,1,0.6245115587719579,1,1) W/cm²，未给动态组更换电流加载曲线，也未把按工况重新优化后的恒功率与固定恒功率混为一谈。')
-    r.table('表9 三工况全部控制参数',params,source='optimized_parameters.csv')
-    search=load('optimization_search.csv',root,False)
-    if search is not None:
-        stats=[]
-        for (case,stage),g in search.groupby(['case','stage'],sort=False):
-            good=g[g.feasible.astype(bool)]
-            stats.append({'工况':CASES.get(case,case),'搜索阶段':stage,'候选数':len(g),'可行候选数':len(good),'最低可行J':float(good.J.min()) if len(good) else np.nan})
-        r.table('表10 搜索覆盖与最优可行目标值',pd.DataFrame(stats),source='optimization_search.csv')
-
-    r.heading('6. 第(1)问：三工况完整比较结果')
-    r.table('表11（题目表4扩展）全部策略的主结果',main,
-      ['case','strategy','feasible','E_aux_J','first_success_s','stop_s','dTmax_K','min_voltage_V','max_ice_bulk','max_power_W_cm2'],'main_results.csv')
-    r.p('constant_first是辅助参考行，终止窗口较短，不能直接将其能耗差称为与2 s保持动态策略公平比较的节能率。表1及图7的节能比较仅使用dynamic与constant_hold；全部组别均保留，便于复核问题三衔接。')
-    trade=[]
-    for case in CASES:
-        a=main[(main['case']==case)&(main.strategy=='dynamic')].iloc[0]
-        b=main[(main['case']==case)&(main.strategy=='constant_hold')].iloc[0]
-        trade.append({'工况':CASES[case],'关热时间增加/s':a.stop_s-b.stop_s,'关热时间倍率':a.stop_s/b.stop_s,
-          '温差变化/K':a.dTmax_K-b.dTmax_K,'最低电压变化/V':a.min_voltage_V-b.min_voltage_V,
-          '最大冰量变化':a.max_ice_bulk-b.max_ice_bulk,'截止前剩余/s':96.6666666667-a.stop_s})
-    r.table('各项性能的实际取舍（动态−恒功率保持）',pd.DataFrame(trade))
-    r.p('工况1/3的五片一致性明显改善，工况2动态温差则略大；三工况动态最低电压都更低、最大冰量都更大，但名义轨迹仍处于规定安全界限内。因此源推导中“电压更高、冰量更小、时间相近”等预期在本次能耗优先优化中并未普遍实现，不作为结论保留。')
-    percell=load('per_cell_heater_energy.csv',root,False)
-    if percell is not None:
-        energy=percell.pivot(index=['case','strategy'],columns='cell',values='energy_J').reset_index()
-        energy=energy.rename(columns={k:f'第{k}片能耗/J' for k in range(1,6)})
-        r.table('各片辅助电能完整分配',energy,source='per_cell_heater_energy.csv')
-        NAMES.update({'cell':'电池序号','average_power_W_cm2':'时窗平均功率/W·cm⁻²','peak_power_W_cm2':'峰值功率/W·cm⁻²','heating_duration_s':'非零加热时长/s'})
-        r.table('各片功率与有效加热时长',percell,['case','strategy','cell','average_power_W_cm2','peak_power_W_cm2','heating_duration_s'],'per_cell_heater_energy.csv')
-        r.p('名义节能主要通过空间重新分配实现：深冷两工况把大部分辅助电能用于端片，以抵消端板热汇；中间片较早退出辅助加热，主要依靠电化学产热和片间传热升温。逐片电能由原始功率区间积分独立汇总，五片之和应与主表E_aux一致。')
-    r.image('图07_三工况主指标比较','图7 两种策略在相同2 s保持条件下的能耗、时间、一致性、电压与冰量')
-    for i,case in enumerate(CASES,4):
-        r.image(f'图{i:02d}_{case}_动态控制轨迹',f'图{i} {CASES[case]}温度、电压、冰量与五路功率；灰色背景为关热后验证段')
-    r.table('表12 首次成功、关热状态与加载量',main,
-      ['case','strategy','first_success_s','first_success_energy_J','charge_at_success_C_cm2','stop_s','final_min_T_C','final_max_T_C','final_left_EP_C','elapsed_s'],'main_results.csv')
-    r.table('表13 各组物理可行性与非线性迭代诊断',main,
-      ['case','strategy','min_gas_porosity','max_j_over_jlim','min_kappa_S_m','min_inventory','max_iteration_error_K','max_water_residual_kg'],'main_results.csv')
-    r.table('表14 关热后60 s独立验证',main,
-      ['case','strategy','post_min_T_C','post_min_voltage_V','post_max_ice_bulk','post_energy_J'],'main_results.csv')
-    dynamic=main[main.strategy=='dynamic']
-    postbad=dynamic[(dynamic.post_min_T_C<=0)|(dynamic.post_min_voltage_V<.3)|(dynamic.post_max_ice_bulk>=.99)]
+        a=guard[guard['case']==case].iloc[0];b=fixed[fixed['case']==case].iloc[0]
+        ng=gnoise[gnoise['case']==case];saving=100*(b.E_aux_J-a.E_aux_J)/b.E_aux_J if b.E_aux_J else np.nan
+        comparison.append(dict(case=case,推荐动态能耗_J=a.E_aux_J,固定恒功率能耗_J=b.E_aux_J,
+          相对固定C节能率_pct=saving,动态首次达标_s=a.first_success_s,动态关热_s=a.stop_s,
+          动态可行=bool(good(pd.DataFrame([a])).iloc[0]),独立验证通过=int(good(ng).sum()),独立验证总数=len(ng)))
+        direction='下降' if saving>=0 else '增加'
+        r.p(f'{CASES[case]}：推荐动态辅助电能{a.E_aux_J:.3f} J；真实状态首次达标{a.first_success_s:.5f} s；传感反馈确认并关热{a.stop_s:.5f} s。固定问题三功率按相同测量停机规则耗电{b.E_aux_J:.3f} J，推荐动态能耗{direction}{abs(saving):.3f}%。推荐策略本工况独立扰动通过{int(good(ng).sum())}/{len(ng)}次；名义可行性为{fmt(bool(good(pd.DataFrame([a])).iloc[0]))}。')
+    r.table('表1 推荐策略数值概览',pd.DataFrame(comparison))
+    r.p(f'名义能耗优选方案在原噪声/初场试验组通过{int(good(noise).sum())}/{len(noise)}次；推荐方案在独立种子组通过{int(good(gnoise).sum())}/{len(gnoise)}次。不同种子组比例不是严格配对试验或数学鲁棒性证明。失败试验全部保留；失败时消耗的电能不能作为成功节能样本计算成功组均值。')
+    postbad=guard[(guard.post_min_T_C<=0)|(guard.post_min_voltage_V<.3)|(guard.post_max_ice_bulk>=.99)]
     if len(postbad):
-        r.p('关热后验证中，以下动态工况至少一项持续状态标准未满足：'+ '、'.join(CASES[c] for c in postbad['case'])+'。因此应区分“按题设完成首次成功及保持”与“关热后整个验证段持续高于0 ℃且安全”；该结果不应被隐藏或改写为长期稳定成功。')
-    else:r.p('三个动态工况在关热后60 s验证段内，最低片温保持高于0 ℃，电压与冰量也满足对应阈值；结论限于该60 s加载验证窗。post_energy_J应为0，说明关热锁存期间没有隐含二次补热。')
+        r.p('关热后持续运行检验仍有限制：'+ '、'.join(CASES[c] for c in postbad['case'])+'至少有一项持续暖态/电压/冰量标准未满足。本文的启动成功指规定的首次达标与测量保持过程完成，不能改写为关热后长期保持暖态。后验段不重新加热，完整最低温度与约束极值单独列示。')
+    else:r.p('本次推荐策略在已仿真的关热后观察窗内，温度、电压、冰量持续状态均满足表中阈值。该结论仅覆盖保存的有限观察窗。')
+    zeros=guard[(guard.E_aux_J.abs()<1e-10)&good(guard)]
+    if len(zeros):r.p('推荐策略中'+ '、'.join(CASES[c] for c in zeros['case'])+'实现零辅助电能并通过名义约束；由于电能非负，这些工况达到主能耗目标的非负下界。该事实不证明其他工况、加权目标或带更多工程约束时的全局最优。')
+    if opt is not None and len(opt[opt.E_aux_J.abs()<1e-10]):
+        r.p('重新优化的恒功率类同样包含零功率。当该基准也达到0 J时，应理解为此工况在模型内可利用反应热自启动，不能把相对原固定C的100%辅助节电全部归因于动态反馈优势。')
+    r.p('节约量仅指辅助电热丝电能。较慢启动会利用更多电化学反应热，并改变累计加载电荷；不能把辅助电能下降百分比直接解释为氢耗、净输出电能或全系统总能耗下降百分比。')
 
-    r.heading('7. 第(2)问：10–100 min恒功率冷启动扫描')
-    r.p('每隔5 min求一次完整预冷场，将该场的七节点温度传入同一启动模型。使用问题三固定五路功率，保持时间设为0，按照首次满足条件终止；这是第(2)问与问题三恒功率策略一致的统计口径。对每个扫描点保存完整时间序列trajectory_scan_XXXmin.csv，包含实际功率、所有单片温度/电压/冰量、相态诊断、累计能量和残差。')
-    r.table('表15 全部19点恒功率扫描主指标',scan,
-      ['cooling_min','mean_capacity_C','feasible','E_aux_J','first_success_s','dTmax_K','min_voltage_V','max_ice_bulk','final_min_T_C','final_max_T_C'],'constant_scan.csv')
-    r.table('表16 全部19点扫描的能量与物理诊断',scan,
-      ['cooling_min','E_gen_J','E_phase_J','E_loss_J','E_sensible_J','energy_residual_J','water_residual_kg','min_gas_porosity','max_j_over_jlim','min_kappa_S_m','max_iteration_error_K'],'constant_scan.csv')
-    r.image('图08_预冷时间扫描','图8 固定恒功率在全部19个预冷时长下的启动结果')
-    if count==len(scan):
-        r.p('本次19个网格点均可行，因此10–100 min离散扫描内没有发现恒功率失败点，也不能声称已识别到临界预冷时间。给定恒功率对完全冷却−30 ℃基准本来就是可行方案，较暖初场全部可行与该设定一致；源文档“必存在临界冷却时间”的定性文字不作为数值结论。')
-    else:
-        failed=scan[~scan.feasible.astype(bool)]
-        r.p('不可行的预冷网格点为：'+ '、'.join(f'{x:g} min' for x in failed.cooling_min)+'。这是离散采样发现的失败点；没有对临界冷却时刻做专门二分定位，不输出虚假的连续精确临界值。')
-    r.p('初始温差与启动过程温差不是同一量。预冷越久，整体初温越接近−30 ℃且初始绝对梯度趋小；启动中端板热汇、对流位置、局部产熱/融冰和功率分配仍能重新形成片间温差。因而应联合阅读表5初场与表15过程极值，不能只用初始温差解释启动一致性。')
+    r.heading('2. 输入、模型修正及物理假设')
+    inventory=root/'inputs'/'parameter_inventory.csv'
+    if inventory.exists():r.table('输入参数与来源',pd.read_csv(inventory,encoding='utf-8-sig'))
+    r.p('预冷初态25 ℃，环境−30 ℃，两端真实外表面换热系数40 W/(m²·K)。结构为2块端板、6块共享双极板和5组MEA，每组MEA显式包含阳极GDL、阳极CL、膜、阴极CL和阴极GDL。两端电池分摊1.5块BP，中间电池分摊1块；端板保留独立节点，电熱丝面积每片25 cm²。')
+    fixes=pd.DataFrame([
+      ['外法向边界','左端 kTₓ=h(T−Tₐ)，右端 −kTₓ=h(T−Tₐ)','修正源文档(4.3)符号'],
+      ['半网格对流热阻','g_b=(1/h+Δx/(2k))⁻¹','控制体中心不等于真实外表面'],
+      ['BP共享与初温映射','按实际半片几何分配，热容加权投影','不重复计数且映射守恒'],
+      ['安全增强','先渐缩，再取max(q渐缩,q安全)，最后限幅','渐缩不能清零安全增强'],
+      ['停机锁存','测量条件连续成立后停机，之后q恒为0','避免成功后重新加热'],
+      ['真实事件与测量停机','真实首次事件仅用于评价；停机由采样观测决定','明确可实施的反馈信息范围'],
+      ['能耗窗口','分别保存首次真实达标和实际关热电能','共同测量保持策略才可直接比较'],
+      ['时间预算','首次真实成功受预算约束，实际关热允许额外保持时间','不把2 s保持误算入首次成功预算'],
+      ['零时刻判据','初态已满足首次条件则t_s=0、E_first=0','修复10 min扫描的虚假加热'],
+      ['有限优化与扰动','保存搜索域、候选、失败率和关热后状态','不宣称未经证明的全局最优或硬安全保证']
+    ],columns=['项目','实现','修正原因'])
+    r.table('表2 关键逻辑修正',fixes)
+    caps=load('precooling_node_capacities.csv',root)
+    r.p(f'预冷名义整堆单位面积热容由附件原值求得{caps.capacity_J_m2K.sum():.7f} J/(m²·K)。启动内核采用孔隙、气体、离聚物及膜含水量修正的有效热物性；两阶段热容近似并非完全相同。启动初态由预冷温度映射得到，不将两套近似混称为同一绝对焓模型。预冷散热位于端板外表面；主启动沿用问题三端电池对流热网络，这一建模近似也保留说明。')
+    r.p('启动统一电流为j(t)=min(0.005t,0.3) A/cm²。水相、气体传输、电压和产热继承问题三校准内核；启动前自由液水与冰为0，膜保留λ=3的结合水。吹扫不意味着质子传导所需膜含水量也置零。题给阈值与材料值、前序校准参数、为计算引入的搜索边界在输入清单中区分。')
 
-    r.heading('8. 能量、水量、网格步长与程序检验')
-    r.formula('预冷：ΔU_released = A Σ_i C_i[T_i(0)−T_i(τ)]\nQ_loss = A Σ_m Δτ_m g_b[u_L^(m+1)+u_R^(m+1)]\n预冷残差 = ΔU_released−Q_loss\n启动离散残差 = E_sensible−E_aux−E_gen−E_phase+E_loss\n水量残差 = A·(最终水库存−初始水库存−累计生成+累计边界流出)')
-    r.p('预冷累计散热与后向欧拉使用同一时间层端点积分，避免用不一致的梯形公式制造守恒误差。启动E_phase为“净释放到显热方程的相变热”，冻结为正、融化为负。启动显热量逐步累加Σ C(X_new)ΔT；含水量变化使热容变化，它不等于简单的端点C(T)T之差。近机器精度残差证明该离散方程闭合，不能据此宣称实际全部热物理误差为0，特别是携水显焓等继承近似仍存在。')
-    r.table('表17 三工况各策略完整能量收支',main,
-      ['case','strategy','E_aux_J','E_gen_J','E_phase_J','E_loss_J','E_sensible_J','energy_residual_J','water_residual_kg','max_water_residual_kg'],'main_results.csv')
-    r.image('图09_能量收支与累积能耗','图9 主要能量收支与动态辅助加热累计积分')
-    r.table('表18 全部19点预冷能量守恒',load('precooling_energy_balance.csv',root),source='precooling_energy_balance.csv')
-    r.table('表19 预冷模型全部单项验证',load('precooling_validation.csv',root),source='precooling_validation.csv')
-    r.table('表20 预冷网格与时间步收敛',load('precooling_convergence.csv',root),source='precooling_convergence.csv')
-    r.p('时间收敛对同一预冷网格的矩阵指数参考作比较；空间收敛对8倍网格的七节点热容投影作比较，避免不同控制体中心直接错位比差。启动收敛固定已选控制参数，分别改变时间步、水相控制体数量及控制周期；不在每个加密设置重新优化，以免混淆离散误差与策略改变。')
-    r.table('表21 三工况全部启动加密结果',conv,
-      ['case','dt_s','scale','period_s','feasible','E_aux_J','first_success_s','stop_s','dTmax_K','min_voltage_V','max_ice_bulk','energy_residual_J','max_water_residual_kg'],'startup_convergence.csv')
-    for case in CASES:
-        g=conv[(conv['case']==case)&(conv.dt_s==.025)&(conv.period_s==.2)].sort_values('scale')
-        base=g[g.scale==2].iloc[0];fine=g.iloc[-1]
-        denergy=(fine.E_aux_J-base.E_aux_J)/base.E_aux_J*100 if base.E_aux_J else 0.
-        dice=(fine.max_ice_bulk-base.max_ice_bulk)/base.max_ice_bulk*100
-        r.p(f'{CASES[case]}固定Δt=0.025 s，从58控制体加密到{int(fine.scale*29)}控制体：辅助能耗变化{denergy:.5f}%，局部冰峰值从{base.max_ice_bulk:.6f}变为{fine.max_ice_bulk:.6f}，相对变化{dice:.3f}%。')
-    r.p('局部冰峰值具有明显网格依赖，新增细网格上仍未稳定，不能称为“全部物理量网格无关”。总体能耗和关热时间变化小，只支持这些积分量的数值稳定性。冰量对离散和相变分裂敏感，需结合联合减小时间步的结果判断；当前已测试设置中冰峰值仍远离0.99，仅能说这些设置内安全阈值判定未改变，不给出未证明的连续模型误差界。')
-    joint=load('coupled_convergence.csv',root,False)
-    if joint is not None:
-        r.table('表21补充 空间网格与时间步联合加密',joint,
-          ['case','scale','dt_s','period_s','feasible','E_aux_J','first_success_s','stop_s','min_voltage_V','max_ice_bulk','energy_residual_J'],'coupled_convergence.csv')
+    r.heading('3. 预冷方程、完整温度场与初始条件')
+    r.formula('C_i dT_i/dτ = g_(i−1/2)(T_(i−1)−T_i)+g_(i+1/2)(T_(i+1)−T_i)\nC_i=(ρc_p)_iΔx_i；g_(i+1/2)=[Δx_i/(2k_i)+Δx_(i+1)/(2k_(i+1))]⁻¹\n两端增加g_b(T_amb−T_i)，g_b=(1/h+Δx/(2k))⁻¹\nu=T−T_amb；(C/Δτ+L)u^(m+1)=(C/Δτ)u^m\nT_node = Σ_(CV属于node) C_i T_i / Σ_(CV属于node) C_i')
+    layers=load('precooling_layers.csv',root);pre=load('precooling_nodes.csv',root)
+    r.p(f'模型包含{len(layers)}个材料区、{int(layers.control_volumes.sum())}个控制体，总厚度{layers.thickness_m.sum()*1000:.7f} mm。后向欧拉正式步长0.25 s，要求时刻精确落点。空间场所有控制体温度在precooling_fields.csv保存，包含位置、宽度、物性和节点归属；热容加权、厚度加权、七节点算术平均分别保存。')
+    r.table('表3 三工况七节点初温与全场极值',initial,
+      ['case','cooling_min','TEL_C','T1_C','T2_C','T3_C','T4_C','T5_C','TER_C','mean_capacity_C','field_range_K','cell_range_K'],'initial_temperature_cases.csv')
+    r.table('三种均温与空间梯度定义',initial,
+      ['case','mean_capacity_C','mean_length_C','mean_seven_nodes_C','field_min_C','field_max_C','center_minus_left_EP_K','surface_left_C','surface_right_C','Bi_stack'],'initial_temperature_cases.csv')
+    r.table('10–100 min全部预冷节点结果',pre,
+      ['cooling_min','TEL_C','T1_C','T2_C','T3_C','T4_C','T5_C','TER_C','mean_capacity_C','field_range_K','cell_range_K'],'precooling_nodes.csv')
+    modes=load('precooling_slow_modes.csv',root)
+    r.p(f'慢模态时间常数为{modes.iloc[0].time_constant_s:.6f} s（{modes.iloc[0].time_constant_s/60:.6f} min）；它与C_tot/(2h)的集总近似接近但不完全相同。半堆热阻包含端板、3块BP和2.5组MEA，基准Bi={pre.iloc[0].Bi_stack:.8f}。温差必须按实际统计口径报告，不能将五片节点温差代替含表面的全场温差。')
+    r.table('预冷慢模态与初态激发幅值',modes,source='precooling_slow_modes.csv')
+    r.table('映射后的节点热容',caps,source='precooling_node_capacities.csv')
+    for name,cap in [('图01_预冷温度场族','全场温度与局部梯度'),('图02_预冷均温与温差','三种温差定义与随预冷时间的变化'),('图03_三工况初始温度','三工况初场；各图独立纵轴')]:image_if(r,root,name,cap)
+
+    r.heading('4. 启动被控对象、观测器、状态机与终止事件')
+    r.formula('C_k(X)dT_k/dt = Σ_l G_kl(T_l−T_k)−h_k(T_k−T_amb)+q_gen,k+q_phase,k+10⁴q_k\nq_gen,k=10⁴j(t)(1.48−V_k)；q_k以W/cm²计\nV_k=E_rev−η_act−η_ohm−η_con\nE_aux(t)=25Σ_k∫_0^t q_k(s)ds；0≤q_k≤1 W/cm²\n路径约束：min V≥0.30 V，max_(k,x) ε_ice<0.99\n附加诊断：j/j_lim<1，气相孔隙率≥0，质子电导>0，库存非负（数值容差内）')
+    r.p('每片水相/气体状态采用有限体积离散，热网络包含五片均温与两个端板温度。每步推进质量与相变后，通过Picard迭代求解后向欧拉热方程及温度依赖电压；正式步长0.025 s、每片58个基础传输控制体、控制采样周期0.2 s。质量、能量、物理约束与非线性迭代误差随时间导出。首次温度跨零事件通过子步重积分及二分定位，而非仅取较晚采样时刻。')
+    r.p('观测器使用独立副本状态，由电流输入、已施加功率及温度/电压采样推进；控制律不直接读取被控对象的真实冰、水、气体库存或真实端板温度。温度和电压经低通滤波并计算滤波速率；独立水相先验与其预测电压减去实测电压的有符号残差组合，冰量估计限幅到[0,1]。真实温度和真实冰量仅用于数值评估与估计误差检查，不作为隐藏的控制输入。观测器仍基于相同类型的物理模型，其模型误差覆盖范围以实际扰动试验为准。')
+    r.formula('T_ref,k = T0,k+(T_target−T0,k)min(t/t_plan,1)\ne_k=T_ref,k−T_filtered,k\nq_nom,k = q_ff,k + K_P,eff e_k + I_k + 温升不足补偿\nI_k增量=K_I e_k Δt_c；积分限幅并作饱和方向抗积分饱和\nq_ff,k依据独立观测模型的热容、导热、端板状态及反应热计算\n低风险近目标时先渐缩q_nom；低压、冰量或电压下降风险触发时\nq_k = clip(max(q_tapered,k,q_boost,k),0,1)\n关热锁存后所有q_k永久置零')
+    states=pd.DataFrame([[1,'低压或结冰风险','安全增强优先'],[2,'低温且升温不足','前馈+PI+温升补偿'],[3,'正常跟踪','调节名义功率'],[4,'接近目标且风险低','渐缩加热'],[5,'测量保持完成','关热锁存']],columns=['状态码','判定','动作'])
+    r.table('控制状态机',states)
+    margins=','.join(fmt(x) for x in sorted(guard['sensor_stop_margin_C'].dropna().unique())) if 'sensor_stop_margin_C' in guard else '见停机配置'
+    r.p(f'真实首次成功t_first由五片真实均温均超过数值零阈值、当时状态和历史路径约束满足来评价。测量停机独立地检查每次采样的滤波温度裕度、滤波电压及观测冰量，连续满足2 s后才关热；本次实际温度裕度为{margins} ℃，保持计时在条件失效时清零。由采样确定的停机时刻可以晚于真实首次成功2 s以上，这一差异通过表格和图16显示。零时刻已达标的首次事件直接记t_first=0；已温暖初场无需冷启动干预的分支允许初态直接结束。')
+    r.p('沿用问题三累计电荷20 C/cm²的比较预算得到真实首次成功期限96.6667 s（前60 s加载9 C/cm²，随后0.3 A/cm²加载剩余11 C/cm²）。本轮只将该期限用于首次真实成功；测量保持及实际关热允许延伸到相应保持窗口内。该预算是本次继承比较的边界，不能冒充问题四另外给出的题设条件。')
+    r.p('主策略能耗、最低电压、最大冰量和最大同刻五片温差均统计到实际关热；first_success_energy_J单独表示首次真实成功窗口。constant_first保留问题三理想首次成功口径。关热后继续加载60 s，q严格锁存为0，后验段的极值与能量单独保存，不混入启动主窗口。测量误停和实际首次达标超时均应判为不可行，不能只看测得温度宣布仿真成功。')
+
+    r.heading('5. 优化范围、候选覆盖与推荐策略选择')
+    r.p('采用参数化闭环控制律进行有限搜索。常规六维参数为目标温度、规划时间、比例增益、积分增益、渐缩带和温升补偿增益；先做零名义辅助分支检查，再做差分进化候选搜索、正式精度复算与局部整定。安全阈值、采样、停机条件对比较策略保持同一口径。所有阶段、候选参数和可行性保存在搜索CSV中，不能把未成功或仅粗精度成功候选计作最终优选。')
+    optional_table(r,root,'optimization_parameter_bounds.csv','本轮动态优化参数边界')
+    r.formula('主目标：min E_aux（满足共同物理约束、真实首次期限与测量保持）\n可行候选归一化评分J=E_aux/E_ref；不可行候选使用较高罚值\n正式精度候选中先找E_min；在E≤1.0005E_min的0.05%近最优带内\n依次按首次真实成功时间、最大同刻温差和辅助电能排序\n独立零名义功率分支：K_P=K_I=rate_gain=ff_factor=0，保留风险后备\n推荐方案另要求在保存的扰动训练集内全部通过，再依能耗选取\n有限候选搜索不提供连续控制函数空间的全局极小证明')
+    r.p('本轮以辅助电能为首要目标；0.05%近最优带用于避免工作精度级别能耗差压倒明显的时间差。规划时间t_plan是参考轨迹参数，可以超过实际首次成功期限。动态搜索使用两个固定随机种子，多起点复核后粗精度差分进化，再将优选候选以正式精度重排并局部整定；各次评估精度与阶段在候选CSV中记录。恒功率固定C沿用问题三分配[1,1,0.6245115587719579,1,1] W/cm²；新增同工况恒功率再优化用于区分“优于固定旧分配”与“优于重新整定的恒功率”。')
+    optional_table(r,root,'optimized_parameters.csv','名义能耗优选的全部控制参数')
+    optional_table(r,root,'guarded_parameters.csv','推荐留裕度方案的全部控制参数')
+    search=load('optimization_search.csv',root,False)
+    if search is not None:r.table('名义搜索各阶段覆盖数量与可行目标值',search_stats(search),source='optimization_search.csv')
+    design=optional_table(r,root,'guarded_design_search.csv','推荐方案全部候选与训练筛选',
+      ['case','candidate','T_target_C','t_plan_s','training_passed','training_count','all_training_passed','training_max_stop_s','training_first_deadline_s','training_stop_deadline_s','feasible','E_aux_J','first_success_s','stop_s','min_voltage_V','max_ice_bulk'])
+    if design is not None:r.p(f'推荐候选训练记录共{len(design)}行；实际训练次数、通过次数与最坏停机时间逐候选列示。选择使用的训练随机种子与推荐策略独立验证种子分离；独立验证结果不反向用于同一验证集的逐次参数挑选。')
+    r.p('裕度训练联合施加初温平移、片间导热、端板导热与对流偏差，并包含温度/电压采样噪声；最终规则要求真实首次成功和测量确认停机均不晚于94.6667 s。实际停机相对98.6667 s最终评价窗口留出4 s裕度。粗训练存活候选在正式步长下再确认，最终从正式确认通过的候选选择名义辅助能耗最低者。所有训练扰动与正式确认行如下表，独立验证另列。')
+    optional_table(r,root,'guarded_training_trials.csv','全部训练扰动及正式精度确认',
+      ['case','candidate','stage','seed','initial_shift_K','G_factor','G_EP_factor','h_factor','noise_T_K','noise_V_V','feasible','E_aux_J','first_success_s','stop_s','physical_hold_completed','observer_max_temperature_error_K','observer_max_ice_error'])
+    optional_table(r,root,'optimized_constant_parameters.csv','同工况重优化恒功率参数')
+    optional_table(r,root,'constant_search_metadata.csv','恒功率再优化的范围、精度与总候选数')
+    r.p('恒功率再优化先在对称三维功率域[0,1]³搜索[q端,q次端,q中,q次端,q端]，再检查保存的非对称五维邻域扰动。每个期限下进行差分进化和有界局部搜索，候选以正式精度复算；有限非对称邻域检查不能证明全五维域的全局最优。最终期限前沿从所有已评正式精度候选的并集中重新选择，保证更宽期限不会因候选集缩小而虚假增耗。')
+    for fname in ('constant_optimization_search.csv','optimized_constant_search.csv'):
+        csearch=load(fname,root,False)
+        if csearch is not None:r.table('恒功率再优化搜索覆盖',search_stats(csearch),source=fname)
+
+    r.heading('6. 第(1)问：推荐策略主表及全部比较结果')
+    maincols=['case','strategy','feasible','E_aux_J','first_success_s','stop_s','dTmax_K','min_voltage_V','max_ice_bulk','max_power_W_cm2']
+    r.table('表4 题目要求的推荐动态与问题三固定C对比',recommended,maincols,'guarded_results.csv + main_results.csv')
+    r.table('名义能耗优选及问题三两种统计窗口',main,maincols,'main_results.csv')
+    if opt is not None:
+        r.table('同工况重优化恒功率完整结果',opt,maincols+['first_success_energy_J','final_min_T_C','post_min_T_C','post_energy_J'],'optimized_constant_results.csv')
+        diffs=[]
         for case in CASES:
-            g=joint[joint['case']==case].sort_values('scale');last=g.iloc[-1]
-            base=main[(main['case']==case)&(main.strategy=='dynamic')].iloc[0]
-            de=100*(last.E_aux_J-base.E_aux_J)/base.E_aux_J if base.E_aux_J else 0.
-            r.p(f'{CASES[case]}联合加密：局部冰峰值依次为'+ '、'.join(f'{x:.6f}' for x in g.max_ice_bulk)+f'；最细设置与主表的能耗差为{de:.4f}%，首次成功时间差{last.first_success_s-base.first_success_s:.5f} s。')
-        r.p('联合加密的相邻冰峰值增量近似减半，呈现一阶收敛趋势；固定时间步下单独加密空间得到的较大峰值偏移包含顺序分裂和界面单控制体供体限幅的时间误差。主表保留58控制体、0.025 s的统一设置供公平优化比较，冰峰值仅作有限分辨率估计，不能按显示的小数位解释为实物预测精度。全MEA局部冰峰值可发生在膜内，不能直接称为气道孔隙堵塞；孔隙冰总体积分数、膜冰体积分数及孔隙冰饱和度已在各片轨迹分别保存。')
-    r.image('图10_网格步长与控制周期检验','图10 预冷独立参考、固定时间步空间加密与空间时间联合加密对比')
-    # Include every independently exported small check table without assuming its schema.
-    included={'precooling_validation.csv','precooling_convergence.csv','precooling_energy_balance.csv','startup_convergence.csv'}
+            a=guard[guard['case']==case].iloc[0];c=opt[opt['case']==case]
+            if not len(c):continue
+            b=c.iloc[0]
+            diffs.append({'case':case,'推荐动态能耗/J':a.E_aux_J,'重优化恒功率能耗/J':b.E_aux_J,
+              '动态减恒功率/J':a.E_aux_J-b.E_aux_J,'动态减恒功率关热时间/s':a.stop_s-b.stop_s,
+              '推荐动态可行':bool(good(pd.DataFrame([a])).iloc[0]),'恒功率可行':bool(good(pd.DataFrame([b])).iloc[0])})
+        r.table('重优化恒功率与推荐动态的实际差值',pd.DataFrame(diffs))
+        r.p('推荐动态与重新优化恒功率的能耗差以本表为准，不预设动态必然更低。理论上任意时间函数控制类包含恒功率控制，但本次参数化反馈类与有限算法搜索可能没有包含或找到全部恒功率最优行为，因此不能据有限搜索结果反推连续最优控制的结构。')
+    optional_table(r,root,'constant_baselines.csv','零辅助加热、固定C及满功率的完整基线')
+    frontier=optional_table(r,root,'constant_time_frontier.csv','全部恒功率能耗—时间限制候选')
+    r.p('能耗—时间图为已求候选的可行前沿或截止时间约束下的有限解集，未经连续域完备搜索不得称全局Pareto前沿。不可行点保留在CSV中；图中叉号只表示失败候选，不代表成功启动。')
+    for name,cap in [('图07_三工况主指标比较','推荐动态与固定C采用共同测量保持规则'),('图14_重优化恒功率与推荐动态','同工况恒功率再优化与推荐动态比较'),('图15_能耗时间候选前沿','已计算候选的能耗—时间取舍')]:image_if(r,root,name,cap)
+    for i,case in enumerate(CASES,4):image_if(r,root,f'图{i:02d}_{case}_动态控制轨迹',CASES[case]+'推荐动态的五路功率、温度、电压和冰量；阴影为关热后观察')
+    r.table('两种能耗窗口、关热状态与累计加载量',allrows,
+      ['case','strategy','first_success_s','first_success_energy_J','charge_at_success_C_cm2','first_min_voltage_V','first_max_ice_bulk','first_dTmax_K','stop_s','E_aux_J','charge_at_stop_C_cm2','final_min_T_C','final_max_T_C','final_left_EP_C','elapsed_s'],'guarded_results.csv + main_results.csv')
+    extra=[c for c in allrows if any(key in c for key in ('observer','measured','physical_hold','truth','false_stop','margin','deadline'))]
+    if extra:r.table('观测误差与测量停机诊断',allrows,['case','strategy','feasible']+extra,'guarded_results.csv + main_results.csv')
+    image_if(r,root,'图16_观测器误差与测量停机','观测状态误差、温度测量与真实首次事件/测量停机时刻')
+    r.table('关热后60 s独立状态检查',allrows,
+      ['case','strategy','post_min_T_C','post_min_voltage_V','post_max_ice_bulk','post_energy_J'],'guarded_results.csv + main_results.csv')
+    optional_table(r,root,'per_cell_heater_energy.csv','每片辅助电能、功率与加热时长')
+    optional_table(r,root,'controller_state_duration.csv','逐片控制状态累计时长')
+
+    r.heading('7. 第(2)问：10–100 min固定恒功率启动的完整扫描')
+    r.p(f'对10、15、…、100 min共{len(scan)}个预冷初场，固定问题三功率和相同电流加载逐一计算；采用理想首次真实达标口径，保持时间为0。全部轨迹保存为trajectory_scan_XXXmin.csv。已满足初始判据时，首次启动时间和辅助电能均为0；这不等于任意后续负载下的长期可用性证明。')
+    r.table('19点全部启动主结果',scan,
+      ['cooling_min','mean_capacity_C','feasible','E_aux_J','first_success_s','dTmax_K','min_voltage_V','max_ice_bulk','final_min_T_C','final_max_T_C'],'constant_scan.csv')
+    r.table('19点能量与物理诊断',scan,
+      ['cooling_min','E_gen_J','E_phase_J','E_loss_J','E_sensible_J','energy_residual_J','water_residual_kg','min_gas_porosity','max_j_over_jlim','min_kappa_S_m','max_iteration_error_K'],'constant_scan.csv')
+    r.p(f'离散扫描可行数为{int(good(scan).sum())}/{len(scan)}。'+('没有发现失败网格点，不输出未识别的临界冷却时间。' if good(scan).all() else '失败点见可行性列；未专门二分的临界时间不应报告为连续精确阈值。'))
+    r.p('初始温差与启动中温差是不同指标：较长预冷使初温趋于环境且绝对空间梯度减小；启动中的端板热汇、散热、产热与局部融冰会重新形成不均匀。完整场和过程结果应联合解释。')
+    image_if(r,root,'图08_预冷时间扫描','全部19点恒功率扫描结果')
+
+    r.heading('8. 能量、水量、独立检验与数值收敛')
+    r.formula('预冷残差=AΣ_i C_i[T_i(0)−T_i(τ)]−AΣ_m Δτ_m g_b[u_L^(m+1)+u_R^(m+1)]\n启动离散能量残差=E_sensible−E_aux−E_gen−E_phase+E_loss\n水量残差=A(最终库存−初始库存−累计生成+累计边界流出)\nE_sensible逐步累计Σ C(X_new)ΔT；不是变热容时简单的端点CT之差')
+    r.p('预冷对流累计采用与后向欧拉一致的端点积分；相变净释热冻结为正、融化为负。近机器精度的离散残差证明数值账目闭合，不证明所有热物理近似都无误差。另用矩阵指数、绝热极限、非均匀绝热守恒、最大值原理、网格与时间步加密提供独立证据。')
+    r.table('全部策略启动能量与水量收支',allrows,
+      ['case','strategy','E_aux_J','E_gen_J','E_phase_J','E_loss_J','E_sensible_J','energy_residual_J','water_residual_kg','max_water_residual_kg'],all_sources)
+    r.table('全部策略物理可行性诊断',allrows,
+      ['case','strategy','min_gas_porosity','max_j_over_jlim','min_kappa_S_m','min_inventory','max_iteration_error_K'],all_sources)
+    image_if(r,root,'图09_能量收支与累积能耗','推荐动态与固定C的能量闭合及动态累计辅助电能')
+    included={'guarded_parameter_validation.csv'}
+    for fname,title in [('precooling_energy_balance.csv','全部预冷能量守恒'),('precooling_validation.csv','预冷验证'),('precooling_convergence.csv','预冷时间与空间收敛'),('startup_convergence.csv','名义固定控制参数的启动收敛'),('guarded_convergence.csv','推荐控制参数的步长、网格和采样周期变化'),('coupled_convergence.csv','推荐策略的空间与时间联合加密')]:
+        optional_table(r,root,fname,title);included.add(fname)
+    r.p('启动加密保持控制参数固定，从而把离散误差与重新优化效果分开。局部冰峰值可能比总能耗对水相网格与顺序分裂更敏感；应依据上表实际变化评价，不因所有值均低于0.99就宣称局部峰值已经网格无关。表中显示的小数位是工作精度，不能直接解释为实物预测精度。')
+    image_if(r,root,'图10_网格步长与控制周期检验','预冷独立参考和启动离散参数变化')
     for path in sorted((root/'data').glob('*.csv')):
         if path.name in included:continue
         if any(s in path.stem.lower() for s in ('validation','verification','audit','unit_test','check')):
             df=load(path.name,root)
-            if len(df)<1000:r.table('补充检验：'+path.stem,df,source=path.name)
+            if len(df)<1000:r.table('补充独立检验：'+path.stem,df,source=path.name)
 
-    r.heading('9. 物理/控制参数敏感性及测量扰动检验')
-    r.p('预冷敏感性分别改变h与BP/MEA等效导热倍率，端板材料导热率不变；该倍率是参数化的有效热阻扰动，不是实测接触热阻。固定20 min或40 min比较不同h时，更大h既增强换热也使温度更快接近环境，因此绝对温差未必单调变大。用全场温差除以剩余热容均温，可区别绝对温差与归一化不均匀程度。')
-    r.table('表22 全部预冷传热敏感性组合',load('precooling_sensitivity.csv',root),
-      ['cooling_min','h_W_m2K','conductance_factor','G_eff_W_m2K','mean_capacity_C','field_range_K','cell_range_K','relative_field_range','Bi_stack'],'precooling_sensitivity.csv')
-    r.p('启动敏感性以各工况最终参数为基准，分别对片间G、片—端板G_EP、h、目标温度、比例增益、积分增益、冰量预警阈值和电压预警带作±20%单因素扰动；其余参数保持不变，控制器不重新优化。它刻画指定扰动方向的局部数值响应，不代表模型参数已经由试验识别。')
-    r.table('表23 全部启动敏感性试验',sens,
-      ['case','parameter','factor','feasible','E_aux_J','first_success_s','stop_s','dTmax_K','min_voltage_V','max_ice_bulk','final_min_T_C'],'sensitivity.csv')
-    r.image('图11_物理参数与控制器敏感性','图11 预冷绝对/归一化梯度及工况1启动单因素敏感性；全部工况结果见表23')
-    r.p('测量扰动试验：温度噪声为独立零均值高斯噪声，标准差0.2 K；电压噪声标准差0.005 V；每一初场平移−1、0、+1 K分别使用种子1000–1009共10次，三工况总计90次。初温扰动同时施加到五片和两端板，参考轨迹仍按该试验输入初温生成，增益与整定参数不变。')
-    r.p('这里的噪声只进入control函数的温度/电压反馈通道；全局成功判定valid与关热计时仍使用被控模型真值，冰软测量的模型先验状态也理想已知。因此这是一项反馈通道扰动仿真，并非完整实机传感—观测—安全停机链的验证。若部署，需要另行验证带估计误差的成功判定、传感器偏置/故障以及冰状态观测误差。')
-    r.table('表24 全部90次测量与初场扰动',noise,
-      ['case','seed','noise_T_K','noise_V_V','initial_shift_K','feasible','E_aux_J','first_success_s','stop_s','final_min_T_C','dTmax_K','min_voltage_V','max_ice_bulk'],'robustness.csv')
-    robust_stats=[]
-    for case,g in noise.groupby('case',sort=False):
-        robust_stats.append({'工况':CASES.get(case,case),'试验数':len(g),'可行数':int(g.feasible.astype(bool).sum()),
-          '能耗均值/J':g.E_aux_J.mean(),'能耗标准差/J':g.E_aux_J.std(ddof=1),'能耗最小/J':g.E_aux_J.min(),
-          '能耗最大/J':g.E_aux_J.max(),'最低电压/V':g.min_voltage_V.min(),'最大冰体积分数':g.max_ice_bulk.max()})
-    r.table('表25 扰动统计（同组混合初场平移）',pd.DataFrame(robust_stats))
-    r.image('图12_测量噪声与初场扰动','图12 固定整定参数的90次扰动试验；序号与CSV数据行一致')
-    n_ok=int(noise.feasible.astype(bool).sum())
-    r.p(f'本次扰动试验可行数为{n_ok}/{len(noise)}。若全部通过，只能称为这组有限种子和扰动幅值内通过；高斯噪声理论上无界，有限蒙特卡洛试验不能证明任意噪声下都安全。可行性判据统计到关热时刻，不能把它与无限时间的闭环鲁棒稳定性等同。')
-    if n_ok<len(noise):
-        failures=noise[~noise.feasible.astype(bool)]
-        if (failures.min_voltage_V>=.3).all() and (failures.max_ice_bulk<.99).all():
-            r.p('失败轨迹的电压与冰量都没有越过硬安全阈值，主要问题是时间预算与保持条件：有的温度在冰点附近波动导致保持计时重置，有的首次达标太晚，剩余不足2 s。表中stop_s=−1表示在规定时限内没有完成关热条件，不是负的物理关热时间。失败组E_aux_J是截至仿真终止的已消耗电能，不能作为“成功节能”样本混入结论。')
-    if guarded is not None:
-        r.heading('9.1 留时间与温度裕度的备选方案',3)
-        r.p('在保留名义最小能耗结果的基础上，补做有限候选的裕度设计。工况1/3将名义规划时间乘0.98、0.95、0.90、0.85，同时把目标温度提高到不少于1、2、3 ℃；连同原参数，每工况13个候选。工况2保留零名义功率模式。每候选用初温偏差±1 K及种子2000、2001、2002共6种训练扰动筛选，在所有训练点可行的候选中选名义辅助电能最低者。训练Δt=0.05 s、网格倍率2；最终轨迹以Δt=0.025 s重新计算。')
-        r.p('随后采用全新的种子3000–3009、初场偏差−1/0/+1 K，仍为温度噪声标准差0.2 K、电压噪声标准差5 mV，每工况30次，总90次独立验证。训练种子、名义策略原噪声检验种子与本次验证种子互不相同；比较可行比例是各自种子组的经验比例，不是严格配对试验，也不是置信保证。')
-        r.table('备选方案全部控制参数',load('guarded_parameters.csv',root),source='guarded_parameters.csv')
-        r.table('备选方案主结果与关热后验证',guarded,
-            ['case','strategy','feasible','E_aux_J','first_success_s','stop_s','dTmax_K','min_voltage_V','max_ice_bulk',
-             'max_power_W_cm2','final_min_T_C','post_min_T_C','post_min_voltage_V','post_max_ice_bulk','post_energy_J'],'guarded_results.csv')
-        extra=[]
-        for _,g in guarded.iterrows():
-            a=main[(main['case']==g['case'])&(main.strategy=='dynamic')].iloc[0]
-            b=main[(main['case']==g['case'])&(main.strategy=='constant_hold')].iloc[0]
-            ng=gnoise[gnoise['case']==g['case']]
-            extra.append({'工况':CASES[g['case']],'较名义增加电能/J':g.E_aux_J-a.E_aux_J,
-              '较名义增加/%':100*(g.E_aux_J-a.E_aux_J)/a.E_aux_J if a.E_aux_J else 0,
-              '较恒功率保持节能/%':100*(b.E_aux_J-g.E_aux_J)/b.E_aux_J,'名义截止前裕度/s':96.6666666667-g.stop_s,
-              '验证通过数':int(ng.feasible.astype(bool).sum()),'验证总数':len(ng),'验证最大关热/s':ng.stop_s.max()})
-        r.table('备选成本、时间裕度与验证汇总',pd.DataFrame(extra))
-        r.table('备选全部候选及训练筛选',load('guarded_design_search.csv',root),
-            ['case','candidate','T_target_C','t_plan_s','training_passed','training_count','all_training_passed','training_max_stop_s','E_aux_J','stop_s','min_voltage_V','max_ice_bulk'],'guarded_design_search.csv')
-        r.table('备选完整90次独立验证',gnoise,
-            ['case','seed','noise_T_K','noise_V_V','initial_shift_K','feasible','E_aux_J','first_success_s','stop_s','final_min_T_C','dTmax_K','min_voltage_V','max_ice_bulk'],'guarded_robustness.csv')
-        r.table('备选离散能量与物理诊断',guarded,
-            ['case','E_aux_J','E_gen_J','E_phase_J','E_loss_J','E_sensible_J','energy_residual_J','water_residual_kg',
-             'min_gas_porosity','max_j_over_jlim','min_kappa_S_m','max_iteration_error_K'],'guarded_results.csv')
-        r.image('图13_名义与留裕度备选','图13 以少量额外辅助电能获得时间裕度的备选；试验通过与持续暖态限制同时呈现')
-        r.p('如果任务要求在本文有限温度/电压反馈扰动范围内更可靠地按时完成保持，优先采用留裕度备选；如果只优化名义模型的辅助电能，保留名义策略作为能耗边界。两者都没有解决工况1/3关热后再次跌破0 ℃的问题。若工程成功定义要求持续暖态，应把关热后最低温度或更长保持窗口显式加入优化约束并重算，不可将本报告现有结果改称持续运行成功。')
+    r.heading('9. 物理扰动、测量噪声与独立验证')
+    pilot=load('guarded_pilot_robustness.csv',root,False)
+    pilot_physical=load('guarded_pilot_parameter_validation.csv',root,False)
+    if pilot is not None:
+        r.p(f'开发阶段的第一版留裕度方案在种子3000–3009组通过{int(good(pilot).sum())}/{len(pilot)}次，其失败数据保存在guarded_pilot_*.csv。依据这些开发反馈，最终规则要求训练场景的实际停机确认也不晚于94.6667 s，避免只对首次过零保留裕度。最终参数冻结后改用6000–6009组噪声和7000系列物性失配样例复核，未依据这些最终样本再次调参。')
+        r.table('首轮开发验证失败记录（保留）',pilot[~good(pilot)],['case','seed','initial_shift_K','first_success_s','stop_s','E_aux_J','feasible'],'guarded_pilot_robustness.csv')
+        if pilot_physical is not None:r.table('首轮开发物性失配失败记录（保留）',pilot_physical[~good(pilot_physical)],source='guarded_pilot_parameter_validation.csv')
+    r.p('预冷灵敏度改变端面换热与BP/MEA等效导热，端板本体导热不变；这是参数化模型分析，不是已经测量得到的接触热阻。绝对温差同时受整体剩余温差影响，因此与归一化梯度分别报告。启动物理与控制参数扰动固定控制增益，并按实际CSV列示的倍率计算。')
+    optional_table(r,root,'precooling_sensitivity.csv','全部预冷传热参数组合',
+      ['cooling_min','h_W_m2K','conductance_factor','G_eff_W_m2K','mean_capacity_C','field_range_K','cell_range_K','relative_field_range','Bi_stack'])
+    optional_table(r,root,'sensitivity.csv','全部启动物理与控制参数扰动',
+      ['case','parameter','factor','feasible','E_aux_J','first_success_s','stop_s','dTmax_K','min_voltage_V','max_ice_bulk','final_min_T_C'])
+    image_if(r,root,'图11_物理参数与控制器敏感性','预冷与启动单因素扰动')
+    r.p('温度、电压噪声进入真实采样链与保持判定；独立模型观测器根据自身状态和采样更新。不同初场试验把给定预冷初场作为共同先验，不另外模拟未知端板初温偏差；物性失配时观测器仍固定名义模型。高斯噪声无界，有限随机试验只能支持已测分布与幅值内的经验表现。即使全部通过，也不等于任意扰动下的鲁棒安全或无限时域稳定。')
+    optional_table(r,root,'observer_example_results.csv','独立观测器噪声及物性失配示例汇总')
+    robustcols=['case','seed','noise_T_K','noise_V_V','initial_shift_K','observer_initial_shift_K','G_factor','G_EP_factor','h_factor','feasible','E_aux_J','first_success_s','stop_s','final_min_T_C','dTmax_K','min_voltage_V','max_ice_bulk']
+    r.table('名义能耗优选：全部扰动试验',noise,robustcols,'robustness.csv')
+    r.table('名义试验统计（成功能耗与全部安全极值分开）',robust_stats(noise))
+    r.table('推荐留裕度策略：全部独立扰动验证',gnoise,robustcols,'guarded_robustness.csv')
+    r.table('推荐独立验证统计',robust_stats(gnoise))
+    physical=optional_table(r,root,'guarded_parameter_validation.csv','推荐方案独立物理失配与噪声联合验证',robustcols)
+    if physical is not None:
+        r.table('推荐物理失配验证统计',robust_stats(physical))
+        r.p(f'与推荐策略90次名义物性噪声验证分开，独立物理失配组共{len(physical)}次，通过{int(good(physical).sum())}次。观测器仍使用名义物性，真实对象按G、G_EP和h倍率扰动，因而可检查控制器在这些参数失配方向的表现。')
+    paired=load('constant_robustness.csv',root,False)
+    paired_phys=load('constant_parameter_validation.csv',root,False)
+    if paired is not None:
+        r.table('相同随机种子下两种恒功率基准的完整验证',paired,['strategy']+robustcols,'constant_robustness.csv')
+        for label,g in paired.groupby('strategy'):
+            r.table(STRATEGIES.get(label,label)+'：同种子验证统计',robust_stats(g))
+    if paired_phys is not None:
+        r.table('两种恒功率基准的相同物理失配场景',paired_phys,['strategy']+robustcols,'constant_parameter_validation.csv')
+        for label,g in paired_phys.groupby('strategy'):
+            r.table(STRATEGIES.get(label,label)+'：物理失配统计',robust_stats(g))
+        r.p('推荐动态和两种恒功率基准采用相同初场、噪声种子与物理参数倍率。这样可以区分名义辅助能耗优势与经验鲁棒表现；重新优化恒功率仍是名义优化，不能冒称已经做过鲁棒参数再优化。')
+    r.p('stop_s为负的行表示该次仿真没有完成规定停机，而非负的物理时间；first_success_s为负表示未发现首次真实达标。失败原因应综合首次期限、测量保持、误停、路径电压/冰量及物理可行性判断。图中的失败标志与原始负哨兵值不会被替换成成功时间。')
+    for name,cap in [('图12_测量噪声与初场扰动','名义策略全部试验；叉号为不可行'),('图13_名义与留裕度备选','名义与推荐策略的能耗、时间、独立试验与关热后限制')]:image_if(r,root,name,cap)
+    r.p('若应用要求关热后所有片持续高于0 ℃，应把后验最小温度或更长持续运行窗纳入新的约束并重新优化。本文保留现有任务的启动口径，同时明确输出后续降温风险；不通过关热后隐藏补热消除失败外观。')
 
-    r.heading('10. 可复现文件、数据字典与交付说明')
-    r.p('CSV统一UTF-8 BOM编码，单位写入列名，工作文件保留计算精度；报告表格为排版展示做适量小数截断。温度T单位为℃、t为s、q为W/cm²、j为A/cm²、能量为J。报告中—表示未定义/缺失，不是0；失败方案的负时间哨兵值必须与feasible字段一起解释。')
-    r.p('trajectory_*文件中，第n行功率描述“结束于该行time_s的积分区间”，因此独立辅助电能复算采用25Σ_{n≥1,k}q_(n,k)[t_n−t_(n−1)]；不能直接对该列做默认梯形积分，否则会引入开关时刻的半步误差。状态码、风险、滤波速率与冰量估计是最近一次控制更新值，积分子步之间保持。final_fields_*是关热后60 s仿真终态场，不是主表关热时刻的空间场；其time_s列明确给出对应时间。')
-    dictionary=pd.DataFrame([
-        ['time_s / j_A_cm2 / charge_C_cm2','实际时间、瞬时加载电流密度、累计电荷','s / A·cm⁻² / C·cm⁻²'],
-        ['T1_C…T5_C / TEL_C / TER_C','五片平均温度、左/右端板温度','℃'],
-        ['cellk_q_W_cm2','第k片在结束于本行的区间内加热功率密度','W·cm⁻²'],
-        ['cellk_V_V','第k片当前电压','V'],
-        ['cellk_ice_bulk','第k片全MEA空间最大冰体积分数','无量纲'],
-        ['cellk_pore_ice_bulk / cellk_mem_ice_bulk','多孔层/膜内空间最大冰体积分数','无量纲'],
-        ['cellk_pore_ice_saturation','多孔层局部冰体积/原始孔隙体积的最大值','无量纲，与0.99体积分数阈值不同'],
-        ['cellk_lambda','第k片膜内平均含水量λ','无量纲'],
-        ['cellk_j_over_jlim / cellk_gas_porosity','电流与极限电流之比、最小气相孔隙率','无量纲'],
-        ['cellk_state / cellk_risk','最近控制更新的状态码和综合冰堵风险','状态码见表8；风险无量纲'],
-        ['cellk_rT_K_s / cellk_rV_V_s','滤波温升速率/电压变化率','K·s⁻¹ / V·s⁻¹'],
-        ['cellk_ice_est','模型加电压残差修正后的冰量估计','无量纲'],
-        ['stopped','该行端点是否已进入不可逆关热状态','0/1；关热切换行的q仍记录此前区间'],
-        ['E_aux_J…E_sensible_J','自t=0累计的五项离散热收支','J；后验期间反应等累计量继续更新'],
-        ['energy_residual_J / water_residual_kg','逐行能量/水量平衡残差','J / kg'],
-        ['water_inventory_kg / water_produced_kg / water_out_kg','水库存、累计生成、累计边界排出','kg']
-    ],columns=['字段或字段族','含义','单位/注意'])
-    r.table('工作数据字段说明',dictionary)
-    exact_dict=load('trajectory_data_dictionary.csv',root,False)
-    if exact_dict is not None:r.table('全部轨迹列的逐列数据字典',exact_dict,source='trajectory_data_dictionary.csv')
+    r.heading('10. 完整数据、复现入口与结果使用')
+    r.p('CSV采用UTF-8 BOM，保留工作精度；温度℃、时间s、加热功率密度W/cm²、电流密度A/cm²、能量J。表格“—”表示未定义或缺失，不表示0。所有轨迹功率列描述结束于该行time_s的前一积分区间，独立能耗应采用25Σ_n,k q_(n,k)(t_n−t_(n−1))；默认梯形积分会在开关点引入半步误差。')
+    r.p('首次事件、实际关热及后验段的时间标签分开。final_fields_*如果对应elapsed_s，则表示仿真最终场而非关热时刻场，应以time_s列为准。滤波速率、控制状态、风险和观测量在控制子步间保持，真实物理状态每个积分子步更新。')
+    optional_table(r,root,'trajectory_data_dictionary.csv','全部轨迹字段字典')
     files=[]
     for path in sorted((root/'data').glob('*.csv')):
-        try:
-            df=pd.read_csv(path,encoding='utf-8-sig');rows=len(df);columns=len(df.columns)
-        except Exception:rows='读取失败';columns='—'
-        files.append({'文件':path.name,'数据行':rows,'列数':columns,'字节':path.stat().st_size})
-    r.table('表26 全部工作CSV索引',pd.DataFrame(files))
-    r.formula('一键复算冻结控制参数与所有输出：.\\run_all.ps1\n重新优化并完整运行：.\\run_all.ps1 -Reoptimize\n单独重算主数值：python code/run_problem4.py --reuse-controls --skip-precool\n仅重画全部科研图：python code/plot_results.py\n仅重建完整报告：python code/build_report.py')
-    r.p('运行顺序为数值计算→独立验证→图片生成→报告生成；若修改模型参数，应重新运行数值计算，不能只刷新图片。代码、输入快照与SHA-256清单提供源文件追溯。根目录README.md说明环境安装和关键文件；图像提供300 dpi PNG及SVG矢量版，两者读取同一CSV。')
-    r.link('预冷模型审计与阶段衔接说明','audit/预冷模型审计.md')
-    r.link('独立审计说明','audit/独立审计说明.md')
-    r.write(root)
-    write_readme(root)
-    print('Saved detailed Markdown / HTML report and README.')
+        try:df=pd.read_csv(path,encoding='utf-8-sig');rows=len(df);cols=len(df.columns)
+        except Exception:rows='读取失败';cols='—'
+        files.append({'文件':path.name,'数据行':rows,'列数':cols,'字节':path.stat().st_size})
+    r.table('全部CSV工作文件索引',pd.DataFrame(files))
+    r.formula('完整冻结参数复算：.\\run_all.ps1\n重新搜索与复算：.\\run_all.ps1 -Reoptimize\n仅绘图：python code/plot_results.py\n仅报告：python code/build_report.py')
+    r.p('执行环境、输入快照和源文件哈希清单随目录保存。修改模型或参数后先重新计算，再做独立核验，最后生成图表与本报告。数值图片均由CSV绘制，提供300 dpi PNG与SVG矢量版本；figure_manifest.csv记录每图数据来源。当前成果是可复算的模型内结果，实际装置预测仍受前序物性、边界、相变与校准近似影响。')
+    for path in sorted((root/'audit').glob('*.md')):r.link(path.stem,'audit/'+path.name)
+    r.write(root);write_readme(root)
+    print('Saved data-driven detailed Markdown / HTML report and README.')
 
 
 def write_readme(root):
-    text='''# 问题四完整数值求解
+    n=len(list((root/'figures').glob('*.png')))
+    text=f'''# 问题四修订求解结果
 
-首选打开 **问题四_完整求解报告.html**。Markdown版同名保存，包含完整结果表。
+首选打开 **问题四_完整求解报告.html**；同名Markdown包含完整结果表。主表4采用 `guarded` 推荐动态与固定问题三功率按相同测量保持规则比较。名义 `dynamic`、重优化恒功率、理想首次口径和所有失败试验独立保留。
 
-## 目录
+## 文件
 
-- `code/`：可复算Python源代码；`run_problem4.py`是主入口。
-- `data/`：全部UTF-8 BOM工作CSV，包括9组主结果、19点扫描、优化候选、完整轨迹、守恒、加密、敏感性与90次扰动试验。
-- `figures/`：12张科研图，均有300 dpi PNG与SVG；`figure_manifest.csv`记录数据来源。
-- `inputs/`：本次使用的输入快照；`audit/`：方程与口径审计说明。
+- `code/`：完整可复算代码。
+- `data/`：全部工作CSV、19点预冷扫描、搜索候选、轨迹、收敛、物理扰动、名义与推荐独立噪声验证。
+- `figures/`：{n}张科研图，300 dpi PNG和SVG；图数据源见 `figure_manifest.csv`。
+- `inputs/`：输入及来源快照；`audit/`：逻辑和独立验证记录。
 
-## 环境与复算
-
-本机使用Python 3.12及固定版本NumPy、SciPy、Numba、pandas、Matplotlib。所附requirements.txt用于重建环境；本机局部依赖位于.python_deps。可直接运行run_all.ps1复算冻结参数与全部检验，添加-Reoptimize则重新搜索控制参数。跨机器运行前请用匹配Python版本安装依赖：
+## 复算
 
 ```powershell
 python -m pip install --target .python_deps -r requirements.txt
 ./run_all.ps1
 ```
 
-该入口默认用已保存控制参数复算全部数值、验证、表格、图和报告。需要重新进行参数搜索时，使用 `./run_all.ps1 -Reoptimize`。图表和报告可分别通过 `python code/plot_results.py`、`python code/build_report.py`重建。
+默认使用冻结控制参数重算；`./run_all.ps1 -Reoptimize`重新搜索。运行环境记录在 `data/run_environment.csv`。仅重画图与重建报告可分别运行 `python code/plot_results.py`、`python code/build_report.py`。
 
-本次执行环境由 `data/run_environment.csv`记录。`.python_deps/`为本次机器上的局部依赖目录（若存在）；Python脚本通过 `bootstrap.py`加载。若存在`requirements.txt`或环境锁文件，请优先按其固定版本安装。完整重优化耗时明显长于重画图；固定随机种子和环境用于复现搜索过程。
+## 结果口径
 
-已有优化参数时，可执行：
+真实首次达标仅作评价；测量温度裕度、电压和独立观测冰量连续满足2 s后实际关热，并锁存功率为0。主能耗统计至实际关热；`first_success_energy_J`为首次真实达标能耗。`constant_first`及19点扫描沿用理想首次口径。关热后60 s观察单独报告；并非所有启动成功方案都能持续暖态。
 
-```powershell
-python code/run_problem4.py --reuse-controls --skip-precool
-python code/plot_results.py
-python code/build_report.py
-```
-
-## 统计口径
-
-主比较是 `dynamic` 与 `constant_hold`：均在首次全片达标后连续保持2 s再关热；`constant_first`为问题三首次达标参考。第(2)问19点扫描沿用首次达标口径。关热后60 s验证单独列示。
-
-轨迹功率列描述结束于该行时刻的前一积分区间，独立能耗必须用 `25*sum(q_n*(t_n-t_(n-1)))`复算，不用梯形积分。温度单位℃、时间s、单片加热功率密度W/cm²、电流密度A/cm²、能量J；最大温差为同一时刻五片极差的过程最大值。
-
-本解是给定参数化反馈类与有限搜索预算内找到的可行优选解，不提供全局最优证明。两阶段物性与对流位置继承近似、有限扰动范围和关热后验证结论均在报告中明确说明。完整工作精度见CSV，报告显示精度不用于后续复算。
+轨迹第n行功率属于结束于该时刻的区间，能耗按 `25*sum(q_n*(t_n-t_(n-1)))`求和。失败组能耗是已花费的电能，不纳入成功节能均值。有限搜索、有限随机种子与模型内验证均不构成全局最优或任意扰动安全证明。
 '''
-    text=text.replace('12张科研图',f'{len(list((root/"figures").glob("*.png")))}张科研图')
     (root/'README.md').write_text(text,encoding='utf-8-sig')
 
 
@@ -444,3 +441,4 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--root',type=Path,default=ROOT)
     args=parser.parse_args();build(args.root)
+

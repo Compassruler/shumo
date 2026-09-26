@@ -3,13 +3,13 @@ time_s,s,电流加载开始后的时间，含独立关热后观察段
 j_A_cm2,A/cm2,题给斜坡/平台电流密度
 charge_C_cm2,C/cm2,题给电流曲线精确积分；后验段独立于启动预算
 stopped,0/1,该时刻是否已锁定永久关断；stop行功率仍记刚结束区间
-T1_C,degC,热节点平均温度，EL/ER为端板
-T2_C,degC,热节点平均温度，EL/ER为端板
-T3_C,degC,热节点平均温度，EL/ER为端板
-T4_C,degC,热节点平均温度，EL/ER为端板
-T5_C,degC,热节点平均温度，EL/ER为端板
-TEL_C,degC,热节点平均温度，EL/ER为端板
-TER_C,degC,热节点平均温度，EL/ER为端板
+T1_C,degC,真实模型热节点平均温度，EL/ER为端板；仅供仿真评价
+T2_C,degC,真实模型热节点平均温度，EL/ER为端板；仅供仿真评价
+T3_C,degC,真实模型热节点平均温度，EL/ER为端板；仅供仿真评价
+T4_C,degC,真实模型热节点平均温度，EL/ER为端板；仅供仿真评价
+T5_C,degC,真实模型热节点平均温度，EL/ER为端板；仅供仿真评价
+TEL_C,degC,真实模型热节点平均温度，EL/ER为端板；仅供仿真评价
+TER_C,degC,真实模型热节点平均温度，EL/ER为端板；仅供仿真评价
 cell1_q_W_cm2,W/cm2,该行时刻结束的前一区间内恒定加热功率；初始行0
 cell2_q_W_cm2,W/cm2,该行时刻结束的前一区间内恒定加热功率；初始行0
 cell3_q_W_cm2,W/cm2,该行时刻结束的前一区间内恒定加热功率；初始行0
@@ -55,11 +55,11 @@ cell2_gas_porosity,1,多孔域最小可用气相体积分数
 cell3_gas_porosity,1,多孔域最小可用气相体积分数
 cell4_gas_porosity,1,多孔域最小可用气相体积分数
 cell5_gas_porosity,1,多孔域最小可用气相体积分数
-cell1_state,code,1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
-cell2_state,code,1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
-cell3_state,code,1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
-cell4_state,code,1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
-cell5_state,code,1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
+cell1_state,code,该时刻更新并作用于后一区间：1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
+cell2_state,code,该时刻更新并作用于后一区间：1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
+cell3_state,code,该时刻更新并作用于后一区间：1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
+cell4_state,code,该时刻更新并作用于后一区间：1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
+cell5_state,code,该时刻更新并作用于后一区间：1安全增强 2低温升温不足 3跟踪维持 4接近成功渐缩 5关断；constant策略0
 cell1_risk,1,综合冰堵风险指标
 cell2_risk,1,综合冰堵风险指标
 cell3_risk,1,综合冰堵风险指标
@@ -75,11 +75,11 @@ cell2_rV_V_s,V/s,二级滤波电压变化率
 cell3_rV_V_s,V/s,二级滤波电压变化率
 cell4_rV_V_s,V/s,二级滤波电压变化率
 cell5_rV_V_s,V/s,二级滤波电压变化率
-cell1_ice_est,1,模型状态加无冰基准电压残差校正；理想模型软测量
-cell2_ice_est,1,模型状态加无冰基准电压残差校正；理想模型软测量
-cell3_ice_est,1,模型状态加无冰基准电压残差校正；理想模型软测量
-cell4_ice_est,1,模型状态加无冰基准电压残差校正；理想模型软测量
-cell5_ice_est,1,模型状态加无冰基准电压残差校正；理想模型软测量
+cell1_ice_est,1,独立观测器冰先验加预测电压与测量电压创新；非真实冰反馈
+cell2_ice_est,1,独立观测器冰先验加预测电压与测量电压创新；非真实冰反馈
+cell3_ice_est,1,独立观测器冰先验加预测电压与测量电压创新；非真实冰反馈
+cell4_ice_est,1,独立观测器冰先验加预测电压与测量电压创新；非真实冰反馈
+cell5_ice_est,1,独立观测器冰先验加预测电压与测量电压创新；非真实冰反馈
 E_aux_J,J,累计离散热量/能量；相变为净释热，散热取正
 E_gen_J,J,累计离散热量/能量；相变为净释热，散热取正
 E_phase_J,J,累计离散热量/能量；相变为净释热，散热取正
@@ -90,3 +90,40 @@ water_residual_kg,kg,累计水量或收支残差；inventory为瞬时总库存
 water_inventory_kg,kg,累计水量或收支残差；inventory为瞬时总库存
 water_produced_kg,kg,累计水量或收支残差；inventory为瞬时总库存
 water_out_kg,kg,累计水量或收支残差；inventory为瞬时总库存
+observer_T1_C,degC,积分区间末、传感器校正前的独立观测器热节点预测；端板无直接测量
+observer_T2_C,degC,积分区间末、传感器校正前的独立观测器热节点预测；端板无直接测量
+observer_T3_C,degC,积分区间末、传感器校正前的独立观测器热节点预测；端板无直接测量
+observer_T4_C,degC,积分区间末、传感器校正前的独立观测器热节点预测；端板无直接测量
+observer_T5_C,degC,积分区间末、传感器校正前的独立观测器热节点预测；端板无直接测量
+observer_TEL_C,degC,积分区间末、传感器校正前的独立观测器热节点预测；端板无直接测量
+observer_TER_C,degC,积分区间末、传感器校正前的独立观测器热节点预测；端板无直接测量
+cell1_observer_voltage_V,V,独立观测器预测电压
+cell2_observer_voltage_V,V,独立观测器预测电压
+cell3_observer_voltage_V,V,独立观测器预测电压
+cell4_observer_voltage_V,V,独立观测器预测电压
+cell5_observer_voltage_V,V,独立观测器预测电压
+cell1_sensor_temperature_C,degC,最近一次控制采样的测量温度
+cell2_sensor_temperature_C,degC,最近一次控制采样的测量温度
+cell3_sensor_temperature_C,degC,最近一次控制采样的测量温度
+cell4_sensor_temperature_C,degC,最近一次控制采样的测量温度
+cell5_sensor_temperature_C,degC,最近一次控制采样的测量温度
+cell1_sensor_voltage_V,V,最近一次控制采样的测量电压
+cell2_sensor_voltage_V,V,最近一次控制采样的测量电压
+cell3_sensor_voltage_V,V,最近一次控制采样的测量电压
+cell4_sensor_voltage_V,V,最近一次控制采样的测量电压
+cell5_sensor_voltage_V,V,最近一次控制采样的测量电压
+cell1_observer_ice_bulk,1,独立观测器冰先验；未加电压创新的原始估计
+cell2_observer_ice_bulk,1,独立观测器冰先验；未加电压创新的原始估计
+cell3_observer_ice_bulk,1,独立观测器冰先验；未加电压创新的原始估计
+cell4_observer_ice_bulk,1,独立观测器冰先验；未加电压创新的原始估计
+cell5_observer_ice_bulk,1,独立观测器冰先验；未加电压创新的原始估计
+cell1_filtered_temperature_C,degC,最近控制采样更新的低通测温；用于停机检测
+cell2_filtered_temperature_C,degC,最近控制采样更新的低通测温；用于停机检测
+cell3_filtered_temperature_C,degC,最近控制采样更新的低通测温；用于停机检测
+cell4_filtered_temperature_C,degC,最近控制采样更新的低通测温；用于停机检测
+cell5_filtered_temperature_C,degC,最近控制采样更新的低通测温；用于停机检测
+cell1_filtered_voltage_V,V,最近控制采样更新的低通测压；用于停机检测
+cell2_filtered_voltage_V,V,最近控制采样更新的低通测压；用于停机检测
+cell3_filtered_voltage_V,V,最近控制采样更新的低通测压；用于停机检测
+cell4_filtered_voltage_V,V,最近控制采样更新的低通测压；用于停机检测
+cell5_filtered_voltage_V,V,最近控制采样更新的低通测压；用于停机检测

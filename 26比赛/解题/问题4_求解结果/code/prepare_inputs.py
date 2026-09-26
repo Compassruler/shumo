@@ -36,10 +36,13 @@ def main():
      ('voltage_safe',.3,'V','题给式8'),('ice_critical',.99,'bulk fraction','题给式7'),
      ('load_ramp',.005,'A/cm2/s','题给'),('load_plateau',.3,'A/cm2','题给'),
      ('charge_budget',20,'C/cm2','按问题3建模继承解释'),('horizon',m.Q_TIME,'s','由电荷预算及加载积分推得'),
-     ('hold',2,'s','问题4给出的保持逻辑；本次固定，不参与能耗优化'),
+     ('hold',2,'s','用户建模文档的附加保持逻辑；固定并用于两策略共同比较'),
      ('dt',.025,'s','本次数值设置'),('control_period',.2,'s','本次采样周期'),
      ('mesh_scale',2,'1','每片58个质量控制体；7个热节点'),('post_stop_observation',60,'s','关热后后验观察，不计主表成本'),
-     ('w_time',.005,'1','本次小权重；能耗主导'),('w_spread',.002,'1','本次小权重；能耗主导')]
+     ('sensor_stop_margin',m.SENSOR_STOP_MARGIN,'degC','测量停机滤波温度裕度；本次数值设计'),
+     ('energy_tie_band',.0005,'relative','最小辅助能耗0.05%带内按首次时间及温差排序'),
+     ('training_time_reserve',2,'s','推荐策略训练要求真实首次成功早于预算截止2s'),
+     ('training_stop_deadline',m.Q_TIME-2.,'s','推荐策略训练还要求完成测量停机；相对最终允许窗口留4s')]
     with (out/'parameter_inventory.csv').open('w',newline='',encoding='utf-8-sig') as f:
         w=csv.writer(f);w.writerow(['parameter','value','unit','source_or_assumption']);w.writerows(items)
     with (out/'source_files.csv').open('w',newline='',encoding='utf-8-sig') as f:

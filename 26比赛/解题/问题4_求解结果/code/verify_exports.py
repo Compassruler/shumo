@@ -21,6 +21,9 @@ CONST_POWER = np.array([1.0, 1.0, 0.6245115587719579, 1.0, 1.0])
 
 
 def check(name, ok, observed="", expected="", file=""):
+    if file:
+        try:file=Path(file).resolve().relative_to(Path(__file__).resolve().parents[1])
+        except ValueError:pass
     CHECKS.append(dict(check=name, passed=bool(ok), observed=observed,
                        expected=expected, file=str(file)))
 
@@ -117,8 +120,9 @@ def audit_trajectory(path, summary, hold_s):
     # The full oriented aGDL/aCL/PEM/cCL/cGDL precooling mesh is not exactly
     # mirror symmetric. Its small initial asymmetry must not be called a solver
     # failure; compare subsequent mismatch against the actual initial mismatch.
-    check("mirror_difference_not_amplified_from_initial_field", mirror<=initial_mirror+1e-6,
-          mirror, f"<= initial {initial_mirror:.12g} + 1e-6 K", path)
+    if summary.get('strategy') != 'constant_optimized':
+        check("mirror_difference_not_amplified_from_initial_field", mirror<=initial_mirror+1e-6,
+              mirror, f"<= initial {initial_mirror:.12g} + 1e-6 K", path)
 
     flags = a["stopped"]
     check("stop_flag_binary_and_latched", np.all((flags==0)|(flags==1)) and np.all(np.diff(flags)>=0), file=path)
@@ -165,7 +169,7 @@ def audit_trajectory(path, summary, hold_s):
         if np.min(T[0])>0:
             close("warm_initial_field_success_at_zero", first, 0, file=path)
             close("warm_initial_field_no_auxiliary_energy", summary["E_aux_J"], 0, file=path)
-        elif summary["strategy"] in ("dynamic", "constant_hold", "guarded"):
+        elif summary["strategy"] in ("dynamic", "constant_hold", "guarded", "constant_optimized"):
             observed = t[stop_i]-first
             check("common_success_hold_duration", observed>=hold_s-1e-6, observed, f">={hold_s} s", path)
             window = (t>=t[stop_i]-hold_s-1e-8)&(t<=t[stop_i]+1e-8)
@@ -174,7 +178,8 @@ def audit_trajectory(path, summary, hold_s):
         elif summary["strategy"] == "constant_first":
             close("first_hit_baseline_no_hold", t[stop_i], first, file=path)
     if summary["strategy"].startswith("constant") and stop_i>0:
-        check("inherited_Q3_constant_heater_vector", np.allclose(q[1:stop_i+1], CONST_POWER, rtol=0, atol=1e-10), file=path)
+        expected = np.array([float(summary[f'q{k}_W_cm2']) for k in range(1,6)]) if summary['strategy']=='constant_optimized' else CONST_POWER
+        check("constant_heater_vector", np.allclose(q[1:stop_i+1], expected, rtol=0, atol=1e-10), file=path)
     for k in range(1,6):
         for key in (f"E{k}_J", f"E_aux_cell{k}_J", f"cell{k}_E_aux_J"):
             if key in summary:
@@ -214,6 +219,14 @@ def main():
                     audit_trajectory(path,row,args.hold_s)
                 except Exception as exc:
                     check("guarded_trajectory_read_or_schema_error",False,repr(exc),file=path)
+        optimizedfile = data/'optimized_constant_results.csv'
+        if optimizedfile.exists():
+            for row in read_rows(optimizedfile):
+                path=data/f"trajectory_{row['case']}_constant_optimized.csv"
+                try:
+                    audit_trajectory(path,row,args.hold_s)
+                except Exception as exc:
+                    check('optimized_constant_schema_error',False,repr(exc),file=path)
         scanfile = data/"constant_scan.csv"
         scan = read_rows(scanfile)
         check("constant_scan_19_points", len(scan)==19, len(scan), 19, scanfile)

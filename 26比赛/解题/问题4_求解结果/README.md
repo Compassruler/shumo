@@ -1,39 +1,25 @@
-﻿# 问题四完整数值求解
+﻿# 问题四修订求解结果
 
-首选打开 **问题四_完整求解报告.html**。Markdown版同名保存，包含完整结果表。
+首选打开 **问题四_完整求解报告.html**；同名Markdown包含完整结果表。主表4采用 `guarded` 推荐动态与固定问题三功率按相同测量保持规则比较。名义 `dynamic`、重优化恒功率、理想首次口径和所有失败试验独立保留。
 
-## 目录
+## 文件
 
-- `code/`：可复算Python源代码；`run_problem4.py`是主入口。
-- `data/`：全部UTF-8 BOM工作CSV，包括9组主结果、19点扫描、优化候选、完整轨迹、守恒、加密、敏感性与90次扰动试验。
-- `figures/`：13张科研图，均有300 dpi PNG与SVG；`figure_manifest.csv`记录数据来源。
-- `inputs/`：本次使用的输入快照；`audit/`：方程与口径审计说明。
+- `code/`：完整可复算代码。
+- `data/`：全部工作CSV、19点预冷扫描、搜索候选、轨迹、收敛、物理扰动、名义与推荐独立噪声验证。
+- `figures/`：16张科研图，300 dpi PNG和SVG；图数据源见 `figure_manifest.csv`。
+- `inputs/`：输入及来源快照；`audit/`：逻辑和独立验证记录。
 
-## 环境与复算
-
-本机使用Python 3.12及固定版本NumPy、SciPy、Numba、pandas、Matplotlib。所附requirements.txt用于重建环境；本机局部依赖位于.python_deps。可直接运行run_all.ps1复算冻结参数与全部检验，添加-Reoptimize则重新搜索控制参数。跨机器运行前请用匹配Python版本安装依赖：
+## 复算
 
 ```powershell
 python -m pip install --target .python_deps -r requirements.txt
 ./run_all.ps1
 ```
 
-该入口默认用已保存控制参数复算全部数值、验证、表格、图和报告。需要重新进行参数搜索时，使用 `./run_all.ps1 -Reoptimize`。图表和报告可分别通过 `python code/plot_results.py`、`python code/build_report.py`重建。
+默认使用冻结控制参数重算；`./run_all.ps1 -Reoptimize`重新搜索。运行环境记录在 `data/run_environment.csv`。仅重画图与重建报告可分别运行 `python code/plot_results.py`、`python code/build_report.py`。
 
-本次执行环境由 `data/run_environment.csv`记录。`.python_deps/`为本次机器上的局部依赖目录（若存在）；Python脚本通过 `bootstrap.py`加载。若存在`requirements.txt`或环境锁文件，请优先按其固定版本安装。完整重优化耗时明显长于重画图；固定随机种子和环境用于复现搜索过程。
+## 结果口径
 
-已有优化参数时，可执行：
+真实首次达标仅作评价；测量温度裕度、电压和独立观测冰量连续满足2 s后实际关热，并锁存功率为0。主能耗统计至实际关热；`first_success_energy_J`为首次真实达标能耗。`constant_first`及19点扫描沿用理想首次口径。关热后60 s观察单独报告；并非所有启动成功方案都能持续暖态。
 
-```powershell
-python code/run_problem4.py --reuse-controls --skip-precool
-python code/plot_results.py
-python code/build_report.py
-```
-
-## 统计口径
-
-主比较是 `dynamic` 与 `constant_hold`：均在首次全片达标后连续保持2 s再关热；`constant_first`为问题三首次达标参考。第(2)问19点扫描沿用首次达标口径。关热后60 s验证单独列示。
-
-轨迹功率列描述结束于该行时刻的前一积分区间，独立能耗必须用 `25*sum(q_n*(t_n-t_(n-1)))`复算，不用梯形积分。温度单位℃、时间s、单片加热功率密度W/cm²、电流密度A/cm²、能量J；最大温差为同一时刻五片极差的过程最大值。
-
-本解是给定参数化反馈类与有限搜索预算内找到的可行优选解，不提供全局最优证明。两阶段物性与对流位置继承近似、有限扰动范围和关热后验证结论均在报告中明确说明。完整工作精度见CSV，报告显示精度不用于后续复算。
+轨迹第n行功率属于结束于该时刻的区间，能耗按 `25*sum(q_n*(t_n-t_(n-1)))`求和。失败组能耗是已花费的电能，不纳入成功节能均值。有限搜索、有限随机种子与模型内验证均不构成全局最优或任意扰动安全证明。

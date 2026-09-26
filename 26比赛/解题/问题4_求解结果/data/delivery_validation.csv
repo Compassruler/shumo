@@ -1,6 +1,6 @@
 ﻿check,passed,detail
 report_local_links_exist,True,[]
-13_png_and_13_svg,True,13/13
+16_png_and_16_svg,True,16/16
 image_readable_图01_预冷温度场族,True,"(3844, 1534)"
 image_readable_图02_预冷均温与温差,True,"(3844, 1414)"
 image_readable_图03_三工况初始温度,True,"(3964, 1324)"
@@ -14,12 +14,25 @@ image_readable_图10_网格步长与控制周期检验,True,"(3844, 2404)"
 image_readable_图11_物理参数与控制器敏感性,True,"(3964, 2584)"
 image_readable_图12_测量噪声与初场扰动,True,"(3844, 2464)"
 image_readable_图13_名义与留裕度备选,True,"(3784, 2464)"
+image_readable_图14_重优化恒功率与推荐动态,True,"(3964, 2464)"
+image_readable_图15_能耗时间候选前沿,True,"(4564, 1564)"
+image_readable_图16_观测器误差与测量停机,True,"(4714, 3214)"
 rows_main_results.csv,True,9
 rows_constant_scan.csv,True,19
 rows_guarded_results.csv,True,3
 rows_robustness.csv,True,90
 rows_guarded_robustness.csv,True,90
 rows_coupled_convergence.csv,True,9
-checks_independent_export_validation.csv,True,1851/1851
-checks_model_validation.csv,True,13/13
+rows_optimized_constant_results.csv,True,3
+rows_guarded_parameter_validation.csv,True,24
+rows_guarded_convergence.csv,True,21
+rows_constant_robustness.csv,True,180
+rows_constant_parameter_validation.csv,True,48
+rows_observer_example_results.csv,True,3
+checks_independent_export_validation.csv,True,2025/2025
+checks_model_validation.csv,True,29/29
 checks_precooling_validation.csv,True,11/11
+checks_revision_validation.csv,True,878/878
+state_durations_cover_startup,True,1.4210854715202004e-14
+shutdown_state_has_zero_startup_duration,True,0.0
+constant_startup_state_code_zero,True,0.0

@@ -1,0 +1,879 @@
+﻿check,passed,observed,expected,file
+structure_control_accepts_only_measurements_and_estimator,True,"['t', 'period', 'temp0', 'estimated_temp', 'measured_voltage', 'estimated_states', 'cfg', 'p', 'cs', 'integral']",,code\control_model.py
+structure_no_plant_state_or_diagnostics_in_control,True,[],empty,code\control_model.py
+structure_observer_uses_independent_nominal_prediction,True,,,code\control_model.py
+structure_observer_water_gas_initialized_independently,True,,,code\control_model.py
+required_summary_file_exists,True,,,data\main_results.csv
+summary_covers_all_three_cases,True,,,data\main_results.csv
+independent_total_heater_energy,True,2855.408349,2855.408349002952,data\trajectory_case1_dynamic.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_dynamic.csv
+true_first_has_exact_saved_event,True,95.6692941904,95.6692941904,data\trajectory_case1_dynamic.csv
+true_first_all_cells_positive,True,1.01748128028e-07,>0,data\trajectory_case1_dynamic.csv
+first_window_energy_integral,True,2749.26452906,2749.264529055014,data\trajectory_case1_dynamic.csv
+first_window_voltage_extreme,True,0.550510620303,0.550510620303,data\trajectory_case1_dynamic.csv
+first_window_ice_extreme,True,0.348858819881,0.348858819881,data\trajectory_case1_dynamic.csv
+first_window_temperature_spread,True,6.65193783244,6.6519378324380005,data\trajectory_case1_dynamic.csv
+first_charge_uses_first_time,True,19.7007882571,19.700788257119996,data\trajectory_case1_dynamic.csv
+first_charge_budget,True,19.700788257119996,<=20 C/cm2,data\trajectory_case1_dynamic.csv
+no_earlier_thermal_success_row,True,-0.00604643765245,<=1e-7 numerical temperature threshold,data\trajectory_case1_dynamic.csv
+actual_stop_has_exact_saved_event,True,98.4,98.4,data\trajectory_case1_dynamic.csv
+stop_charge_uses_stop_time,True,20.52,20.520000000000003,data\trajectory_case1_dynamic.csv
+stop_minus_first_charge_is_separate,True,0.8192117428999985,0.8192117428800074,data\trajectory_case1_dynamic.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_dynamic.csv
+cost_is_actual_stop_energy,True,2855.408349,2855.408349002952,data\trajectory_case1_dynamic.csv
+actual_cost_includes_first_window,True,106.14381993999996,>=0 J,data\trajectory_case1_dynamic.csv
+post_temperature_includes_shutdown_endpoint,True,-3.84409894253,-3.84409894253,data\trajectory_case1_dynamic.csv
+post_voltage_includes_shutdown_endpoint,True,0.556538476943,0.556538476943,data\trajectory_case1_dynamic.csv
+post_ice_includes_shutdown_endpoint,True,0.527039517197,0.527039517197,data\trajectory_case1_dynamic.csv
+sampled_stop_on_control_clock,True,492.0,492.0,data\trajectory_case1_dynamic.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case1_dynamic.csv
+reconstructed_filtered_temperature_rate,True,1.8882168051348458e-10,0.0,data\trajectory_case1_dynamic.csv
+reconstructed_filtered_voltage_rate,True,1.4262369063544611e-11,0.0,data\trajectory_case1_dynamic.csv
+reconstructed_filtered_temperature_signal,True,9.454836913391773e-11,0.0,data\trajectory_case1_dynamic.csv
+reconstructed_filtered_voltage_signal,True,1.990740905455368e-12,0.0,data\trajectory_case1_dynamic.csv
+sensor_stop_has_required_temperature_margin,True,0.21693647775369335,>0.2 C,data\trajectory_case1_dynamic.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case1_dynamic.csv
+sensor_continuous_hold_reconstructs_shutdown,True,98.4,98.4,data\trajectory_case1_dynamic.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case1_dynamic.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case1_dynamic.csv
+physical_hold_duration,True,2.73070580959,>=2.0 s,data\trajectory_case1_dynamic.csv
+unbroken_physical_hold_duration,True,2.73070580959,2.7307058096000105,data\trajectory_case1_dynamic.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_dynamic.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_dynamic.csv
+independent_total_heater_energy,True,3260.28064893,3260.280648934274,data\trajectory_case1_constant_hold.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_constant_hold.csv
+true_first_has_exact_saved_event,True,25.7412287951,25.7412287951,data\trajectory_case1_constant_hold.csv
+true_first_all_cells_positive,True,1.0284218288e-07,>0,data\trajectory_case1_constant_hold.csv
+first_window_energy_integral,True,2976.01525249,2976.0152524983746,data\trajectory_case1_constant_hold.csv
+first_window_voltage_extreme,True,0.662058326818,0.662058326818,data\trajectory_case1_constant_hold.csv
+first_window_ice_extreme,True,0.0121298600029,0.0121298600029,data\trajectory_case1_constant_hold.csv
+first_window_temperature_spread,True,25.1812762622,25.181276262157816,data\trajectory_case1_constant_hold.csv
+first_charge_uses_first_time,True,1.6565271497,1.6565271497042136,data\trajectory_case1_constant_hold.csv
+first_charge_budget,True,1.6565271497042136,<=20 C/cm2,data\trajectory_case1_constant_hold.csv
+no_earlier_thermal_success_row,True,-0.0129284719847,<=1e-7 numerical temperature threshold,data\trajectory_case1_constant_hold.csv
+actual_stop_has_exact_saved_event,True,28.2,28.2,data\trajectory_case1_constant_hold.csv
+stop_charge_uses_stop_time,True,1.9881,1.9881,data\trajectory_case1_constant_hold.csv
+stop_minus_first_charge_is_separate,True,0.33157285029999994,0.3315728502957864,data\trajectory_case1_constant_hold.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_constant_hold.csv
+cost_is_actual_stop_energy,True,3260.28064893,3260.280648934274,data\trajectory_case1_constant_hold.csv
+actual_cost_includes_first_window,True,284.26539644000013,>=0 J,data\trajectory_case1_constant_hold.csv
+post_temperature_includes_shutdown_endpoint,True,-7.98618650575,-7.98618650575,data\trajectory_case1_constant_hold.csv
+post_voltage_includes_shutdown_endpoint,True,0.576875966233,0.576875966233,data\trajectory_case1_constant_hold.csv
+post_ice_includes_shutdown_endpoint,True,0.272359221609,0.272359221609,data\trajectory_case1_constant_hold.csv
+sampled_stop_on_control_clock,True,141.0,141.0,data\trajectory_case1_constant_hold.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case1_constant_hold.csv
+reconstructed_filtered_temperature_rate,True,1.8291279602067334e-10,0.0,data\trajectory_case1_constant_hold.csv
+reconstructed_filtered_voltage_rate,True,1.5898171668027317e-11,0.0,data\trajectory_case1_constant_hold.csv
+reconstructed_filtered_temperature_signal,True,8.149569907800469e-11,0.0,data\trajectory_case1_constant_hold.csv
+reconstructed_filtered_voltage_signal,True,1.024846874031482e-12,0.0,data\trajectory_case1_constant_hold.csv
+sensor_stop_has_required_temperature_margin,True,1.8712034538284885,>0.2 C,data\trajectory_case1_constant_hold.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case1_constant_hold.csv
+sensor_continuous_hold_reconstructs_shutdown,True,28.200000000000003,28.2,data\trajectory_case1_constant_hold.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case1_constant_hold.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case1_constant_hold.csv
+physical_hold_duration,True,2.45877120495,>=2.0 s,data\trajectory_case1_constant_hold.csv
+unbroken_physical_hold_duration,True,2.45877120495,2.4587712048999997,data\trajectory_case1_constant_hold.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_constant_hold.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_constant_hold.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case1_constant_hold.csv
+independent_total_heater_energy,True,2976.01525249,2976.0152524983746,data\trajectory_case1_constant_first.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_constant_first.csv
+true_first_has_exact_saved_event,True,25.7412287951,25.7412287951,data\trajectory_case1_constant_first.csv
+true_first_all_cells_positive,True,1.0284218288e-07,>0,data\trajectory_case1_constant_first.csv
+first_window_energy_integral,True,2976.01525249,2976.0152524983746,data\trajectory_case1_constant_first.csv
+first_window_voltage_extreme,True,0.662058326818,0.662058326818,data\trajectory_case1_constant_first.csv
+first_window_ice_extreme,True,0.0121298600029,0.0121298600029,data\trajectory_case1_constant_first.csv
+first_window_temperature_spread,True,25.1812762622,25.181276262157816,data\trajectory_case1_constant_first.csv
+first_charge_uses_first_time,True,1.6565271497,1.6565271497042136,data\trajectory_case1_constant_first.csv
+first_charge_budget,True,1.6565271497042136,<=20 C/cm2,data\trajectory_case1_constant_first.csv
+no_earlier_thermal_success_row,True,-0.0129284719847,<=1e-7 numerical temperature threshold,data\trajectory_case1_constant_first.csv
+actual_stop_has_exact_saved_event,True,25.7412287951,25.7412287951,data\trajectory_case1_constant_first.csv
+stop_charge_uses_stop_time,True,1.6565271497,1.6565271497042136,data\trajectory_case1_constant_first.csv
+stop_minus_first_charge_is_separate,True,0.0,0.0,data\trajectory_case1_constant_first.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_constant_first.csv
+cost_is_actual_stop_energy,True,2976.01525249,2976.0152524983746,data\trajectory_case1_constant_first.csv
+actual_cost_includes_first_window,True,0.0,>=0 J,data\trajectory_case1_constant_first.csv
+post_temperature_includes_shutdown_endpoint,True,-9.57145499732,-9.57145499732,data\trajectory_case1_constant_first.csv
+post_voltage_includes_shutdown_endpoint,True,0.568611070311,0.568611070311,data\trajectory_case1_constant_first.csv
+post_ice_includes_shutdown_endpoint,True,0.293492970975,0.293492970975,data\trajectory_case1_constant_first.csv
+ideal_first_reference_stops_at_first,True,25.7412287951,25.7412287951,data\trajectory_case1_constant_first.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_constant_first.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_constant_first.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case1_constant_first.csv
+independent_total_heater_energy,True,0.0,0.0,data\trajectory_case2_dynamic.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_dynamic.csv
+true_first_has_exact_saved_event,True,84.7245963216,84.7245963216,data\trajectory_case2_dynamic.csv
+true_first_all_cells_positive,True,1.00127334017e-07,>0,data\trajectory_case2_dynamic.csv
+first_window_energy_integral,True,0.0,0.0,data\trajectory_case2_dynamic.csv
+first_window_voltage_extreme,True,0.59647254395,0.59647254395,data\trajectory_case2_dynamic.csv
+first_window_ice_extreme,True,0.135272828288,0.135272828288,data\trajectory_case2_dynamic.csv
+first_window_temperature_spread,True,8.82917371192,8.829173711922666,data\trajectory_case2_dynamic.csv
+first_charge_uses_first_time,True,16.4173788965,16.417378896480002,data\trajectory_case2_dynamic.csv
+first_charge_budget,True,16.417378896480002,<=20 C/cm2,data\trajectory_case2_dynamic.csv
+no_earlier_thermal_success_row,True,-0.00259055174106,<=1e-7 numerical temperature threshold,data\trajectory_case2_dynamic.csv
+actual_stop_has_exact_saved_event,True,88.8,88.8,data\trajectory_case2_dynamic.csv
+stop_charge_uses_stop_time,True,17.64,17.64,data\trajectory_case2_dynamic.csv
+stop_minus_first_charge_is_separate,True,1.2226211034999999,1.222621103519998,data\trajectory_case2_dynamic.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_dynamic.csv
+cost_is_actual_stop_energy,True,0.0,0.0,data\trajectory_case2_dynamic.csv
+actual_cost_includes_first_window,True,0.0,>=0 J,data\trajectory_case2_dynamic.csv
+post_temperature_includes_shutdown_endpoint,True,0.42266791534,0.42266791534,data\trajectory_case2_dynamic.csv
+post_voltage_includes_shutdown_endpoint,True,0.609721748167,0.609721748167,data\trajectory_case2_dynamic.csv
+post_ice_includes_shutdown_endpoint,True,0.134847430757,0.134847430757,data\trajectory_case2_dynamic.csv
+sampled_stop_on_control_clock,True,443.99999999999994,444.0,data\trajectory_case2_dynamic.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_dynamic.csv
+reconstructed_filtered_temperature_rate,True,1.9084150926218513e-11,0.0,data\trajectory_case2_dynamic.csv
+reconstructed_filtered_voltage_rate,True,7.916223232484754e-12,0.0,data\trajectory_case2_dynamic.csv
+reconstructed_filtered_temperature_signal,True,8.851586130731448e-12,0.0,data\trajectory_case2_dynamic.csv
+reconstructed_filtered_voltage_signal,True,1.1773915176149785e-12,0.0,data\trajectory_case2_dynamic.csv
+sensor_stop_has_required_temperature_margin,True,0.4153446936056466,>0.2 C,data\trajectory_case2_dynamic.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_dynamic.csv
+sensor_continuous_hold_reconstructs_shutdown,True,88.80000000000001,88.8,data\trajectory_case2_dynamic.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_dynamic.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_dynamic.csv
+physical_hold_duration,True,4.07540367842,>=2.0 s,data\trajectory_case2_dynamic.csv
+unbroken_physical_hold_duration,True,4.07540367842,4.075403678399994,data\trajectory_case2_dynamic.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_dynamic.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_dynamic.csv
+independent_total_heater_energy,True,924.902311754,924.9023117543986,data\trajectory_case2_constant_hold.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_constant_hold.csv
+true_first_has_exact_saved_event,True,5.60608956814,5.60608956814,data\trajectory_case2_constant_hold.csv
+true_first_all_cells_positive,True,1.03082217677e-07,>0,data\trajectory_case2_constant_hold.csv
+first_window_energy_integral,True,648.135650184,648.135650184363,data\trajectory_case2_constant_hold.csv
+first_window_voltage_extreme,True,0.7473794167,0.7473794167,data\trajectory_case2_constant_hold.csv
+first_window_ice_extreme,True,9.52752847762e-05,9.52752847762e-05,data\trajectory_case2_constant_hold.csv
+first_window_temperature_spread,True,6.29774785598,6.297747855987782,data\trajectory_case2_constant_hold.csv
+first_charge_uses_first_time,True,0.078570600615,0.07857060061502033,data\trajectory_case2_constant_hold.csv
+first_charge_budget,True,0.07857060061502033,<=20 C/cm2,data\trajectory_case2_constant_hold.csv
+no_earlier_thermal_success_row,True,-0.00819192715073,<=1e-7 numerical temperature threshold,data\trajectory_case2_constant_hold.csv
+actual_stop_has_exact_saved_event,True,8.0,8.0,data\trajectory_case2_constant_hold.csv
+stop_charge_uses_stop_time,True,0.16,0.16,data\trajectory_case2_constant_hold.csv
+stop_minus_first_charge_is_separate,True,0.081429399385,0.08142939938497967,data\trajectory_case2_constant_hold.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_constant_hold.csv
+cost_is_actual_stop_energy,True,924.902311754,924.9023117543986,data\trajectory_case2_constant_hold.csv
+actual_cost_includes_first_window,True,276.76666157,>=0 J,data\trajectory_case2_constant_hold.csv
+post_temperature_includes_shutdown_endpoint,True,-2.67679685597,-2.67679685597,data\trajectory_case2_constant_hold.csv
+post_voltage_includes_shutdown_endpoint,True,0.617949638296,0.617949638296,data\trajectory_case2_constant_hold.csv
+post_ice_includes_shutdown_endpoint,True,0.0301606907308,0.0301606907308,data\trajectory_case2_constant_hold.csv
+sampled_stop_on_control_clock,True,40.0,40.0,data\trajectory_case2_constant_hold.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_constant_hold.csv
+reconstructed_filtered_temperature_rate,True,1.2495693368919092e-10,0.0,data\trajectory_case2_constant_hold.csv
+reconstructed_filtered_voltage_rate,True,7.107758825952715e-12,0.0,data\trajectory_case2_constant_hold.csv
+reconstructed_filtered_temperature_signal,True,5.483435927544633e-11,0.0,data\trajectory_case2_constant_hold.csv
+reconstructed_filtered_voltage_signal,True,8.916201110764632e-13,0.0,data\trajectory_case2_constant_hold.csv
+sensor_stop_has_required_temperature_margin,True,2.9407029891750063,>0.2 C,data\trajectory_case2_constant_hold.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_constant_hold.csv
+sensor_continuous_hold_reconstructs_shutdown,True,8.0,8.0,data\trajectory_case2_constant_hold.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_constant_hold.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_constant_hold.csv
+physical_hold_duration,True,2.39391043186,>=2.0 s,data\trajectory_case2_constant_hold.csv
+unbroken_physical_hold_duration,True,2.39391043186,2.39391043186,data\trajectory_case2_constant_hold.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_constant_hold.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_constant_hold.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case2_constant_hold.csv
+independent_total_heater_energy,True,648.135650184,648.135650184363,data\trajectory_case2_constant_first.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_constant_first.csv
+true_first_has_exact_saved_event,True,5.60608956814,5.60608956814,data\trajectory_case2_constant_first.csv
+true_first_all_cells_positive,True,1.03082217677e-07,>0,data\trajectory_case2_constant_first.csv
+first_window_energy_integral,True,648.135650184,648.135650184363,data\trajectory_case2_constant_first.csv
+first_window_voltage_extreme,True,0.7473794167,0.7473794167,data\trajectory_case2_constant_first.csv
+first_window_ice_extreme,True,9.52752847762e-05,9.52752847762e-05,data\trajectory_case2_constant_first.csv
+first_window_temperature_spread,True,6.29774785598,6.297747855987782,data\trajectory_case2_constant_first.csv
+first_charge_uses_first_time,True,0.078570600615,0.07857060061502033,data\trajectory_case2_constant_first.csv
+first_charge_budget,True,0.07857060061502033,<=20 C/cm2,data\trajectory_case2_constant_first.csv
+no_earlier_thermal_success_row,True,-0.00819192715073,<=1e-7 numerical temperature threshold,data\trajectory_case2_constant_first.csv
+actual_stop_has_exact_saved_event,True,5.60608956814,5.60608956814,data\trajectory_case2_constant_first.csv
+stop_charge_uses_stop_time,True,0.078570600615,0.07857060061502033,data\trajectory_case2_constant_first.csv
+stop_minus_first_charge_is_separate,True,0.0,0.0,data\trajectory_case2_constant_first.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_constant_first.csv
+cost_is_actual_stop_energy,True,648.135650184,648.135650184363,data\trajectory_case2_constant_first.csv
+actual_cost_includes_first_window,True,0.0,>=0 J,data\trajectory_case2_constant_first.csv
+post_temperature_includes_shutdown_endpoint,True,-4.54137266766,-4.54137266766,data\trajectory_case2_constant_first.csv
+post_voltage_includes_shutdown_endpoint,True,0.611225485762,0.611225485762,data\trajectory_case2_constant_first.csv
+post_ice_includes_shutdown_endpoint,True,0.0581342302546,0.0581342302546,data\trajectory_case2_constant_first.csv
+ideal_first_reference_stops_at_first,True,5.60608956814,5.60608956814,data\trajectory_case2_constant_first.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_constant_first.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_constant_first.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case2_constant_first.csv
+independent_total_heater_energy,True,1767.14601028,1767.1460102791518,data\trajectory_case3_dynamic.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_dynamic.csv
+true_first_has_exact_saved_event,True,95.3638499737,95.3638499737,data\trajectory_case3_dynamic.csv
+true_first_all_cells_positive,True,1.00062269406e-07,>0,data\trajectory_case3_dynamic.csv
+first_window_energy_integral,True,1697.18477964,1697.1847796414024,data\trajectory_case3_dynamic.csv
+first_window_voltage_extreme,True,0.568727083017,0.568727083017,data\trajectory_case3_dynamic.csv
+first_window_ice_extreme,True,0.278548860846,0.278548860846,data\trajectory_case3_dynamic.csv
+first_window_temperature_spread,True,7.49214822543,7.49214822543,data\trajectory_case3_dynamic.csv
+first_charge_uses_first_time,True,19.6091549921,19.60915499211,data\trajectory_case3_dynamic.csv
+first_charge_budget,True,19.60915499211,<=20 C/cm2,data\trajectory_case3_dynamic.csv
+no_earlier_thermal_success_row,True,-0.00319440711974,<=1e-7 numerical temperature threshold,data\trajectory_case3_dynamic.csv
+actual_stop_has_exact_saved_event,True,98.4,98.4,data\trajectory_case3_dynamic.csv
+stop_charge_uses_stop_time,True,20.52,20.520000000000003,data\trajectory_case3_dynamic.csv
+stop_minus_first_charge_is_separate,True,0.9108450079000008,0.9108450078900034,data\trajectory_case3_dynamic.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_dynamic.csv
+cost_is_actual_stop_energy,True,1767.14601028,1767.1460102791518,data\trajectory_case3_dynamic.csv
+actual_cost_includes_first_window,True,69.96123063999994,>=0 J,data\trajectory_case3_dynamic.csv
+post_temperature_includes_shutdown_endpoint,True,-1.69662481655,-1.69662481655,data\trajectory_case3_dynamic.csv
+post_voltage_includes_shutdown_endpoint,True,0.585204215218,0.585204215218,data\trajectory_case3_dynamic.csv
+post_ice_includes_shutdown_endpoint,True,0.324355803302,0.324355803302,data\trajectory_case3_dynamic.csv
+sampled_stop_on_control_clock,True,492.0,492.0,data\trajectory_case3_dynamic.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case3_dynamic.csv
+reconstructed_filtered_temperature_rate,True,1.9417473184901723e-10,0.0,data\trajectory_case3_dynamic.csv
+reconstructed_filtered_voltage_rate,True,9.701572878384468e-12,0.0,data\trajectory_case3_dynamic.csv
+reconstructed_filtered_temperature_signal,True,9.043610305070615e-11,0.0,data\trajectory_case3_dynamic.csv
+reconstructed_filtered_voltage_signal,True,1.0320633236915455e-12,0.0,data\trajectory_case3_dynamic.csv
+sensor_stop_has_required_temperature_margin,True,0.29939699062583924,>0.2 C,data\trajectory_case3_dynamic.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case3_dynamic.csv
+sensor_continuous_hold_reconstructs_shutdown,True,98.4,98.4,data\trajectory_case3_dynamic.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case3_dynamic.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case3_dynamic.csv
+physical_hold_duration,True,3.03615002632,>=2.0 s,data\trajectory_case3_dynamic.csv
+unbroken_physical_hold_duration,True,3.03615002632,3.0361500263000067,data\trajectory_case3_dynamic.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_dynamic.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_dynamic.csv
+independent_total_heater_energy,True,2242.888106,2242.8881060044196,data\trajectory_case3_constant_hold.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_constant_hold.csv
+true_first_has_exact_saved_event,True,17.0368783891,17.0368783891,data\trajectory_case3_constant_hold.csv
+true_first_all_cells_positive,True,1.02573699305e-07,>0,data\trajectory_case3_constant_hold.csv
+first_window_energy_integral,True,1969.6810259,1969.6810258946427,data\trajectory_case3_constant_hold.csv
+first_window_voltage_extreme,True,0.686835744721,0.686835744721,data\trajectory_case3_constant_hold.csv
+first_window_ice_extreme,True,0.00281760782854,0.00281760782854,data\trajectory_case3_constant_hold.csv
+first_window_temperature_spread,True,17.4686355894,17.4686355894263,data\trajectory_case3_constant_hold.csv
+first_charge_uses_first_time,True,0.725638063114,0.7256380631124566,data\trajectory_case3_constant_hold.csv
+first_charge_budget,True,0.7256380631124566,<=20 C/cm2,data\trajectory_case3_constant_hold.csv
+no_earlier_thermal_success_row,True,-0.0109249110219,<=1e-7 numerical temperature threshold,data\trajectory_case3_constant_hold.csv
+actual_stop_has_exact_saved_event,True,19.4,19.4,data\trajectory_case3_constant_hold.csv
+stop_charge_uses_stop_time,True,0.9409,0.9409,data\trajectory_case3_constant_hold.csv
+stop_minus_first_charge_is_separate,True,0.21526193688599993,0.21526193688754336,data\trajectory_case3_constant_hold.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_constant_hold.csv
+cost_is_actual_stop_energy,True,2242.888106,2242.8881060044196,data\trajectory_case3_constant_hold.csv
+actual_cost_includes_first_window,True,273.2070801,>=0 J,data\trajectory_case3_constant_hold.csv
+post_temperature_includes_shutdown_endpoint,True,-6.55629160646,-6.55629160646,data\trajectory_case3_constant_hold.csv
+post_voltage_includes_shutdown_endpoint,True,0.592335773727,0.592335773727,data\trajectory_case3_constant_hold.csv
+post_ice_includes_shutdown_endpoint,True,0.17850366198,0.17850366198,data\trajectory_case3_constant_hold.csv
+sampled_stop_on_control_clock,True,96.99999999999999,97.0,data\trajectory_case3_constant_hold.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case3_constant_hold.csv
+reconstructed_filtered_temperature_rate,True,1.8510482036049325e-10,0.0,data\trajectory_case3_constant_hold.csv
+reconstructed_filtered_voltage_rate,True,7.701062010312398e-12,0.0,data\trajectory_case3_constant_hold.csv
+reconstructed_filtered_temperature_signal,True,8.990852506940428e-11,0.0,data\trajectory_case3_constant_hold.csv
+reconstructed_filtered_voltage_signal,True,1.375566327510569e-12,0.0,data\trajectory_case3_constant_hold.csv
+sensor_stop_has_required_temperature_margin,True,2.057143632134702,>0.2 C,data\trajectory_case3_constant_hold.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case3_constant_hold.csv
+sensor_continuous_hold_reconstructs_shutdown,True,19.400000000000002,19.4,data\trajectory_case3_constant_hold.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case3_constant_hold.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case3_constant_hold.csv
+physical_hold_duration,True,2.36312161088,>=2.0 s,data\trajectory_case3_constant_hold.csv
+unbroken_physical_hold_duration,True,2.36312161088,2.3631216108999986,data\trajectory_case3_constant_hold.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_constant_hold.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_constant_hold.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case3_constant_hold.csv
+independent_total_heater_energy,True,1969.6810259,1969.6810258946427,data\trajectory_case3_constant_first.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_constant_first.csv
+true_first_has_exact_saved_event,True,17.0368783891,17.0368783891,data\trajectory_case3_constant_first.csv
+true_first_all_cells_positive,True,1.02573699305e-07,>0,data\trajectory_case3_constant_first.csv
+first_window_energy_integral,True,1969.6810259,1969.6810258946427,data\trajectory_case3_constant_first.csv
+first_window_voltage_extreme,True,0.686835744721,0.686835744721,data\trajectory_case3_constant_first.csv
+first_window_ice_extreme,True,0.00281760782854,0.00281760782854,data\trajectory_case3_constant_first.csv
+first_window_temperature_spread,True,17.4686355894,17.4686355894263,data\trajectory_case3_constant_first.csv
+first_charge_uses_first_time,True,0.725638063114,0.7256380631124566,data\trajectory_case3_constant_first.csv
+first_charge_budget,True,0.7256380631124566,<=20 C/cm2,data\trajectory_case3_constant_first.csv
+no_earlier_thermal_success_row,True,-0.0109249110219,<=1e-7 numerical temperature threshold,data\trajectory_case3_constant_first.csv
+actual_stop_has_exact_saved_event,True,17.0368783891,17.0368783891,data\trajectory_case3_constant_first.csv
+stop_charge_uses_stop_time,True,0.725638063114,0.7256380631124566,data\trajectory_case3_constant_first.csv
+stop_minus_first_charge_is_separate,True,0.0,0.0,data\trajectory_case3_constant_first.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_constant_first.csv
+cost_is_actual_stop_energy,True,1969.6810259,1969.6810258946427,data\trajectory_case3_constant_first.csv
+actual_cost_includes_first_window,True,0.0,>=0 J,data\trajectory_case3_constant_first.csv
+post_temperature_includes_shutdown_endpoint,True,-8.16285282438,-8.16285282438,data\trajectory_case3_constant_first.csv
+post_voltage_includes_shutdown_endpoint,True,0.584926550983,0.584926550983,data\trajectory_case3_constant_first.csv
+post_ice_includes_shutdown_endpoint,True,0.20147600307,0.20147600307,data\trajectory_case3_constant_first.csv
+ideal_first_reference_stops_at_first,True,17.0368783891,17.0368783891,data\trajectory_case3_constant_first.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_constant_first.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_constant_first.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case3_constant_first.csv
+required_summary_file_exists,True,,,data\guarded_results.csv
+summary_covers_all_three_cases,True,,,data\guarded_results.csv
+independent_total_heater_energy,True,2929.996488,2929.9964879978775,data\trajectory_case1_guarded.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_guarded.csv
+true_first_has_exact_saved_event,True,85.2443816423,85.2443816423,data\trajectory_case1_guarded.csv
+true_first_all_cells_positive,True,1.01879286026e-07,>0,data\trajectory_case1_guarded.csv
+first_window_energy_integral,True,2792.21557011,2792.215570112867,data\trajectory_case1_guarded.csv
+first_window_voltage_extreme,True,0.560443360118,0.560443360118,data\trajectory_case1_guarded.csv
+first_window_ice_extreme,True,0.277253495352,0.277253495352,data\trajectory_case1_guarded.csv
+first_window_temperature_spread,True,6.06034318389,6.06034318389,data\trajectory_case1_guarded.csv
+first_charge_uses_first_time,True,16.5733144927,16.57331449269,data\trajectory_case1_guarded.csv
+first_charge_budget,True,16.57331449269,<=20 C/cm2,data\trajectory_case1_guarded.csv
+no_earlier_thermal_success_row,True,-0.00648252979688,<=1e-7 numerical temperature threshold,data\trajectory_case1_guarded.csv
+actual_stop_has_exact_saved_event,True,88.0,88.0,data\trajectory_case1_guarded.csv
+stop_charge_uses_stop_time,True,17.4,17.4,data\trajectory_case1_guarded.csv
+stop_minus_first_charge_is_separate,True,0.8266855072999988,0.8266855073099997,data\trajectory_case1_guarded.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_guarded.csv
+cost_is_actual_stop_energy,True,2929.996488,2929.9964879978775,data\trajectory_case1_guarded.csv
+actual_cost_includes_first_window,True,137.78091789000018,>=0 J,data\trajectory_case1_guarded.csv
+post_temperature_includes_shutdown_endpoint,True,-4.50752048091,-4.50752048091,data\trajectory_case1_guarded.csv
+post_voltage_includes_shutdown_endpoint,True,0.559666956598,0.559666956598,data\trajectory_case1_guarded.csv
+post_ice_includes_shutdown_endpoint,True,0.501041919045,0.501041919045,data\trajectory_case1_guarded.csv
+sampled_stop_on_control_clock,True,440.0,440.0,data\trajectory_case1_guarded.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case1_guarded.csv
+reconstructed_filtered_temperature_rate,True,2.0855911442296815e-10,0.0,data\trajectory_case1_guarded.csv
+reconstructed_filtered_voltage_rate,True,1.0839995567835103e-11,0.0,data\trajectory_case1_guarded.csv
+reconstructed_filtered_temperature_signal,True,9.5006669198483e-11,0.0,data\trajectory_case1_guarded.csv
+reconstructed_filtered_voltage_signal,True,1.8560708525683367e-12,0.0,data\trajectory_case1_guarded.csv
+sensor_stop_has_required_temperature_margin,True,0.8597052957610736,>0.2 C,data\trajectory_case1_guarded.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case1_guarded.csv
+sensor_continuous_hold_reconstructs_shutdown,True,88.0,88.0,data\trajectory_case1_guarded.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case1_guarded.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case1_guarded.csv
+physical_hold_duration,True,2.75561835766,>=2.0 s,data\trajectory_case1_guarded.csv
+unbroken_physical_hold_duration,True,2.75561835766,2.7556183577000013,data\trajectory_case1_guarded.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_guarded.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_guarded.csv
+independent_total_heater_energy,True,293.608834529,293.6088345292423,data\trajectory_case2_guarded.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_guarded.csv
+true_first_has_exact_saved_event,True,74.3083841026,74.3083841026,data\trajectory_case2_guarded.csv
+true_first_all_cells_positive,True,1.00522870044e-07,>0,data\trajectory_case2_guarded.csv
+first_window_energy_integral,True,293.608834529,293.6088345292423,data\trajectory_case2_guarded.csv
+first_window_voltage_extreme,True,0.604971210122,0.604971210122,data\trajectory_case2_guarded.csv
+first_window_ice_extreme,True,0.0872925449365,0.0872925449365,data\trajectory_case2_guarded.csv
+first_window_temperature_spread,True,8.95687975728,8.95687975727713,data\trajectory_case2_guarded.csv
+first_charge_uses_first_time,True,13.2925152308,13.292515230780001,data\trajectory_case2_guarded.csv
+first_charge_budget,True,13.292515230780001,<=20 C/cm2,data\trajectory_case2_guarded.csv
+no_earlier_thermal_success_row,True,-0.000948704282644,<=1e-7 numerical temperature threshold,data\trajectory_case2_guarded.csv
+actual_stop_has_exact_saved_event,True,78.2,78.2,data\trajectory_case2_guarded.csv
+stop_charge_uses_stop_time,True,14.46,14.46,data\trajectory_case2_guarded.csv
+stop_minus_first_charge_is_separate,True,1.1674847692000014,1.1674847692199997,data\trajectory_case2_guarded.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_guarded.csv
+cost_is_actual_stop_energy,True,293.608834529,293.6088345292423,data\trajectory_case2_guarded.csv
+actual_cost_includes_first_window,True,0.0,>=0 J,data\trajectory_case2_guarded.csv
+post_temperature_includes_shutdown_endpoint,True,0.432521120844,0.432521120844,data\trajectory_case2_guarded.csv
+post_voltage_includes_shutdown_endpoint,True,0.613762011268,0.613762011268,data\trajectory_case2_guarded.csv
+post_ice_includes_shutdown_endpoint,True,0.0870240518232,0.0870240518232,data\trajectory_case2_guarded.csv
+sampled_stop_on_control_clock,True,391.0,391.0,data\trajectory_case2_guarded.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_guarded.csv
+reconstructed_filtered_temperature_rate,True,2.008807009623581e-11,0.0,data\trajectory_case2_guarded.csv
+reconstructed_filtered_voltage_rate,True,7.526090861631474e-12,0.0,data\trajectory_case2_guarded.csv
+reconstructed_filtered_temperature_signal,True,8.840927989695047e-12,0.0,data\trajectory_case2_guarded.csv
+reconstructed_filtered_voltage_signal,True,9.362510766663945e-13,0.0,data\trajectory_case2_guarded.csv
+sensor_stop_has_required_temperature_margin,True,0.4247022876739558,>0.2 C,data\trajectory_case2_guarded.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_guarded.csv
+sensor_continuous_hold_reconstructs_shutdown,True,78.2,78.2,data\trajectory_case2_guarded.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_guarded.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_guarded.csv
+physical_hold_duration,True,3.89161589742,>=2.0 s,data\trajectory_case2_guarded.csv
+unbroken_physical_hold_duration,True,3.89161589742,3.8916158974000012,data\trajectory_case2_guarded.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_guarded.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_guarded.csv
+independent_total_heater_energy,True,1855.38499027,1855.3849902719335,data\trajectory_case3_guarded.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_guarded.csv
+true_first_has_exact_saved_event,True,88.5387718379,88.5387718379,data\trajectory_case3_guarded.csv
+true_first_all_cells_positive,True,1.00376237923e-07,>0,data\trajectory_case3_guarded.csv
+first_window_energy_integral,True,1765.09540261,1765.0954026065128,data\trajectory_case3_guarded.csv
+first_window_voltage_extreme,True,0.573318737735,0.573318737735,data\trajectory_case3_guarded.csv
+first_window_ice_extreme,True,0.239568485324,0.239568485324,data\trajectory_case3_guarded.csv
+first_window_temperature_spread,True,7.24290087739,7.242900877389999,data\trajectory_case3_guarded.csv
+first_charge_uses_first_time,True,17.5616315514,17.56163155137,data\trajectory_case3_guarded.csv
+first_charge_budget,True,17.56163155137,<=20 C/cm2,data\trajectory_case3_guarded.csv
+no_earlier_thermal_success_row,True,-0.003424402733,<=1e-7 numerical temperature threshold,data\trajectory_case3_guarded.csv
+actual_stop_has_exact_saved_event,True,91.6,91.6,data\trajectory_case3_guarded.csv
+stop_charge_uses_stop_time,True,18.48,18.479999999999997,data\trajectory_case3_guarded.csv
+stop_minus_first_charge_is_separate,True,0.918368448599999,0.9183684486299981,data\trajectory_case3_guarded.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_guarded.csv
+cost_is_actual_stop_energy,True,1855.38499027,1855.3849902719335,data\trajectory_case3_guarded.csv
+actual_cost_includes_first_window,True,90.28958765999982,>=0 J,data\trajectory_case3_guarded.csv
+post_temperature_includes_shutdown_endpoint,True,-1.90991621456,-1.90991621456,data\trajectory_case3_guarded.csv
+post_voltage_includes_shutdown_endpoint,True,0.588533483112,0.588533483112,data\trajectory_case3_guarded.csv
+post_ice_includes_shutdown_endpoint,True,0.295656262093,0.295656262093,data\trajectory_case3_guarded.csv
+sampled_stop_on_control_clock,True,457.99999999999994,458.0,data\trajectory_case3_guarded.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case3_guarded.csv
+reconstructed_filtered_temperature_rate,True,2.0062379535445984e-10,0.0,data\trajectory_case3_guarded.csv
+reconstructed_filtered_voltage_rate,True,8.271938689574654e-12,0.0,data\trajectory_case3_guarded.csv
+reconstructed_filtered_temperature_signal,True,8.832756748233805e-11,0.0,data\trajectory_case3_guarded.csv
+reconstructed_filtered_voltage_signal,True,9.435785486289205e-13,0.0,data\trajectory_case3_guarded.csv
+sensor_stop_has_required_temperature_margin,True,0.7452980651726017,>0.2 C,data\trajectory_case3_guarded.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case3_guarded.csv
+sensor_continuous_hold_reconstructs_shutdown,True,91.60000000000001,91.6,data\trajectory_case3_guarded.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case3_guarded.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case3_guarded.csv
+physical_hold_duration,True,3.06122816205,>=2.0 s,data\trajectory_case3_guarded.csv
+unbroken_physical_hold_duration,True,3.06122816205,3.0612281620999937,data\trajectory_case3_guarded.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_guarded.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_guarded.csv
+required_summary_file_exists,True,,,data\optimized_constant_results.csv
+summary_covers_all_three_cases,True,,,data\optimized_constant_results.csv
+independent_total_heater_energy,True,3237.8761585,3237.876158497577,data\trajectory_case1_constant_optimized.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_constant_optimized.csv
+true_first_has_exact_saved_event,True,29.4155884743,29.4155884743,data\trajectory_case1_constant_optimized.csv
+true_first_all_cells_positive,True,1.00167822642e-07,>0,data\trajectory_case1_constant_optimized.csv
+first_window_energy_integral,True,2995.09536506,2995.0953650664146,data\trajectory_case1_constant_optimized.csv
+first_window_voltage_extreme,True,0.654038748855,0.654038748855,data\trajectory_case1_constant_optimized.csv
+first_window_ice_extreme,True,0.0166040694048,0.0166040694048,data\trajectory_case1_constant_optimized.csv
+first_window_temperature_spread,True,18.6511115888,18.651111588832176,data\trajectory_case1_constant_optimized.csv
+first_charge_uses_first_time,True,2.16319211322,2.1631921132234275,data\trajectory_case1_constant_optimized.csv
+first_charge_budget,True,2.1631921132234275,<=20 C/cm2,data\trajectory_case1_constant_optimized.csv
+no_earlier_thermal_success_row,True,-0.0103835038294,<=1e-7 numerical temperature threshold,data\trajectory_case1_constant_optimized.csv
+actual_stop_has_exact_saved_event,True,31.8,31.8,data\trajectory_case1_constant_optimized.csv
+stop_charge_uses_stop_time,True,2.5281,2.5281000000000002,data\trajectory_case1_constant_optimized.csv
+stop_minus_first_charge_is_separate,True,0.36490788677999975,0.3649078867765727,data\trajectory_case1_constant_optimized.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_constant_optimized.csv
+cost_is_actual_stop_energy,True,3237.8761585,3237.876158497577,data\trajectory_case1_constant_optimized.csv
+actual_cost_includes_first_window,True,242.78079344000025,>=0 J,data\trajectory_case1_constant_optimized.csv
+post_temperature_includes_shutdown_endpoint,True,-7.9962685438,-7.9962685438,data\trajectory_case1_constant_optimized.csv
+post_voltage_includes_shutdown_endpoint,True,0.575672820141,0.575672820141,data\trajectory_case1_constant_optimized.csv
+post_ice_includes_shutdown_endpoint,True,0.291774068387,0.291774068387,data\trajectory_case1_constant_optimized.csv
+sampled_stop_on_control_clock,True,159.0,159.0,data\trajectory_case1_constant_optimized.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case1_constant_optimized.csv
+reconstructed_filtered_temperature_rate,True,1.9456614097634883e-10,0.0,data\trajectory_case1_constant_optimized.csv
+reconstructed_filtered_voltage_rate,True,1.1923129150659406e-11,0.0,data\trajectory_case1_constant_optimized.csv
+reconstructed_filtered_temperature_signal,True,8.537170970157604e-11,0.0,data\trajectory_case1_constant_optimized.csv
+reconstructed_filtered_voltage_signal,True,1.606159649725214e-12,0.0,data\trajectory_case1_constant_optimized.csv
+sensor_stop_has_required_temperature_margin,True,1.5225071178832579,>0.2 C,data\trajectory_case1_constant_optimized.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case1_constant_optimized.csv
+sensor_continuous_hold_reconstructs_shutdown,True,31.8,31.8,data\trajectory_case1_constant_optimized.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case1_constant_optimized.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case1_constant_optimized.csv
+physical_hold_duration,True,2.38441152573,>=2.0 s,data\trajectory_case1_constant_optimized.csv
+unbroken_physical_hold_duration,True,2.38441152573,2.384411525699999,data\trajectory_case1_constant_optimized.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_constant_optimized.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_constant_optimized.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case1_constant_optimized.csv
+independent_total_heater_energy,True,0.0,0.0,data\trajectory_case2_constant_optimized.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_constant_optimized.csv
+true_first_has_exact_saved_event,True,84.7245963216,84.7245963216,data\trajectory_case2_constant_optimized.csv
+true_first_all_cells_positive,True,1.00127334017e-07,>0,data\trajectory_case2_constant_optimized.csv
+first_window_energy_integral,True,0.0,0.0,data\trajectory_case2_constant_optimized.csv
+first_window_voltage_extreme,True,0.59647254395,0.59647254395,data\trajectory_case2_constant_optimized.csv
+first_window_ice_extreme,True,0.135272828288,0.135272828288,data\trajectory_case2_constant_optimized.csv
+first_window_temperature_spread,True,8.82917371192,8.829173711922666,data\trajectory_case2_constant_optimized.csv
+first_charge_uses_first_time,True,16.4173788965,16.417378896480002,data\trajectory_case2_constant_optimized.csv
+first_charge_budget,True,16.417378896480002,<=20 C/cm2,data\trajectory_case2_constant_optimized.csv
+no_earlier_thermal_success_row,True,-0.00259055174106,<=1e-7 numerical temperature threshold,data\trajectory_case2_constant_optimized.csv
+actual_stop_has_exact_saved_event,True,88.8,88.8,data\trajectory_case2_constant_optimized.csv
+stop_charge_uses_stop_time,True,17.64,17.64,data\trajectory_case2_constant_optimized.csv
+stop_minus_first_charge_is_separate,True,1.2226211034999999,1.222621103519998,data\trajectory_case2_constant_optimized.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_constant_optimized.csv
+cost_is_actual_stop_energy,True,0.0,0.0,data\trajectory_case2_constant_optimized.csv
+actual_cost_includes_first_window,True,0.0,>=0 J,data\trajectory_case2_constant_optimized.csv
+post_temperature_includes_shutdown_endpoint,True,0.42266791534,0.42266791534,data\trajectory_case2_constant_optimized.csv
+post_voltage_includes_shutdown_endpoint,True,0.609721748167,0.609721748167,data\trajectory_case2_constant_optimized.csv
+post_ice_includes_shutdown_endpoint,True,0.134847430757,0.134847430757,data\trajectory_case2_constant_optimized.csv
+sampled_stop_on_control_clock,True,443.99999999999994,444.0,data\trajectory_case2_constant_optimized.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_constant_optimized.csv
+reconstructed_filtered_temperature_rate,True,1.9084150926218513e-11,0.0,data\trajectory_case2_constant_optimized.csv
+reconstructed_filtered_voltage_rate,True,7.916223232484754e-12,0.0,data\trajectory_case2_constant_optimized.csv
+reconstructed_filtered_temperature_signal,True,8.851586130731448e-12,0.0,data\trajectory_case2_constant_optimized.csv
+reconstructed_filtered_voltage_signal,True,1.1773915176149785e-12,0.0,data\trajectory_case2_constant_optimized.csv
+sensor_stop_has_required_temperature_margin,True,0.4153446936056466,>0.2 C,data\trajectory_case2_constant_optimized.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_constant_optimized.csv
+sensor_continuous_hold_reconstructs_shutdown,True,88.80000000000001,88.8,data\trajectory_case2_constant_optimized.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_constant_optimized.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_constant_optimized.csv
+physical_hold_duration,True,4.07540367842,>=2.0 s,data\trajectory_case2_constant_optimized.csv
+unbroken_physical_hold_duration,True,4.07540367842,4.075403678399994,data\trajectory_case2_constant_optimized.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_constant_optimized.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_constant_optimized.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case2_constant_optimized.csv
+independent_total_heater_energy,True,1984.46976052,1984.4697605202762,data\trajectory_case3_constant_optimized.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_constant_optimized.csv
+true_first_has_exact_saved_event,True,95.2874546468,95.2874546468,data\trajectory_case3_constant_optimized.csv
+true_first_all_cells_positive,True,1.00736368566e-07,>0,data\trajectory_case3_constant_optimized.csv
+first_window_energy_integral,True,1917.79992194,1917.799921942413,data\trajectory_case3_constant_optimized.csv
+first_window_voltage_extreme,True,0.576300286022,0.576300286022,data\trajectory_case3_constant_optimized.csv
+first_window_ice_extreme,True,0.241856591637,0.241856591637,data\trajectory_case3_constant_optimized.csv
+first_window_temperature_spread,True,8.05024360088,8.05024360088,data\trajectory_case3_constant_optimized.csv
+first_charge_uses_first_time,True,19.586236394,19.58623639404,data\trajectory_case3_constant_optimized.csv
+first_charge_budget,True,19.58623639404,<=20 C/cm2,data\trajectory_case3_constant_optimized.csv
+no_earlier_thermal_success_row,True,-0.0020633233269,<=1e-7 numerical temperature threshold,data\trajectory_case3_constant_optimized.csv
+actual_stop_has_exact_saved_event,True,98.6,98.6,data\trajectory_case3_constant_optimized.csv
+stop_charge_uses_stop_time,True,20.58,20.58,data\trajectory_case3_constant_optimized.csv
+stop_minus_first_charge_is_separate,True,0.9937636059999981,0.9937636059599981,data\trajectory_case3_constant_optimized.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_constant_optimized.csv
+cost_is_actual_stop_energy,True,1984.46976052,1984.4697605202762,data\trajectory_case3_constant_optimized.csv
+actual_cost_includes_first_window,True,66.6698385799998,>=0 J,data\trajectory_case3_constant_optimized.csv
+post_temperature_includes_shutdown_endpoint,True,-1.05334984629,-1.05334984629,data\trajectory_case3_constant_optimized.csv
+post_voltage_includes_shutdown_endpoint,True,0.592968112647,0.592968112647,data\trajectory_case3_constant_optimized.csv
+post_ice_includes_shutdown_endpoint,True,0.263231600922,0.263231600922,data\trajectory_case3_constant_optimized.csv
+sampled_stop_on_control_clock,True,492.99999999999994,493.0,data\trajectory_case3_constant_optimized.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case3_constant_optimized.csv
+reconstructed_filtered_temperature_rate,True,2.0389283490740429e-10,0.0,data\trajectory_case3_constant_optimized.csv
+reconstructed_filtered_voltage_rate,True,8.805289830604579e-12,0.0,data\trajectory_case3_constant_optimized.csv
+reconstructed_filtered_temperature_signal,True,8.79083472682396e-11,0.0,data\trajectory_case3_constant_optimized.csv
+reconstructed_filtered_voltage_signal,True,1.1898260154907803e-12,0.0,data\trajectory_case3_constant_optimized.csv
+sensor_stop_has_required_temperature_margin,True,0.537957199648282,>0.2 C,data\trajectory_case3_constant_optimized.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case3_constant_optimized.csv
+sensor_continuous_hold_reconstructs_shutdown,True,98.60000000000001,98.6,data\trajectory_case3_constant_optimized.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case3_constant_optimized.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case3_constant_optimized.csv
+physical_hold_duration,True,3.31254535317,>=2.0 s,data\trajectory_case3_constant_optimized.csv
+unbroken_physical_hold_duration,True,3.31254535317,3.3125453531999938,data\trajectory_case3_constant_optimized.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_constant_optimized.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_constant_optimized.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case3_constant_optimized.csv
+required_summary_file_exists,True,,,data\constant_baselines.csv
+summary_covers_all_three_cases,True,,,data\constant_baselines.csv
+independent_total_heater_energy,True,0.0,0.0,data\trajectory_case1_zero_heater.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_zero_heater.csv
+no_stop_cannot_be_feasible,True,,,data\trajectory_case1_zero_heater.csv
+independent_total_heater_energy,True,3260.28064893,3260.280648934274,data\trajectory_case1_inherited_constant_C.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_inherited_constant_C.csv
+true_first_has_exact_saved_event,True,25.7412287951,25.7412287951,data\trajectory_case1_inherited_constant_C.csv
+true_first_all_cells_positive,True,1.0284218288e-07,>0,data\trajectory_case1_inherited_constant_C.csv
+first_window_energy_integral,True,2976.01525249,2976.0152524983746,data\trajectory_case1_inherited_constant_C.csv
+first_window_voltage_extreme,True,0.662058326818,0.662058326818,data\trajectory_case1_inherited_constant_C.csv
+first_window_ice_extreme,True,0.0121298600029,0.0121298600029,data\trajectory_case1_inherited_constant_C.csv
+first_window_temperature_spread,True,25.1812762622,25.181276262157816,data\trajectory_case1_inherited_constant_C.csv
+first_charge_uses_first_time,True,1.6565271497,1.6565271497042136,data\trajectory_case1_inherited_constant_C.csv
+first_charge_budget,True,1.6565271497042136,<=20 C/cm2,data\trajectory_case1_inherited_constant_C.csv
+no_earlier_thermal_success_row,True,-0.0129284719847,<=1e-7 numerical temperature threshold,data\trajectory_case1_inherited_constant_C.csv
+actual_stop_has_exact_saved_event,True,28.2,28.2,data\trajectory_case1_inherited_constant_C.csv
+stop_charge_uses_stop_time,True,1.9881,1.9881,data\trajectory_case1_inherited_constant_C.csv
+stop_minus_first_charge_is_separate,True,0.33157285029999994,0.3315728502957864,data\trajectory_case1_inherited_constant_C.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_inherited_constant_C.csv
+cost_is_actual_stop_energy,True,3260.28064893,3260.280648934274,data\trajectory_case1_inherited_constant_C.csv
+actual_cost_includes_first_window,True,284.26539644000013,>=0 J,data\trajectory_case1_inherited_constant_C.csv
+post_temperature_includes_shutdown_endpoint,True,-7.98618650575,-7.98618650575,data\trajectory_case1_inherited_constant_C.csv
+post_voltage_includes_shutdown_endpoint,True,0.576875966233,0.576875966233,data\trajectory_case1_inherited_constant_C.csv
+post_ice_includes_shutdown_endpoint,True,0.272359221609,0.272359221609,data\trajectory_case1_inherited_constant_C.csv
+sampled_stop_on_control_clock,True,141.0,141.0,data\trajectory_case1_inherited_constant_C.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case1_inherited_constant_C.csv
+reconstructed_filtered_temperature_rate,True,1.8291279602067334e-10,0.0,data\trajectory_case1_inherited_constant_C.csv
+reconstructed_filtered_voltage_rate,True,1.5898171668027317e-11,0.0,data\trajectory_case1_inherited_constant_C.csv
+reconstructed_filtered_temperature_signal,True,8.149569907800469e-11,0.0,data\trajectory_case1_inherited_constant_C.csv
+reconstructed_filtered_voltage_signal,True,1.024846874031482e-12,0.0,data\trajectory_case1_inherited_constant_C.csv
+sensor_stop_has_required_temperature_margin,True,1.8712034538284885,>0.2 C,data\trajectory_case1_inherited_constant_C.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case1_inherited_constant_C.csv
+sensor_continuous_hold_reconstructs_shutdown,True,28.200000000000003,28.2,data\trajectory_case1_inherited_constant_C.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case1_inherited_constant_C.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case1_inherited_constant_C.csv
+physical_hold_duration,True,2.45877120495,>=2.0 s,data\trajectory_case1_inherited_constant_C.csv
+unbroken_physical_hold_duration,True,2.45877120495,2.4587712048999997,data\trajectory_case1_inherited_constant_C.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_inherited_constant_C.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_inherited_constant_C.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case1_inherited_constant_C.csv
+independent_total_heater_energy,True,3275.0,3275.0000000000505,data\trajectory_case1_full_power.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_full_power.csv
+true_first_has_exact_saved_event,True,23.8451806307,23.8451806307,data\trajectory_case1_full_power.csv
+true_first_all_cells_positive,True,1.01574750092e-07,>0,data\trajectory_case1_full_power.csv
+first_window_energy_integral,True,2980.64757884,2980.6475788375333,data\trajectory_case1_full_power.csv
+first_window_voltage_extreme,True,0.666592502095,0.666592502095,data\trajectory_case1_full_power.csv
+first_window_ice_extreme,True,0.0101646711389,0.0101646711389,data\trajectory_case1_full_power.csv
+first_window_temperature_spread,True,31.3547468211,31.35474682112525,data\trajectory_case1_full_power.csv
+first_charge_uses_first_time,True,1.42148159827,1.4214815982767761,data\trajectory_case1_full_power.csv
+first_charge_budget,True,1.4214815982767761,<=20 C/cm2,data\trajectory_case1_full_power.csv
+no_earlier_thermal_success_row,True,-0.0179858936861,<=1e-7 numerical temperature threshold,data\trajectory_case1_full_power.csv
+actual_stop_has_exact_saved_event,True,26.2,26.2,data\trajectory_case1_full_power.csv
+stop_charge_uses_stop_time,True,1.7161,1.7161,data\trajectory_case1_full_power.csv
+stop_minus_first_charge_is_separate,True,0.29461840173,0.29461840172322384,data\trajectory_case1_full_power.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_full_power.csv
+cost_is_actual_stop_energy,True,3275.0,3275.0000000000505,data\trajectory_case1_full_power.csv
+actual_cost_includes_first_window,True,294.3524211600002,>=0 J,data\trajectory_case1_full_power.csv
+post_temperature_includes_shutdown_endpoint,True,-7.96131517138,-7.96131517138,data\trajectory_case1_full_power.csv
+post_voltage_includes_shutdown_endpoint,True,0.577619323387,0.577619323387,data\trajectory_case1_full_power.csv
+post_ice_includes_shutdown_endpoint,True,0.261097795351,0.261097795351,data\trajectory_case1_full_power.csv
+sampled_stop_on_control_clock,True,131.0,131.0,data\trajectory_case1_full_power.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case1_full_power.csv
+reconstructed_filtered_temperature_rate,True,1.6861534390955057e-10,0.0,data\trajectory_case1_full_power.csv
+reconstructed_filtered_voltage_rate,True,1.3776313423363717e-11,0.0,data\trajectory_case1_full_power.csv
+reconstructed_filtered_temperature_signal,True,7.72857333686261e-11,0.0,data\trajectory_case1_full_power.csv
+reconstructed_filtered_voltage_signal,True,1.4008794124720225e-12,0.0,data\trajectory_case1_full_power.csv
+sensor_stop_has_required_temperature_margin,True,1.9996081165800177,>0.2 C,data\trajectory_case1_full_power.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case1_full_power.csv
+sensor_continuous_hold_reconstructs_shutdown,True,26.200000000000003,26.2,data\trajectory_case1_full_power.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case1_full_power.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case1_full_power.csv
+physical_hold_duration,True,2.35481936932,>=2.0 s,data\trajectory_case1_full_power.csv
+unbroken_physical_hold_duration,True,2.35481936932,2.3548193692999995,data\trajectory_case1_full_power.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_full_power.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case1_full_power.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case1_full_power.csv
+independent_total_heater_energy,True,0.0,0.0,data\trajectory_case2_zero_heater.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_zero_heater.csv
+true_first_has_exact_saved_event,True,84.7245963216,84.7245963216,data\trajectory_case2_zero_heater.csv
+true_first_all_cells_positive,True,1.00127334017e-07,>0,data\trajectory_case2_zero_heater.csv
+first_window_energy_integral,True,0.0,0.0,data\trajectory_case2_zero_heater.csv
+first_window_voltage_extreme,True,0.59647254395,0.59647254395,data\trajectory_case2_zero_heater.csv
+first_window_ice_extreme,True,0.135272828288,0.135272828288,data\trajectory_case2_zero_heater.csv
+first_window_temperature_spread,True,8.82917371192,8.829173711922666,data\trajectory_case2_zero_heater.csv
+first_charge_uses_first_time,True,16.4173788965,16.417378896480002,data\trajectory_case2_zero_heater.csv
+first_charge_budget,True,16.417378896480002,<=20 C/cm2,data\trajectory_case2_zero_heater.csv
+no_earlier_thermal_success_row,True,-0.00259055174106,<=1e-7 numerical temperature threshold,data\trajectory_case2_zero_heater.csv
+actual_stop_has_exact_saved_event,True,88.8,88.8,data\trajectory_case2_zero_heater.csv
+stop_charge_uses_stop_time,True,17.64,17.64,data\trajectory_case2_zero_heater.csv
+stop_minus_first_charge_is_separate,True,1.2226211034999999,1.222621103519998,data\trajectory_case2_zero_heater.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_zero_heater.csv
+cost_is_actual_stop_energy,True,0.0,0.0,data\trajectory_case2_zero_heater.csv
+actual_cost_includes_first_window,True,0.0,>=0 J,data\trajectory_case2_zero_heater.csv
+post_temperature_includes_shutdown_endpoint,True,0.42266791534,0.42266791534,data\trajectory_case2_zero_heater.csv
+post_voltage_includes_shutdown_endpoint,True,0.609721748167,0.609721748167,data\trajectory_case2_zero_heater.csv
+post_ice_includes_shutdown_endpoint,True,0.134847430757,0.134847430757,data\trajectory_case2_zero_heater.csv
+sampled_stop_on_control_clock,True,443.99999999999994,444.0,data\trajectory_case2_zero_heater.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_zero_heater.csv
+reconstructed_filtered_temperature_rate,True,1.9084150926218513e-11,0.0,data\trajectory_case2_zero_heater.csv
+reconstructed_filtered_voltage_rate,True,7.916223232484754e-12,0.0,data\trajectory_case2_zero_heater.csv
+reconstructed_filtered_temperature_signal,True,8.851586130731448e-12,0.0,data\trajectory_case2_zero_heater.csv
+reconstructed_filtered_voltage_signal,True,1.1773915176149785e-12,0.0,data\trajectory_case2_zero_heater.csv
+sensor_stop_has_required_temperature_margin,True,0.4153446936056466,>0.2 C,data\trajectory_case2_zero_heater.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_zero_heater.csv
+sensor_continuous_hold_reconstructs_shutdown,True,88.80000000000001,88.8,data\trajectory_case2_zero_heater.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_zero_heater.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_zero_heater.csv
+physical_hold_duration,True,4.07540367842,>=2.0 s,data\trajectory_case2_zero_heater.csv
+unbroken_physical_hold_duration,True,4.07540367842,4.075403678399994,data\trajectory_case2_zero_heater.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_zero_heater.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_zero_heater.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case2_zero_heater.csv
+independent_total_heater_energy,True,924.902311754,924.9023117543986,data\trajectory_case2_inherited_constant_C.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_inherited_constant_C.csv
+true_first_has_exact_saved_event,True,5.60608956814,5.60608956814,data\trajectory_case2_inherited_constant_C.csv
+true_first_all_cells_positive,True,1.03082217677e-07,>0,data\trajectory_case2_inherited_constant_C.csv
+first_window_energy_integral,True,648.135650184,648.135650184363,data\trajectory_case2_inherited_constant_C.csv
+first_window_voltage_extreme,True,0.7473794167,0.7473794167,data\trajectory_case2_inherited_constant_C.csv
+first_window_ice_extreme,True,9.52752847762e-05,9.52752847762e-05,data\trajectory_case2_inherited_constant_C.csv
+first_window_temperature_spread,True,6.29774785598,6.297747855987782,data\trajectory_case2_inherited_constant_C.csv
+first_charge_uses_first_time,True,0.078570600615,0.07857060061502033,data\trajectory_case2_inherited_constant_C.csv
+first_charge_budget,True,0.07857060061502033,<=20 C/cm2,data\trajectory_case2_inherited_constant_C.csv
+no_earlier_thermal_success_row,True,-0.00819192715073,<=1e-7 numerical temperature threshold,data\trajectory_case2_inherited_constant_C.csv
+actual_stop_has_exact_saved_event,True,8.0,8.0,data\trajectory_case2_inherited_constant_C.csv
+stop_charge_uses_stop_time,True,0.16,0.16,data\trajectory_case2_inherited_constant_C.csv
+stop_minus_first_charge_is_separate,True,0.081429399385,0.08142939938497967,data\trajectory_case2_inherited_constant_C.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_inherited_constant_C.csv
+cost_is_actual_stop_energy,True,924.902311754,924.9023117543986,data\trajectory_case2_inherited_constant_C.csv
+actual_cost_includes_first_window,True,276.76666157,>=0 J,data\trajectory_case2_inherited_constant_C.csv
+post_temperature_includes_shutdown_endpoint,True,-2.67679685597,-2.67679685597,data\trajectory_case2_inherited_constant_C.csv
+post_voltage_includes_shutdown_endpoint,True,0.617949638296,0.617949638296,data\trajectory_case2_inherited_constant_C.csv
+post_ice_includes_shutdown_endpoint,True,0.0301606907308,0.0301606907308,data\trajectory_case2_inherited_constant_C.csv
+sampled_stop_on_control_clock,True,40.0,40.0,data\trajectory_case2_inherited_constant_C.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_inherited_constant_C.csv
+reconstructed_filtered_temperature_rate,True,1.2495693368919092e-10,0.0,data\trajectory_case2_inherited_constant_C.csv
+reconstructed_filtered_voltage_rate,True,7.107758825952715e-12,0.0,data\trajectory_case2_inherited_constant_C.csv
+reconstructed_filtered_temperature_signal,True,5.483435927544633e-11,0.0,data\trajectory_case2_inherited_constant_C.csv
+reconstructed_filtered_voltage_signal,True,8.916201110764632e-13,0.0,data\trajectory_case2_inherited_constant_C.csv
+sensor_stop_has_required_temperature_margin,True,2.9407029891750063,>0.2 C,data\trajectory_case2_inherited_constant_C.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_inherited_constant_C.csv
+sensor_continuous_hold_reconstructs_shutdown,True,8.0,8.0,data\trajectory_case2_inherited_constant_C.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_inherited_constant_C.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_inherited_constant_C.csv
+physical_hold_duration,True,2.39391043186,>=2.0 s,data\trajectory_case2_inherited_constant_C.csv
+unbroken_physical_hold_duration,True,2.39391043186,2.39391043186,data\trajectory_case2_inherited_constant_C.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_inherited_constant_C.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_inherited_constant_C.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case2_inherited_constant_C.csv
+independent_total_heater_energy,True,975.0,974.9999999999947,data\trajectory_case2_full_power.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_full_power.csv
+true_first_has_exact_saved_event,True,5.50991841555,5.50991841555,data\trajectory_case2_full_power.csv
+true_first_all_cells_positive,True,1.08244287061e-07,>0,data\trajectory_case2_full_power.csv
+first_window_energy_integral,True,688.739801943,688.7398019437487,data\trajectory_case2_full_power.csv
+first_window_voltage_extreme,True,0.748273154575,0.748273154575,data\trajectory_case2_full_power.csv
+first_window_ice_extreme,True,9.21167186856e-05,9.21167186856e-05,data\trajectory_case2_full_power.csv
+first_window_temperature_spread,True,8.42181749471,8.421817494715713,data\trajectory_case2_full_power.csv
+first_charge_uses_first_time,True,0.0758980023649,0.07589800236504254,data\trajectory_case2_full_power.csv
+first_charge_budget,True,0.07589800236504254,<=20 C/cm2,data\trajectory_case2_full_power.csv
+no_earlier_thermal_success_row,True,-0.0139325601756,<=1e-7 numerical temperature threshold,data\trajectory_case2_full_power.csv
+actual_stop_has_exact_saved_event,True,7.8,7.8,data\trajectory_case2_full_power.csv
+stop_charge_uses_stop_time,True,0.1521,0.15209999999999999,data\trajectory_case2_full_power.csv
+stop_minus_first_charge_is_separate,True,0.07620199763510001,0.07620199763495744,data\trajectory_case2_full_power.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_full_power.csv
+cost_is_actual_stop_energy,True,975.0,974.9999999999947,data\trajectory_case2_full_power.csv
+actual_cost_includes_first_window,True,286.260198057,>=0 J,data\trajectory_case2_full_power.csv
+post_temperature_includes_shutdown_endpoint,True,-2.28861577724,-2.28861577724,data\trajectory_case2_full_power.csv
+post_voltage_includes_shutdown_endpoint,True,0.619222859331,0.619222859331,data\trajectory_case2_full_power.csv
+post_ice_includes_shutdown_endpoint,True,0.0248885019363,0.0248885019363,data\trajectory_case2_full_power.csv
+sampled_stop_on_control_clock,True,39.0,39.0,data\trajectory_case2_full_power.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_full_power.csv
+reconstructed_filtered_temperature_rate,True,1.2855982944870448e-10,0.0,data\trajectory_case2_full_power.csv
+reconstructed_filtered_voltage_rate,True,6.6207039850496585e-12,0.0,data\trajectory_case2_full_power.csv
+reconstructed_filtered_temperature_signal,True,6.393463536369381e-11,0.0,data\trajectory_case2_full_power.csv
+reconstructed_filtered_voltage_signal,True,8.784084570834239e-13,0.0,data\trajectory_case2_full_power.csv
+sensor_stop_has_required_temperature_margin,True,2.9655902122063043,>0.2 C,data\trajectory_case2_full_power.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_full_power.csv
+sensor_continuous_hold_reconstructs_shutdown,True,7.800000000000001,7.8,data\trajectory_case2_full_power.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_full_power.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_full_power.csv
+physical_hold_duration,True,2.29008158445,>=2.0 s,data\trajectory_case2_full_power.csv
+unbroken_physical_hold_duration,True,2.29008158445,2.29008158445,data\trajectory_case2_full_power.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_full_power.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case2_full_power.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case2_full_power.csv
+independent_total_heater_energy,True,0.0,0.0,data\trajectory_case3_zero_heater.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_zero_heater.csv
+no_stop_cannot_be_feasible,True,,,data\trajectory_case3_zero_heater.csv
+independent_total_heater_energy,True,2242.888106,2242.8881060044196,data\trajectory_case3_inherited_constant_C.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_inherited_constant_C.csv
+true_first_has_exact_saved_event,True,17.0368783891,17.0368783891,data\trajectory_case3_inherited_constant_C.csv
+true_first_all_cells_positive,True,1.02573699305e-07,>0,data\trajectory_case3_inherited_constant_C.csv
+first_window_energy_integral,True,1969.6810259,1969.6810258946427,data\trajectory_case3_inherited_constant_C.csv
+first_window_voltage_extreme,True,0.686835744721,0.686835744721,data\trajectory_case3_inherited_constant_C.csv
+first_window_ice_extreme,True,0.00281760782854,0.00281760782854,data\trajectory_case3_inherited_constant_C.csv
+first_window_temperature_spread,True,17.4686355894,17.4686355894263,data\trajectory_case3_inherited_constant_C.csv
+first_charge_uses_first_time,True,0.725638063114,0.7256380631124566,data\trajectory_case3_inherited_constant_C.csv
+first_charge_budget,True,0.7256380631124566,<=20 C/cm2,data\trajectory_case3_inherited_constant_C.csv
+no_earlier_thermal_success_row,True,-0.0109249110219,<=1e-7 numerical temperature threshold,data\trajectory_case3_inherited_constant_C.csv
+actual_stop_has_exact_saved_event,True,19.4,19.4,data\trajectory_case3_inherited_constant_C.csv
+stop_charge_uses_stop_time,True,0.9409,0.9409,data\trajectory_case3_inherited_constant_C.csv
+stop_minus_first_charge_is_separate,True,0.21526193688599993,0.21526193688754336,data\trajectory_case3_inherited_constant_C.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_inherited_constant_C.csv
+cost_is_actual_stop_energy,True,2242.888106,2242.8881060044196,data\trajectory_case3_inherited_constant_C.csv
+actual_cost_includes_first_window,True,273.2070801,>=0 J,data\trajectory_case3_inherited_constant_C.csv
+post_temperature_includes_shutdown_endpoint,True,-6.55629160646,-6.55629160646,data\trajectory_case3_inherited_constant_C.csv
+post_voltage_includes_shutdown_endpoint,True,0.592335773727,0.592335773727,data\trajectory_case3_inherited_constant_C.csv
+post_ice_includes_shutdown_endpoint,True,0.17850366198,0.17850366198,data\trajectory_case3_inherited_constant_C.csv
+sampled_stop_on_control_clock,True,96.99999999999999,97.0,data\trajectory_case3_inherited_constant_C.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case3_inherited_constant_C.csv
+reconstructed_filtered_temperature_rate,True,1.8510482036049325e-10,0.0,data\trajectory_case3_inherited_constant_C.csv
+reconstructed_filtered_voltage_rate,True,7.701062010312398e-12,0.0,data\trajectory_case3_inherited_constant_C.csv
+reconstructed_filtered_temperature_signal,True,8.990852506940428e-11,0.0,data\trajectory_case3_inherited_constant_C.csv
+reconstructed_filtered_voltage_signal,True,1.375566327510569e-12,0.0,data\trajectory_case3_inherited_constant_C.csv
+sensor_stop_has_required_temperature_margin,True,2.057143632134702,>0.2 C,data\trajectory_case3_inherited_constant_C.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case3_inherited_constant_C.csv
+sensor_continuous_hold_reconstructs_shutdown,True,19.400000000000002,19.4,data\trajectory_case3_inherited_constant_C.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case3_inherited_constant_C.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case3_inherited_constant_C.csv
+physical_hold_duration,True,2.36312161088,>=2.0 s,data\trajectory_case3_inherited_constant_C.csv
+unbroken_physical_hold_duration,True,2.36312161088,2.3631216108999986,data\trajectory_case3_inherited_constant_C.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_inherited_constant_C.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_inherited_constant_C.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case3_inherited_constant_C.csv
+independent_total_heater_energy,True,2300.0,2299.9999999999936,data\trajectory_case3_full_power.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_full_power.csv
+true_first_has_exact_saved_event,True,16.0392117441,16.0392117441,data\trajectory_case3_full_power.csv
+true_first_all_cells_positive,True,1.02420431362e-07,>0,data\trajectory_case3_full_power.csv
+first_window_energy_integral,True,2004.90146801,2004.9014680124799,data\trajectory_case3_full_power.csv
+first_window_voltage_extreme,True,0.690234673907,0.690234673907,data\trajectory_case3_full_power.csv
+first_window_ice_extreme,True,0.00244538182333,0.00244538182333,data\trajectory_case3_full_power.csv
+first_window_temperature_spread,True,23.1684826107,23.168482610779566,data\trajectory_case3_full_power.csv
+first_charge_uses_first_time,True,0.643140783428,0.6431407834301885,data\trajectory_case3_full_power.csv
+first_charge_budget,True,0.6431407834301885,<=20 C/cm2,data\trajectory_case3_full_power.csv
+no_earlier_thermal_success_row,True,-0.0145376153056,<=1e-7 numerical temperature threshold,data\trajectory_case3_full_power.csv
+actual_stop_has_exact_saved_event,True,18.4,18.4,data\trajectory_case3_full_power.csv
+stop_charge_uses_stop_time,True,0.8464,0.8463999999999999,data\trajectory_case3_full_power.csv
+stop_minus_first_charge_is_separate,True,0.20325921657200008,0.20325921656981139,data\trajectory_case3_full_power.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_full_power.csv
+cost_is_actual_stop_energy,True,2300.0,2299.9999999999936,data\trajectory_case3_full_power.csv
+actual_cost_includes_first_window,True,295.0985319900001,>=0 J,data\trajectory_case3_full_power.csv
+post_temperature_includes_shutdown_endpoint,True,-6.20696016192,-6.20696016192,data\trajectory_case3_full_power.csv
+post_voltage_includes_shutdown_endpoint,True,0.593838451224,0.593838451224,data\trajectory_case3_full_power.csv
+post_ice_includes_shutdown_endpoint,True,0.1678900418,0.1678900418,data\trajectory_case3_full_power.csv
+sampled_stop_on_control_clock,True,91.99999999999999,92.0,data\trajectory_case3_full_power.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case3_full_power.csv
+reconstructed_filtered_temperature_rate,True,1.7937762386566192e-10,0.0,data\trajectory_case3_full_power.csv
+reconstructed_filtered_voltage_rate,True,7.653100375648592e-12,0.0,data\trajectory_case3_full_power.csv
+reconstructed_filtered_temperature_signal,True,8.08384470474266e-11,0.0,data\trajectory_case3_full_power.csv
+reconstructed_filtered_voltage_signal,True,9.930944955272025e-13,0.0,data\trajectory_case3_full_power.csv
+sensor_stop_has_required_temperature_margin,True,2.2842355654982702,>0.2 C,data\trajectory_case3_full_power.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case3_full_power.csv
+sensor_continuous_hold_reconstructs_shutdown,True,18.400000000000002,18.4,data\trajectory_case3_full_power.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case3_full_power.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case3_full_power.csv
+physical_hold_duration,True,2.36078825593,>=2.0 s,data\trajectory_case3_full_power.csv
+unbroken_physical_hold_duration,True,2.36078825593,2.3607882558999975,data\trajectory_case3_full_power.csv
+observer_temperature_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_full_power.csv
+observer_ice_error_from_trajectory,True,0.0,0.0,data\trajectory_case3_full_power.csv
+constant_actuation_state_zero_before_stop,True,,,data\trajectory_case3_full_power.csv
+required_summary_file_exists,True,,,data\observer_example_results.csv
+summary_covers_all_three_cases,True,,,data\observer_example_results.csv
+independent_total_heater_energy,True,3689.06994732,3689.069947320835,data\trajectory_case1_observer_example.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case1_observer_example.csv
+true_first_has_exact_saved_event,True,90.697957021,90.697957021,data\trajectory_case1_observer_example.csv
+true_first_all_cells_positive,True,1.00834109413e-07,>0,data\trajectory_case1_observer_example.csv
+first_window_energy_integral,True,3473.96779837,3473.967798370819,data\trajectory_case1_observer_example.csv
+first_window_voltage_extreme,True,0.55690706414,0.55690706414,data\trajectory_case1_observer_example.csv
+first_window_ice_extreme,True,0.302100466949,0.302100466949,data\trajectory_case1_observer_example.csv
+first_window_temperature_spread,True,7.90697999307,7.9069799930730005,data\trajectory_case1_observer_example.csv
+first_charge_uses_first_time,True,18.2093871063,18.2093871063,data\trajectory_case1_observer_example.csv
+first_charge_budget,True,18.2093871063,<=20 C/cm2,data\trajectory_case1_observer_example.csv
+no_earlier_thermal_success_row,True,-0.00629321674889,<=1e-7 numerical temperature threshold,data\trajectory_case1_observer_example.csv
+actual_stop_has_exact_saved_event,True,95.0,95.0,data\trajectory_case1_observer_example.csv
+stop_charge_uses_stop_time,True,19.5,19.5,data\trajectory_case1_observer_example.csv
+stop_minus_first_charge_is_separate,True,1.2906128937000005,1.2906128937000005,data\trajectory_case1_observer_example.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case1_observer_example.csv
+cost_is_actual_stop_energy,True,3689.06994732,3689.069947320835,data\trajectory_case1_observer_example.csv
+actual_cost_includes_first_window,True,215.10214895000036,>=0 J,data\trajectory_case1_observer_example.csv
+post_temperature_includes_shutdown_endpoint,True,-3.68265467083,-3.68265467083,data\trajectory_case1_observer_example.csv
+post_voltage_includes_shutdown_endpoint,True,0.566171267982,0.566171267982,data\trajectory_case1_observer_example.csv
+post_ice_includes_shutdown_endpoint,True,0.457196456348,0.457196456348,data\trajectory_case1_observer_example.csv
+sampled_stop_on_control_clock,True,475.0,475.0,data\trajectory_case1_observer_example.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case1_observer_example.csv
+reconstructed_filtered_temperature_rate,True,1.9706447584866282e-10,0.0,data\trajectory_case1_observer_example.csv
+reconstructed_filtered_voltage_rate,True,1.3883783012147433e-11,0.0,data\trajectory_case1_observer_example.csv
+reconstructed_filtered_temperature_signal,True,8.712675025890348e-11,0.0,data\trajectory_case1_observer_example.csv
+reconstructed_filtered_voltage_signal,True,1.4118706204158116e-12,0.0,data\trajectory_case1_observer_example.csv
+sensor_stop_has_required_temperature_margin,True,0.9841004014017622,>0.2 C,data\trajectory_case1_observer_example.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case1_observer_example.csv
+sensor_continuous_hold_reconstructs_shutdown,True,95.0,95.0,data\trajectory_case1_observer_example.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case1_observer_example.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case1_observer_example.csv
+physical_hold_duration,True,4.302042979,>=2.0 s,data\trajectory_case1_observer_example.csv
+unbroken_physical_hold_duration,True,4.302042979,4.3020429790000065,data\trajectory_case1_observer_example.csv
+observer_temperature_error_from_trajectory,True,1.81047658299,1.8104765829999998,data\trajectory_case1_observer_example.csv
+observer_ice_error_from_trajectory,True,0.00168307816133,0.0016830781609999956,data\trajectory_case1_observer_example.csv
+independent_total_heater_energy,True,549.408518761,549.4085187614658,data\trajectory_case2_observer_example.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case2_observer_example.csv
+true_first_has_exact_saved_event,True,82.6133618534,82.6133618534,data\trajectory_case2_observer_example.csv
+true_first_all_cells_positive,True,1.00056836133e-07,>0,data\trajectory_case2_observer_example.csv
+first_window_energy_integral,True,534.392780866,534.3927808660742,data\trajectory_case2_observer_example.csv
+first_window_voltage_extreme,True,0.600532459691,0.600532459691,data\trajectory_case2_observer_example.csv
+first_window_ice_extreme,True,0.114236602083,0.114236602083,data\trajectory_case2_observer_example.csv
+first_window_temperature_spread,True,11.0742832892,11.074283289243164,data\trajectory_case2_observer_example.csv
+first_charge_uses_first_time,True,15.784008556,15.784008556019998,data\trajectory_case2_observer_example.csv
+first_charge_budget,True,15.784008556019998,<=20 C/cm2,data\trajectory_case2_observer_example.csv
+no_earlier_thermal_success_row,True,-0.00066906179172,<=1e-7 numerical temperature threshold,data\trajectory_case2_observer_example.csv
+actual_stop_has_exact_saved_event,True,91.0,91.0,data\trajectory_case2_observer_example.csv
+stop_charge_uses_stop_time,True,18.3,18.299999999999997,data\trajectory_case2_observer_example.csv
+stop_minus_first_charge_is_separate,True,2.515991444000001,2.515991443979999,data\trajectory_case2_observer_example.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case2_observer_example.csv
+cost_is_actual_stop_energy,True,549.408518761,549.4085187614658,data\trajectory_case2_observer_example.csv
+actual_cost_includes_first_window,True,15.01573789500003,>=0 J,data\trajectory_case2_observer_example.csv
+post_temperature_includes_shutdown_endpoint,True,0.643793988596,0.643793988596,data\trajectory_case2_observer_example.csv
+post_voltage_includes_shutdown_endpoint,True,0.613166858431,0.613166858431,data\trajectory_case2_observer_example.csv
+post_ice_includes_shutdown_endpoint,True,0.113112427363,0.113112427363,data\trajectory_case2_observer_example.csv
+sampled_stop_on_control_clock,True,455.0,455.0,data\trajectory_case2_observer_example.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case2_observer_example.csv
+reconstructed_filtered_temperature_rate,True,1.8347201535817703e-10,0.0,data\trajectory_case2_observer_example.csv
+reconstructed_filtered_voltage_rate,True,9.392375766026362e-12,0.0,data\trajectory_case2_observer_example.csv
+reconstructed_filtered_temperature_signal,True,8.576073184940469e-11,0.0,data\trajectory_case2_observer_example.csv
+reconstructed_filtered_voltage_signal,True,9.321432514752814e-13,0.0,data\trajectory_case2_observer_example.csv
+sensor_stop_has_required_temperature_margin,True,0.3885110969684743,>0.2 C,data\trajectory_case2_observer_example.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case2_observer_example.csv
+sensor_continuous_hold_reconstructs_shutdown,True,91.0,91.0,data\trajectory_case2_observer_example.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case2_observer_example.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case2_observer_example.csv
+physical_hold_duration,True,8.38663814664,>=2.0 s,data\trajectory_case2_observer_example.csv
+unbroken_physical_hold_duration,True,8.38663814664,8.386638146600006,data\trajectory_case2_observer_example.csv
+observer_temperature_error_from_trajectory,True,0.689502978256,0.6895029782699993,data\trajectory_case2_observer_example.csv
+observer_ice_error_from_trajectory,True,0.00117234946546,0.001172349465,data\trajectory_case2_observer_example.csv
+independent_total_heater_energy,True,2373.00977298,2373.0097729759236,data\trajectory_case3_observer_example.csv
+nonnegative_event_charge_and_energy,True,,,data\trajectory_case3_observer_example.csv
+true_first_has_exact_saved_event,True,89.074861747,89.074861747,data\trajectory_case3_observer_example.csv
+true_first_all_cells_positive,True,1.01372150873e-07,>0,data\trajectory_case3_observer_example.csv
+first_window_energy_integral,True,2243.26314235,2243.263142354066,data\trajectory_case3_observer_example.csv
+first_window_voltage_extreme,True,0.570408727842,0.570408727842,data\trajectory_case3_observer_example.csv
+first_window_ice_extreme,True,0.251330685876,0.251330685876,data\trajectory_case3_observer_example.csv
+first_window_temperature_spread,True,8.59392941362,8.593929413609999,data\trajectory_case3_observer_example.csv
+first_charge_uses_first_time,True,17.7224585241,17.7224585241,data\trajectory_case3_observer_example.csv
+first_charge_budget,True,17.7224585241,<=20 C/cm2,data\trajectory_case3_observer_example.csv
+no_earlier_thermal_success_row,True,-0.00611161331451,<=1e-7 numerical temperature threshold,data\trajectory_case3_observer_example.csv
+actual_stop_has_exact_saved_event,True,92.6,92.6,data\trajectory_case3_observer_example.csv
+stop_charge_uses_stop_time,True,18.78,18.779999999999998,data\trajectory_case3_observer_example.csv
+stop_minus_first_charge_is_separate,True,1.0575414759000026,1.057541475899999,data\trajectory_case3_observer_example.csv
+latched_power_after_actual_stop,True,,,data\trajectory_case3_observer_example.csv
+cost_is_actual_stop_energy,True,2373.00977298,2373.0097729759236,data\trajectory_case3_observer_example.csv
+actual_cost_includes_first_window,True,129.7466306299998,>=0 J,data\trajectory_case3_observer_example.csv
+post_temperature_includes_shutdown_endpoint,True,-2.3360829521,-2.3360829521,data\trajectory_case3_observer_example.csv
+post_voltage_includes_shutdown_endpoint,True,0.585094047514,0.585094047514,data\trajectory_case3_observer_example.csv
+post_ice_includes_shutdown_endpoint,True,0.321803938183,0.321803938183,data\trajectory_case3_observer_example.csv
+sampled_stop_on_control_clock,True,462.99999999999994,463.0,data\trajectory_case3_observer_example.csv
+every_sensor_sample_is_exported,True,,,data\trajectory_case3_observer_example.csv
+reconstructed_filtered_temperature_rate,True,1.9311474641625637e-10,0.0,data\trajectory_case3_observer_example.csv
+reconstructed_filtered_voltage_rate,True,1.1158185486692673e-11,0.0,data\trajectory_case3_observer_example.csv
+reconstructed_filtered_temperature_signal,True,9.101341902351123e-11,0.0,data\trajectory_case3_observer_example.csv
+reconstructed_filtered_voltage_signal,True,1.0464962230116726e-12,0.0,data\trajectory_case3_observer_example.csv
+sensor_stop_has_required_temperature_margin,True,0.44933396228642514,>0.2 C,data\trajectory_case3_observer_example.csv
+sensor_stop_voltage_and_estimated_ice,True,,,data\trajectory_case3_observer_example.csv
+sensor_continuous_hold_reconstructs_shutdown,True,92.60000000000001,92.6,data\trajectory_case3_observer_example.csv
+feasible_sensor_stop_has_true_physical_hold,True,,,data\trajectory_case3_observer_example.csv
+physical_hold_flag_matches_success,True,,,data\trajectory_case3_observer_example.csv
+physical_hold_duration,True,3.52513825297,>=2.0 s,data\trajectory_case3_observer_example.csv
+unbroken_physical_hold_duration,True,3.52513825297,3.5251382529999944,data\trajectory_case3_observer_example.csv
+observer_temperature_error_from_trajectory,True,1.3259421169,1.3259421169000003,data\trajectory_case3_observer_example.csv
+observer_ice_error_from_trajectory,True,0.00156316558801,0.0015631655879999873,data\trajectory_case3_observer_example.csv
+reoptimized_constant_is_reported_feasible,True,case1,,optimized_constant_results.csv
+reoptimized_constant_is_reported_feasible,True,case2,,optimized_constant_results.csv
+reoptimized_constant_is_reported_feasible,True,case3,,optimized_constant_results.csv

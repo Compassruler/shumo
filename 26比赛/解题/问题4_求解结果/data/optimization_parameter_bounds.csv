@@ -1,0 +1,7 @@
+﻿parameter,lower,upper
+T_target_C,0.4,5
+t_plan_s,15,150
+K_P,0.015,0.5
+K_I,0.001,0.08
+taper_K,0.1,2
+rate_gain,0,0.4
