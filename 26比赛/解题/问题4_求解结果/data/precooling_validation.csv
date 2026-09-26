@@ -1,0 +1,12 @@
+﻿test,observed,tolerance,unit,passed,note
+total_thickness,6.938893903907228e-18,1e-13,m,True,2 EP + 6 BP + 25 MEA constituent layers
+total_capacity,0.0,1e-08,J/m2/K,True,"Original material values, no rounded rho*cp"
+seven_node_energy_mapping,4.656612873077393e-10,1e-08,J/m2,True,All CVs belong to exactly one node; BP halves split geometrically
+implicit_energy_balance,1.5649711713194847e-07,2e-05,J,True,Backward Euler loss quadrature matched to thermal equation
+BE_vs_matrix_exponential,0.0020757285575285778,0.004,K,True,"dt=0.25 s, 10:5:100 min"
+adiabatic_uniform_limit,2.711274760258675e-09,2e-06,K,True,"h=0, initial 25 C"
+adiabatic_nonuniform_conservation,2.1816041240185767e-09,1e-06,J,True,"h=0, nonuniform initial field"
+long_time_ambient_limit,0.0,1e-08,K,True,24 hours
+maximum_principle,0.0,1e-10,K,True,No new extrema under cooling
+pointwise_monotonic_cooling,0.0,1e-10,K,True,Every control volume cools over the sampled times
+approximate_mirror_symmetry,4.691284159052955e-05,0.001,K,True,aCL and cCL thicknesses differ; actual oriented five-layer MEA is only approximately mirror symmetric
