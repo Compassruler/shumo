@@ -1,0 +1,55 @@
+{
+  "duplicate_labels": [],
+  "undefined_refs": [],
+  "undefined_citations": [],
+  "environment_errors": [],
+  "unclosed_environments": [],
+  "missing_images": [],
+  "original_assets_changed": [],
+  "required_tables": {
+    "B12": {
+      "present": true,
+      "exact_original": true,
+      "data_and_columns_unchanged": true
+    },
+    "B13": {
+      "present": true,
+      "exact_original": false,
+      "data_and_columns_unchanged": true
+    },
+    "B91": {
+      "present": true,
+      "exact_original": true,
+      "data_and_columns_unchanged": true
+    },
+    "tab:opt_results": {
+      "present": true,
+      "exact_original": true,
+      "data_and_columns_unchanged": true
+    },
+    "tab:q4:main": {
+      "present": true,
+      "exact_original": true,
+      "data_and_columns_unchanged": true
+    }
+  },
+  "section_titles": [
+    "问题重述",
+    "模型假设",
+    "符号说明",
+    "问题一的分析与求解",
+    "问题二的分析与求解",
+    "问题三的分析与求解",
+    "问题四的分析与求解",
+    "模型的评价",
+    "参考文献",
+    "人工智能软件使用情况说明"
+  ],
+  "figures": 21,
+  "tables": 19,
+  "characters": 149417,
+  "bytes": 253471,
+  "old_bytes": 302083,
+  "manual_refs": [],
+  "placeholder": []
+}

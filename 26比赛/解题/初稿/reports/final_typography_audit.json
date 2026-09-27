@@ -1,0 +1,21 @@
+{
+  "pages": 75,
+  "body_size_pt": 12,
+  "body_baseline_mode_pt": 14.4,
+  "low_body_figure_pages": [
+    {
+      "page": 25,
+      "body_chinese_chars": 127,
+      "caption_lines": 1
+    },
+    {
+      "page": 65,
+      "body_chinese_chars": 119,
+      "caption_lines": 1
+    }
+  ],
+  "pure_figure_pages": [],
+  "chinese_retention": 0.7965277319791598,
+  "preamble_identical": true,
+  "class_hash_unchanged": true
+}
