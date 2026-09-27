@@ -1,0 +1,1465 @@
+=== PAGE 1 ===
+Numerical investigations of assisted heating cold start strategies for
+proton exchange membrane fuel cell systems
+Zirong Yang a, Kui Jiao a, Kangcheng Wu a, Weilong Shi b, Shangfeng Jiang b,
+Longhai Zhang b, Qing Du a, *
+a State Key Laboratory of Engines, Tianjin University, 135 Yaguan Road, Tianjin, 300350, China
+b Zhengzhou Yutong Bus Co., Ltd, Yutong Industry Park, Zhengzhou, 450016, China
+article info
+Article history:
+Received 5 August 2020
+Received in revised form
+25 December 2020
+Accepted 15 January 2021
+Available online 20 January 2021
+Keywords:
+PEMFC system
+Cold start
+Assisted startup strategy
+Ice volume fraction
+Temperature distribution uniformity
+abstract
+To investigate cold start strategies at the system level, an integrated transient system model is developed,
+consisting of stack, membrane humidi ﬁer, electrochemical hydrogen pump, compressor, and radiator.
+The unassisted startup from /C0 10 /C14 C succeeds while it fails when started from /C0 20 /C14 C. To achieve the
+successful startup from /C0 20 /C14 C, various assisted strategies are adopted. For reactant gas heating method,
+the additional heat carried by gases is averaged about 1.2 W for each individual cell when the temper-
+ature of humidi ﬁer and hydrogen pump are maintained at 60
+/C14 C. Meanwhile, a large amount of moisture
+is introduced to the stack, which may lead to accelerated failure. For stack heating method, the startup
+succeeds if the total heating power reaches 40 W. However, the corresponding temperature difference
+within stack reaches as large as 22.0
+/C14 C, which indicates that improving the thermal conductivity of fuel
+cell materials is of great importance. Under coolant heating method, the startup succeeds if the coolant
+temperature reaches /C0 5 /C14 C, and the ice formation can even be avoided if the coolant temperature is kept
+at 10 /C14 C. However, the power consumption for heating coolant is extremely large, indicating that sec-
+ondary power sources are necessary.
+© 2021 Published by Elsevier Ltd.
+1. Introduction
+Owing to the advantages of high power density, high energy
+conversion ef ﬁciency, and zero emissions, proton exchange mem-
+brane fuel cell (PEMFC) is considered as one of the most important
+power sources for the automobile transportation industry in the
+prospective hydrogen society [ 1e3]. Several giant automobile
+companies have already made fuel cell vehicles available to the
+public, such as Mirai from Toyota [ 4], Clarity from Honda [ 5], and
+Nexo from Hyundai [ 6]. Note that the powertrain technologies in
+Clarity and Nexo have been both rated as Wards ten best engines
+[7]. The application of hybrid fuel cell systems in unmanned aerial
+vehicle [ 8], forklift [ 9], and ship [ 10] has also been reported.
+However, there still remain some technical challenges before the
+large-scale commercialization, among which the successful and
+rapid startup from subzero temperatures is of great importance
+[11]. Based on the ultimate targets of 80-kW integrated
+transportation fuel cell power systems proposed by the U.S.
+Department of Energy (DOE), unassisted startup from /C0 30 /C14 C and
+assisted startup from /C0 40 /C14 C are required [ 12]. Less than 30 s is
+required for the fuel cell power system to achieve 50% rated power
+when started from /C0 20 /C14 C[ 12]. As regards the startup/shutdown
+durability, the output voltage deterioration after 5000 cycles is
+required to be less than 5% under speci ﬁc testing protocols [ 12].
+Despite the fact that many cold start researches have been con-
+ducted, the aforementioned technical targets are still hard to be
+achieved, which requires further investigations [ 11].
+During cold start processes, the generated water through
+hydrogen-oxygen reactions is likely to freeze if the local tempera-
+ture is lower than the freezing point. Since ice is solid, it is not able
+to move out of the porous layers, thus blocking effective reaction
+sites in the catalyst layer (CL) and species transport pathways in the
+gas diffusion layer (GDL) [ 13]. Once the air ﬂowing into the fuel cell
+is unable to reach three-phase boundaries (TPB) in the CL or the
+amount of oxygen that successfully reaches TPB is unable to
+compensate for the electrochemical reaction consumption, the
+startup is considered failed. From the perspective of thermal
+behavior, the cold start can be generalized as the competition* Corresponding author.
+E-mail address: duqing@tju.edu.cn (Q. Du).
+Contents lists available at ScienceDirect
+Energy
+journal homepage: www.elsevier.com/locate/energy
+https://doi.org/10.1016/j.energy.2021.1 19910
+0360-5442/© 2021 Published by Elsevier Ltd.
+Energy 222 (2021) 1 19910
+
+=== PAGE 2 ===
+between ice formation and temperature increment [ 14]. If the cell
+temperature rises above the freezing point in ahead of the time
+when catalytic reaction sites or gas transport passages are fully
+blocked by ice, the startup is successful. Since the volume expands
+when liquid water is turned into ice, irreversible damage may be
+caused to microstructures inside the fuel cell during freezing/
+thawing cycles, including pinhole or crack of membrane [ 15,16],
+agglomeration of catalyst particles [ 17,18], delamination between
+CL and GDL [ 19,20], and other detrimental in ﬂuences [11,21,22]. To
+investigate the ice formation mechanisms and corresponding im-
+pacts on fuel cell performances, both experimental and numerical
+researches have been conducted. Effects of operating and structural
+parameters (such as startup temperature [ 15], current density
+[23,24], membrane dehydration level [ 25,26], reactant gas ﬂow
+arrangement [ 27], ﬂow-ﬁeld con ﬁguration [ 28,29], and ionomer/
+carbon ratio [ 30]) were the focus of experimental studies. To
+further characterize local current density and temperature
+distribution, the segmented fuel cell technology [ 27,31] and the
+printed circuit board technology [ 29,32] have been adopted. With
+visualization technologies been greatly developed, more researches
+were aimed at directly demonstrating ice generation processes
+inside porous layers and ﬂow channels based on methodologies
+such as transparent fuel cell [ 33], infrared image [ 34], Raman
+spectroscopic examination [ 35], and scanning electron microscope
+[36e38]. In addition to experimental studies, various simulation
+models have been developed to explain the coupled heat and mass
+transport phenomena during sub-zero temperatures, including
+lumped thermal model [ 39], analytical model [ 40], one-
+dimensional [ 41e44], two-dimensional [ 45,46], and three-
+dimensional models [ 47e49]. The application of arti ﬁcial intelli-
+gence for numerical models [ 50e52] and optimization algorithms
+for model parameter estimation [ 53,54] have also been presented.
+Owing to worldwide researches over the past two decades, ice
+formation mechanisms have been well revealed, and a large
+Nomenclature
+A effective geometric area (m 2)
+ASR area speciﬁc resistance ( U m2)
+Cp speciﬁc heat capacity (J kg /C0 1 K/C0 1)
+D diffusivity (m2 s/C0 1)
+EW equivalent weight of membrane (kg kmol /C0 1)
+f function
+F Faraday’s constant (C mol /C0 1)
+G Gibbs free energy (J mol /C0 1)
+h heat transfer coef ﬁcient (W m /C0 2 K/C0 1)
+I current density (A m /C0 2)
+J ionic current density (A m /C0 2), inertia of compressor
+(kg m2)
+k thermal conductivity (W m /C0 1 K/C0 1)
+K permeability (m2)
+m mass ﬂow rate (kg s /C0 1)
+M molecular weight (g mol /C0 1)
+p pressure (Pa)
+P power (W)
+Q heat source term (W m /C0 3)
+R universal gas constant (J mol /C0 1 K/C0 1), motor armature
+resistance (U)
+s volume fraction
+S source terms (kmol m /C0 3 s/C0 1,k gm /C0 3 s/C0 1,Wm /C0 3),
+entropy (J mol /C0 1 K/C0 1)
+ST stoichiometry
+t time (s)
+T temperature (K)
+u velocity (m s /C0 1)
+V voltage (V)
+Y mass fraction of gas species
+Greek letters
+ε porosity
+l membrane water content
+m dynamic viscosity (kg m /C0 1 s/C0 1)
+r density (kg m /C0 3)
+u volume fraction of ionomer, compressor rotation
+angular frequency (rad s /C0 1)
+d thickness (m)
+k motor torque constant
+t torque (N m)
+y motor terminal voltage (V)
+h efﬁciency
+Subscripts and superscripts
+a anode
+act activation
+atm atmosphere
+BP bipolar plate
+c cathode
+CL catalyst layer
+cm compressor motor
+conc concentration
+cond condensation
+cool coolant
+cp compressor
+eff effective
+eq equilibrium
+FC fuel cell
+g gas phase
+GDL gas diffusion layer
+H2 hydrogen
+HP hydrogen pump
+in inlet
+ion ionic
+l liquid phase
+lq liquid water
+mem membrane
+MH membrane humidi ﬁer
+mw membrane water
+MPL micro-porous layer
+O2 oxygen
+ohmic ohmic
+out output
+pc phase change
+per permeation
+react reaction
+ref reference state
+req required
+sat saturation
+surr surroundings
+vp water vapor
+m-l membrane water to super-cooled/liquid water
+m-v membrane water to water vapor
+l-i super-cooled water to ice
+v-l water vapor to liquid water
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+2
+
+=== PAGE 3 ===
+number of cold start strategies have been consequently proposed.
+From the perspective of fuel cell structural designs, the addition of
+micro-porous layer was widely considered to be beneﬁcial [55e57].
+As for preconditioning methods, the gas purge process after shut-
+down was necessary because it minimized the amount of residual
+water [25,26,58]. For startup operating conditions, various startup
+modes and strategies were proposed such as maximum power
+startup mode [ 59], variable heating and load control [ 60], and
+model-based real-time adaptive control [ 61]. Besides, adopting the
+methanol-water solution as antifreeze agent was found to inhibit
+performance degradation after freezing\thawing cycles [ 62]. Note
+that the above strategies were focused on the self-startup of single
+cell or stack, requiring no additional heating power consumption
+but relatively long warm-up time. Consequently, assisted cold start
+strategies such as reactant gas heating [ 63], stack heating [ 64],
+coolant heating [ 65], hydrogen-oxygen catalytic reaction [ 66,67],
+and external hydrogen burner [68] were proposed to accelerate the
+startup process. However, a comprehensive and quantitative
+comparison among those assisted startup strategies, which
+considered the operability, timeliness, ef ﬁciency, power con-
+sumption, and local parameter distribution inside individual fuel
+cells (such as current density, ice, temperature), was few to ﬁnd in
+literature. Besides, the majority of aforementioned cold start re-
+searches were concentrated on characterizing and optimizing the
+startup capacity of single fuel cells or stacks, which hardly
+addressed the problem at a comprehensive PEMFC system level. As
+presented previously [ 69,70], a typical PEMFC system consisted of
+stack, reactant gas supply subsystems, humidi ﬁcation subsystem,
+and heat management subsystem. The hydrogen supply subsystem
+consists of high-pressure hydrogen tank, pressure-regulating valve,
+three-way valve, water knockout, and hydrogen recirculation
+pump. The air supply subsystem includes air ﬁlter, compressor,
+radiator, membrane humidi ﬁer, water knockout, and solenoid
+valve. The heat management subsystem is composed of water tank,
+pump, heater, thermostat, ion collector, and radiator. The stable
+operation of system was jointly guaranteed by the coordination
+among all subsystems while the couple water and heat manage-
+ment within the whole system was extremely sophisticated [69,71].
+Take the water transport for an example, the humidi ﬁcation of
+membrane humidiﬁer relied on the stack cathode exhausted gases
+while it had great in ﬂuences on stack performances during cold
+start processes. The successful systematic startup from subzero
+temperatures should not only raise the stack temperature over the
+freezing point rapidly but also simultaneously accelerate the tem-
+perature increment of auxiliary components without suf ﬁcient in-
+ternal heat generation (such as membrane humidi ﬁer). However,
+few related researches were presented in literature, making it
+necessary to investigate the cold start issue from the view of an
+authentic system level.
+In the study, an integrated transient PEMFC system model that
+has been developed in our previous studies [ 69,70] is adopted to
+investigate the cold start capability of whole system. The unassisted
+systematic cold start performances under different startup oper-
+ating conditions are brie ﬂy investigated, including the distribution
+of output voltage, ice volume fraction, and temperature. To achieve
+the successful startup from subzero temperatures as low as /C0 20 /C14 C,
+assisted startup strategies such as reactant gas heating method,
+stack heating method, and coolant heating method are quantita-
+tively compared. The output performance, stack inlet reactant
+relative humidity, ice generation rate, temperature distribution,
+and cold start duration are comprehensively investigated. The
+effectiveness of assisted startup strategies is evaluated, which gives
+valuable suggestions on cold start issues.
+2. Model development
+Methodologies about the core sub-models are brie ﬂy presented,
+including stack, membrane humidi ﬁer, electrochemical hydrogen
+pump, compressor, and radiator. The integration of various cold
+start strategies and the system model is also presented.
+2.1. Stack model
+Proton exchange membrane fuel cell (PEMFC) typically consists
+of bipolar plate (BP), gas channel, gas diffusion layer (GDL), micro-
+porous layer (MPL), catalyst layer (CL), and proton exchange
+membrane. For the stack composed of many single cells, the
+amount of reactant gases and coolant ﬂowing into each individual
+fuel cell are typically different owing to pressure losses during the
+motion of ﬂuids [ 72,73]. However, it is found that the ﬂow distri-
+bution uniformity can be signi ﬁcantly improved through the opti-
+mization of stack manifold geometry in our recent study [ 74].
+Besides, low current densities (such as 0.1 A cm /C0 2) are widely
+adopted in cold start operations, which reduces the distribution
+non-uniformity to a large extent because the mass ﬂow rate of
+reactants is relatively small. Therefore, it is reasonable to assume
+that reactant gases and coolant are uniformly distributed into every
+fuel cell in the presented study. In addition, mass transport pro-
+cesses in porous layers are assumed to be diffusion-dominated in
+the through-plane direction [ 75,76]. The product water is assumed
+to be membrane water initially according to the previous study [44]
+in which the phase transition mechanisms during cold start pro-
+cesses have been comprehensively investigated. Phase changes
+among water vapor, membrane water, super-cooled/liquid water,
+and ice are fully taken into consideration. Heat radiation between
+the stack and surroundings is neglected while heat convection is
+taken into account. The stack structural properties and operating
+conditions are listed in Table 1. The governing equations of mem-
+brane water, super-cooled/liquid water, gas species, ice, tempera-
+ture, and output voltage are summarized in Table 2 while the
+source terms are summarized in Table 3 . Note that the heat and
+mass transfer processes are calculated in the through-plane direc-
+tion as well as the gas channel direction. Therefore, the parameter
+variations from upstream to downstream can be clearly demon-
+strated, including local current density, ice volume fraction, tem-
+perature, and other key parameters [ 69,70]. Besides, performance
+differences (such as output voltage and temperature) among
+various single fuel cells can also be well demonstrated. The detailed
+correlations for electrochemical and transport properties have been
+presented in the previous studies [ 43,69].
+During cold start processes, it should be mentioned that the
+authentic freezing temperature in porous layers is lower than the
+normal freezing point ( TN ¼ 273.15 K), which is called the freezing
+point depression [ 13,43]. The temperature difference is de ﬁned as:
+TFPD ¼ TNs273:15 cosðqÞ
+ricehfusnrCL;MPL;GDL
+(1)
+where s(N m /C0 1) is the surface tension, q(/C14 ) is the contact angle,
+hfusn(J kg /C0 1) is the latent heat of fusion, r (m) is the pore radius of
+porous layers.
+Special attention should be paid to the heat source term since
+assisted startup heating sources are embedded. The amount of heat
+carried by hot inlet reactants is represented by Qgas, and the heat
+absorbed from coolant is represented by Qcoolant. For the stack
+heating method, a speci ﬁc heating source is added to the end plate
+at two sides of stack. More detailed information about the pseudo
+two-dimensional stack model can be found in our previous studies
+[69,70].
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+3
+
+=== PAGE 4 ===
+2.2. Membrane humidi ﬁer model
+To utilize stack cathode exhausted gases, a planar membrane
+humidiﬁer is adopted, which absorbs the moisture and conse-
+quentially humidiﬁes the dry air. The membrane humidi ﬁer model
+mainly consists of gas channels and membrane. The addition of
+obstacles in ﬂow ﬁeld and GDL to enhance the diffusion of water
+vapor transfer has also been reported [ 77,78]. The ice formation
+inside membrane humidi ﬁer is neglected because the amount of
+super-cooled water along with stack cathode exhausted gases is
+tiny. It should be mentioned that there is no suf ﬁcient internal heat
+generation inside the membrane humidi ﬁer, and the operating
+temperature is likely to be much lower than that of stack [ 69].
+Under the circumstances, water vapor condensation is possible to
+happen in the humidi ﬁer wet channel, but the quantity is minor,
+which has negligible in ﬂuences on humidi ﬁer performances.
+Therefore, the amount of internally generated super-cooled water
+is also neglected in the cold start operation. Governing equations of
+membrane water, water vapor, and temperature as well as corre-
+sponding source terms are given in Table 4.
+2.3. Electrochemical hydrogen pump model
+A hydrogen recirculation pump is placed in the hydrogen supply
+subsystem to partially recycle the used hydrogen, enhancing fuel
+utilization and anode reactant humidiﬁcation [79,80]. The structure
+of electrochemical hydrogen pump is similar to that of PEMFC, and
+the corresponding structural properties of electrochemical pump
+are set the same as that of PEMFC. Detailed information of working
+principles and transport properties has been presented in our
+previous study [ 69,70], and the governing equations are listed in
+Table 5.
+2.4. Air compressor model
+The centrifugal air compressor model consists of three parts,
+including the curve ﬁtting of compressor characteristics, the dy-
+namic response of motor, and the proportional-integral-derivative
+(PID) control strategy. Based on the characteristics of air
+compressor in literature [81], the air mass ﬂow rate is calculated as
+the function of pressure ratio and rotation speed based on poly-
+nomial ﬁtting methods. As shown in Eq. (2), the dynamic response
+Table 1
+Stack structural properties and operating conditions.
+Parameter Value
+Number of fuel cells 10
+Effective area of a single fuel cell 200 cm 2
+Effective heat transfer area between coolant and a single fuel cell 100 cm 2
+Channel length, width, depth, rib width 200; 1.0; 1.0; 1.0 mm
+Thickness of membrane, CL, MPL, GDL, BP 0.050; 0.01; 0.03; 0.2; 2 mm
+Density of membrane, CL, MPL, GDL, BP 1980, 1000, 1000, 1000, 1000 kg m
+/C0 3
+Speciﬁc heat capacity of membrane, CL, MPL, GDL, BP 833, 3300, 568, 2000, 1580 J kg /C0 1 K/C0 1
+Thermal conductivity of membrane, CL, MPL, GDL, BP 0.95, 1.0, 1.0, 1.0, 20 W m /C0 1 K/C0 1
+Electric conductivity of membrane, CL, GDL, BP 5000, 5000, 5000, 20,000 S m /C0 1
+Ionomer volume fraction in CL 0.4
+Contact angle of CL, MPL, GDL 100 /C14 , 120 /C14 , 120 /C14
+Porosity of CL, MPL, GDL 0.4, 0.5, 0.7
+Requested stoichiometry ratio ST
+req
+a ¼ 1.2, STreq
+c ¼ 2.0
+Requested operating pressure preq
+a;c ¼ 1.1 atm
+Initial membrane water content 3.2
+Initial super-cooled water and ice volume fraction 0
+Initial stack and surrounding temperature 253, 263 K
+Heat transfer coef ﬁcient between endplate and surrounding 2 W m
+/C0 2 K/C0 1
+Total coolant mass ﬂow rate 0.1 kg s /C0 1
+Heat transfer coef ﬁcient between coolant and a single fuel cell 200 W m /C0 2 K/C0 1
+Table 2
+Governing equations of the stack model.
+Parameter Equation
+Membrane water rmem
+EW
+vðulÞ
+vt þ V,
+/C18
+nd
+Jion
+F
+/C19
+¼ rmem
+EW V,ðu1:5 DmwVlÞþ Smw
+Super-cooled/Liquid water 8
+>>>
+>
+<
+>>>>
+:
+vðεrlq slq Þ
+vt ¼ V,
+ 
+rlq
+Klq
+mlq
+Vpl
+!
+þ Slq ðIn CL ; MPL; GDLÞ
+vðrlq slq Þ
+vt þ V,ðrlqulq slq Þ¼ V,
+ 
+rlq
+Klq
+mlq
+Vpl
+!
+þ Slq ðIn channel Þ
+Ice vðεrice sice Þ
+vt ¼ Sice ðIn CL ; MPL; GDL; channelÞ
+Gas species 8
+>><
+>>
+:
+v
+vt ðεð1 /C0 slq /C0 sice ÞrgYiÞ¼ V,ðrg Deff
+i VYiÞþ Si ðIn CL ; MPL; GDLÞ
+v
+vt ðð1 /C0 slq /C0 sice Þrg YiÞþ V,ðrgug Yi Þ¼ V,ðrgDeff
+i VYiÞþ Si ðIn channel Þ
+Temperature v
+vt ððrcp Þeff
+fl;slTÞ¼ V,ðkeff
+fl;slVTÞþ ST
+Voltage Vout ¼ VNernst /C0 Vact /C0 Vohmic /C0 Vconc
+VNernst ¼ DG
+2F þ DS
+2F ðT /C0 Tref Þþ RT
+2F
+"
+ln
+ 
+cH2 ; CLa
+cH2 ; ref
+!
+þ 1
+2 ln
+ 
+cO2 ; CLc
+cO2 ; ref
+!#
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+4
+
+=== PAGE 5 ===
+of compressor is decided by drive torque and load torque. Since the
+motor terminal voltage controls the drive torque, a PID control
+strategy is adopted to achieve the requested pressure ratio and
+mass ﬂow rate. Detailed information about polynomial ﬁtting
+results, temperature and pressure calibration, and calculation
+procedure can be found in our previous studies [ 69,70].
+Table 3
+Source terms.
+Correlation Unit
+Smw ¼
+/C26
+Sreact /C0 Sm/C0 v /C0 Sm/C0 l ðIn CLc Þ
+/C0 Sm/C0 v /C0 Sm/C0 l ðIn CLa Þ
+kmol m /C0 3 s/C0 1
+Slq ¼
+8
+<
+:
+Sm/C0 lMH2 O þ Sv/C0 l /C0 Sl/C0 i /C0 Sper ðIn CLc Þ
+Sm/C0 lMH2 O þ Sv/C0 l /C0 Sl/C0 i þ Sper ðIn CLa Þ
+Sv/C0 l /C0 Sl/C0 i ðIn MPL ; GDL; channelÞ
+kg m/C0 3 s/C0 1
+Sice ¼ Sl/C0 iðIn CL ; MPL; GDL; channelÞ kg m/C0 3 s/C0 1
+Sper ¼
+rlq Kperðpl;CLc /C0 pl;CLaÞ
+mlqdCL ð0:5dCLa þ dmem þ 0:5dCLc Þ
+kg m/C0 3 s/C0 1
+Svp ¼
+/C26
+Sm/C0 vMH2 O /C0 Sv/C0 l ðIn CL Þ
+Sv/C0 l ðIn MPL ; GDL; channelÞ
+kg m/C0 3 s/C0 1
+ST ¼
+8
+>>
+>>>
+>
+>>>
+>
+>>>
+>
+>>>
+>
+>>>
+>
+>
+>>>
+>
+>>>
+<
+>>
+>>>
+>
+>>>
+>
+>>>
+>
+>>>
+>
+>
+>>>
+>
+>>>
+>
+>>>
+:
+I2 ASRCL
+3dCL
+þ IVact;a
+dCL
+þ Spc ðIn CLa Þ
+I2 ASRCL
+3dCL
+/C0 TDS
+2F I þ IVact;c
+dCL
+þ Spc ðIn CLc Þ
+I2 ASR
+d ðIn membrane Þ
+I2 ASR
+d þ Spc ðIn MPL ; GDLÞ
+I2 ASR
+d þ Spc /C0 Qgas ðIn channel Þ
+I2 ASR
+d þ Qcoolant ðIn BP Þ
+Wm /C0 3
+Qgas ¼
+Ain
+P
+i
+/C8
+cpuin cinMðTchannel /C0 TinÞ
+/C9
+i
+Acell d ði ¼ H2 ; O2 ; N2 ; vpÞ
+Wm /C0 3
+Qcoolant ¼ hcool Acool ðTave
+coolant /C0 TBPÞ Wm /C0 3
+Table 4
+Governing equations of the membrane humidi ﬁer model.
+Parameter Equation
+Membrane water rmem
+EW
+vðlMHÞ
+vt ¼ rmem
+EW V,ðDMH;mwVlMH Þþ SMH;mw, SMH;mw ¼/C0 SMH;m/C0 v
+Water vapor v
+vt ðrgYMH;vpÞþ V,ðrgugYMH;vpÞ¼ SMH;vp, SMH;vp ¼ SMH;m/C0 v MH2 O
+Temperature v
+vt ðceff
+p TMHÞ¼ V,ðkeff VTMH Þþ SMH;T,
+SMH;T ¼
+/C26 QMH;gas ðIn channel Þ
+hcondð/C0 SMH;m/C0 v MH2 O Þð In membrane Þ
+Table 5
+Governing equations of the electrochemical hydrogen pump model.
+Parameter Equation
+Membrane water rmem
+EW
+vðulHP Þ
+vt þ V,
+/C18
+nd
+JHP;ion
+F
+/C19
+¼ rmem
+EW V,ðu1:5 DHP;mwVlHP Þþ SHP;mw
+Gas species 8
+>><
+>>:
+v
+vt ðεrgYHP;iÞ¼ V,ðrgDeff
+HP;iVYi Þþ SHP;i ðIn porous layers Þ
+v
+vt ðrgYHP;iÞþ V,ðrg ugYHP;iÞ¼ V,ðrg Deff
+HP;iVYiÞþ SHP;i ðIn channel Þ
+,
+Temperature v
+vt ðceff
+p THP Þ¼ V,ðkeff VTHP Þþ SHP;T
+Drive voltage
+VHP;Nernst ¼ RT
+2F ln
+ 
+pHP;c
+pHP;a
+!
+, VHP;drive ¼ VHP;Nernst þ VHP;act þ VHP;ohmic
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+5
+
+=== PAGE 6 ===
+8
+>>>>>>
+><
+>>>>>
+>>:
+J
+cp
+ducp
+dt ¼ tcm /C0 tcp
+tcm ¼ hcm
+kt
+Rcm
+ðvcm /C0 kvucmÞ
+tcp ¼ Pcp
+ucp
+(2)
+2.5. Radiator model
+During the normal operation of stack, the radiator is supposed to
+dissipate the heat carried by coolant to surroundings. The ribbon-
+tubular ﬁn radiator is used, and the heat transfer processes be-
+tween coolant and surroundings can be divided into three stages,
+which includes heat convection between coolant and tube, heat
+conduction inside tube wall, and heat convection between tube and
+air. Under steady-state conditions, the released heat from coolant is
+equal to the absorbed heat by air.
+Q ¼ mlq
+/C0
+cp
+/C1
+lq
+/C16
+Tin
+lq /C0 Tout
+lq
+/C17
+¼ mair
+/C0
+cp
+/C1
+air
+/C16
+Tout
+lq /C0 Tin
+lq
+/C17
+¼ AKDtm
+(3)
+1
+AK ¼ 1
+hlqAlq
+þ d
+ltAlq
+þ 1
+hairAairh0
+(4)
+Based on the three different heat transfer stages, the overall heat
+transfer coef ﬁcient is calculated based on the speci ﬁc radiator
+structures. The effectiveness-NTU method is adopted to calculate
+the outlet temperatures of coolant and air. Detailed calculation
+methods have been presented in our previous studies [ 69,70].
+2.6. Boundary and initial conditions
+The previous subsections have presented numerical methodol-
+ogies of key sub-models, which are integrated as the comprehen-
+sive system model by coupling the boundary conditions as shown
+in Fig. 1 . The hydrogen tank, regulating valves, water knockout
+devices, coolant pump, and other less important components are
+neglected in the ﬁgure.
+For the compressor model, the requested pressure ratio and air
+mass ﬂow rate are determined by stack operating conditions. By
+regulating the PID-controlled motor terminal voltage, the real
+compressor rotating speed and pressure ratio are decided, thus
+determining the real air mass ﬂow rate exiting the compressor.
+mreq
+air ¼ NstackIAcellSTcMair
+4F /C2 0:21 /C2 1000 (5)
+The total amount of requested hydrogen is calculated according
+to Faraday ’s law while the stack anode inlet gases consist of the
+electrochemical hydrogen pump cathode outlet gases and the pure
+hydrogen from high-pressure tank.
+mreq
+H2
+¼ NstackIAcellSTaMH2
+2F /C2 1000 (6)
+The total current of every fuel cell is identical owing to the
+connection in series. For a single fuel cell, the local current density
+varies from channel upstream towards downstream, and it is ob-
+tained by solving the system of nonlinear equations [ 69,70].
+f ðIiÞ¼ Vout;
+Xn
+i
+Ii ¼ n,I (7)
+where n refers to the number of nodes in the gas channel direction.
+As for the integration of assisted startup strategies with the
+system model, different methodologies are adopted. At the system
+level, it should be noted that the temperatures of reactants ﬂowing
+into the stack are decided by auxiliary components. The stack
+cathode inlet temperature is determined by the membrane hu-
+midiﬁer while the anode inlet temperature is calculated as the
+mixed temperature between recycled gases and pure hydrogen.
+Therefore, the reactant heating method is achieved by controlling
+the temperature of membrane humidi ﬁer and electrochemical
+hydrogen pump. The stack heating method is typically achieved by
+installing heating wires at the two sides of stack, thus directly
+raising the stack temperature by Joule heat. In the system model, a
+speciﬁc heat source is added to the two end plates. As for the
+Fig. 1. Integration of all sub-models into the comprehensive system model.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+6
+
+=== PAGE 7 ===
+coolant heating method, the coolant is heated until the expected
+temperature before entering the stack. The amount of heat absor-
+bed by stack is treated as one of the heat source terms as listed in
+Table 3. Note that the radiator is turned off during cold start pro-
+cesses because there is no need for heat dissipation.
+The initial temperature of components is set identical to the
+environment. The initial membrane water content of stack, mem-
+brane humidiﬁer, and electrochemical pump is set as 3.2, indicating
+a relatively-long gas purge process after shutdown. The initial
+super-cooled water/ice volume fraction inside the stack is set as 0.
+As for numerical procedures, the explicit formulation calculation
+method is adopted for discretization with a time step size of 10 /C0 6 s.
+The parameters such as membrane water content, super-cooled
+water/ice volume fraction, and temperature are updated at the
+center of corresponding componential layers [ 69,70]. All models
+are established based on user de ﬁned functions in Matlab 2018a,
+and a workstation with 20 cores (2.4 GHz) is adopted to conduct
+numerical simulations.
+3. Results and discussion
+3.1. Model validation
+To ensure the reliability of integrated proton exchange mem-
+brane fuel cell (PEMFC) system model, all sub-models have been
+validated against experimental data. For the stack sub-model, grid
+independence study, polarization curve at different cathode inlet
+relative humidity, and output voltage under failed/successful cold
+start conditions have been presented in the previous study [ 70]. In
+addition, the model has also been compared with our latest
+experimental data [ 82].
+Fig. 2 shows the output voltage and the ohmic voltage when
+started from /C0 15 /C14 C and /C0 20 /C14 C. The current density is set as
+0.1 A cm /C0 2. Special attention should be paid to the beginning of
+corresponding experimental data in Ref. [ 82] because there is no
+current load in the ﬁrst 10 s. Therefore, the actual and effective
+experimental data of startup processes is selected after the startup
+duration reaches 10 s, which is used to further validate the stack
+sub-model. Good agreement between our laboratory experiments
+and simulation results is observed. As for the four auxiliary sub-
+models, detailed model validation can also be found in the previ-
+ous study [ 70].
+3.2. Unassisted startup performances
+Based on the previous study [ 70], the co-current ﬂow conﬁgu-
+ration contributes to water vapor accumulation in the gas channel
+direction inside fuel cells, leading to higher water utilization of the
+overall system. Therefore, it is unadvisable to adopt the co- ﬂow
+pattern since more ice is likely to be formed in the stack
+compared with the counter-current ﬂow pattern. Consequently, the
+stack is placed in counter- ﬂow con ﬁguration in the presented re-
+sults. The unassisted startup performances are ﬁrstly investigated,
+which provide a benchmark against the following assisted startup
+strategies. The stack output voltage under the ambient temperature
+of /C0 10 /C14 C and /C0 20 /C14 C is shown in Fig. 3 . The constant current
+density mode is adopted because it results in a relatively stable
+water generation rate, which contributes to the stack operation
+stability. The stack is successful to reach the freezing point tem-
+perature when started from /C0 10 /C14 C while it fails when started
+from /C0 20 /C14 C. For the successful cases, a higher operating current
+density largely accelerates the startup speed owing to the higher
+amount of generated heat. In the failed cases, the startup duration
+is around 80 s at 0.1 A cm /C0 2 while it only lasts for about 25 s with
+the current density of 0.2 A cm /C0 2. Since the stack is initially dry and
+the electro-osmotic drag effect becomes more signi ﬁcant with
+growing current densities, the membrane water content gradient
+between anode and cathode increases at 0.2 A cm /C0 2, leading to
+higher ohmic voltage losses and sharper output voltage drops in
+the beginning. Therefore, increasing the current density does not
+necessarily lead to enhanced cold start survivability because more
+water is simultaneously generated, which is likely to expedite the
+ice formation inside porous layers.
+The distribution of ice volume fraction in cathode catalyst layer
+(CL) along the channel direction inside a single fuel cell is shown in
+Fig. 4(a), and the ice distribution among different fuel cells is shown
+in Fig. 4(b). Note that each fuel cell is divided into ﬁve nodes in the
+channel direction to re ﬂect parameter variations from upstream to
+downstream, which is represented by the node number ranging
+from 1 to 5. The fuel cell 1 and 5 are particularly selected because
+they are positioned at the end and the middle of stack. In Fig. 4(a),
+there exist obvious ice volume fraction differences from the reac-
+tant inlet region to the outlet region. From node 2 to node 5, more
+ice is formed at the same startup time. The ice volume fraction in
+node 1 grows faster than that of node 2 and node 3. The main
+reason for above non-uniform ice formation rates is the variations
+of local current density, membrane water content, and temperature
+Fig. 2. Comparison of output voltage and ohmic voltage when started from /C0 15 /C14 C
+and /C0 20 /C14 C between experimental data [ 82] and simulation results.
+Fig. 3. Stack output voltage under unassisted startup from /C0 10/-20 /C14 C with the con-
+stant current density of 0.1/0.2 A cm /C0 2.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+7
+
+=== PAGE 8 ===
+in the channel direction. As shown in Fig. 4 (b), no apparent dif-
+ferences are observed between cell 1 and cell 5, demonstrating the
+same ice formation rates from the highest (in node 5) to the lowest
+(in node 2). Under the well heat insulation condition between stack
+and surroundings ( h ¼ 2Wm /C0 2 K/C0 1 in the presented cases), it is
+further inferred that there exist no remarkable output voltage
+variations and temperature variations among individual fuel cells
+during self-startup processes.
+3.3. Reactant gas heating method
+Since the stack is not able to successfully start from /C0 20 /C14 C,
+assisted startup strategies are adopted, including reactant gas
+heating method, stack heating method, and coolant heating
+method. Unless otherwise speci ﬁed, the initial stack temperature
+is /C0 20 /C14 C, and the current density is 0.1 A cm /C0 2 for all assisted
+startup cases. Fig. 5 (a) shows the stack output voltage under
+different controlling temperatures of humidi ﬁer and electro-
+chemical pump, which are arbitrarily kept at 0 /C14 C, 20 /C14 C, 40 /C14 C, and
+60 /C14 C during the whole startup process. For the four assisted cases,
+startup processes also end in failure although inlet reactant tem-
+peratures are signi ﬁcantly increased. In comparison, the assisted
+cases show slightly higher stack voltage in the ﬁrst 55 s but the
+startup processes fail more quickly. With the controlling tempera-
+ture rising from 0 /C14 Ct o6 0 /C14 C, the cold start duration is reduced
+from about 80 s to about 75 s. It is known that the voltage increase
+in the early stage of cold start process is typically attributed to the
+improved membrane hydration, which decreases the ohmic voltage
+loss [11,44]. Since the current density remains unchanged, the total
+water generation rate inside stack is considered constant. There-
+fore, it is inferred that more moisture is introduced into the stack by
+reactants when the temperature of membrane humidi ﬁer and
+electrochemical hydrogen pump are maintained at higher values.
+Note that a special case is presented in Fig. 5(a), which only involves
+the stack model and neglects auxiliary models. The inlet reactant
+temperature is set as 60 /C14 C, and the relative humidity is set as 0. It is
+found that the cold start duration is about 10 s longer than that of
+the aforementioned 60 /C14 C assisted case, and the deviation is
+calculated to be around 13.5%. Therefore, it is concluded that
+investigating the reactant gas heating method at the stack level
+Fig. 4. The distribution of ice volume fraction in cathode CL under unassisted startup from /C0 20 /C14 C, 0.1 A cm /C0 2. (a) In fuel cell 1. (b) In fuel cell 1 and 5.
+Fig. 5. Effects of reactant gas heating method on cold start performances, /C0 20 /C14 C, 0.1 A cm /C0 2. (a) Stack voltage. (b) Water vapor concentration at membrane humidi ﬁer dry channel
+outlet.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+8
+
+=== PAGE 9 ===
+overestimates the cold start survivability because it is unable to
+consider the disadvantageous moisture coupled with hot reactant
+gases at the authentic system level.
+The corresponding water vapor concentration at the outlet of
+humidiﬁer dry channel is presented in Fig. 5(b). It is observed that
+the vapor concentration is around 0.1 mol m /C0 3 in the beginning of
+0 /C14 C case while it reaches about 2.8 mol m /C0 3 in the case of 60 /C14 C.
+The differences are caused by the enhanced water transport inside
+membrane humidi ﬁer at higher operating temperatures. With the
+rise of temperature, the saturated vapor pressure increases expo-
+nentially [ 13]. Consequently, the water activity at humidi ﬁer dry
+side decreases, leading to lower equilibrium membrane water
+content. As a result, more membrane water turns into water vapor,
+which subsequently ﬂows out of the dry channel and enters the
+stack cathode channel. In the humidi ﬁer wet channel, the phase
+change from membrane water to vapor also exists owing to the
+great temperature difference between humidi ﬁer and stack cath-
+ode exhaust. Therefore, the membrane water content in humidi ﬁer
+keeps decreasing, resulting in the continuous drop of water vapor
+concentration as shown in Fig. 5 (b) . After around 40 s, the water
+vapor concentration in all cases are gradually stabilized at about
+0.2 mol m
+/C0 3. Based on the accelerated cold start failure, it is found
+that the advantages of reactant heating effect are not able to
+compensate for the disadvantages of increased stack inlet relative
+humidity when started from /C0 20 /C14 C. To further reveal the differ-
+ences of ice generation, the ice volume fraction in cathode CL of fuel
+cell 1 along the gas channel direction is presented in Fig. 6 . The
+node 1 and node 5 are selected because they represent the inlet and
+outlet region. Since the variations of ice formation in node 2, node
+3, and node 4 are found to be tiny, only the node 3 is shown. With
+the rise of controlled temperature, the ice generation rate increases
+obviously in node 1 and node 5 while it remains almost unchanged
+in node 3. In other words, the inlet regions are strongly affected by
+the adverse reactant relative humidity while the middle regions
+suffer minor disadvantageous in ﬂuences.
+The comparison of temperature distribution inside whole stack
+under the unassisted startup and the reactant gas heating method
+is presented in Fig. 7. It should be mentioned that stack dimensions
+in the ﬁgure are not to scale as real structural sizes. Several cold
+start moments are selected, which represent the whole startup
+duration. For the unassisted case, temperature variations among
+different fuel cells and along the channel direction are marginal. In
+a single cell, the temperature of membrane electrode assembly is
+observed to be slightly higher than other layers because the heat is
+generated through hydrogen-oxygen reactions in catalyst layers. By
+maintaining the humidi ﬁer and the electrochemical pump at high
+operating temperatures, more heat is carried by reactants into the
+stack. Take the 60 /C14 C case for an example, the additional heat source
+along with heated and humidi ﬁed air is calculated to be around
+1 1.5 W, which is expected to average about 1.15 W for a single fuel
+cell. For the hydrogen supply, the temperature of recycled hydrogen
+and water vapor is identical to that of electrochemical pump while
+the temperature of pure hydrogen from high-pressure tank is the
+same as surrounding temperature. Since the requested anode
+stoichiometry ratio is set as 1.2 (listed in Table 1), the hot and wet
+hydrogen by recirculation only occupies a small portion, leading to
+the fact that the additional heat carried by anode inlet gases is
+marginal. As shown in Fig. 7 , temperature differences between
+cathode inlet regions and other regions keep increasing from the
+beginning to the end. The difference is calculated to be around
+1.5 K at 10 s, 2.3 K at 20 s, and 3.0 K at 40 s. By the end of startup
+process, the temperature difference reaches as high as 4.4 K.
+Despite obvious temperature variations in the channel direction,
+the temperature distribution among all fuel cells is relatively uni-
+form. In summary, the effectiveness of reactant heating method is
+found unsatisfactory because the additional heat carried by gases is
+averaged to be extremely small for each individual cell. Besides, a
+large amount of moisture is simultaneously introduced to the stack
+owing to the increased temperature of membrane humidi ﬁer and
+electrochemical hydrogen pump. Although the stack inlet regions
+Fig. 6. Ice volume fraction in cathode CL of fuel cell 1 along the gas channel direction, /C0 20 /C14 C, 0.1 A cm /C0 2.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+9
+
+=== PAGE 10 ===
+beneﬁt from high reactant temperatures, they severely suffer from
+high reactant relative humidity, which may lead to expedited cold
+start failure.
+3.4. Stack heating method
+The stack voltage under different heating powers is shown in
+Fig. 8(a). It should be mentioned that the value of heating power in
+the ﬁgure represents the applied power for one end plate. The total
+stack heating power is twice as large as the above value. It is
+observed that the cold start process still fails with 10 W heating
+power while it succeeds if the heating power exceeds 20 W. The
+time when the lowest local temperature of cathode CL inside the
+whole stack reaches the freezing point temperature is around
+1 17.3 s under 20 W heating power, and it is reduced to approxi-
+mately 98.5 s at 40 W. The single cell voltage distribution with 10 W
+heating power is further shown in Fig. 8(b). Cell 1 and cell 10 show
+the highest voltage while cell 5 and cell 6 demonstrate the lowest
+output voltage. A symmetrical pattern is observed, indicating that
+the heating power is indeed applied to the two sides of stack. At the
+end of startup process, the voltage of cell 5 and cell 6 is reduced to
+below 0.3 V while the voltage of cell 4 and cell 7 is reduced to about
+Fig. 7. Temperature distribution inside the whole stack under the unassisted startup and the reactant gas heating method, /C0 20 /C14 C, 0.1 A cm /C0 2.
+Fig. 8. Effects of different heating powers on cold start performances, /C0 20 /C14 C, 0.1 A cm /C0 2. (a) Stack voltage. (b) Single cell voltage distribution with 10 W heating power.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+10
+
+=== PAGE 11 ===
+0.58 V. However, the voltage of cell 1, cell 2, cell 3, cell 8, cell 9, and
+cell 10 does not show obvious decrease. Therefore, it is inferred that
+the stack shutdown is caused by the startup failure of middle fuel
+cells while other cells are still operating normally. Under the con-
+dition, the variable heating and load control strategy previously
+proposed by our research group [ 60] may be applied.
+To reveal the detailed parameter distribution throughout the
+whole startup process, Fig. 9 shows the temperature variations
+among different fuel cells under 10 W heating power. Since the
+heating power is applied to end plates, the temperature of end cells
+is obviously higher than middle cells. However, no remarkable
+temperature variations are observed in the gas ﬂow direction inside
+a single cell. At 10 s, the temperature difference between end cells
+and middle cells is around 3.2 K. The difference grows to 4.8 K at
+20 s, 7.1 K at 40 s, 8.2 K at 60 s, and 9.8 K at the end of simulation.
+Note that electrochemical reactions are enhanced at higher oper-
+ating temperatures, leading to the results that output performances
+of end cells are better than that of middle cells and the corre-
+sponding voltage distinctions keep increasing until the cold start
+failure as shown in Fig. 8(b).
+The distribution of ice volume fraction in cathode CL at node 3
+with 10 W heating power is shown in Fig. 10. It is found that the ice
+volume fraction also follows an almost symmetrical pattern
+throughout the cold start process. For cell 1, the ice fraction reaches
+0.03 at 10 s, 0.12 at 20 s, 0.22 at 40 s, 0.28 at 60s, and 0.29 at 87 s. For
+cell 5, the ice volume fraction increases to 0.06 at 10 s, 0.23 at 20 s,
+0.54 at 40 s, 0.80 at 60s, and 0.99 at 87 s. It is obvious that cell 1, cell
+2, cell 9, and cell 10 are still far away from being fully blocked by ice
+at the end of simulation. Therefore, the successful startup of middle
+cells can be regarded as a crucial index for the successful cold start
+of whole stack. Table 6 lists the maximum ice volume fraction in
+cathode CL, maximum temperature difference, and cold start
+duration with different heating powers ranging from 0 W to 60 W.
+The maximum temperature difference is calculated between two
+componential layers within the entire stack, and the cold start
+duration is counted as the exact time when the lowest CL tem-
+perature reaches the freezing point temperature. With 20 W
+heating power, the startup duration is about 1 17.3 s, and the
+maximum temperature difference is about 22.0 K. By increasing the
+power from 20 W to 30 W, the cold start duration is reduced by
+10.7 s. Meanwhile, the startup duration is decreased by 8.1 s from
+30 W to 40 W, 6.2 s from 40 W to 50 W, and 5.4 s from 50 W to
+60 W, indicating that the degree of time reduction with every 10 W
+additional heating power is decreasing. Note that the maximum
+temperature difference is simultaneously increased to 33.6 K at
+30 W, 45.9 K at 40 W, 56.6 K at 50 W, and 67.7 K at 60 W. It is
+inferred that the cold start duration will not decrease anymore if
+the heating power reaches certain values, but the maximum tem-
+perature difference will keep rising if the heating power is further
+increased. The reason is that insuf ﬁcient thermal conductivities of
+fuel cell componential layers make it hard to rapidly transport the
+heat from end plates to middle fuel cells. Therefore, improving the
+thermal conductivity is of great importance to further accelerate
+the cold start process. Besides, the stack heating power should be
+Fig. 9. Temperature distribution among different fuel cells with 10 W heating power, /C0 20 /C14 C, 0.1 A cm /C0 2.
+Fig. 10. Distribution of ice volume fraction in cathode CL at node 3 with 10 W heating
+power, /C0 20 /C14 C, 0.1 A cm /C0 2.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+11
+
+=== PAGE 12 ===
+carefully selected because large temperature gradients among the
+stack result in disadvantageous thermal stresses while large ice
+volume fraction inside porous layers is likely to cause irreversible
+structural damages, which are both harmful for the stack durability.
+3.5. Coolant heating method
+Since coolant is able to absorb heat from the stack under normal
+operating temperatures, it is also possible for coolant to heat the
+stack under cold start conditions. By placing a heater in the heat
+management subsystem, the coolant temperature can be largely
+increased before ﬂowing into the stack. Fig. 1 1 shows the stack
+voltage under different coolant inlet temperatures. It is found that
+the stack voltage improves with higher coolant temperatures,
+which results from the enhanced fuel cell operating temperature.
+Although the stack still fails when the coolant temperature
+is /C0 10
+/C14 C, the cold start process succeeds when the temperature
+reaches /C0 5 /C14 C. In addition, the startup duration is reduced to about
+72.8 s if the coolant temperature further rises to 0 /C14 C. Table 7 lists
+the maximum ice volume fraction in cathode CL, maximum tem-
+perature difference, and cold start duration with different coolant
+inlet temperatures from /C0 10 /C14 Ct o2 0 /C14 C. Small temperature dif-
+ferences are observed, indicating that the temperature distribution
+is relatively uniform inside the whole stack. Unlike the stack
+heating method, the additional heat carried by coolant is evenly
+distributed into each fuel cells, which raises the stack temperature
+uniformly and rapidly. When the coolant inlet temperature is kept
+at 10 /C14 C, the ice formation can even be avoided, which is of great
+importance for cold start strategy optimizations. However, it should
+be noted that the power consumption for heating coolant is
+extremely large. Take the coolant composed of 50% glycol and 50%
+water for an example, the power requirement to raise 0.1 kg s /C0 1
+coolant from /C0 20 /C14 Ct o0 /C14 C is calculated to be around 6.2 kW.
+Therefore, it is unrealistic to merely rely on the stack output power
+to satisfy the power consumption, implying that secondary power
+sources are necessary for the coolant heating method.
+The ice volume fraction in cathode CL of fuel cell 1 is shown in
+Fig. 12 (a), and the corresponding CL temperature is shown in
+Fig. 12(b). The node 3 is selected because it represents the center
+region of fuel cell in channel direction. It is observed that the ice
+generation rate changes in the case of /C0 10 /C14 C since the curve slope
+is not constant. Before around 60 s, the slope keeps decreasing
+slightly, and it is smaller than that of the unassisted case. Subse-
+quently, the slope increases insigniﬁcantly, which indicates that the
+ice formation grows faster. In the case of /C0 5 /C14 C, the curve slope also
+changes throughout the whole process. As shown in Fig. 12(b), the
+CL temperature indeed increases much faster with the coolant
+heating method in comparison with the unassisted case. Note that
+the temperature difference between coolant and stack is large in
+the beginning, which correspondingly results in the high temper-
+ature increase rate. With the CL temperature rising, the curve slope
+drops, indicating a decreased temperature growing rate. As stated
+in the phase change mechanisms, the super-cooled water is
+generated if the membrane water gets saturated while the satu-
+rated membrane water content is dependent on the local temper-
+ature. The heat absorbed from the coolant accelerates the stack
+temperature increment, which decreases the difference between
+the membrane water content and the saturated content, leading to
+lower ice formation rates. Furthermore, if the membrane hydration
+rate through electrochemical reactions is hard to catch the growing
+rate of saturated membrane water content, the ice formation will be
+strongly suppressed.
+4. Conclusions
+In the study, an integrated proton exchange membrane fuel cell
+system model, which is composed of stack, membrane humidi ﬁer,
+electrochemical hydrogen pump, compressor, and radiator, is
+developed to investigate the cold start performances. The integra-
+tion of all sub-models has been presented in detail. All sub-models
+have been validated against experimental data, especially the
+pseudo two-dimensional stack sub-model. The unassisted cold
+start performances are ﬁrstly demonstrated. The stack is able to
+reach the freezing point temperature when started from /C0 10
+/C14 C
+while it fails when started from /C0 20 /C14 C. It is further observed that
+the ice volume fraction of cathode catalyst layer varies in the gas
+channel direction inside a single fuel cell. However, there exist no
+remarkable output voltage variations and temperature variations
+among individual fuel cells.
+Table 6
+Maximum ice volume fraction in cathode CL, maximum temperature difference, and cold start duration with different heating powers.
+Heating power (W) Maximum ice volume fraction in cathode CL Maximum temperature difference (K) Cold start duration (s)
+0 (Unassisted) 0.992 0.7 80.1 (failed)
+10 0.993 9.8 87.0 (failed)
+15 0.992 14.9 93.3 (failed)
+20 0.971 22.0 117.3
+25 0.942 27.7 112.2
+30 0.887 33.6 106.6
+40 0.789 45.9 98.5
+50 0.718 56.6 92.3
+60 0.664 67.7 86.9
+Fig. 1 1. Stack voltage under different coolant temperatures, /C0 20 /C14 C, 0.1 A cm /C0 2.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+12
+
+=== PAGE 13 ===
+To successfully start from /C0 20 /C14 C, various assisted startup
+strategies are subsequently investigated. The stack voltage, single
+cell voltage distribution, stack inlet relative humidity, ice volume
+fraction, temperature distribution, and cold start duration are
+comprehensively compared. Although the temperature of mem-
+brane humidi ﬁer and electrochemical hydrogen pump are main-
+tained at 60 /C14 C, the amount of additional heat carried by gases is
+averaged less than 1.2 W for each individual fuel cell. Note that a
+large amount of moisture is simultaneously introduced to the stack.
+It is found that the advantages of reactant heating effect are not able
+to compensate for the disadvantages of increased stack inlet rela-
+tive humidity, which may lead to expedited cold start failure. For
+stack heating method, the cold start process succeeds if the total
+heating power exceeds 40 W. Since the output performances of end
+fuel cells are better than middle cells, the successful startup of
+middle cells can be regarded as a crucial index for the whole stack.
+With heating power increasing from 20 W to 60 W, the cold start
+duration is reduced from 1 17.3 s to 86.9 s. However, the corre-
+sponding maximum temperature difference within whole stack is
+increased from 22.0 K to 67 .7 K. Therefore, improving the thermal
+conductivity of fuel cell materials is of great importance. For coolant
+heating method, the cold start succeeds when the coolant tem-
+perature reaches /C0 5
+/C14 C. The ice formation can even be avoided if
+the coolant inlet temperature is kept at 10 /C14 C. In addition, the
+temperature distribution is relatively uniform inside the whole
+stack. However, the power consumption for heating coolant is
+extremely large, and it is unrealistic to merely rely on the stack
+output power to satisfy the power requirement, implying that
+secondary power sources are necessary.
+Author statement
+Zirong Yang: Methodology, Software, Validation, Writing e
+original draft, Kui Jiao: Conceptualization, Resources, Writing e
+review & editing, Kangcheng Wu: Validation, Writing e review &
+editing, Weilong Shi: Writing e review & editing, Funding acqui-
+sition. Shangfeng Jiang: Writing e review & editing, Funding
+acquisition. Longhai Zhang: Writing e review & editing, Funding
+acquisition. Qing Du: Writing e review & editing, Supervision,
+Project administration
+Declaration of competing interest
+The authors declare that they have no known competing
+ﬁnancial interests or personal relationships that could have
+appeared to in ﬂuence the work reported in this paper.
+Acknowledgement
+This work is supported by the National Natural Science Foun-
+dation of China (grant No. 51976138) and the National Key Research
+and Development Program of China (2018YFB0105505).
+References
+[1] Nilsson M, Nykvist B. Governing the electric vehicle transition eNear term
+interventions to support a green energy economy. Appl Energy 2016;179:
+1360e71. https://doi.org/10.1016/j.apenergy.2016.03.056.
+[2] Nordel €of A, Messagie M, Tillman AM, Ljunggren S €oderman M, Van Mierlo J.
+Environmental impacts of hybrid, plug-in hybrid, and battery electric vehi-
+clesdwhat can we learn from life cycle assessment? Int J Life Cycle Assess
+2014;19:1866e90. https://doi.org/10.1007/s11367-014-0788-0.
+Table 7
+Maximum ice volume fraction in cathode CL, maximum temperature difference, and cold start duration with different coolant inlet temperatures.
+Coolant inlet temperature ( /C14 C) Maximum ice volume fraction in cathode CL Maximum temperature difference (K) Cold start duration (s)
+/C0 10 0.992 0.8 112.3 (failed)
+/C0 5 0.266 1.3 143.2
+0 0.036 0.8 72.8
+5 0.006 0.6 48.4
+10 <0.001 0.5 36.9
+20 <0.001 0.4 25.6
+Fig. 12. Cold start performances of fuel cell 1 under different coolant temperatures, /C0 20 /C14 C, 0.1 A cm /C0 2. (a) Ice volume fraction in cathode CL at node 3. (b) Temperature of cathode
+CL at node 3.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+13
+
+=== PAGE 14 ===
+[3] Yang Z, Wang B, Jiao K. Life cycle assessment of fuel cell, electric and internal
+combustion engine vehicles under different fuel scenarios and driving mile-
+ages in China. Energy 2020;198:117365. https://doi.org/10.1016/
+j.energy.2020.117365.
+[4] https://ssl.toyota.com/mirai/fcv.html. [Accessed 9 April 2020].
+[5] https://automobiles.honda.com/clarity-fuel-cell. [Accessed 9 April 2020].
+[6] https://www.hyundai.co.uk/new-cars/nexo. [Accessed 9 April 2020].
+[7] https://www.wardsauto.com/10-best-engines-propulsion-systems. [Accessed
+9 April 2020].
+[8] €Ozbek E, Yalin G, Ekici S, Karakoc TH. Evaluation of design methodology,
+limitations, and iterations of a hydrogen fuelled hybrid fuel cell mini UAV.
+Energy 2020;213:118757. https://doi.org/10.1016/j.energy.2020.118757.
+[9] Hsieh CY, Pei P, Bai Q, Su A, Weng FB, Lee CY. Results of a 200 hours lifetime
+test of a 7 kW Hybrid ePower fuel cell system on electric forklifts. Energy
+2021;214:118941. https://doi.org/10.1016/j.energy.2020.118941.
+[10] Wu P, Partridge J, Bucknall R. Cost-effective reinforcement learning energy
+management for plug-in hybrid fuel cell and battery ships. Appl Energy
+2020;275:115258. https://doi.org/10.1016/j.apenergy.2020.115258.
+[11] Luo Y, Jiao K. Cold start of proton exchange membrane fuel cell. Prog Energy
+Combust Sci 2018;64:29 e61. https://doi.org/10.1016/j.pecs.2017.10.003.
+[12] https://www.energy.gov/eere/fuelcells/doe-technical-targets-fuel-cell-
+systems-and-stacks-transportation-applications. [Accessed 12 April 2020].
+[13] Jiao K, Li X. Water transport in polymer electrolyte membrane fuel cells. Prog
+Energy Combust Sci 2011;37(3):221 e91. https://doi.org/10.1016/
+j.pecs.2010.06.002.
+[14] Pan W, Li P, Gan Q, Chen X, Wang F, Dai G. Thermal stability analysis of cold
+start processes in PEM fuel cells. Appl Energy 2020;261:114430. https://
+doi.org/10.1016/j.apenergy.2019.114430.
+[15] Yan Q, Toghiani H, Lee YW, Liang K, Causey H. Effect of sub-freezing tem-
+peratures on a PEM fuel cell performance, startup and fuel cell components.
+J Power Sources 2006;160(2):1242 e50. https://doi.org/10.1016/
+j.jpowsour.2006.02.075.
+[16] Kim S, Ahn BK, Mench MM. Physical degradation of membrane electrode
+assemblies undergoing freeze/thaw cycling: diffusion media effects. J Power
+Sources 2008;179:140 e6. https://doi.org/10.1016/j.jpowsour.2007.12.114.
+[17] Song W, Yu H, Hao L, Yi B, Shao Z. Effect of catalytic ink on sub-freezing
+endurance of PEMFCs. Int J Hydrogen Energy 2010;35(20):11129 e37.
+https://doi.org/10.1016/j.ijhydene.2010.07.041.
+[18] Zhao J, Li X. A review of polymer electrolyte membrane fuel cell durability for
+vehicular applications: degradation modes and experimental techniques.
+Energy Convers Manag 2019;199:112022. https://doi.org/10.1016/
+j.enconman.2019.112022.
+[19] Tabe Y, Yamada K, Ichikawa R, Aoyama Y, Suzuki K, Chikahisa T. ice formation
+processes in PEM fuel cell catalyst layers during cold startup analyzed by cryo-
+SEM. J Electrochem Soc 2016;163:10. https://doi.org/10.1149/2.1321609jes.
+[20] Ozden A, Shahgaldi S, Zhao J, Li X, Hamdullahpur F. Degradations in porous
+components of a proton exchange membrane fuel cell under freeze-thaw
+cycles: morphology and microstructure effects. Int J Hydrogen Energy
+2020;45(5):3618e31. https://doi.org/10.1016/j.ijhydene.2018.10.209.
+[21] Yu Y, Li H, Wang H, Yuan XZ, Wang G, Pan M. A review on performance
+degradation of proton exchange membrane fuel cells during startup and
+shutdown processes: causes, consequences, and mitigation strategies. J Power
+Sources 2012;205:10 e23. https://doi.org/10.1016/j.jpowsour.2012.01.059.
+[22] Wan Z, Chang H, Shu S, Wang Y, Tang H. A review on cold start of proton
+exchange membrane fuel cells. Energies 2014;7(5):3179 e203. https://doi.org/
+10.3390/en7053179.
+[23] Tajiri K, Tabuchi Y, Kagami F, Takahashi S, Yoshizawa K, Wang CY. Effects of
+operating and design parameters on PEFC cold start. J Power Sources
+2007;165(1):279e86. https://doi.org/10.1016/j.jpowsour.2006.12.017.
+[24] Li L, Wang S, Yue L, Wang G. Cold-start icing characteristics of proton-
+exchange membrane fuel cells. Int J Hydrogen Energy 2019;44(23):
+12033e42. https://doi.org/10.1016/j.ijhydene.2019.03.115.
+[25] Hou J, Yi B, Yu H, Hao L, Song W, Fu Y, et al. Investigation of resided water
+effects on PEM fuel cell after cold start. Int J Hydrogen Energy 2007;32(17):
+4503e9. https://doi.org/10.1016/j.ijhydene.2007.05.004.
+[26] Pistono AO, Rice CA. Subzero water distribution in proton exchange mem-
+brane fuel cells: effects of preconditioning method. Int J Hydrogen Energy
+2019;44(39):22098e109. https://doi.org/10.1016/j.ijhydene.2019.06.101.
+[27] Jiao K, Alaefour IE, Karimi G, Li X. Cold start characteristics of proton exchange
+membrane fuel cells. Int J Hydrogen Energy 2011;36(18):11832 e45. https://
+doi.org/10.1016/j.ijhydene.2011.05.101.
+[28] Santamaria AD, Bachman J, Park JW. Cold-start of parallel and Interdigitated
+ﬂow-ﬁeld polymer electrolyte membrane fuel cell. Electrochim Acta
+2013;107:327e38. https://doi.org/10.1016/j.electacta.2013.03.164.
+[29] Lin R, Ren YS, Lin XW, Jiang ZH, Yang Z, Chang YT. Investigation of the internal
+behavior in segmented PEMFCs of different ﬂow ﬁelds during cold start
+process. Energy 2017;123:367 e77. https://doi.org/10.1016/
+j.energy.2017.01.138.
+[30] Xie X, Zhang G, Zhou J, Jiao K. Experimental and theoretical analysis of ion-
+omer/carbon ratio effect on PEM fuel cell cold start operation. Int J Hydrogen
+Energy 2017;42(17):12521 e30. https://doi.org/10.1016/
+j.ijhydene.2017.02.183.
+[31] Jiao K, Alaefour IE, Karimi G, Li X. Simultaneous measurement of current and
+temperature distributions in a proton exchange membrane fuel cell during
+cold start processes. Electrochim Acta 2011;56(8):2967 e82. https://doi.org/
+10.1016/j.electacta.2011.01.019.
+[32] Lin R, Zhu Y, Ni M, Jiang Z, Lou D, Han L, et al. Consistency analysis of polymer
+electrolyte membrane fuel cell stack during cold start. Appl Energy 2019;241:
+420e32. https://doi.org/10.1016/j.apenergy.2019.03.091.
+[33] Ge S, Wang CY. In situ imaging of liquid water and ice formation in an
+operating PEFC during cold start. Electrochem Solid-State Lett 2006;9:11.
+https://doi.org/10.1149/1.2337860.
+[34] Ishikawa Y, Hamada H, Uehara M, Shiozawa M. Super-cooled water behavior
+inside polymer electrolyte fuel cell cross-section below freezing temperature.
+J Power Sources 2008;179(2):547 e52. https://doi.org/10.1016/
+j.jpowsour.2008.01.031.
+[35] Hirakata S, Hara M, Kakinuma K, Uchida M, Tryk DA, Uchida H, et al. Inves-
+tigation of the effect of a hydrophilic layer in the gas diffusion layer of a
+polymer electrolyte membrane fuel cell on the cell performance and cold start
+behaviour. Electrochim Acta 2014;120:240 e7. https://doi.org/10.1016/
+j.electacta.2013.12.050.
+[36] Li J, Lee S, Roberts J. Ice formation and distribution in the catalyst layer during
+freeze-start process - CRYO-SEM investigation. Electrochim Acta 2008;53(16):
+5391e6. https://doi.org/10.1016/j.electacta.2008.02.077.
+[37] Tabe Y, Saito M, Fukui K, Chikahisa T. Cold start characteristics and freezing
+mechanism dependence on start-up temperature in a polymer electrolyte
+membrane fuel cell. J Power Sources 2012;208:366 e73. https://doi.org/
+10.1016/j.jpowsour.2012.02.052.
+[38] Zhong D, Lin R, Jiang Z, Zhu Y, Liu D, Cai X, et al. Low temperature durability
+and consistency analysis of proton exchange membrane fuel cell stack based
+on comprehensive characterizations. Appl Energy 2020;264:114626. https://
+doi.org/10.1016/j.apenergy.2020.114626.
+[39] Sundaresan M, Moore RM. Polymer electrolyte fuel cell stack thermal model
+to evaluate sub-freezing startup. J Power Sources 2005;145(2):534 e45.
+https://doi.org/10.1016/j.jpowsour.2004.12.070.
+[40] Mao L, Wang C-Y. Analysis of cold start in polymer electrolyte fuel cells.
+J Electrochem Soc 2007;154:2. https://doi.org/10.1149/1.2402123.
+[41] Khandelwal M, Lee S, Mench MM. One-dimensional thermal model of cold-
+start in a polymer electrolyte fuel cell stack. J Power Sources 2007;172(2):
+816e30. https://doi.org/10.1016/j.jpowsour.2007.05.028.
+[42] Luo Y, Jiao K, Jia B. Elucidating the constant power, current and voltage cold
+start modes of proton exchange membrane fuel cell. Int J Heat Mass Tran
+2014;77:489e500. https://doi.org/10.1016/j.ijheatmasstransfer.2014.05.050.
+[43] Yang Z, Du Q, Huo S, et al. Effect of membrane electrode assembly design on
+the cold start process of proton exchange membrane fuel cells. Int J Hydrogen
+Energy 2017;42(40):25372 e87. https://doi.org/10.1016/
+j.ijhydene.2017.08.106.
+[44] Huo S, Jiao K, Park JW. On the water transport behavior and phase transition
+mechanisms in cold start operation of PEM fuel cell. Appl Energy 2019;233-
+234:776e88. https://doi.org/10.1016/j.apenergy.2018.10.068.
+[45] Meng H. Numerical analyses of non-isothermal self-start behaviors of PEM
+fuel cells from subfreezing startup temperatures. Int J Hydrogen Energy
+2008;33(20):5738e47. https://doi.org/10.1016/j.ijhydene.2008.07.042.
+[46] Wu K, Xie X, Wang B, Yang Z, Du Q, Xuan J, et al. Two-dimensional simulation
+of cold start processes for proton exchange membrane fuel cell with different
+hydrogen ﬂow arrangements. Int J Hydrogen Energy 2020;45(35):
+17795e812. https://doi.org/10.1016/j.ijhydene.2020.04.187.
+[47] Jiao K, Li X. Effects of various operating and initial conditions on cold start
+performance of polymer electrolyte membrane fuel cells. Int J Hydrogen En-
+ergy 2009;34(19):8171 e84. https://doi.org/10.1016/j.ijhydene.2009.07.102.
+[48] Luo Y, Guo Q, Du Q, Yin Y, Jiao K. Analysis of cold start processes in proton
+exchange membrane fuel cell stacks. J Power Sources 2013;224:99 e114.
+https://doi.org/10.1016/j.jpowsour.2012.09.089.
+[49] Yao L, Peng J, Zhang J, Zhang Y. Numerical investigation of cold-start behavior
+of polymer electrolyte fuel cells in the presence of super-cooled water. Int J
+Hydrogen Energy 2018;43(32):15505 e
+20. https://doi.org/10.1016/
+j.ijhydene.2018.06.112.
+[50] Pourrahmani H, Siavashi M, Moghimi M. Design optimization and thermal
+management of the PEMFC using arti ﬁcial neural networks. Energy 2019;182:
+443e59. https://doi.org/10.1016/j.energy.2019.06.019.
+[51] Wang B, Zhang G, Wang H, Xuan J, Jiao K. Multi-physics-resolved digital twin
+of proton exchange membrane fuel cells with a data-driven surrogate model.
+Energy AI 2020;1:100004. https://doi.org/10.1016/j.egyai.2020.100004.
+[52] Wang Y, Seo B, Wang B, Zamel N, Jiao K, Adroher X. Fundamentals, materials,
+and machine learning of polymer electrolyte membrane fuel cell technology.
+Energy AI 2020;1:100014. https://doi.org/10.1016/j.egyai.2020.100014.
+[53] Fathy A, Rezk H. Multi-verse optimizer for identifying the optimal parameters
+of PEMFC model. Energy 2018;143:634 e44. https://doi.org/10.1016/
+j.energy.2017.11.014.
+[54] Yang Z, Liu Q, Zhang L, Dai J, Razmjooy N. Model parameter estimation of the
+PEMFCs using improved Barnacles Mating Optimization algorithm. Energy
+2020;212:118738. https://doi.org/10.1016/j.energy.2020.118738.
+[55] Hirakata S, Hara M, Kakinuma K, Uchida M, Tryk DA, Uchida H, et al. Inves-
+tigation of the effect of a hydrophilic layer in the gas diffusion layer of a
+polymer electrolyte membrane fuel cell on the cell performance and cold start
+behavior. Electrochim Acta 2014;120:240 e7. https://doi.org/10.1016/
+j.electacta.2013.12.050.
+[56] Alrwashdeh SS, Mark €otter H, Haußmann J, Arlt T, Klages M, Scholta J, et al.
+Investigation of water transport dynamics in polymer electrolyte membrane
+fuel cells based on high porous micro porous layers. Energy 2016;102:161 e5.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+14
+
+=== PAGE 15 ===
+https://doi.org/10.1016/j.energy.2016.02.075.
+[57] Xie X, Wang R, Jiao K, Zhang G, Zhou J, Du Q. Investigation of the effect of
+micro-porous layer on PEM fuel cell cold start operation. Renew Energy
+2018;117:125e34. https://doi.org/10.1016/j.renene.2017.10.039.
+[58] Pistono AO, Rice CA. Subzero water distribution in proton exchange mem-
+brane fuel cells: effects of preconditioning method. Int J Hydrogen Energy
+2019;44(39):22098e109. https://doi.org/10.1016/j.ijhydene.2019.06.101.
+[59] Du Q, Jia B, Luo Y, Chen J, Zhou Y, Jiao K. Maximum power cold start mode of
+proton exchange membrane fuel cell. Int J Hydrogen Energy 2014;39(16):
+8390e400. https://doi.org/10.1016/j.ijhydene.2014.03.056.
+[60] Zhou Y, Luo Y, Yu S, Jiao K. Modeling of cold start processes and performance
+optimization for proton exchange membrane fuel cell stacks. J Power Sources
+2014;247:738e48. https://doi.org/10.1016/j.jpowsour.2013.09.023.
+[61] Amamou A, Kandidayeni M, Boulon L, Kelouwani S. Real time adaptive ef ﬁ-
+cient cold start strategy for proton exchange membrane fuel cells. Appl En-
+ergy 2018;216:21 e30. https://doi.org/10.1016/j.apenergy.2018.02.071.
+[62] Knorr F, Sanchez DG, Schirmer J, Gazdzicki P, Friedrich KA. Methanol as
+antifreeze agent for cold start of automotive polymer electrolyte membrane
+fuel cells. Appl Energy 2019;238:1 e10. https://doi.org/10.1016/
+j.apenergy.2019.01.036.
+[63] Zhan Z, Yuan C, Hu Z, Wang H, Sui PC, Djilali N, et al. Experimental study on
+different preheating methods for the cold-start of PEMFC stacks. Energy
+2018;162:1029e40. https://doi.org/10.1016/j.energy.2018.08.003.
+[64] Li L, Wang S, Yue L, Wang G. Cold-start method for proton-exchange mem-
+brane fuel cells based on locally heating the cathode. Appl Energy 2019;254:
+113716. https://doi.org/10.1016/j.apenergy.2019.113716.
+[65] Lin W, Ahmed MD, Jiang F. Effects of reactants/coolant non-uniform in ﬂow on
+the cold start performance of PEMFC stack. Int J Hydrogen Energy
+2020;45(24):13469e82. https://doi.org/10.1016/j.ijhydene.2020.03.031.
+[66] Guo Q, Luo Y, Jiao K. Modeling of assisted cold start processes with anode
+catalytic hydrogen eoxygen reaction in proton exchange membrane fuel cell.
+Int J Hydrogen Energy 2013;38(2):1004 e15. https://doi.org/10.1016/
+j.ijhydene.2012.10.067.
+[67] Guo H, Sun S, Yu H, Lu L, Xu H, Shao Z. Proton exchange membrane fuel cell
+subzero start-up with hydrogen catalytic reaction assistance. J Power Sources
+2019;429:180e7. https://doi.org/10.1016/j.jpowsour.2019.02.092.
+[68] Limbeck U. Method to cold-start fuel cell system at sub-zero temperatures. US
+Patent 8,841,040. 2014. p. 9-23.
+[69] Yang Z, Du Q, Jia Z, Yang C, Jiao K. Effects of operating conditions on water and
+heat management by a transient multi-dimensional PEMFC system model.
+Energy 2019;183:462 e76. https://doi.org/10.1016/j.energy.2019.06.148.
+[70] Yang Z, Du Q, Jia Z, Yang C, Xuan J, Jiao K. A comprehensive proton exchange
+membrane fuel cell system model integrating various auxiliary subsystems.
+Appl Energy 2019;256:113959. https://doi.org/10.1016/
+j.apenergy.2019.113959.
+[71] Xu J, Zhang C, Fan R, Bao H, Wang Y, Huang S, et al. Modelling and control of
+vehicle integrated thermal management system of PEM fuel cell vehicle. En-
+ergy 2020;199:117495. https://doi.org/10.1016/j.energy.2020.117495
+.
+[72] Amirfazli A, Asghari S, Sarraf M. An investigation into the effect of manifold
+geometry on uniformity of temperature distribution in a PEMFC stack. Energy
+2018;145:141e51. https://doi.org/10.1016/j.energy.2017.12.124.
+[73] Zhang G, Yuan H, Wang Y, Jiao K. Three-dimensional simulation of a new
+cooling strategy for proton exchange membrane fuel cell stack using a non-
+isothermal multiphase model. Appl Energy 2019;255:113865. https://
+doi.org/10.1016/j.apenergy.2019.113865.
+[74] Yang Z, Jiao K, Liu Z, Yin Y, Du Q. Investigation of performance heterogeneity
+of PEMFC stack based on 1 þ1D and ﬂow distribution models. Energy Convers
+Manag 2020;207:112502. https://doi.org/10.1016/j.enconman.2020.112502.
+[75] Spiegel C. PEM fuel cell modeling and simulation using MATLAB. Elsevier;
+2011.
+[76] Zhao J, Li X. Oxygen transport in polymer electrolyte membrane fuel cells
+based on measured electrode pore structure and mass transport properties.
+Energy Convers Manag 2019;186:570 e85. https://doi.org/10.1016/
+j.enconman.2019.02.042.
+[77] Houreh NB, Shokouhmand H, Afshari E. Effect of inserting obstacles in ﬂow
+ﬁeld on a membrane humidi ﬁer performance for PEMFC application: a CFD
+model. Int J Hydrogen Energy 2019;44(57):30420 e39. https://doi.org/
+10.1016/j.ijhydene.2019.09.189.
+[78] Atyabi SA, Afshari E, Abdollahzadeh Jamalabadi MY. Three-dimensional
+multiphase ﬂow modeling of membrane humidi ﬁer for PEM fuel cell appli-
+cation. Int J Numer Methods Heat Fluid Flow 2019;30(1). https://doi.org/
+10.1108/HFF-03-2019-0263.
+[79] Toghyani S, Afshari E, Baniasadi E. A parametric comparison of three fuel
+recirculation system in the closed loop fuel supply system of PEM fuel cell. Int
+J Hydrogen Energy 2019;44(14):7518 e30. https://doi.org/10.1016/
+j.ijhydene.2019.01.260.
+[80] Toghyani S, Afshari E, Baniasadi E. Parametric study of a proton exchange
+membrane compressor for electrochemical hydrogen storage using numerical
+assessment. J Energy Storage 2020;30:101469. https://doi.org/10.1016/
+j.est.2020.101469.
+[81] Liu Z, Li L, Ding Y, et al. Modeling and control of an air supply system for a
+heavy duty PEMFC engine. Int J Hydrogen Energy 2016;41(36):16230 e9.
+https://doi.org/10.1016/j.ijhydene.2016.04.213.
+[82] Xie X, Zhu M, Wu S, Tongsh C, Sun X, Wang B, et al. Investigation of me-
+chanical vibration effect on proton exchange membrane fuel cell cold start. Int
+J Hydrogen Energy 2020;45(28):14528 e38. https://doi.org/10.1016/
+j.ijhydene.2020.03.181.
+Z. Yang, K. Jiao, K. Wu et al. Energy 222 (2021) 1 19910
+15

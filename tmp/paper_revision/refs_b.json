@@ -1,0 +1,99 @@
+[
+  {
+    "file": "111(1).pdf",
+    "key": "yang2021assisted",
+    "authors": "Zirong Yang; Kui Jiao; Kangcheng Wu; Weilong Shi; Shangfeng Jiang; Longhai Zhang; Qing Du",
+    "bibitem": "\\bibitem{yang2021assisted} Yang Z, Jiao K, Wu K, et al. Numerical investigations of assisted heating cold start strategies for proton exchange membrane fuel cell systems[J]. Energy, 2021, 222: 119910. \\href{https://doi.org/10.1016/j.energy.2021.119910}{DOI: 10.1016/j.energy.2021.119910}.",
+    "anchor": "因此，需要通过外部辅助热源弥补冷启动过程中的热量缺口",
+    "location": "6.1，第1段末句",
+    "pages": "PDF第1页摘要、第12--13页结论",
+    "supports": "外部辅助加热能补偿低温自启动热量不足；比较反应气预热、电堆加热和冷却液加热。",
+    "limits": "不能用本文数据支持我们-30℃、3214.20/2975.26 J或端部必为最冷等独立结果。",
+    "anchor_count_in_original": 1
+  },
+  {
+    "file": "222(1).pdf",
+    "key": "yang2022efficient",
+    "authors": "Xiaokang Yang; Jiaqi Sun; Shucheng Sun; Zhigang Shao",
+    "bibitem": "\\bibitem{yang2022efficient} Yang X, Sun J, Sun S, et al. An efficient cold start strategy for proton exchange membrane fuel cell stacks[J]. Journal of Power Sources, 2022, 542: 231492. \\href{https://doi.org/10.1016/j.jpowsour.2022.231492}{DOI: 10.1016/j.jpowsour.2022.231492}.",
+    "anchor": "加载过程中产水、结冰和热负荷持续变化，因此控制器需要协调低温加热、风险响应和近目标降功率",
+    "location": "7.1，第2段末尾",
+    "pages": "PDF第1页摘要、第10页结论（尤其结论4）",
+    "supports": "加热功率需匹配堆温，兼顾启动安全、速度和能耗，避免过热功率或不足功率。",
+    "limits": "只支持加热功率与热状态匹配的控制动机，不能指为我们分片PI、观测器或特定退热控制律来源。若担心引用范围，改为同段“加载过程中产水、结冰和热负荷持续变化”后插入引用。",
+    "anchor_count_in_original": 1
+  },
+  {
+    "file": "333(1).pdf",
+    "key": "min2022current",
+    "authors": "Haitao Min; Qiming Cao; Yunbin Yu; Zhaopu Zhang; Jiabo Lin",
+    "bibitem": "\\bibitem{min2022current} Min H, Cao Q, Yu Y, et al. A cold start mode of proton exchange membrane fuel cell based on current control[J]. International Journal of Hydrogen Energy, 2022, 47: 5507--5520. \\href{https://doi.org/10.1016/j.ijhydene.2021.11.139}{DOI: 10.1016/j.ijhydene.2021.11.139}.",
+    "anchor": "提高加载电流可增加反应热，也会增加产水",
+    "location": "1.1，第3段第1句分号前",
+    "pages": "PDF第1页摘要与引言、第3页Thermal analysis of cold-start processes",
+    "supports": "电流控制需要协调产热与产水结冰，采用冰体积和膜吸热控制加载；比较恒流与线性加载。",
+    "limits": "不可引用其模糊控制数值来证明本稿策略排序。",
+    "anchor_count_in_original": 1
+  },
+  {
+    "file": "55(1).pdf",
+    "key": "otsuki2020",
+    "authors": "Yota Otsuki; Yusuke Tamada; Shoki Inoue; Kaito Shigemasa; Takuto Araki",
+    "bibitem": "\\bibitem{otsuki2020} Otsuki Y, Tamada Y, Inoue S, et al. Measurement of solidification heat from supercooled water freezing during PEFC cold start and visualization of ice distribution[J]. International Journal of Hydrogen Energy, 2020, 45: 15600--15610. \\href{https://doi.org/10.1016/j.ijhydene.2020.04.004}{DOI: 10.1016/j.ijhydene.2020.04.004}.",
+    "anchor": "冷凝、冻结和凝华释放热量，而蒸发、融化和升华吸收热量",
+    "location": "4.2.4“水–冰相变潜热”首句",
+    "pages": "PDF第1页摘要、第5页实验、第10页结论",
+    "supports": "薄膜热电偶测得过冷水凝固释放热量及温度跃升，并用X射线CT观察冰分布；为显式计入冻结潜热提供实验依据。",
+    "limits": "该论文直接实测的是冻结释热，不是本稿全部六类相变系数或固定潜热数值的来源；更精确可在“冻结”后引用，但句读不佳。",
+    "anchor_count_in_original": 1
+  },
+  {
+    "file": "66(1).pdf",
+    "key": "tao2022reduction",
+    "authors": "Jianjian Tao; Xuezhe Wei; Pingwen Ming; Xueyuan Wang; Shangfeng Jiang; Haifeng Dai",
+    "bibitem": "\\bibitem{tao2022reduction} Tao J, Wei X, Ming P, et al. Order reduction, simplification and parameters identification for cold start model of PEM fuel cell[J]. Energy Conversion and Management, 2022, 274: 116465. \\href{https://doi.org/10.1016/j.enconman.2022.116465}{DOI: 10.1016/j.enconman.2022.116465}.",
+    "anchor": "关键是建立温度、水冰状态与电化学性能之间的动态耦合",
+    "location": "4.1，第2段末句",
+    "pages": "PDF第1页摘要、第14--15页结论",
+    "supports": "建立一维瞬态物质、热、电荷、水相变耦合模型并简化降阶，以实验识别参数并服务状态估计和控制。",
+    "limits": "不要用来支持本稿具体不可冻膜水阈值、相变速率或独立验证误差。",
+    "anchor_count_in_original": 1
+  },
+  {
+    "file": "77(1).pdf",
+    "key": "lei2022loading",
+    "authors": "Le Lei; Pu He; Peng He; Wen-Quan Tao",
+    "bibitem": "\\bibitem{lei2022loading} Lei L, He P, He P, et al. A comparative study: The effect of current loading modes on the cold start-up process of PEMFC stack[J]. Energy Conversion and Management, 2022, 251: 114991. \\href{https://doi.org/10.1016/j.enconman.2021.114991}{DOI: 10.1016/j.enconman.2021.114991}.",
+    "anchor": "分段阶梯策略利用多个常值电流阶段逼近更一般的时变加载曲线",
+    "location": "5.3.1，分段阶梯加载策略首句",
+    "pages": "PDF第1页摘要、第15页结论，正文五种电流加载模式",
+    "supports": "比较恒流、定斜率/变斜率升载、锯齿与阶梯加载，说明阶梯电流为冷启动策略可选参数化。",
+    "limits": "作者Pu He和Peng He缩写均为He P，属正确非误抄；为避免读者疑惑可列全作者为Lei L, He Pu, He Peng, Tao W Q。文献阶梯最优的排序不适用于本稿最大恒流最优结果。",
+    "anchor_count_in_original": 1
+  },
+  {
+    "file": "88(1).pdf",
+    "key": "liu2025ramping",
+    "authors": "Guoqiu Liu; Lei Xian; Lei Chen; Wen-Quan Tao",
+    "bibitem": "\\bibitem{liu2025ramping} Liu G, Xian L, Chen L, et al. Development and evaluation of a novel two-stage exponential current ramping strategy for low-temperature self-cold start of PEM fuel cells[J]. Energy Conversion and Management, 2025, 346: 120466. \\href{https://doi.org/10.1016/j.enconman.2025.120466}{DOI: 10.1016/j.enconman.2025.120466}.",
+    "anchor": "提高电流同时增加反应产热与产水，前者促进升温，后者可能增加冻结及极化损失",
+    "location": "5.1，第2段第2句，分号前",
+    "pages": "PDF第1页摘要、第9页冰量分析、第11--12页结论",
+    "supports": "在相同电荷下比较线性、指数、两阶段指数加载，说明产水和产热时序决定冰增长、电压变化、升温均匀性。",
+    "limits": "不将两阶段指数策略的独立数值或排序套用到本稿。",
+    "anchor_count_in_original": 1
+  },
+  {
+    "file": "99(1).pdf",
+    "duplicate_of": "6.pdf",
+    "key": "ma2026",
+    "authors": "Tiancai Ma; Chang Du; Ziheng Gu; Weikang Lin; Yuewen Zeng; Julong Zhou; Yahui Yi; Naiyuan Yao; Liqin Qian; Lei Shi; Ruitao Li",
+    "bibitem": "\\bibitem{ma2026} Ma T, Du C, Gu Z, et al. Diagnosing the cold start failure of fuel cell system: End-plate cell\\textquotesingle s thermo-hydraulic imbalance and its mitigation through loading control[J]. Chemical Engineering Journal, 2026, 538: 176737. \\href{https://doi.org/10.1016/j.cej.2026.176737}{DOI: 10.1016/j.cej.2026.176737}.",
+    "anchor": "电堆中片间导热、端板热容和边界换热进一步造成温升差异，端部单电池更容易出现升温滞后和局部结冰",
+    "location": "1.1，第2段末句；由refs_a统筹",
+    "pages": "PDF第1页摘要/引言",
+    "supports": "端部热水失衡、末段冰堵和单片电压下降是实验失败机理；加载控制可减轻端部效应。",
+    "limits": "与6.pdf同篇，不重复列条目；bibitem题名的英文撇号可直接用ASCII单引号，避免引入宏需求。",
+    "anchor_count_in_original": 1
+  }
+]

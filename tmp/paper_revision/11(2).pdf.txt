@@ -1,0 +1,1768 @@
+
+=== PDF PAGE 1 ===
+Contents lists available at ScienceDirect
+Applied Energy
+journal homepage: www.elsevier.com/locate/apenergy
+On the water transport behavior and phase transition mechanisms in cold
+start operation of PEM fuel cell
+Sen Huo a, Kui Jiao a,⁎
+, Jae Wan Park b,⁎
+a State Key Laboratory of Engines, Tianjin University, 135 Yaguan Rd, Tianjin 300350, China
+b Department of Mechanical and Aerospace Engineering, University of California, One Shields Ave., Davis, CA 95618, USA
+HIGHLIGHTS
+ Analytical dynamic modeling for cold start of PEM fuel cell is presented.
+ Three phase change mechanisms are proposed based on the product water states.
+ Transport behavior of the recent reported super-cooled water is performed.
+ Membrane water serves as the reasonable state of water production in the model.
+ Assumptions on the liquid water and vapor production should be cautiously used.
+ARTICLE INFO
+Keywords:
+Proton exchange membrane fuel cell
+Cold start
+Phase transition mechanism
+Super-cooled water
+ABSTRACT
+An analytical dynamic model is proposed to predict the cold start behavior of proton exchange membrane (PEM)
+fuel cell. Water phase transition mechanisms have been reconstructed based on the ﬁve states of water migrating
+in the fuel cell, composed of water vapor, super-cooled water (liquid water), ice, membrane water (water dis-
+solved in solid electrolyte) and frozen membrane water, in order to explore the reasonable water production and
+phase transition mechanism. The general water transfer behavior during cold start operation of PEM fuel cell
+ﬁnally evolves into four stages: (1) unsaturated water in ionomer and membrane water production; (2) water in
+ionomer reaching saturation; (3) over-saturated water in ionomer and quick desorption into liquid and vapor in
+pores; and (4) signi ﬁcant ice formation. Both non-equilibrium and equilibrium methods to simulate phase
+transition have been carried out to reveal water transport characteristics in the cold start operation. The as-
+sumptions associated with the liquid water and vapor production in the electrochemical reaction extensively
+involved in the previous modeling studies in the literature should be cautiously used, especially for the dynamic
+modeling studies. It is worthwhile addressing that the liquid water inside the cathode CL follows the slow
+increasing and rapid decreasing trend during the cold start operation, which indicates that the liquid water
+should mostly freeze at the shut-down moment. Furthermore, water prefers to freeze on the interface between
+catalyst layer (CL) and micro-porous layer (MPL), leading to the liquid water accumulation here migrating
+towards the membrane side.
+1. Introduction
+Proton exchange membrane (PEM) fuel cell has been attracting
+much attention as one of the most promising power plants for portable,
+stationary, aerospace and military applications due to its low to zero
+emission, ﬂexible size, high energy conversion e ﬃ ciency and low op-
+erating noise [1]. For the widespread adoption, enough lifetime and
+reliable operation of PEM fuel cell under a wide range of environments
+should be realized [2,3]. It is inevitable for PEM fuel cell operating at
+subfreezing temperatures. The byproduct water could freeze im-
+mediately as the temperature falls down to subfreezing level, which
+deﬁnitely brings about reaction kinetics degradation, porous structure
+damage and startup failure [4]. Therefore, a solid understanding of cold
+start behavior is critical to reinforce the comprehensive operational
+reliability of PEM fuel cell [5].
+To ﬁgure out the interaction of mass and heat transfer mechanism
+and the operational characteristics of PEM fuel cell during cold start,
+experimental measurement and modeling simulation is generally
+https://doi.org/10.1016/j.apenergy.2018.10.068
+Received 24 April 2018; Received in revised form 13 October 2018; Accepted 23 October 2018
+⁎ Corresponding authors.
+E-mail addresses: kjiao@tju.edu.cn (K. Jiao), jwpark@ucdavis.edu (J.W. Park).
+Applied Energy 233–234 (2019) 776–788
+Available online 30 October 2018
+0306-2619/ © 2018 Elsevier Ltd. All rights reserved.
+T
+
+=== PDF PAGE 2 ===
+imperative. In the last decade, extensive e ﬀorts have been implemented
+for elucidating the cold start characteristics and startup strategies from
+various aspects. Three di ﬀerent ﬂow ﬁelds were designed by Lin et al. to
+study their e ﬀect on the cold start behavior of PEM fuel cell [6]. They
+also reported that successful cold start leads to insigni ﬁcant degrada-
+tion of cell performance, whereas failed startup gives rise to gradual
+performance degradation [7]. Segmented fuel cell was employed by
+them to capture the internal current density and temperature dis-
+tribution in the PEM fuel cell to better understand the cold start be-
+havior [8]. Various stages of cold start procedure of PEM fuel cell were
+deﬁned by Gwak et al., including ice growth, ice accumulation with
+under-saturated vapor, membrane hydration, ice melting and mem-
+brane degeneration [9]. Ex-situ scanning electron microscope (SEM)
+was performed by Tabe et al. to further reveal the ice growth inside the
+porous electrodes during the cold start tests of PEM fuel cell [10].A
+numerical study was carried out by Ko et al. to investigate the e ﬀect of
+catalyst layer (CL) design parameters, including the ionomer fraction
+and weight ratio of Pt to the carbon support, on the cold start capability
+of PEM fuel cell [11]. Experimental work was also implemented for
+comprehensively study the fundamental cold start characteristics cor-
+related with various cell design parameters and control strategy
+[12,13]. Multi-dimensional cold start models were developed by Meng
+[14] and Jiao [15] to elucidate the fundamental physics inside the cell
+during cold start operation with several key in ﬂuential parameters, e.g.
+initial water content in membrane, current density, startup temperature
+and water vapor content in cathode channel.
+Based on the fundamental researches on the cold start behavior of
+PEM fuel cell, series of startup strategies and optimized cell designs are
+further developed. An e ﬃ cient startup scenario was proposed to
+achieve rapid cold startup of PEM fuel cell through regulating the op-
+erating current during the operation [16]. Furthermore, micro-porous
+layer (MPL) was also used by them to optimize the ice storage ability of
+the electrode into MPL region for enhancement of cold start perfor-
+mance [17]. A novel method through variable heating and load control
+was put forward by Zhou et al. to activate the dead individual cells in
+the cold start operation of fuel cell stacks [18]. Metal foam cathode ﬂow
+ﬁeld was also fabricated to replace the conventional parallel channel in
+PEM fuel cell. Bene ﬁt from its extremely porous structure, the resultant
+cold startup behavior was signi ﬁcantly strengthened [19]. The me-
+chanism of direct catalytic hydrogen-oxygen reaction in anode was
+stated by Luo et al. to assist warm up the PEM fuel cell under cold start
+operation [20], which also implies that the cross leakage current caused
+by the hydrogen crossover through the membrane may be regulated
+and utilized for heating up the freezing cathode during cold start
+Nomenclature
+a water activity; anode
+A geometric area of the fuel cell (m 2)
+c cathode
+C mole concentration (mol m −3)
+Cp speciﬁc heat (J kg −1 K−1)
+d diameter (m)
+D diﬀusion coe ﬃ cient (m 2 s−1)
+EW equivalent weight of membrane (1100 kg kmol −1)
+F Faraday’s constant (96487.0 C mol −1)
+h latent heat (J kg −1)
+I current density (A m −2,A m −3)
+k electrical conductivity (S m −1)
+K permeability (m 2)
+M relative molecular weight (kg mol −1)
+n moles of electrons production per mole of reactant con-
+sumption
+nd electro-osmotic coe ﬃ cient (H 2O/OH−)
+N change of moles of gas (mol); ﬂux of the liquid water
+(mol m−2 s−1)
+p pressure (Pa)
+R ideal gas constant (8.314 J K −1 mol−1); internal resistance
+of cell ( Ω m2); electrochemical reaction rate (A m −3)
+s volume fraction
+S source term (mol m −3 s−1)
+ST stoichiometric ratio
+t time (s)
+T temperature (K)
+V voltage; voltage loss (V)
+x, y, z coordinate position (m)
+X mole fraction
+Greek symbols
+α apparent transfer coe ﬃ cient
+δ thickness (m)
+ε porosity
+η voltage loss (V)
+κ phase change rate (s −1)
+θ contact angle (°)
+λ water content
+μ dynamic viscosity (kg m −1 s−1)
+ρ density (kg m −3); electrical resistivity ( Ω m)
+σ electrical conductivity (S m −1)
+ω volume fraction of ionomer in catalyst layer
+Superscript and subscripts
+0 standard condition
+act activation loss
+ave average
+c capillary pressure; cathode
+CL catalyst layer
+eﬀ eﬀective
+e
+− electron
+equil equilibrium
+fm frozen membrane water
+g gas
+GDL gas di ﬀusion layer
+H+ proton
+H2 hydrogen
+H2O water
+i, j a composition of gas mixture
+ice ice
+lq super-cooled (liquid) water
+m membrane
+MPL micro-porous layer
+nf non-frozen membrane water
+nernst Nernst
+ohm ohmic
+out cell output
+O
+2 oxygen
+BP bipolar plate
+ref reference condition
+sat saturation state
+vap water vapor
+lq-ice between liquid water and ice
+nfm-lq between non-frozen membrane water and liquid water
+nfm-vap between non-frozen membrane water and vapor
+vap-lq between vapor and liquid water
+vap-ice between vapor and ice
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+777
+
+=== PDF PAGE 3 ===
+operation [21]. Proper humidi ﬁcation strategy is also regarded as an
+important issue not only under normal operational conditions but also
+in cold start operation of PEM fuel cell, mainly because of its notable
+inﬂuence on the water transfer characteristics in porous electrodes
+[22]. As is well known, the deterioration of the cell performance is a
+common issue after a certain period of operation and cold start cycles,
+micro-current operation is proposed and validated by Pei et al. to re-
+cover the fuel cell performance, which can be also expanded in the
+performance recovery in the cold start operation [23]. In addition, as
+the super-cooled water was observed and con ﬁrmed in the cold starting
+fuel cell in recent years, liquid water management strategies are also
+possibly employed for the reinforcement of the cold start capability
+[24].
+As aforementioned, the cold startup capability of PEM fuel cell has
+been extensively explored in the literature. However, the water pro-
+duction and phase transition mechanisms are considered to be im-
+mature and need to be further consummated. The super-cooled liquid
+water was con ﬁrmed for the ﬁrst time by Ishikawa et al. through a
+series of visualization experimental tests on a PEM fuel cell with a
+transparency cathode [25]. Super-cooled water was observed on the
+surface of gas di ﬀusion layer (GDL) and freeze at the interface between
+GDL and CL in cathode [26]. Based on their previous study, the gen-
+eration mechanism of super-cooled water was preliminarily built and
+theoretically analyzed [27]. Afterwards, limited investigations were
+carried out to declare the possible existence of super-cooled water
+during the cold start of PEM fuel cell, covering the visualization ex-
+perimental tests and theoretical analysis of the behavior of super-cooled
+water [9,28,29]. Consequently, the conventional phase transition
+system which only contains water vapor, ice and membrane water
+(water dissolved in the ionomer) is not rigorous anymore and possibly
+unable to accurately predict the water transport inside the PEM fuel
+cell. Regarding this issue, the phase transition mechanisms inside the
+PEM fuel cell during startup from subfreezing temperature need to be
+rebuilt with eager desire.
+In this study, dynamic modeling work for the cold start of PEM fuel
+cell is presented. Three di ﬀerent water production and phase transition
+mechanisms are proposed based on the possible states of byproduct
+water, containing water vapor, super-cooled water, ice, non-frozen
+membrane water and frozen membrane water. The reasonability of
+diﬀerent water transition scenarios formulated in the cold start
+behavior, as well as the mass and heat transfer processes are discussed
+for the modeling development. Considering the scarcity of the cold start
+researches with consideration of super-cooled water, this study quali-
+tatively analyzes the important role of super-cooled water playing in
+the cold start operation, which should be viewed as an important
+supplement to the literature. The transport mechanism of super-cooled
+water during the cold start is further investigated and discussed. The
+modeling formulation is introduced in the second section. The detailed
+resultant modeling prediction, proper discussion and suggestions on
+modeling water transfer behavior during cold start operation have been
+carried out in the third section, followed by the main conclusions in the
+last section.
+2. Modeling formulation
+2.1. Physical problem
+Generally, ﬁve states of water in the cold start operation of PEM fuel
+cell should be addressed, composed of water vapor, super-cooled water,
+ice, non-frozen membrane water and frozen membrane water. Water
+dissolved in the ionomer of CL and membrane is often deﬁ ned as
+membrane water (non-frozen or frozen membrane water), while water
+behaving in the pore regions of CL, MPL and GDL should be in vapor,
+super-cooled, and ice states. Basically, the phase of product water in the
+electrochemical reaction is largely dependent on the site of reaction
+taking place in cathode CL. Fig. 1 displays the three possible water
+states generated in the electrochemical reaction, including membrane
+water, water vapor and liquid water. The speci ﬁc morphology of the
+incorporation
+of carbon supported catalyst (Pt) and ionomer inside CL
+should dominate the water generation. Reaction taking place in the
+electrolyte will surely generate membrane water, while water produced
+in the pores should be in vapor or liquid phase.
+In this study, the non-equilibrium water phase transition mechan-
+isms are ﬁrstly established in Fig. 2. The di ﬀerent phases of water
+produced in the reaction determines the beginning point of the phase
+transition, leading to completely di ﬀerent water transfer characteristics
+and the resultant cold start behavior. In the following section, the
+reasonability of these three water generation mechanisms will be
+carefully analyzed and validated for the modeling application in the
+literature. Note that in the non-equilibrium phase transition, the
+Fig. 1. Schematics of various water generation mechanisms inside cathode CL.
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+778
+
+=== PDF PAGE 4 ===
+membrane water and vapor could reach over-saturated, while for the
+equilibrium transition the over-saturated state could not be reached,
+which will be further introduced and discussed in the following sec-
+tions. As a matter of fact, the phase transition related to the membrane
+water in this study should be interpreted as the water uptake and re-
+lease of the ionomer, rather than a genuine kind of water phase change.
+The resultant startup potential, water and heat variation procedures are
+compared and discussed. The mass and heat transport are quanti ﬁed
+and calculated based on the commercial software package of MATLAB
+using 1-D matrixes considering all the cell components (bipolar plates,
+ﬂow channels, GDLs, MPLs, CLs and membrane) perpendicular to the
+MEA. The physical parameters for the present modeling work are
+summarized in Table 1. Table 2 gives the initial and operational con-
+ditions incorporated in the cold start simulation.
+2.2. Assumptions
+Several speci ﬁc assumptions have been included:
+(1) The ﬂow performed in this model is incompressible and laminar
+because of the weak gas pressure gradient and low Reynolds
+number.
+(2) The gas ﬂow follows the ideal gas law.
+(3) The membrane is impermeable to the gas ﬂow.
+(4) The e ﬀect of gravity is neglected.
+(5) The amount of super-cooled liquid water and vapor is ﬁxed to be
+zero in the ﬂow channel due to the fast ﬂow rate.
+2.3. Cell output
+The cell voltage ( V
+out, V) is solved by combining the reversible
+thermodynamic voltage ( Vnernst, V), activational overpotential ( ηact,V )
+and ohmic overpotential ( Vohm, V).
+=+ +V Vη Vout nernst act ohm (1)
+The Nernst Equation is widely used to predict the reversible ther-
+modynamic cell voltage [30]:
+=− × − + ⎛
+⎝
+⎜
+⎞
+⎠
+⎟
+−V TT RT
+F
+pp
+p1.23 0.9 10 ·( ) 2 lnnernst 3 0
+H O
+0.5
+HO
+2 2
+2 (2)
+Here T and T0 (K) represent the local operating temperature and re-
+ference temperature (298 K) at the reaction site. R and F denote the
+ideal gas constant (8.314 J mol −1 K−1) and Faraday ’s constant
+(96487 C mol−1). pH2, pO2 and pH O2 (Pa) refer to the partial pressure for
+hydrogen, oxygen and water.
+In order to distribute the reactant consumption and water
+production, the conservations for the protons and electrons transport
+should be comprehensively implemented. The governing equations for
+the charge conservation are described as [30]
+∇− ∇ =σV JElectrons: ·( ) ie
+eff
+e- - (3)
+∇− ∇ = −+ +σV JProtons: ·( ) iH
+eff H (4)
+Here σe
+eff- and +σH
+eff (S m−1) represent the e ﬀective electrical con-
+ductivity of the porous electrodes and e ﬀective ionic conductivity of
+polymer electrolyte, respectively [15]. Ve - and +VH (V) denotes the
+electronic and ionic potential in the operating fuel cell, respectively. Ji
+(A m−3) is the exchange current density (reaction rate of the electro-
+chemical reaction), which is given by the Butler-Volmer Equation
+[31,32].
+= ⎡
+⎣
+−− ⎤
+⎦
+J
+J C
+C
+αnF
+RT η αnF
+RT η() e x p ( ) e x p ( )i
+i
+i
+rref
+,ref
+act acti
+(5)
+whereαisapparenttransfercoe ﬃ cient (0.5). n is the moles of electrons
+production (or consumption) per mole of reactant consumption. Jref
+(A m−3) means the reference current density for the electrochemical
+reaction. Note that the local current density should be associated with
+the liquid and ice blockage condition at the reaction site. Ciand Cref
+(mol m−3) represent the local molar concentration and reference molar
+concentration of species i (H2 and O 2) at the reaction site. In order to
+integrate the in ﬂuence of super-cooled liquid water and ice on the re-
+action kinetics, the solution for the exchange current density can be
+corrected as follows [30]:
+⎜⎟=−− ⎛
+⎝
+⎞
+⎠
+⎡
+⎣
+−−
+⎤
+⎦
+J
+ss J C
+C
+αnF
+RT η αnF
+RT η(1 ) exp( ) exp( )i
+i
+i
+r
+lq ice ref
+,ref
+act act
+i
+(6)
+in which slq and sice refer to the local volume fraction of liquid water
+Fig. 2. Non-equilibrium water phase transition mechanisms with consideration of super-cooled water.
+Table 1
+Physical parameters.
+Physical parameters Value
+Thickness of BP; Channel; GDL; MPL; CL;
+membrane
+2000; 1000; 270; 30; 10; 30 μm
+Active area for reaction 25 × 10−4 m2
+Equivalent weight of membrane 1100 kg kmol−1
+Volume fraction of ionomer inside CL 40%
+Contact angles of GDL; MPL; CL 120°; 150°; 100°
+Porosities of GDL; MPL; CL 0.6; 0.4; 0.3
+Intrinsic permeability of GDL; MPL; CL 6.2 × 10
+−12; 6.2 × 10 −12;
+6.2 × 10−13 m2
+Electrical conductivities of BP; GDL; MPL;
+CL
+20,000; 300; 300; 300 S m −1
+Mass density of membrane 1980 kg m−3
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+779
+
+=== PDF PAGE 5 ===
+and ice at the reaction site, respectively. The activational overpotentials
+for anode and cathode ( ηact
+a and ηact
+c ) could be deﬁ ned as [30]:
+=− −− +ηV VAnode: ( )eact
+a
+H (7)
+=− −+ηV VCathode: ( )act
+c
+H e - (8)
+The ohmic overpotentials contained within the bipolar plates, gas
+diﬀusion layer (GDL), micro-porous layer (MPL), catalyst layer (CL) and
+polymer membrane are accounted:
+= − +++ +VI ( Ω ΩΩΩ Ω )BPohm GDL MPL CL m (9)
+Ω BP, Ω GDL, Ω MPL, Ω CL, Ω m (Ω·m 2) denote the ohmic resistance of bipolar
+plates, GDLs, MPLs, CLs and membrane. It should be noted that the Ω CL
+should consist of the ionic ohmic resistance and electronic ohmic re-
+sistance due to the fact that both electrons and hydrogen ion could
+migrate in the CLs [33].
+2.4. Mass and heat transport
+2.4.1. Water transport and phase transition
+Several mass conservation equations should be accounted based on
+the ﬁve states of water. The mass conservation equation for non-frozen
+membrane water is solved by
+∂
+∂ = ∂
+∂ +ρ
+EW
+ωλ
+t
+ρ
+EW
+ωD λ
+x S· () · () nfm nfm
+nfm
+m nfm m
+21 . 5
+2 (10)
+ρm (kgm −3) is the mass density of membrane. EW (kg mol−1) re-
+presents the equivalent weight of membrane. ωisdeﬁ ned as the volume
+fraction of ionomer in CL. λnfm is the non-frozen membrane water
+content. t (s) is time. Snfm (mol m−3 s−1) denotes the source term for the
+non-frozen membrane water. Dnfm (m2 s−1) is the di ﬀusivity of mem-
+brane water inside the ionomer and can be presented by a piecewise
+function [34]:
+=
+⎧
+⎨
+⎪
+⎪
+⎪
+⎪
+⎪⎪
+⎩
+⎪
+⎪
+⎪
+⎪
+⎪⎪
+×⩽
+−−
++− < ⩽
+−−
++− < ⩽
+−− +
+−>
+−
+−
+−
+−
+()
+()
+()
+()
+()
+()
+D
+λ
+λ
+λλ
+λ
+λλ
+λλ
+λλ
+2.69266 10 if 2
+10 ·exp 2416 ·(0.87(3 )
+2.95( 2)) if 2 3
+10 ·exp 2416 ·(2.9514(4 )
+1.642454( 3)) if 3 4
+10 ·exp 2416 ·(2.563 0.33 0.0264
+0.000671 ) if 4
+nfm
+nfm
+T nfm
+nfm nfm
+T
+nfm
+T
+nfm
+10
+10 1
+303
+1
+10 1
+303
+1
+nfm
+nfm
+10 1
+303
+1
+nfm nfm
+2
+nfm
+3
+(11)
+The di ﬀusivity relies heavily on the membrane hydration. This
+correlation is widely used in the modeling formulation [18,20,33].I n
+this study, the water dissolved in the ionomer is deﬁ ned as membrane
+water, which is solved based on the molar concentration of water
+maintained in the membrane ( cnfm, mol m −3).
+=λ EW
+ρcnfm
+m
+nfm
+(12)
+A threshold value for the maximum water uptake potential, satu-
+rated membrane water content ( λsat), is empirically given by [15] de-
+rived from the experimental tests carried out by Thompson et al. [35].
+Table 2
+Initial and operational parameters of the cold start cases.
+Parameters Value
+Feed gases H2/air
+Stoichiometry ratio for anode; cathode 2.0; 2.0
+Humidiﬁcation for anode; cathode inlet 0%
+Startup temperature −20 °C (base
+condition)
+Environmental temperature −20 °C (base
+condition)
+Inlet pressure 1 atm
+Initial water content in the membrane 2.9
+Initial liquid water volume fraction inside the cell 0
+Initial ice volume fraction inside the cell 0
+Initial molar concentration of H
+2 and O 2 0
+Membrane water absorption (and desorption) rate (with
+vapor)
+1s −1 (base condition)
+Membrane water absorption (and desorption) rate (with
+liquid)
+1s −1 (base condition)
+Phase change rate between vapor and liquid
+(evaporation and condensation)
+1s −1 (base condition)
+Phase change rate between vapor and ice
+(desublimation)
+1s −1 (base condition)
+Phase change rate between liquid and ice (fusion and
+melting)
+1s −1 (base condition)
+Table 3
+Mass transport properties and correlation.
+Parameters Correlation/value Unit
+Dynamic viscosity of hydrogen =× +−−μ TT3.205 10 ( /293.85) ( 72)O2
+31 . 5 1 . 0 kg m−1 s−1
+Dynamic viscosity of oxygen =× +−−μ TT8.46 10 ( /292.25) ( 127)O2
+31 . 5 1 . 0 kg m−1 s−1
+Dynamic viscosity of water vapor =× +−−μ TT7.512 10 ( /291.15) ( 120)vap 31 . 5 1 . 0 kg m−1 s−1
+Dynamic viscosity of liquid water =×× −−μ 2.414 10 10 Tlq 5 247.8/( 140) kg m−1 s−1
+Hydrogen di ﬀusivity in anode =× −DTP 1.005 10 ( /333.15) (101325/ )H2
+41 . 5 1 . 0 m2 s−1
+Oxygen di ﬀusivity in cathode =× −DTP 2.652 10 ( /333.15) (101325/ )O2
+51 . 5 1 . 0 m2 s−1
+Water vapor di ﬀusivity in anode =× −DTP 1.055 10 ( /333.15) (101325/ )vap 41 . 5 1 . 0 m2 s−1
+Water vapor di ﬀusivity in cathode =× −DTP 2.982 10 ( /333.15) (101325/ )vap 51 . 5 1 . 0 m2 s−1
+Eﬀective di ﬀusivity of the gas i (O 2 and vapor) in the electrode j (GDL, MPL and CL) =− −DD ε s s (1 )i i j
+eff 1.5 lq ice 1.5 m2 s−1
+Mass density of liquid water and ice ==ρ ρ990, 920lq ice kg m−3
+Saturated vapor pressure =− + −
+−×− +× − −
+T
+TT
+log ( ) 2.1794 0.02953( 273.15)
+9.1837 10 ( 273.15) 1.4454 10 ( 273.15)
+P
+10
+sat
+101325
+52 73
+Pa
+Liquid water surface tension coe ﬃ cient =− × +σ T0.0001676 0.1218lq Nm −1
+Equilibrium water content
+= ⎧
+⎨⎩
++− + ⩽ <
++− < ⩽λ aaaa
+aa
+0.043 17.81 39.85 36.0 if 0  1
+14.0 1.4( 1) if 1 3equil
+23
+Reaction transfer coe ﬃ cients α = 0.5
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+780
+
+=== PDF PAGE 6 ===
+=
+⎧
+⎨
+⎩
+<
+−+ −× ⩽ <
+>⩾
+−−
+λ
+TT
+λ
+4.837 if T 223.15 K
+[ 1.304 0.01479 3.594 10 ] if 223.15 K T T
+if T T
+sat
+nfm
+52 1 freeze
+freeze (13)
+The saturated membrane water content is often used to determine
+the water desorption and absorption of the electrolyte in the fuel cell
+operation [30]. In the membrane, water can also freeze into frozen
+membrane water at subfreezing temperature. The mass conservation
+can be calculated through
+∂
+∂ =ρ
+EW
+ωλ
+t S· ()m fm
+fm (14)
+in which λfm and Sfm (mol m−3 s−1) represent the water content and
+source term for frozen membrane water, respectively.
+With regard to the super-cooled liquid water and vapor, their mass
+conservation can be solved by
+∂
+∂ =
+∂⎛
+⎝
+⎞
+⎠
+∂ +
+ερ s
+t
+ρp
+x S
+()
+K
+μlq lq
+2
+lq lq
+2 lq
+lq
+lq
+(15)
+and
+∂− −
+∂ =
+∂
+∂ +
+εs s ρ C
+t
+ρD C
+x S
+(( 1 ) ) ( )lq ice g vap 2
+g vap
+eff
+vap
+2 vap (16)
+The convection term is neglected in this study due to the fact that
+the mass convection is more severe at the interface of GDL and ﬂow
+channel.εistheporosityoftheporouselectrode. ρlq (kg m−3),Klq (m2),
+μlq (kg m−1 s−1), slq and Slq (kg m−3 s−1) serve as the mass density,
+permeability, dynamic viscosity, local volume fraction and source term
+of liquid water, respectively. Note that liquid pressure ( plq, Pa) is per-
+formed in the liquid conservation instead of liquid saturation in order to
+maintain the continuity of capillary pressure and achieve liquid sa-
+turation jump at the adjacent porous layers with di ﬀerent hydro-
+phobicity, permeability and porosity. ρg (kg m−3) means the mass
+density of gas mixture. Dvap
+eff (m2 s−1), Cvap (mol m −3) and Svap
+(kg m3 s−1) are the e ﬀective diﬀusivity, molar concentration and source
+term for water vapor. The detailed transport properties of gas species
+and liquid are provided in Table 3.
+As for the ice, the mass conservation is
+∂
+∂ =εs ρ
+t S() ice ice
+ice (17)
+The mass transport of super-cooled water, water vapor and ice
+should be solved in ﬂow channels, GDLs, MPLs and CLs. sice is the vo-
+lume fraction of ice. ρice (kg m−3) and Sice (kg m−3 s−1) are the mass
+density and source term for ice. Through the analysis of mass con-
+servation equation, the transport behavior of di ﬀerent water states can
+be obtained.
+In this work, the super-cooled water is also carefully considered to
+develop several more thorough phase change mechanisms for PEM fuel
+cell during the cold start operation. The source terms for membrane
+water (
+Snfm), frozen membrane water ( Sfm), super-cooled water ( Slq),
+water vapor (Svap) and ice ( Sice), can be summarized as:
+=
+⎧
+⎨
+⎩
+−
+−− + +
+−− −
+S
+S
+SS S S
+SS S
+(solved in membrane)
+(solved in cathode CL)
+(solved in anode CL)
+nfm
+nfm - fm
+nfm - vap nfm - lq EOD Prod
+nfm - vap nfm - lq EOD
+(18)
+=SS (solved in membrane)fm nfm - fm (19)
+= ⎧
+⎨⎩
+−+
+−S
+SSS M
+SS
+(solved in CLs)
+(solved in MPLs, GDLs)lq
+vap - lq lq - ice nfm - lq H O
+vap - lq lq - ice
+2
+(20)
+= ⎧
+⎨⎩
+−− +
+−−S
+SSS M
+SS
+(solved in CLs)
+(solved in MPLs, GDLs)vap
+vap - lq vap - ice nfm - vap H O
+vap - lq vap - ice
+2
+(21)
+=+SS S (solved in CLs, MPLs and GDLs)ice vap - ice lq - ice (22)
+where −Sij means the phase change source term from water species i to
+j. The detailed source terms for water phase transition and transfer are
+summarized in Table 4. Note that the water molecular is always com-
+bined with the hydrogen ion to immigrate through the membrane and
+the ionomer in CLs from anode towards cathode, known as electro-os-
+mosis drag e ﬀect, thus the source terms ( SEOD, mol m −3 s−1) being
+reasonably given for the non-frozen membrane water ﬁrstly in this
+study, as solved in Eq. (18).
+=Sn J
+nF
+i
+EOD d (23)
+Accordingly, the electro-osmotic drag coe ﬃ cient ( nd, number of
+water molecules dragged per hydrogen ion through the electrolyte) is a
+common parameter for the water transport in the membrane, which is
+highly dependence on the water uptake of the polymer membrane [15]:
+=n λ2.5
+22
+d
+nfm
+(24)
+It is generally formulated to solve the electro-osmosis drag process
+in the polymer membrane [5,30,36]. This SProd (mol m−3 s−1) re-
+presents the source term for the water generation in the cathode semi-
+reaction. Note that SProd solved for the water generation should be
+based on the generation of water state, including liquid, vapor and
+Table 4
+Source terms for water phase transition and water mass transfer.
+Water species Phase change function Unit
+Vapor – liquid water (evaporation and condensation)
+=
+⎧
+⎨
+⎪
+⎩⎪
+−− ⩾
++<
+−
+−S
+κs s M C C
+κs s M C
+(1 ) if
+() i f  C
+CC
+RT
+CC
+RT
+vap - lq
+vap - lq lq ice
+( vap sat )
+H2Ov a ps a t
+vap - lq lq ice
+( vap sat )
+H2Ov a p s a t
+kg m−3 s−1
+Vapor – ice (desublimation)
+=
+⎧
+⎨
+⎩
+−− ⩾
+<
+−
+S κs s M C C
+CC
+(1 ) if
+0i f
+CC
+RTvap - ice
+vap - ice lq ice
+( vap sat )
+H2Ov a ps a t
+vap sat
+kg m−3 s−1
+Liquid water – ice (freezing and melting)
+= ⎧
+⎨⎩
+<
+−⩾S
+κε s ρ T T
+κε s ρT T
+if
+iflq - ice
+lq - ice lq lq freeze
+lq - ice ice ice freeze
+kg m−3 s−1
+Non-frozen membrane water – vapor (mass transfer) =− − −Sκ λ λs s () (1 )
+ρ
+EWnfm - vap nfm - vap m nfm equil lq ice kmol m−3 s−1
+Non-frozen membrane water – super-cooled water (mass transfer)
+= ⎧
+⎨⎩
+−− − ⩾
+<
+S κλ λ s s λ λ
+λλ
+() ( 1 ) i f
+0i f
+ρ
+EWnfm - lq
+nfm - lq m nfm sat lq ice nfm sat
+nfm sat
+kmol m−3 s−1
+Non-frozen membrane water – frozen membrane water (mass transfer)
+=
+⎧
+⎨
+⎩
+−⩾
+<
+S
+κλ λ λ λ
+κλ λ λ
+() i f
+if
+ρ
+EW
+ρ
+EW
+nfm - fm
+nfm - fm m nfm sat nfm sat
+nfm - fm m fm nfm sat
+kmol m−3 s−1
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+781
+
+=== PDF PAGE 7 ===
+membrane water. It is temporally given to the source term of membrane
+water here, which will be further discussed in the following section.
+=S J
+nF
+i
+Prod (25)
+In this study, continuous pressures of gas and liquid are all taken
+into consideration, which matches the trend in the literature in order to
+achieve the liquid water saturation jump at the interface of the adjacent
+porous layers, and the capillary pressure is given by [37,38]:
+=−p ppcg l q (26)
+and
+=
+⎧
+⎨
+⎪
+⎩
+⎪⎪
+−− − + −
+<
+−+ >
+()
+()
+p
+σθ s s s θ
+σθ s s sθ
+cos [1.42(1 ) 2.12(1 ) 1.26(1 ) ] if
+90
+cos [1.42 2.12 1.26 ] if 90
+ε
+K
+o
+ε
+K
+o
+c
+lq
+0.5
+lq lq 2 lq 3
+lq
+0.5
+lq lq
+2
+lq
+3
+0
+0
+(27)
+This Equation is provided by the well-known Leverett function,
+which is widely applied in solving the liquid water transfer in the
+porous media driven by the capillary pressure [30,39,40]. σlq (N m−1)
+represents the surface tension of liquid water. θ(°), εand K0 (m2) sig-
+nify the contact angle, porosity and intrinsic permeability of the local
+electrode. The freezing point depression has been also taken into ac-
+count depending on the surface tension of water at 273.15 K (
+σ273.15,
+Nm −1), hydrophobicity (θ, °), mass density of ice ( ρice,k g m −3), latent
+heat of fusion ( hfusn,J k g −1) and the pore radius of the local porous
+media ( r,m )[15] :
+=T Tσ θ
+ρh rΔ cosnormal 273.15
+ice fusn (28)
+Therefore, the actual freezing temperature should be solved below
+=−TT 273.15 Δfreeze (29)
+2.4.2. Reactant gases transport
+The mass conservations for hydrogen and oxygen can be expressed
+by:
+∂− −
+∂ =
+∂
+∂ +
+εs s ρ C
+t
+ρD C
+x S
+(( 1 ) ) ( ) i i i
+i
+lq ice g
+2
+g
+eff
+2 (30)
+ρg (kg m−3) means the mass density of the gas mixture. Di
+eff (m2 s−1)
+andCi (mol m−3) are the e ﬀective di ﬀusivity and molar concentration
+of gas species i (i =H 2 and O 2). The source term for species i (Si,
+kg m−3 s−1) is dependent on the consumption in the electrochemical
+reaction. The detailed transport properties of gas species are summar-
+ized in Table 3.
+2.4.3. Heat transport
+The energy conservation equation is solved by
+∂
+∂ = ∂
+∂ +t ρC T kT
+x S(( ) ) ()
+P fl,sl
+eff
+2
+fl,sl
+eff
+2 T (31)
+ρC( )P fl,sl
+eff and kfl,sl
+eff represent the e ﬀective volumetric heat capacity
+(J kg−1 K−1) and e ﬀective thermal conductivity (W m −1 K−1) of the
+local electrode. ST (W m−3) is the source term for heat, including the
+reversible heat ( ST,rev ,W m −3), activation heat ( ST,act,W m −3) and
+ohmic heat ( ST,ohm,W m −3) from the electrochemical reaction and la-
+tent heat (ST,lant,W m −3) from the water phase change.
+=
+⎧
+⎨
+⎪
+⎪
+⎩
+⎪
+⎪
+++
++
+++ +
++
+S
+SS S
+SS
+SSS S
+SS
+S
+(solved in anode CL)
+(solved in membrane)
+(solved in cathode CL)
+(solved in GDLs, MPLs and CLs)
+(solved in BPs)
+T
+T,act T,ohm T,lant
+T,ohm T,lant
+T,rev T,act T,ohm T,lant
+T,ohm T,lant
+T,ohm (32)
+Considering the friendly reaction kinetics of anode reaction, the
+reversible heat is only solved in cathode CL in this study. The various
+heat source terms can be expressed as:
+=−S ST
+nF JΔ · iT,rev (33)
+=Sη J · iT,act act (34)
+= ⎧
+⎨⎩
+∥∇ ∥ + ∥∇ ∥
+∥∇ ∥
+− + +
+−
+S
+Vσ V σ
+Vσ
+(solved in CLs)
+(solved in other domains)
+e H H
+e
+T,ohm
+2
+e
+eff 2 eff
+2
+e
+eff
+-
+- (35)
+= −−SS h ·ij ijT,lant (36)
+in which SΔ is the change in entropy (J mol −1 K−1) with 1 mol H 2
+consumed. Sij - (kmol m−3 s−1,k g m −3 s−1) and −hij (J kg−1) are the
+source term and latent heat for phase transition between water species i
+and j, respectively. As previous stated, both the ohmic heat of electron
+and hydrogen ion transfer should be included in the ohmic heat cal-
+culation. The thermal properties are given in Table 5.
+Basically, this model is analytically solved based on the commercial
+software package of MATLAB. Series of 1D matrixes are built and used
+to describe all the mechanisms inherent in the PEM fuel cell, such as the
+mass and heat transport (species and temperature distribution), elec-
+trochemical reactions in CLs and boundary conditions used in the cal-
+culation. For better understand the algorithm how the group of equa-
+tions is analytically solved, Fig. 3 gives the ﬂow chart of the modeling
+calculation.
+3. Results and discussion
+The mass and thermal transport in PEM fuel cell relies heavily upon
+the water generation, removal and freezing process during the PEM fuel
+cell operation at subfreezing temperature. In most of the previous
+modeling works in the literature, the water phase transition process is
+often oversimpli ﬁed and has not received deserved consideration,
+possibly providing unreasonable water transport behavior inside the
+porous electrodes. Generally, the state of product water always depends
+Table 5
+Thermal properties.
+Parameters Correlation/value Unit
+Speciﬁc heat capability of membrane; CL; MPL; GDL; BP =C 833; 3300; 2000; 568; 1580p Jk g−1 K−1
+Heat transfer coe ﬃ cient between bipolar plates and surrounding H = 100 W m −2 K−1
+Intrinsic thermal conductivities of membrane; CL; MPL; GDL; BP k = 0.95;1.0;1.0;1.0;20 W m −1 K−1
+Latent heat for phase change between super-cooled water and vapor (evaporation and condensation) =× −h 2.308 10lq - vap 6 Jk g−1
+Latent heat for phase change between vapor and ice (desublimation) =× −h 3.567 10vap - ice 5 Jk g−1
+Latent heat for phase change between super-cooled water and ice (freezing and melting) =× −h 3.567 10vap - ice 5 Jk g−1
+Latent heat for mass transfer between non-frozen membrane water and vapor =× −h 2.308 10nfm - vap 6 Jk g−1
+Entropy change in reaction =−SΔ 163, 110 J kmol−1 K−1
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+782
+
+=== PDF PAGE 8 ===
+on the local reaction site inside CL, as displayed in Fig. 1. In this study,
+vapor, super-cooled water and membrane water generations are all
+considered. Water phase transition mechanisms in CL have been rebuilt,
+as shown in Fig. 2. Phase transition rates have been employed to
+quantify the phase change procedure in this work. Since there is still no
+general agreement on the issue that whether the membrane water and
+vapor could reach over-saturated state or not, both non-equilibrium and
+equilibrium phase transition models have been taken into account for
+assisting exploring the close-to-reality water transport behavior. Note
+that the membrane water and vapor could reach over-saturated in the
+non-equilibrium model, while for the equilibrium model the over-sa-
+turated state could not be reached. The goal is to provide a compre-
+hensive baseline of the reasonable water production, transfer and phase
+transition mechanisms incorporated with the cold start operation of
+PEM fuel cell.
+3.1. Membrane water generation
+3.1.1. Non-equilibrium phase transition model
+Considering that the catalyst particles are often wrapped inside the
+solid electrolyte cluster in the CL, the water generated in cathode semi-
+reaction is probably most membrane water. In this section, the product
+water is therefore assumed to be membrane water presenting inside the
+ionomer, aiming to discuss the resultant water transfer and cold startup
+behavior of PEM fuel cell. Wu et al. also proposed that the protons
+regularly migrate in the ionomer phase which results in the water
+production inside the electrolyte [36]. The membrane water generation
+is preliminarily considered to be reasonable but still needs to be further
+explored and validated through numerical and experimental data. The
+water transfer behavior basically follows the non-equilibrium me-
+chanism corresponding to the membrane water generation and phase
+transition illustrated in Fig. 2.
+Fig. 4(a) gives a well validated operational capability of PEM fuel
+cell based on the membrane water generation starting up from −20 °C
+with constant current density at 100 mA cm
+−2. The fuel cell design and
+operating parameters are consistent with the experimental test con-
+ducted by Tariji et al. [41], which suggests that the membrane water
+generation is reasonable to some extent. The initial water content is set
+as 3.4. This serves as an appropriate water content to maintain su ﬃ -
+cient active area for the electrochemical reaction. Note that all the
+phase transition rates and water transfer rates remain to be 1 s
+−1 for the
+base operating conditions, as listed in Table 2. The modeling predicted
+cell voltage and the operational survival time performs coherent with
+the experimental test. However, the evolution of the cell voltage de-
+gradation at the shut-down stage is not perfectly ﬁtted, for which the
+over-saturated membrane water content is probably responsible. Scru-
+pulously, the over-saturated membrane water may result in the cell
+voltage plummeting when the cold startup failed, which does not
+smoothly match experimental performance decreasing, as displayed in
+Fig. 4(a). Owing to the hostilely low startup temperature, complete ice
+blockage of oxygen supply should be regarded as the main reason for
+the startup failure. The variation of membrane water content in cathode
+CL is demonstrated in Fig. 4(b). Note that saturated membrane water
+content serves as a function of the local temperature of membrane, as
+declared in Eq. (13). The crossing points with the saturated level of
+membrane water content refer to the beginning of membrane water
+desorption into liquid water and vapor. The di ﬀerence in water content
+between the actual value and the saturated value re ﬂects the driving
+Fig. 3. Flow chart of the modeling calculation.
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+783
+
+=== PDF PAGE 9 ===
+force for the membrane water desorption. The high level of membrane
+water content gives rise to the overestimated and more stable cell
+voltage at the end of the fuel cell operation compared with the practical
+experimental test. Furthermore, comparing to the liquid water and
+membrane water, the molar concentration of water vapor is theoreti-
+cally much lower, leading to the weaker e ﬀects of desublimation,
+condensation and membrane absorption on the water transport beha-
+vior, as well as the evolution of fuel cell output. Liquid transfer beha-
+vior is observed to play a leading role in the water transition and
+transfer process. Meanwhile, in consideration of the less vapor avail-
+ability, the ice is found mainly formed from liquid water. Therefore, in
+order to match the experimental data, the phase transition rates asso-
+ciated with liquid water is utilized as the main factors for the experi-
+mental veri ﬁcation, especially the water desorption rate ( κ
+nfm-lq, be-
+tween membrane water and liquid water).
+With water desorption rate from membrane water to liquid water
+set as 1 s −1, another set of comparison of modeling prediction and
+experimental data has been carried out in Fig. 5 (a) [41]. Cell perfor-
+mance reaches a good agreement with the experimental data in both
+the cell voltage in the ﬁrst half of operation and shut-down time, while
+the similar deviation of modeling predicted performance close to the
+end of the startup operation is also observed. The evolution of averaged
+membrane water content has been sketched in Fig. 5(b). It is seen that
+the averaged membrane water content achieves saturated at around
+45–55 s after startup, and the performance deviation starts to expand
+from then on. This further implies that the possible reason for the
+performance deviation comes down to the oversaturated membrane
+water and undervalued liquid water amount at the end of the operation.
+This further contributes to the ice accumulation slowing down as shown
+in Fig. 5(c), better ionic conductivity of polymer membrane, and thus
+overestimated cell output performance. The performance comparison at
+−30 °C with constant current startup at 50 mA cm
+−2 depicted in Fig. 6
+further con ﬁrms the reliability of the membrane water generation and
+the general issue of the non-equilibrium model [42].
+(a) 
+(b) 
+0 1 02 03 04 05 06 07 0
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+Startup temperature: -20 C    Initial membrane water content: 3.4
+Cell Voltage, V
+Time, s
+ Modeling Prediction
+ Experimental DataCell Voltage
+Current Density
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+Current Density, A cm
+-2
+0 1 02 03 04 05 06 07 0
+3
+4
+5
+6
+7
+8
+9
+10
+ Interface of CL/MPL in CL
+ 1/4 CL thickness location (close to CL/MPL)
+ 1/2 CL thickness location (center of CL)
+ 3/4 CL thickness location (close to CL/membrane)
+ Interface of CL/membrane in CL
+Startup temperature: -20 C    Initial membrane water content: 3.4
+Water content in the ionomer of cathode CL
+Time, s
+From interface of CL/MPL to CL/membrane:
+Saturated water content
+Fig. 4. (a) Comparison of cell voltage evolution between the present modeling
+prediction and experimental data [41]; and (b) evolution of water content in
+the ionomer of cathode CL, starting up from −20 °C with constant current
+density at 100 mA cm −2 and initial membrane water content of 3.4.
+(a) 
+(b) 
+0 1 02 03 04 05 06 07 08 09 0
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+Current Density, A cm
+-2
+Cell Voltage, V
+Startup temperature: -20 C    Initial membrane water content: 2.9
+Time, s
+ Modeling Prediction
+ Experimental DataCell Voltage
+Current Density
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+0 1 02 03 04 05 06 07 08 09 0
+3
+4
+5
+6
+7
+8
+9
+10
+Startup temperature: -20 C    Initial membrane water content: 2.9
+Averaged water content in 
+the ionomer of cathode CL
+Time, s
+ Averaged water content
+ Saturated water content
+(c) 
+0 1 02 03 04 05 06 07 08 09 0
+0.0
+0.2
+0.4
+0.6
+0.8
+1.0
+Ice volume fraction in cathode CL
+Time, s
+Ice formation slows down
+Fig. 5. (a) Comparison of cell voltage evolution between the present modeling
+prediction and experimental data [41]; (b) evolution of averaged water content
+in the ionomer of cathode CL; and (c) evolution of ice volume fraction inside
+cathode CL, starting up from −20 °C with constant current density at
+100 mA cm−2 and initial membrane water content of 2.9.
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+784
+
+=== PDF PAGE 10 ===
+3.1.2. Equilibrium phase transition model
+In this section, the equilibrium phase transition model has been
+implemented, as illustrated by the simpli ﬁed approaches for water
+generation and phase transition in Fig. 7. For the equilibrium model,
+several stages of water transfer behavior inside cathode CL should be
+addressed: (1) unsaturated water in ionomer and membrane water
+generation; (2) saturated water in ionomer and water vapor generation;
+(3) saturated water in ionomer, saturated vapor in pores and liquid
+water generation; (4) signi ﬁcant ice formation. It is noteworthy that
+both the membrane water and vapor could not get over-saturated in the
+equilibrium model. In other words, the equilibrium model does not
+explicitly solve the phase transition among the membrane water, liquid
+water and vapor. It is assumed that they are instantaneous balanced
+during the fuel cell operation.
+The experimental comparison has been accordingly updated in
+Fig. 8 (a). It is seen that the cell voltage decreases more smoothly and
+further approaches the experimental data during the deterioration stage
+of the operation compared with the non-equilibrium model. It is
+worthwhile addressing that the water transfer behavior should be
+consistent with the non-equilibrium method before the membrane
+water attains saturated. However, according to the four stages men-
+tioned above, liquid water generation is deﬁ nitely accelerated by fur-
+ther water production. This could be also construed as the in-
+stantaneous membrane water desorption into liquid state, which is
+formulated to be liquid water production directly in the equilibrium
+model. Obviously, it also slightly decreases the modeling predicted
+membrane water content and the output performance on account of the
+negative role of liquid water generation playing in the reactant gases
+supply.
+In detail, equilibrium model exhibits a much consistent behavior
+with the experimental data with respect to the voltage decrease, but
+only in the initial decrease, and does not accurately predict the shut-
+down time. In fact, the equilibrium phase transition cannot be taken as
+the real phase transition process. It should be viewed as an simpli ﬁed
+equilibrium method for modeling the mass transfer of water. In this
+work, the phase change and mass transfer rates are employed to
+quantify the water phase transition in the non-equilibrium model. This
+makes it available approach the equilibrium state and experimental
+data through regulating the water transition processes. Basically, con-
+sidering the negligible in ﬂuences of water vapor on the startup opera-
+tion, the most important factor comes from the water transfer between
+membrane water and liquid water, κ
+nfm-lq (s−1). In order to approach
+the equilibrium state of water transition, several membrane desorption
+(or absorption) rates have been representatively selected as 1, 2 and
+3s
+−1. The objective of increasing the membrane water desorption rate
+is to accelerate membrane water desorption into liquid water and to
+promote the phase balance.
+Through regulating κ
+nfm-lq, the startup performance has been up-
+dated based on the non-equilibrium model in Fig. 8(b). More reasonable
+evolution of cell output voltage has been achieved. It is evident that the
+membrane water desorption rate at around 3 s −1 is deemed to be very
+close to the water sorption equilibrium. The variation of membrane
+water content is given in Fig. 8(c). Increasing the membrane water
+desorption rate directly facilitates water transition from membrane
+0 1 02 03 04 05 06 07 08 0
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+ Modeling Prediction
+ Experimental Data
+Time, s
+Current Density
+Cell Voltage
+Startup temperature: -30 C
+Cell Voltage, V
+Current Density, A cm
+-2
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+Fig. 6. Comparison of cell voltage evolution between the present modeling
+prediction and experimental data starting up from −30 °C with constant cur-
+rent density at 50 mA cm −2 [42].
+Fig. 7. Equilibrium water generation and phase transition mechanisms.
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+785
+
+=== PDF PAGE 11 ===
+water to liquid, which is more prominent in the period before shut-
+down. It leads to not merely the smooth cell performance decreasing,
+but also the accurate survival operation time. It is worthwhile men-
+tioning that the latent heat generation and consumption coupled with
+the water phase changes has been accounted in this study. However,
+owing to the weaker latent heat of phase transition on the order of
+10−8 Wm −3 compared to the prominent reversible and activation heat
+released in the reaction on the order of 10 −6–10−7 Wm −3, phase
+transfer rates have insigni ﬁcant e ﬀect on the thermal development.
+Finally, the close-to-reality water transfer behavior inherent in the cold
+start of PEM fuel cell, especially inside the cathode CL, could be reg-
+ularized into four stages: (1) membrane water generation and un-
+saturated water in ionomer; (2) water in ionomer reaching saturation;
+(3) over-saturated water in ionomer and quick desorption into liquid
+and vapor in pores; and (4) signi ﬁcant ice formation. This study is
+aiming to present basic framework of the reasonable cold start beha-
+vior, as well as the water generation, phase transition and transfer
+behavior inside the PEM fuel cell. It is expected that this study could
+oﬀer useful insights into the reasonable modeling formulations for PEM
+fuel cell.
+3.2. Liquid water and vapor generation
+On the other hand, as liquid water may be present in the pores of CL
+due to the water sorption and desorption from the electrolyte, protons
+may ﬂow through the liquid water. It indicates that electrochemical
+reaction could also take place in the liquid water cluster. The byproduct
+water may be also in liquid state accordingly, as delineated in Fig. 1.
+Nevertheless, since the ionic conductivity of proton in liquid phase is
+apparently worse than that in the ionomer, membrane water produc-
+tion theoretically predominates in the fuel cell operation, particularly in
+the early stage of cold starting up. Nonetheless, performance compar-
+ison will be still conducted in this section based on three di ﬀerent water
+production mechanisms in the electrochemical reaction, e.g. liquid,
+vapor and membrane water production, to brie ﬂy examine and point
+out their connotation to the numerical results. To brilliantly outline and
+compare startup capability, the phase transition rates of water are re-
+mained to be 1 s
+−1 for all the three cases.
+Fig. 9(a) displays the time evolutions of cell voltage based on the
+three states of water generation with constant current operation at
+0.1 A cm−2 starting up from −20 °C. Initially the averaged cell voltage
+in the three cases varies with a similar pace because of the low initial
+membrane water content (3.4) and its slow pulling up. For the case of
+membrane water generation, a few seconds of delay in liquid and ice
+formation is observed due to the unsaturated water in the ionomer. This
+manifests that water generated in the ionomer o ﬀers bene ﬁts for pre-
+venting water freezing, sustaining better startup capability of PEM fuel
+cell, which is consistent with the delay in the induce time of ice for-
+mation [25–27]. On the other hand, the results indicate that water
+produced in liquid and vapor phase signi ﬁcantly motivates the dete-
+rioration of startup capability through directly speeding up ice pre-
+cipitation from liquid water. It is also con ﬁrmed by examination of
+super-cooled water and ice distribution at 9 s after startup, as per-
+formed in Fig. 9(b). The corresponding cell performance deviates from
+the experimental results mentioned previously. Moreover, for the liquid
+water and vapor generation cases, the modeling predicted liquid and ice
+immediately generates from the beginning of the startup operation. It
+further illustrates the irrationality of the assumptions associated with
+the liquid water and vapor generation not only in the cold start mod-
+eling formulation, but also in the general modeling development of
+PEM fuel cell.
+With regard to the case of membrane water generation, the liquid
+water evolution inside the cathode CL follows the slow increasing and
+rapid decreasing trend during the cold start operation, which implies
+that liquid water should mostly, even completely freeze at the shut-
+down moment of the PEM fuel cell, as demonstrated in Fig. 9(b). In
+detail, the liquid water and ice are generated at around 9 s after startup.
+Meanwhile, by checking the later mass transfer from non-frozen
+membrane water to liquid water in Fig. 4(b), it can be concluded that
+the liquid water and ice should be ﬁrstly transited from the saturated
+water vapor. Moreover, water prefers to freeze at the interface of CL
+and MPL due to the su ﬃ cient reactant supply and fast reaction kinetics.
+However, according to the corrected Butler-Volmer Equation, more
+serious ice blockage here results in the reaction kinetics degradation
+and gradually hinders the liquid water removal. Hence the liquid water
+(a) 
+(b) 
+0 1 02 03 04 05 06 07 0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+Cell Voltage, V
+Time, s
+ Modeling Prediction (non-equilibrium)
+ Modeling Prediction (equilibrium)
+ Experimental Data
+Cell Voltage
+Current Density
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+Current Density, A cm
+-2
+Startup temperature: -20 °C    Initial membrane water content: 3.4
+30 40 50 60 70
+0.0
+0.1
+0.2
+0.3
+0.4
+0.5
+0.6
+0.7
+0.8
+0.9
+1.0
+Time, s
+ Non-equilibrium: κnfm-lq=1 s
+-1
+ Non-equilibrium: κnfm-lq=2 s
+-1
+ Non-equilibrium: κnfm-lq=3 s
+-1
+ Equilibrium
+Current Density
+Cell Voltage
+0.00
+0.05
+0.10
+0.15
+0.20
+0.25
+0.30
+Cell Voltage, V
+Current Density, A cm
+-2
+Startup temperature: -20 °C    Initial membrane water content: 3.4
+(c) 
+0 1 02 03 04 05 06 07 0
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Maximum water content in
+the ionomer of cathode CL
+Time, s
+ Non-equilibrium: κnfm-lq=1 s
+-1
+ Non-equilibrium: κnfm-lq=2 s
+-1
+ Non-equilibrium: κnfm-lq=3 s
+-1
+ Equilibrium
+Saturated water content
+Fig. 8. Comparison of (a) cell voltage evolution between the present modeling
+prediction and the experimental data starting up from −20 °C with constant
+current density at 100 mA cm −2 and initial membrane water content of 3.4
+[41]; (b) cell performance between equilibrium and non-equilibrium phase
+transition; and (c) evolution of maximum membrane water content in cathode
+CL with various membrane water desorption rates ( κnfm-lq =1 , 2 , 3s −1).
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+786
+
+=== PDF PAGE 12 ===
+accumulation migrates from the interface of CL and MPL to the center
+of CL.
+Therefore, it suggests that the modeling formulations for the water
+transfer inside the cathode CL follows the former-stated four stages with
+consideration of super-cooled water. In addition, it can be emphasized
+that water vapor production is almost impossible unless the PEM fuel
+cell is operating at a high temperature. Liquid water is possibly pro-
+duced at a relatively low level in the electrochemical reaction. Hence
+this study suggests that the assumptions associated with the liquid
+water and vapor production should be cautiously used and even ban-
+ished in the numerical works, especially for the dynamic modeling
+studies. Proper water transfer rates should be carefully chosen for the
+fuel cell operation under various cell design and operational conditions
+in order to achieve appropriate water transport behavior and reason-
+able modeling predicted results. From a physical standpoint, since the
+pore radius inside the electrolyte is always less than the order of 10 nm,
+the water ﬂow prefers to be localized rather than connected within the
+narrow pores. Hence the water is often recognized to be membrane
+water in dissolved state in the ionomer instead of in liquid phase. Since
+the catalyst is usually assembled through spraying the catalyst-ionomer
+ink onto the polymer membrane, it reveals that the active area for the
+electrochemical reaction on the surface of catalyst particle should be
+mostly wrapped in the electrolyte, as shown in Fig. 1. As is well-known,
+the ionic group of sulfonic acid (SO
+3
+−H+) will rarely retain less than
+three water molecules per proton. Subsequently, once a water molecule
+is formed at the triple-phase zone, it participates in the water molecules
+group connected with the sulfonic acid group. This further indicates
+that the membrane water production should play the leading role in the
+water generation mechanism in the electrochemical reaction.
+4. Conclusions
+In this study, an analytical multiphase model for the PEM fuel cell
+has been proposed to investigate the self-startup behavior from sub-
+freezing temperature. In consideration of the exiguity of the researches
+on the super-cooled water transfer characteristics in the PEM fuel cell at
+subfreezing temperature, the super-cooled water transport has been
+performed to enrich the water transfer mechanism in PEM fuel cell. In
+order to explore the reasonable water transfer behavior, water phase
+transition mechanisms have been rebuilt based on the states of water
+generation in cathode CL, including water vapor, membrane water and
+super-cooled water. The general water transfer behavior during cold
+start ﬁnally evolves into four stages: (1) membrane water generation
+and unsaturated water in ionomer; (2) water in ionomer reaching sa-
+turation; (3) over-saturated water in ionomer and quick desorption into
+liquid and vapor in pores; and (4) signi ﬁcant ice formation. The un-
+reliable assumption associated with the vapor and liquid production in
+cathode reaction should be cautiously used, even prevented from the
+numerical model, especially for the dynamic modeling formulation.
+The results indicate that the startup capability bene ﬁts a lot from
+water generation in membrane water state, which greatly helps delay
+the water freezing, and signi ﬁcantly slows down the ice growth inside
+the cathode CL. It is worthwhile addressing that the liquid water inside
+the cathode CL follows the slow increasing and rapid decreasing trend
+during the cold start operation, which indicates that liquid water should
+mostly, even completely freeze at the shut-down moment. On the other
+hand, liquid water accumulation gradually migrates from the interface
+of CL and MPL to the center of CL, impeded by the severe ice blockage
+and guided by the variation of reaction kinetics. Furthermore, the water
+transition associated with vapor is observed much weaker than any
+other water phase transitions owing to the intrinsic small amount of
+vapor in the pores. This study is aiming to present basic framework to
+possibly optimize the water balance inside the PEM fuel cell during cold
+start operation by reasonably regulating water generation, phase tran-
+sition and transport. It is expected that this study could o ﬀer useful
+insights into the cold start enhancement of PEM fuel cell, as well as the
+reasonable numerical modeling formulations in the literature.
+Acknowledgments
+This project is supported by the National Key Research and
+Development Program of China (2017YFB0102703), and the National
+Natural Science Foundation of China for Excellent Young Scholars
+(Grant No. 51622606).
+References
+[1] Wu H-W. A review of recent development: transport and performance modeling of
+PEM fuel cells. Appl Energy 2016;165:81 –106.
+[2] Pei P, Chen H. Main factors a ﬀecting the lifetime of Proton Exchange Membrane
+fuel cells in vehicle applications: a review. Appl Energy 2014;125:60 –75.
+[3] Chen H, Song Z, Zhao X, Zhang T, Pei P, Liang C. A review of durability test pro-
+tocols of the proton exchange membrane fuel cells for vehicle. Appl Energy
+2018;224:289–99.
+[4] Amamou A, Kandidayeni M, Boulon L, Kelouwani S. Real time adaptive e ﬃ cient
+cold start strategy for proton exchange membrane fuel cells. Appl Energy
+2018;216:21–30.
+[5] Luo Y, Jiao K. Cold start of proton exchange membrane fuel cell. Prog Energ
+Combust 2018;64:29 –61.
+[6] Lin R, Ren YS, Lin XW, Jiang ZH, Yang Z, Chang YT. Investigation of the internal
+behavior in segmented PEMFCs of di ﬀerent ﬂow ﬁelds during cold start process.
+Energy 2017;123:367 –77.
+[7] Lin R, Lin X, Weng Y, Ren Y. Evolution of thermal drifting during and after cold start
+of proton exchange membrane fuel cell by segmented cell technology. Int J
+Hydrogen Energy 2015;40:7370 –81.
+[8] Lin R, Weng Y, Lin X, Xiong F. Rapid cold start of proton exchange membrane fuel
+cells by the printed circuit board technology. Int J Hydrogen Energy
+2014;39:18369–78.
+[9] Gwak G, Ko J, Ju H. Numerical investigation of cold-start behavior of polymer-
+electrolyte fuel-cells from subzero to normal operating temperatures: e ﬀects of cell
+boundary and operating conditions. Int J Hydrogen Energy 2014;39:21927 –37.
+Fig. 9. (a) Startup performance and (b) distribution of super-cooled water and
+ice inside cathode CL based on di ﬀerent states of water generation: membrane
+water, liquid water and water vapor.
+S. Huo et al. Applied Energy 233–234 (2019) 776–788
+787
+
+=== PDF PAGE 13 ===
+[10] Tabe Y, Saito M, Fukui K, Chikahisa T. Cold start characteristics and freezing me-
+chanism dependence on start-up temperature in a polymer electrolyte membrane
+fuel cell. J Power Sources 2012;208:366 –73.
+[11] Ko J, Ju H. E ﬀects of cathode catalyst layer design parameters on cold start beha-
+vior of polymer electrolyte fuel cells (PEFCs). Int J Hydrogen Energy
+2013;38:682–91.
+[12] Ko J, Ju H. Comparison of numerical simulation results and experimental data
+during cold-start of polymer electrolyte fuel cells. Appl Energy 2012;94:364 –74.
+[13] Ko J, Kim W, Hong T, Kim D, Ju H. Impact of metallic bipolar plates on cold-start
+behaviors of Polymer Electrolyte Fuel Cells (PEFCs). Solid State Ionics
+2012;225:260–7.
+[14] Meng H. Numerical studies of cold-start phenomenon in PEM fuel cells. Electrochim
+Acta 2008;53:6521 –9.
+[15] Jiao K, Li X. E ﬀects of various operating and initial conditions on cold start per-
+formance of polymer electrolyte membrane fuel cells. Int J Hydrogen Energy
+2009;34:8171–84.
+[16] Gwak G, Ju H. A rapid start-up strategy for polymer electrolyte fuel cells at subzero
+temperatures based on control of the operating current density. Int J Hydrogen
+Energy 2015;40:11989 –97.
+[17] Ko J, Kim W-G, Lim Y-D, Ju H. Improving the cold-start capability of polymer
+electrolyte fuel cells (PEFCs) by using a dual-function micro-porous layer (MPL):
+numerical simulations. Int J Hydrogen Energy 2013;38:652 –9.
+[18] Zhou Y, Luo Y, Yu S, Jiao K. Modeling of cold start processes and performance
+optimization for proton exchange membrane fuel cell stacks. J Power Sources
+2014;247:738–48.
+[19] Huo S, Cooper NJ, Smith TL, Park JW, Jiao K. Experimental investigation on PEM
+fuel cell cold start behavior containing porous metal foam as cathode ﬂow dis-
+tributor. Appl Energy 2017;203:101 –14.
+[20] Luo Y, Jia B, Jiao K, Du Q, Yin Y, Wang H, et al. Catalytic hydrogen-oxygen reaction
+in anode and cathode for cold start of proton exchange membrane fuel cell. Int J
+Hydrogen Energy 2015;40:10293 –307.
+[21] Pei P, Wu Z, Li Y, Jia X, Chen D, Huang S. Improved methods to measure hydrogen
+crossover current in proton exchange membrane fuel cell. Appl Energy
+2018;215:338–47.
+[22] Chang Y, Qin Y, Yin Y, Zhang J, Li X. Humidi ﬁcation strategy for polymer elec-
+trolyte membrane fuel cells – a review. Appl Energy 2018;230:643 –62.
+[23] Pei P, Jia X, Xu H, Li P, Wu Z, Li Y, et al. The recovery mechanism of proton
+exchange membrane fuel cell in microcurrent operation. Appl Energy
+2018;226:1–9.
+[24] Li
+Y, Pei P, Wu Z, Ren P, Jia X, Chen D, et al. Approaches to avoid ﬂooding in
+association with pressure drop in proton exchange membrane fuel cells. Appl
+Energy 2018;224:42 –51.
+[25] Ishikawa Y, Morita T, Nakata K, Yoshida K, Shiozawa M. Behavior of water below
+the freezing point in PEFCs. J Power Sources 2007;163:708 –12.
+[26] Ishikawa Y, Uehara HH, Shiozawa M. Super-cooled water behavior inside polymer
+electrolyte fuel cell cross-section below freezing temperature. J Power Sources
+2008;179:547–52.
+[27] Ishikawa Y, Shiozawa M, Kondo M, Ito K. Theoretical analysis of supercooled states
+of water generated below the freezing point in a PEFC. Int J Heat Mass Trans
+2014;74:215–27.
+[28] Morin A, Peng Z, Jestin J, Detrez M, Gebel G. Water management in proton ex-
+change membrane fuel cell at sub-zero temperatures: an in operando SANS-EIS
+coupled study. Solid State Ionics 2013;252:56 –61.
+[29] Tang T, Heinke S, Thüring A, Tegetho ﬀ W, Köhler J. A spatially resolved fuel cell
+stack model with gas-liquid slip phenomena for cold start simulations. Int J
+Hydrogen Energy 2017;42:15328 –46.
+[30] Jiao K, Li X. Water transport in polymer electrolyte membrane fuel cells. Prog Energ
+Combust 2011;37:221 –91.
+[31] Das PK, Li X, Liu Z-S. Analytical approach to polymer electrolyte membrane fuel cell
+performance and optimization. J Electroanal Chem 2007;604:72 –90.
+[32] Das PK, Li X, Liu Z-S. Analysis of liquid water transport in cathode catalyst layer of
+PEM fuel cells. Int J Hydrogen Energy 2010;35:2403 –16.
+[33] Jiao K, Li X. Three-dimensional multiphase modeling of cold start processes in
+polymer electrolyte membrane fuel cells. Electrochim Acta 2009;54:6876 –91.
+[34] Ju H, Wang CY, Cleghorn S, Beuscher U. Non-isothermal modeling of polymer
+electrolyte fuel cells. J Electrochem Soc 2005;152:A1645 –53.
+[35] Thompson EL, Capehart TW, Fuller TJ, Jorne J. Investigation of low-temperature
+proton transport in Na ﬁon using direct current conductivity and di ﬀerential scan-
+ning calorimetry. J Electrochem Soc 2006;153:A2351 –62.
+[36] Wu H, Li X, Berg P. On the modeling of water transport in polymer electrolyte
+membrane fuel cells. Electrochim Acta 2009;54:6913 –27.
+[37] Udell K. Heat transfer in porous media considering phase change and capillarity –
+the heat pipe e ﬀect. Int J Heat Mass Trans 1985;28(2):485 –95.
+[38] Dullien
+FAL. Porous media: ﬂuid transport and pore structure. Academic Press;
+2012.
+[39] Meng H. Numerical studies of liquid water behaviors in PEM fuel cell cathode
+considering transport across di ﬀerent porous layers. Int J Hydrogen Energy
+2010;35:5569–79.
+[40] Meng H, Wang CY. Model of two-phase ﬂow and ﬂooding dynamics in polymer
+electrolyte fuel cells. J Electrochem Soc 2005;152:A1733 –41.
+[41] Tajiri K, Tabuchi Y, Kagami F, Takahashi S, Yoshizawa K, Wang C-Y. E ﬀects of
+operating and design parameters on PEFC cold start. J Power Sources
+2007;165:279–86.
+[42] Kim SI, Lee NW, Kim YS, Kim MS. E ﬀective purge method with addition of hy-
+drogen on the cathode side for cold start in PEM fuel cell. Int J Hydrogen Energy
+2013;38:11357–69.
+S. Huo et al.
+Applied Energy 233–234 (2019) 776–788
+788

@@ -1,0 +1,1236 @@
+log4cxx: setFile(D:\retex\CTEX\UserData\miktex\log/xelatex.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(拒绝访问。  )
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex.fmt)
+entering extended mode
+(C:/Users/马汗青/Desktop/shumo/tmp/paper_revision/MathModel.original.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-08-10>
+(gmcmthesis.cls
+Document Class: gmcmthesis 2020/09/09 v2.2 update https://github.com/zhanwen/Ma
+thModel
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctexart.cls
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/config\ctexbackend.cfg)
+(D:\retex\CTEX\MiKTeX\tex/latex/l3kernel\expl3.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/l3kernel\l3backend-xetex.def))
+Document Class: ctexart 2026/08/11 v2.6.5 Chinese adapter for class article (CT
+EX)
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctexhook.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctexpatch.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/base\fix-cm.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/base\ts1enc.def))
+(D:\retex\CTEX\CTeX\tex/latex/ctex/cfg\ctexopts.cfg)
+
+Class ctexart Warning: Option `cs4size' is deprecated.
+(ctexart)              Option `zihao=-4' is set.
+
+(D:\retex\CTEX\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(D:\retex\CTEX\MiKTeX\tex/latex/base\size12.clo))
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/engine\ctex-engine-xetex.def
+(D:\retex\CTEX\MiKTeX\tex/xelatex/xecjk\xeCJK.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/l3packages/xtemplate\xtemplate.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/fontspec\fontspec.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/base\fontenc.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(D:\retex\CTEX\MiKTeX\tex/xelatex/xecjk\xeCJK.cfg)))
+(D:\retex\CTEX\MiKTeX\tex/latex/zhnumber\zhnumber.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/zhnumber\zhnumber-utf8.cfg))
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/scheme\ctex-scheme-chinese-article.def
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/config\ctex-name-utf8.cfg))
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctex-cs4size.clo)
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/fontset\ctex-fontset-fandol.def))
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/config\ctex.cfg)
+(D:\retex\CTEX\MiKTeX\tex/generic/iftex\ifxetex.sty
+(D:\retex\CTEX\MiKTeX\tex/generic/iftex\iftex.sty))
+(D:\retex\CTEX\MiKTeX\tex/latex/geometry\geometry.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics\keyval.sty)
+(D:\retex\CTEX\MiKTeX\tex/generic/iftex\ifvtex.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/geometry\geometry.cfg))
+(D:\retex\CTEX\MiKTeX\tex/latex/amsmath\amsmath.sty
+For additional information on amsmath, use the `?' option.
+(D:\retex\CTEX\MiKTeX\tex/latex/amsmath\amstext.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/amsmath\amsgen.sty))
+(D:\retex\CTEX\MiKTeX\tex/latex/amsmath\amsbsy.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/amsmath\amsopn.sty))
+(D:\retex\CTEX\MiKTeX\tex/latex/amsfonts\amsfonts.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/amsfonts\amssymb.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/tools\bm.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/xcolor\xcolor.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics-cfg\color.cfg)
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics-def\xetex.def)
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics\mathcolor.ltx))
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics\graphicx.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics\graphics.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics\trig.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics-cfg\graphics.cfg)))
+(D:\retex\CTEX\MiKTeX\tex/latex/tools\tabularx.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/tools\array.sty))
+(D:\retex\CTEX\MiKTeX\tex/latex/tools\longtable.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/booktabs\booktabs.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/multirow\multirow.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/multirow\bigstrut.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/multirow\bigdelim.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/cprotect\cprotect.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/base\ifthen.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/bigfoot\suffix.sty))
+(D:\retex\CTEX\MiKTeX\tex/latex/listings\listings.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/listings\lstpatch.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/listings\lstmisc.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/listings\listings.cfg))
+(D:\retex\CTEX\MiKTeX\tex/xelatex/xecjk\xeCJK-listings.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/tools\indentfirst.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/caption\caption.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/caption\caption3.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/caption\ltcaption.sty))
+(D:\retex\CTEX\MiKTeX\tex/latex/enumitem\enumitem.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/ulem\ulem.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/tools\calc.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/titlesec\titletoc.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/url\url.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/etoolbox\etoolbox.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/hyperref\hyperref.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty)
+(D:\retex\CTEX\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty)
+(D:\retex\CTEX\MiKTeX\tex/generic/pdfescape\pdfescape.sty
+(D:\retex\CTEX\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty)
+(D:\retex\CTEX\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+(D:\retex\CTEX\MiKTeX\tex/generic/infwarerr\infwarerr.sty)))
+(D:\retex\CTEX\MiKTeX\tex/latex/hycolor\hycolor.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/hyperref\nameref.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/refcount\refcount.sty)
+(D:\retex\CTEX\MiKTeX\tex/generic/gettitlestring\gettitlestring.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/kvoptions\kvoptions.sty)))
+(D:\retex\CTEX\MiKTeX\tex/generic/stringenc\stringenc.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/hyperref\pd1enc.def)
+(D:\retex\CTEX\MiKTeX\tex/generic/intcalc\intcalc.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/hyperref\puenc.def)
+(D:\retex\CTEX\MiKTeX\tex/generic/bitset\bitset.sty
+(D:\retex\CTEX\MiKTeX\tex/generic/bigintcalc\bigintcalc.sty)))
+(D:\retex\CTEX\MiKTeX\tex/latex/hyperref\hxetex.def
+(D:\retex\CTEX\MiKTeX\tex/latex/rerunfilecheck\rerunfilecheck.sty
+(D:\retex\CTEX\MiKTeX\tex/generic/uniquecounter\uniquecounter.sty)))
+
+Package xeCJK Warning: Redefining CJKfamily `\CJKrmdefault'
+(xeCJK)                (FandolSong-Regular(0)).
+
+
+Package hyperref Warning: Option `hyperfootnotes' has already been used,
+(hyperref)                setting the option has no effect on input line 250.
+
+
+Package hyperref Warning: Option `hyperindex' has already been used,
+(hyperref)                setting the option has no effect on input line 250.
+
+) (D:\retex\CTEX\MiKTeX\tex/latex/mhchem\mhchem.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/l3packages/l3keys2e\l3keys2e.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/chemgreek\chemgreek.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/l3packages/xparse\xparse.sty)))
+(D:\retex\CTEX\MiKTeX\tex/latex/pdfpages\pdfpages.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/eso-pic\eso-pic.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/pdfpages\ppxetex.def))
+No file baseline.aux.
+*geometry* driver: auto-detecting
+*geometry* detected driver: xetex
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
+(D:\retex\CTEX\MiKTeX\tex/latex/pdflscape\pdflscape.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/pdflscape\pdflscape-nometadata.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/graphics\lscape.sty)))
+(D:\retex\CTEX\MiKTeX\tex/latex/amsfonts\umsa.fd)
+(D:\retex\CTEX\MiKTeX\tex/latex/amsfonts\umsb.fd)
+Underfull \hbox (badness 10000) in paragraph at lines 26--26
+
+log4cxx: setFile(D:\retex\CTEX\UserData\miktex\log/miktex-dvipdfmx.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(拒绝访问。  )
+[0] [1]
+No file baseline.toc.
+[2]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 49.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 49.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 49.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 49.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 56.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 56.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 56.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 56.
+
+[3]
+
+LaTeX Warning: Reference `tab:main_symbols' on page 4 undefined on input line 9
+2.
+
+[4]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 128.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 128.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 128.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 128.
+
+
+LaTeX Warning: Citation `mao2007' on page 5 undefined on input line 135.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 138.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 138.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 138.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 138.
+
+
+LaTeX Warning: Reference `B4-1' on page 5 undefined on input line 153.
+
+[5] [6] [7]
+
+LaTeX Warning: Reference `eq:src:4-17' on page 8 undefined on input line 326.
+
+
+LaTeX Warning: Reference `eq:src:4-19' on page 8 undefined on input line 326.
+
+
+LaTeX Warning: Reference `eq:src:4-11' on page 8 undefined on input line 328.
+
+
+LaTeX Warning: Citation `buck1996manual' on page 8 undefined on input line 367.
+
+
+[8]
+
+LaTeX Warning: Reference `tab:q1_phase_rates' on page 9 undefined on input line
+ 388.
+
+[9]
+
+LaTeX Warning: Citation `springer1991' on page 10 undefined on input line 476.
+
+[10]
+
+LaTeX Warning: Reference `eq:src:4-11' on page 11 undefined on input line 533.
+
+[11]
+
+LaTeX Warning: Citation `pasaogullari2004' on page 12 undefined on input line 5
+94.
+
+[12]
+
+LaTeX Warning: Reference `eq:src:4-44' on page 13 undefined on input line 624.
+
+
+LaTeX Warning: Reference `eq:src:4-50' on page 13 undefined on input line 624.
+
+
+LaTeX Warning: Reference `eq:src:4-55' on page 13 undefined on input line 638.
+
+[13]
+
+LaTeX Warning: Reference `eq:src:4-62' on page 14 undefined on input line 744.
+
+[14] [15]
+
+LaTeX Warning: Reference `eq:src:4-57' on page 16 undefined on input line 841.
+
+[16]
+
+LaTeX Warning: Reference `eq:src:4-44' on page 17 undefined on input line 889.
+
+
+LaTeX Warning: Reference `eq:src:4-45' on page 17 undefined on input line 889.
+
+
+LaTeX Warning: Reference `eq:src:4-51' on page 17 undefined on input line 889.
+
+
+LaTeX Warning: Reference `eq:src:4-47' on page 17 undefined on input line 900.
+
+
+LaTeX Warning: Reference `eq:src:4-75' on page 17 undefined on input line 910.
+
+[17]
+
+LaTeX Warning: Citation `springer1991' on page 18 undefined on input line 930.
+
+
+LaTeX Warning: Reference `eq:src:4-79' on page 18 undefined on input line 959.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 978.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 978.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 978.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 978.
+
+[18]
+
+LaTeX Warning: Reference `eq:src:4-64' on page 19 undefined on input line 1018.
+
+
+[19] [20]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1102.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1102.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1102.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1102.
+
+
+LaTeX Warning: Reference `F4-3' on page 21 undefined on input line 1108.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `B12' on page 21 undefined on input line 1119.
+
+
+LaTeX Warning: Reference `B13' on page 21 undefined on input line 1119.
+
+[21] [22]
+
+LaTeX Warning: Reference `F4-5' on page 23 undefined on input line 1199.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1207.
+See the caption package documentation for explanation.
+
+[23]
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1222.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `F4-6' on page 24 undefined on input line 1227.
+
+[24]
+
+LaTeX Warning: Reference `F4-5' on page 25 undefined on input line 1232.
+
+
+LaTeX Warning: Reference `F4-8' on page 25 undefined on input line 1244.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 1252.
+See the caption package documentation for explanation.
+
+
+LaTeX Warning: Reference `F4-8' on page 25 undefined on input line 1257.
+
+
+LaTeX Warning: Reference `F4-8' on page 25 undefined on input line 1257.
+
+[25]
+
+LaTeX Warning: Reference `B12' on page 26 undefined on input line 1265.
+
+
+LaTeX Warning: Reference `B13' on page 26 undefined on input line 1265.
+
+
+LaTeX Warning: Reference `tab:q1_sensitivity' on page 26 undefined on input lin
+e 1269.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1288.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1288.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1288.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1288.
+
+[26]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1294.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1294.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1294.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1294.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1298.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1298.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1298.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1298.
+
+
+LaTeX Warning: Reference `F5-1' on page 27 undefined on input line 1306.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[27] [28]
+
+LaTeX Warning: Reference `B5-1' on page 29 undefined on input line 1466.
+
+[29] [30]
+
+LaTeX Warning: Reference `eq:src:5-25' on page 31 undefined on input line 1583.
+
+
+
+LaTeX Warning: Reference `eq:src:5-14' on page 31 undefined on input line 1598.
+
+
+
+LaTeX Warning: Reference `eq:src:5-15' on page 31 undefined on input line 1598.
+
+
+[31]
+
+LaTeX Warning: Reference `eq:src:5-36' on page 32 undefined on input line 1621.
+
+
+[32]
+
+LaTeX Warning: Reference `eq:src:5-50' on page 33 undefined on input line 1713.
+
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1715.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1715.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1715.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1715.
+
+[33] [34]
+
+LaTeX Warning: Reference `B90' on page 35 undefined on input line 1800.
+
+[35]
+
+LaTeX Warning: Reference `eq:src:5-70' on page 36 undefined on input line 1876.
+
+
+[36]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1901.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1901.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 1901.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 1901.
+
+
+LaTeX Warning: Reference `B91' on page 37 undefined on input line 1906.
+
+
+LaTeX Warning: Reference `B91' on page 37 undefined on input line 1936.
+
+[37]
+
+LaTeX Warning: Reference `F5-3' on page 38 undefined on input line 1947.
+
+
+LaTeX Warning: Reference `F5-4' on page 38 undefined on input line 1954.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F5-4' on page 38 undefined on input line 1962.
+
+[38]
+
+LaTeX Warning: Reference `F5-5' on page 39 undefined on input line 1973.
+
+
+LaTeX Warning: Reference `F5-5' on page 39 undefined on input line 1974.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F5-6' on page 39 undefined on input line 1986.
+
+[39]
+
+LaTeX Warning: Reference `F5-4' on page 40 undefined on input line 1988.
+
+
+LaTeX Warning: Reference `F5-6' on page 40 undefined on input line 1988.
+
+
+LaTeX Warning: Reference `B95' on page 40 undefined on input line 1995.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F5-8' on page 40 undefined on input line 2027.
+
+
+LaTeX Warning: Reference `F5-8' on page 40 undefined on input line 2028.
+
+[40] [41]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2055.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2055.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2055.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2055.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2063.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2063.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2063.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2063.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2069.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2069.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2069.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2069.
+
+[42]
+
+LaTeX Warning: Reference `eq:src:6-4' on page 43 undefined on input line 2109.
+
+
+LaTeX Warning: Reference `eq:src:5-33' on page 43 undefined on input line 2116.
+
+
+
+LaTeX Warning: Reference `eq:src:5-24' on page 43 undefined on input line 2116.
+
+
+
+LaTeX Warning: Reference `eq:src:6-10' on page 43 undefined on input line 2129.
+
+
+[43]
+
+LaTeX Warning: Reference `eq:src:6-12' on page 44 undefined on input line 2134.
+
+
+
+LaTeX Warning: Reference `eq:src:6-6' on page 44 undefined on input line 2150.
+
+[44]
+
+LaTeX Warning: Reference `eq:src:6-21' on page 45 undefined on input line 2211.
+
+
+[45]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2240.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2240.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2240.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2240.
+
+
+LaTeX Warning: Reference `eq:src:6-2' on page 46 undefined on input line 2250.
+
+
+LaTeX Warning: Reference `eq:src:6-15' on page 46 undefined on input line 2252.
+
+
+
+LaTeX Warning: Reference `eq:src:6-28' on page 46 undefined on input line 2262.
+
+
+
+LaTeX Warning: Reference `eq:src:6-19' on page 46 undefined on input line 2264.
+
+
+
+LaTeX Warning: Reference `eq:src:6-27' on page 46 undefined on input line 2269.
+
+
+[46]
+
+LaTeX Warning: Reference `eq:src:6-10' on page 47 undefined on input line 2271.
+
+
+
+LaTeX Warning: Reference `eq:src:6-27' on page 47 undefined on input line 2284.
+
+
+
+LaTeX Warning: Reference `eq:src:6-10' on page 47 undefined on input line 2296.
+
+
+
+LaTeX Warning: Reference `eq:src:6-19' on page 47 undefined on input line 2296.
+
+
+
+LaTeX Warning: Reference `eq:src:6-22' on page 47 undefined on input line 2296.
+
+
+
+LaTeX Warning: Reference `eq:src:6-23' on page 47 undefined on input line 2314.
+
+
+[47]
+
+LaTeX Warning: Reference `eq:src:6-28' on page 48 undefined on input line 2327.
+
+
+
+LaTeX Warning: Reference `eq:src:6-19' on page 48 undefined on input line 2327.
+
+
+
+LaTeX Warning: Reference `eq:src:6-27' on page 48 undefined on input line 2331.
+
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2335.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2335.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2335.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2335.
+
+
+LaTeX Warning: Reference `tab:opt_results' on page 48 undefined on input line 2
+337.
+
+
+LaTeX Warning: Reference `tab:opt_results' on page 48 undefined on input line 2
+362.
+
+[48]
+
+LaTeX Warning: Reference `F6-2' on page 49 undefined on input line 2376.
+
+
+LaTeX Warning: Reference `F6-2' on page 49 undefined on input line 2377.
+
+[49]
+
+LaTeX Warning: Reference `tab:opt_results' on page 50 undefined on input line 2
+382.
+
+
+LaTeX Warning: Reference `F6-4' on page 50 undefined on input line 2396.
+
+
+LaTeX Warning: Reference `F6-4' on page 50 undefined on input line 2398.
+
+
+LaTeX Warning: Reference `F6-4' on page 50 undefined on input line 2399.
+
+[50]
+
+LaTeX Warning: Reference `tab:opt_results' on page 51 undefined on input line 2
+402.
+
+
+LaTeX Warning: Reference `F6-4' on page 51 undefined on input line 2402.
+
+
+LaTeX Warning: Reference `F6-5' on page 51 undefined on input line 2414.
+
+[51]
+
+LaTeX Warning: Reference `tab:opt_results' on page 52 undefined on input line 2
+420.
+
+
+LaTeX Warning: Reference `eq:src:6-12' on page 52 undefined on input line 2424.
+
+
+
+LaTeX Warning: Reference `tab:q3:event' on page 52 undefined on input line 2431
+.
+
+[52]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2452.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2452.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2452.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2452.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2459.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2459.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2459.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2459.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2467.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2467.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2467.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2467.
+
+[53] [54]
+
+LaTeX Warning: Reference `eq:q4:temperature_map' on page 55 undefined on input 
+line 2545.
+
+
+LaTeX Warning: Reference `eq:q4:map_energy' on page 55 undefined on input line 
+2578.
+
+[55]
+
+LaTeX Warning: Reference `tab:q4:states' on page 56 undefined on input line 267
+2.
+
+[56]
+
+LaTeX Warning: Reference `eq:q4:feedforward' on page 57 undefined on input line
+ 2713.
+
+
+LaTeX Warning: Reference `eq:q4:danger_condition' on page 57 undefined on input
+ line 2761.
+
+[57]
+
+LaTeX Warning: Reference `tab:q4:states' on page 58 undefined on input line 278
+5.
+
+
+LaTeX Warning: Reference `eq:q4:danger_condition' on page 58 undefined on input
+ line 2799.
+
+
+LaTeX Warning: Reference `eq:q4:taper_factor' on page 58 undefined on input lin
+e 2802.
+
+
+Underfull \hbox (badness 2671) in paragraph at lines 2803--2804
+[]|\TU/SimSun(0)/m/n/10.53937 五 片 功 率 统 一 置 零 并 永 久 锁
+
+LaTeX Warning: Reference `eq:q4:auxiliary_energy' on page 58 undefined on input
+ line 2818.
+
+[58]
+
+LaTeX Warning: Reference `eq:q4:true_first_success' on page 59 undefined on inp
+ut line 2854.
+
+
+LaTeX Warning: Reference `eq:q4:startup_deadline' on page 59 undefined on input
+ line 2886.
+
+[59]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2901.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2901.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 2901.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 2901.
+
+
+LaTeX Warning: Reference `B7-control-bounds' on page 60 undefined on input line
+ 2910.
+
+
+LaTeX Warning: Reference `B7-control-bounds' on page 60 undefined on input line
+ 2932.
+
+[60]
+
+LaTeX Warning: Reference `eq:q4:comparison_metrics' on page 61 undefined on inp
+ut line 2950.
+
+[61]
+
+LaTeX Warning: Reference `eq:q4:solver_energy_band' on page 62 undefined on inp
+ut line 2994.
+
+
+LaTeX Warning: Reference `B7-control-parameters' on page 62 undefined on input 
+line 3010.
+
+[62]
+
+LaTeX Warning: Reference `eq:q4:solver_constant_power' on page 63 undefined on 
+input line 3048.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3057.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3057.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3057.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3057.
+
+
+LaTeX Warning: Reference `tab:q4:main' on page 63 undefined on input line 3060.
+
+
+
+LaTeX Warning: Reference `eq:q4:applied_power' on page 63 undefined on input li
+ne 3076.
+
+
+LaTeX Warning: Reference `eq:q4:applied_power' on page 63 undefined on input li
+ne 3080.
+
+
+LaTeX Warning: Reference `eq:q4:applied_power' on page 63 undefined on input li
+ne 3084.
+
+
+LaTeX Warning: Reference `B7-control-parameters' on page 63 undefined on input 
+line 3089.
+
+
+LaTeX Warning: Reference `tab:q4:initial' on page 63 undefined on input line 30
+97.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F7-1' on page 63 undefined on input line 3124.
+
+[63]
+
+LaTeX Warning: Reference `F7-1' on page 64 undefined on input line 3126.
+
+
+LaTeX Warning: Reference `tab:q4:initial' on page 64 undefined on input line 31
+26.
+
+[64]
+
+LaTeX Warning: Reference `F7-2' on page 65 undefined on input line 3130.
+
+
+LaTeX Warning: Reference `F7-4' on page 65 undefined on input line 3130.
+
+
+LaTeX Warning: Reference `tab:q4:main' on page 65 undefined on input line 3130.
+
+
+
+LaTeX Warning: Reference `F7-2' on page 65 undefined on input line 3139.
+
+
+LaTeX Warning: Reference `F7-3' on page 65 undefined on input line 3149.
+
+
+Underfull \hbox (badness 1629) in paragraph at lines 3149--3150
+[]\TU/TimesNewRoman(0)/m/n/12.045 20 min \TU/SimSun(0)/m/n/12.045 较 暖 初 态 的 辅 助
+ 需 求 较 低，|  图 []\TU/TimesNewRoman(0)/m/n/12.045 (a) \TU/SimSun(0)/m/n/12.045 中 
+端 部 功 率 先 增 后 减，|  峰 值 仅
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F7-2' on page 65 undefined on input line 3170.
+
+
+LaTeX Warning: Reference `F7-4' on page 65 undefined on input line 3170.
+
+
+LaTeX Warning: Reference `tab:q4:main' on page 65 undefined on input line 3170.
+
+
+[65]
+
+LaTeX Warning: Reference `tab:q4:main' on page 66 undefined on input line 3181.
+
+
+
+LaTeX Warning: Reference `tab:q4:main' on page 66 undefined on input line 3183.
+
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F7-5' on page 66 undefined on input line 3194.
+
+[66] [67]
+
+LaTeX Warning: Reference `tab:q4:main' on page 68 undefined on input line 3198.
+
+
+
+LaTeX Warning: Reference `F7-6' on page 68 undefined on input line 3202.
+
+
+LaTeX Warning: Reference `F7-6' on page 68 undefined on input line 3212.
+
+
+LaTeX Warning: Reference `F7-1' on page 68 undefined on input line 3214.
+
+
+LaTeX Warning: Reference `F7-6' on page 68 undefined on input line 3214.
+
+
+LaTeX Warning: Reference `tab:q4:post' on page 68 undefined on input line 3220.
+
+
+[68]
+
+LaTeX Warning: Reference `tab:q4:post' on page 69 undefined on input line 3240.
+
+
+
+LaTeX Warning: Reference `F7-2' on page 69 undefined on input line 3240.
+
+
+LaTeX Warning: Reference `F7-4' on page 69 undefined on input line 3240.
+
+
+LaTeX Warning: Reference `F7-7' on page 69 undefined on input line 3248.
+
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F7-7' on page 69 undefined on input line 3257.
+
+
+LaTeX Warning: Reference `F7-7' on page 69 undefined on input line 3259.
+
+
+Underfull \hbox (badness 5302) in paragraph at lines 3259--3260
+[]\TU/SimSun(0)/m/n/12.045 完 全 冷 却 名 义 方 案 的 端 板 导 度 降 低\TU/TimesNewRoman(0)/m/
+n/12.045 /\TU/SimSun(0)/m/n/12.045 提 高 \TU/TimesNewRoman(0)/m/n/12.045 20%\TU/S
+imSun(0)/m/n/12.045 ，|  能 耗 由 \TU/TimesNewRoman(0)/m/n/12.045 2855.408 J \TU/Si
+mSun(0)/m/n/12.045 变 为
+[69]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+
+LaTeX Warning: Reference `F7-9' on page 70 undefined on input line 3273.
+
+
+LaTeX Warning: Reference `F7-9' on page 70 undefined on input line 3273.
+
+
+LaTeX Warning: Reference `tab:q4:post' on page 70 undefined on input line 3275.
+
+
+
+LaTeX Warning: Reference `tab:q4:structure' on page 70 undefined on input line 
+3281.
+
+[70]
+
+LaTeX Warning: Reference `tab:q4:deadline' on page 71 undefined on input line 3
+312.
+
+[71]
+
+LaTeX Warning: Reference `F7-3' on page 72 undefined on input line 3346.
+
+[72]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3357.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3357.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3357.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3357.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3364.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3364.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3364.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3364.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3369.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3369.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `\leavevmode@ifvmode' on input line 3369.
+
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                \kern 2.00792pt
+(hyperref)                removed on input line 3369.
+
+[73] [74] (C:/Users\马汗青\Desktop\shumo\tmp\paper_revision\baseline\baseline.aux)
+
+LaTeX Warning: There were undefined references.
+
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+
+Package rerunfilecheck Warning: File `baseline.out' has changed.
+(rerunfilecheck)                Rerun to get outlines right
+(rerunfilecheck)                or use package `bookmark'.
+
+ )
+(\end occurred when \iftrue on line 26 was incomplete)
+(see the transcript file for additional information)
+Output written on C:/Users\马汗青\Desktop\shumo\tmp\paper_revision\baseline\baseli
+ne.pdf (75 pages).
+Transcript written on C:/Users\马汗青\Desktop\shumo\tmp\paper_revision\baseline\ba
+seline.log.

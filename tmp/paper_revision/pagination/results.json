@@ -1,0 +1,30 @@
+[
+  {
+    "variant": "a",
+    "exit_code": 0,
+    "overfull": [
+      "Overfull \\vbox (81.81944pt too high) has occurred while \\output is active\r"
+    ],
+    "figure_block": "\\begin{center}\n\\begin{minipage}{\\textwidth}\n\\setlength{\\parindent}{2em}\n上述四个问题依次由单电池机理建模推进至电堆加载优化、恒功率辅助加热和动态反馈控制，前一问的模型与结论为后一问提供基础，其递进关系如图\\ref{fig:problem_progression}所示。\\par\\medskip\n\\centering\n\\includegraphics[width=1.0\\textwidth]{figures/problem_progression.pdf}\n\\captionof{figure}{问题一至四的递进关系}\n\\label{fig:problem_progression}\n\\end{minipage}\n\\end{center}\n\n"
+  },
+  {
+    "variant": "b",
+    "exit_code": 0,
+    "overfull": [
+      "Overfull \\vbox (81.81944pt too high) has occurred while \\output is active\r"
+    ],
+    "figure_block": "\\begin{center}\n\\begin{minipage}{\\textwidth}\n\\setlength{\\parindent}{2em}\n上述四个问题依次由单电池机理建模推进至电堆加载优化、恒功率辅助加热和动态反馈控制，前一问的模型与结论为后一问提供基础，其递进关系如图\\ref{fig:problem_progression}所示。\\par\\medskip\n\\centering\n\\includegraphics[width=0.90\\textwidth]{figures/problem_progression.pdf}\n\\captionof{figure}{问题一至四的递进关系}\n\\label{fig:problem_progression}\n\\end{minipage}\n\\end{center}\n\n"
+  },
+  {
+    "variant": "c",
+    "exit_code": 0,
+    "overfull": [],
+    "figure_block": "\\begin{center}\n\\begin{minipage}{\\textwidth}\n\\setlength{\\parindent}{2em}\n上述四个问题依次由单电池机理建模推进至电堆加载优化、恒功率辅助加热和动态反馈控制，前一问的模型与结论为后一问提供基础，其递进关系如图\\ref{fig:problem_progression}所示。\\par\\medskip\n\\centering\n\\includegraphics[width=0.80\\textwidth]{figures/problem_progression.pdf}\n\\captionof{figure}{问题一至四的递进关系}\n\\label{fig:problem_progression}\n\\end{minipage}\n\\end{center}\n\n"
+  },
+  {
+    "variant": "d",
+    "exit_code": 0,
+    "overfull": [],
+    "figure_block": "\\clearpage\n\\begin{center}\n\\begin{minipage}{\\textwidth}\n\\setlength{\\parindent}{2em}\n上述四个问题依次由单电池机理建模推进至电堆加载优化、恒功率辅助加热和动态反馈控制，前一问的模型与结论为后一问提供基础，其递进关系如图\\ref{fig:problem_progression}所示。\\par\\medskip\n\\centering\n\\includegraphics[width=1.0\\textwidth]{figures/problem_progression.pdf}\n\\captionof{figure}{问题一至四的递进关系}\n\\label{fig:problem_progression}\n\\end{minipage}\n\\end{center}\n\n"
+  }
+]

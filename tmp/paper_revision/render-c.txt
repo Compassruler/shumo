@@ -1,0 +1,6 @@
+GPL Ghostscript 10.01.1 (2023-03-27)
+Copyright (C) 2023 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Processing pages 5 through 5.
+Page 5

@@ -1,0 +1,1787 @@
+
+=== PDF PAGE 1 ===
+energies
+Article
+Analysis of the Failure Modes in the Polymer
+Electrolyte Fuel Cell Cold-Start Process—Anode
+Dehydration or Cathode Pore Blockage
+Lei Yao 1, Fangfang Ma 1, Jie Peng 1,*, Jianbo Zhang 2, Yangjun Zhang 2 and Jianpeng Shi 3
+1 AML, Department of Engineering Mechanics, Tsinghua University, Beijing 100084, China;
+yaolei@spic.com.cn (L.Y.); mﬀ18@mails.tsinghua.edu.cn (F.M.)
+2 School of Vehicle and Mobility, Tsinghua University, Beijing 100084, China; jbzhang@tsinghua.edu.cn (J.Z.);
+yjzhang@tsinghua.edu.cn (Y.Z.)
+3 Dongfeng Motor Corporation Technical Center, Wuhan 430056, China; shijp@dfmc.com.cn
+* Correspondence: peng-jie@tsinghua.edu.cn; Tel.: +86-10-62772925
+Received: 28 October 2019; Accepted: 1 January 2020; Published: 4 January 2020
+/gid00030/gid00035/gid00032/gid00030/gid00038/gid00001/gid00033/gid00042/gid00045/gid00001
+/gid00048/gid00043/gid00031/gid00028/gid00047/gid00032/gid00046
+Abstract: In this study, the cold-start failure processes of a polymer electrolyte fuel cell have been
+investigated numerically for diﬀerent initial membrane water content λ0 and the startup current
+densities I0. The result shows that the failure of the cell cold-start process is mostly attributed to the
+anode dehydration when the cell operates with relatively large current density. However, the failure
+is dominated by the cathode pore blockage when the cell starts with relatively high initial membrane
+water content. Corresponding maps for the classiﬁcation of startup failure modes are plotted on the
+λ0− I0 plane with diﬀerent startup temperatures. Three zones, including the anode dehydration,
+the cathode pore blockage, and the ambiguous region, can be observed. They can be distinguished
+with diﬀerent startup failure mechanisms. The anode dehydration zone is expanded as the cell
+startup temperature drops due to the weakening of the membrane water back-diﬀusion ability. In the
+ambiguous region, the startup failure phenomena may be either anode dehydration or cathode pore
+blockage, which depends on the stochastic freezing process of the supercooled water.
+Keywords: polymer electrolyte fuel cell; cold start; failure mode; anode dehydration; cathode
+pore blockage
+1. Introduction
+Polymer electrolyte fuel cell (PEFC) is one of the most potential power supplies in the
+automotive industry due to its high-power density, high e ﬃciency, low operating temperature,
+and zero-emissions [1]. However, the cell startup from subfreezing temperature (referred to as cold
+start) is still a signiﬁcant issue. The electrochemical reaction would be stopped due to gas starvation if
+the cell temperature cannot grow above the freezing point before the catalyst layer (CL) is fully blocked
+by ice [1].
+In the previous decade, the ice formation and heat transfer inside the PEFC during the cold-start
+process has been examined comprehensively by both experimental measurement and numerical
+simulation. In quite a few experimental investigations, the e ﬀects of operating conditions [ 2–6]
+(e.g., temperature, initial membrane water, and current density) and cell design parameters (e.g.,
+ionomer-to-carbon ratio in CL [7], cathode Pt loading [8], pore diameter of gas diﬀusion layer (GDL) [9],
+and micro-porous layer (MPL) [10,11]) on the cell cold-start performance have been the main concern.
+It has been pointed out that the process of PEFC cold start can be divided into three stages, including
+the membrane hydration, the ice formation and the ice melting [ 12]. Based on this experimental
+evidence, a non-isothermal and multiphase model has been developed to describe the electrochemical
+Energies 2020, 13, 256; doi:10.3390/en13010256 www.mdpi.com /journal/energies
+
+=== PDF PAGE 2 ===
+Energies 2020, 13, 256 2 of 20
+and the mass/heat transfer phenomenon inside the PEFC during the cold-start process [13]. The ice
+formation and melting were both considered. The water vapor is generated in the cathode catalyst
+layer (CCL) and equilibrated with ionomer/membrane water instantly. Meanwhile, the water vapor
+can also be transported from CL into GDL and even into the gas channel (GC). When the water vapor
+is locally saturated, it will de-sublimate to ice [13–19]. According to the experimental results of the
+proton conductivity at low temperature [20], Jiao creatively classiﬁed the membrane water into the
+frozen and non-frozen state [21–23]. It has been claimed that the non-frozen water could change into
+the frozen water if it exceeded the membrane (MEM) maximum water content. In all the models
+mentioned above, the supercooled water, which would exist at subfreezing temperature, has been
+completely ignored.
+Recently, visualization experiments have been carried out with an optical microscope [ 24,25],
+X-rays [26,27], and neutron imaging [ 28–31] to clarify the water behavior within the PEFC during
+the cold-start process. The produced water in the liquid state was ﬁrstly observed by Ishikawa [24]
+on the CCL surface with startup temperature at−10◦C. Besides, the liquid water was also observed
+in cathode GDL at−15◦C and even in cathode GC at−10◦C by Oberholzer [28]. Therefore, it can
+be concluded that the water inside PEFC is initially in the supercooled state and then freezes into
+ice due to its thermodynamic instability. The freezing process is more likely to happen due to the
+ﬁber breaks, the asperities, or the micro cracks. More than 700 isothermal cold-start experiments have
+been performed by Biesdorf and his/her collaborators [30–32]. The results indicate that for the cell
+with a small active area, the cold-start process has signiﬁcant randomness. However, for the cell with
+a large active area, the cold-start process is reproducible. During the cold-start process, the water
+pathway from CL toward the ﬂow channel can be created gradually. Once the water pathway is
+successfully created, the supercooled water can transport along this preferred way, and the cell will
+run for a long time [ 30]. This suggests that the existence of supercooled water is of beneﬁt to the
+cold-start process. More recently, the performance of supercooled water has also been considered in
+the numerical models [33–35]. A one-dimensional model has been established by Yang [33] based on
+assuming a constant phase change rate between the supercooled water and the ice. The inﬂuence
+of MPL’s hydrophobicity on the cell cold-start performance was the main concern. In our recent
+work [35], the stochastic freezing process of supercooled water was modeled by introducing a freezing
+probability function. The cell cold-start processes with various initial and operating conditions have
+been investigated comprehensively.
+Generally, it is well known that the PEFC cold-start process may fail when the pore blockage in
+CCL or CCL/MPL interface happens. This is the dominant failure mode of the cold-start process when
+the cell operating current density or current ramping is relatively small. However, it is necessary to
+increase the startup current density to start the PEFC from−20◦C within the 30 s and to reach 50%
+of the rated power (DOE targets in 2020) [36]. It has been observed that under the normal operating
+temperature, the ohmic resistance of the PEFC increased with the increase of operating current density
+(I> 1.5 A/cm2) [37]. The local dehydration of the membrane in the anode side has been believed to be
+responsible for this phenomenon [38]. Practically, for the cold-start process, gas purge is generally
+performed before the startup, and the inlet gas is usually not humidiﬁed. The PEFC would easily be
+suﬀered from anode dehydration when the startup current density is relatively large. This indicates
+that the anode dehydration could also be a failure mode during PEFC cold-start process apart from
+cathode pore blockage. This has rarely been considered in previous works in the literature.
+In this study, based on the cold-start model in our previous literature [35], the failure modes of the
+PEFC cold-start process under various operating conditions are simulated numerically. We mainly focus
+on the inﬂuence of the startup current density and the initial membrane water content on the failure
+modes. The cell is assumed to be heated up by the heat generated by its reaction. A map is attempted
+to be established, which can be used to predict the failure mode of the fuel cell cold-start process.
+Moreover, it can also provide the reference values of the cell operating parameters. Based on these
+values, the fuel cell cold-start process might succeed. The paper is organized as follows. The numerical
+
+=== PDF PAGE 3 ===
+Energies 2020, 13, 256 3 of 20
+model is introduced brieﬂy in the following next section. The classiﬁcation of the failure modes
+caused by anode dehydration or cathode pore blockage is presented in Section 3, which is followed by
+the conclusions.
+2. Numerical Model
+In this study, following the previous literature [21,22,35], the PEFC with a single GC is considered.
+It includes all the major components, such as bipolar plates (BPs), GDLs, CLs, MPL, and MEM,
+as shown in Figure 1. The coolant channel is not considered, which indicates the exclusion of external
+heating during the cold-start process. The cell geometry and material parameters are given in Table 1.
+The simulation method is based on the cold-start model in our previous literature [35]. For the integrity
+of the article, the numerical model is brieﬂy described, with the following assumptions being adopted.
+(1) The gas mixture is incompressible due to the small pressure gradient;
+(2) The gas ﬂow in GCs and porous components (e.g., GDLs and CLs) is laminar due to the low ﬂow
+Reynolds number;
+(3) The porous parts of the PEFC are isotropic and homogeneous, which can be characterized by the
+eﬀective porosity and permeability;
+(4) The water di ﬀusion caused by the concentration gradient in MEM is considered, which is
+irrespective of the hydraulic pressure gradient;
+(5) The electrochemical double-layer eﬀect in CLs and the gravitational eﬀect are both ignored.
+Energies 2020, 13, x FOR PEER REVIEW 3 of 20 
+ 
+follows. The numerical model is introduced briefly in the following next section. The classification of 
+the failure modes caused by anode dehydration or cathode pore blockage is presented in Section 3, 
+which is followed by the conclusions. 
+2. Numerical Model 
+In this study, following the previous literature [21,22,35], the PEFC with a single GC is 
+considered. It includes all the major components, such as bipolar plates (BPs), GDLs, CLs, MPL, and 
+MEM, as shown in Figure 1. The coolant channel is not considered, which indicates the exclusion of 
+external heating during the cold-start process. The cell geometry and material parameters are given 
+in Table 1. The simulation method is based on the cold-start model in our previous literature [35]. For 
+the integrity of the article, the numerical model is briefly described, with the following assumptions 
+being adopted. 
+(1) The gas mixture is incompressible due to the small pressure gradient; 
+(2) The gas flow in GCs and porous components (e.g., GDLs and CLs) is laminar due to the low flow 
+Reynolds number; 
+(3) The porous parts of the PEFC are isotropic and homogeneous, which can be characterized by the 
+effective porosity and permeability; 
+(4) The water diffusion caused by the concentrat ion gradient in MEM is considered, which is 
+irrespective of the hydraulic pressure gradient; 
+(5) The electrochemical double-layer effect in CLs and the gravitational effect are both ignored. 
+  
+(a) ( b) 
+Figure 1. (a) Configuration of the Polymer electrolyte fuel cell (PEFC), and ( b) the computational 
+mesh.  
+Table 1. Geometry and material parameters of the cell [35]. 
+Description Symbol Value Unit 
+Length, width and height of GC - 50/1.0/1.0 mm 
+Thickness of BP/GDL/MPL/CL/MEM δ  2.0/0.2/0.03/0.01/0.01 mm 
+Porosity of GDL/MPL/CL ε  0.78/0.6/0.43 - 
+Contact angle of GDL/MPL/CL θ  140/100/100 °  
+Permeability of GDL/MPL/CL K  10−12/10−13/10−13 m 2 
+Ionomer volume fraction in CL ω  0.15 - 
+Equivalent weight of MEM EW  1100 kg 
+kmol−1 
+Density of BP/GDL/MPL/CL/MEM ρ  2230/1230/1230/1230/1980 kg m −3 
+Specific heat of BP/GDL/MPL/CL/MEM pC  1071/462/568/2683/833 J kg −1K−1 
+Thermal conductivity of 
+BP/GDL/MPL/CL/MEM k  20/1.5/1.0/1.2/0.95 Wm −1K−1 
+Figure 1. (a) Conﬁguration of the Polymer electrolyte fuel cell (PEFC), and (b) the computational mesh.
+Table 1. Geometry and material parameters of the cell [35].
+Description Symbol Value Unit
+Length, width and height of GC - 50 /1.0/1.0 mm
+Thickness of BP/GDL/MPL/CL/MEM δ 2.0/0.2/0.03/0.01/0.01 mm
+Porosity of GDL/MPL/CL ε 0.78/0.6/0.43 -
+Contact angle of GDL/MPL/CL θ 140/100/100 ◦
+Permeability of GDL/MPL/CL K 10−12/10−13/10−13 m2
+Ionomer volume fraction in CL ω 0.15 -
+Equivalent weight of MEM EW 1100 kg kmol−1
+Density of BP/GDL/MPL/CL/MEM ρ 2230/1230/1230/1230/1980 kg m−3
+Speciﬁc heat of BP/GDL/MPL/CL/MEM Cp 1071/462/568/2683/833 J kg−1K−1
+Thermal conductivity of
+BP/GDL/MPL/CL/MEM k 20/1.5/1.0/1.2/0.95 Wm−1K−1
+Electronic conductivity of BP/GDL/MPL/CL κs 20000/300/300/300 S m−1
+
+=== PDF PAGE 4 ===
+Energies 2020, 13, 256 4 of 20
+2.1. Governing Equations
+The governing equations include the conservation equations of mass, momentum, gas species,
+membrane water, liquid water, ice, charge, and energy. The corresponding formulas can be expressed
+as follows [35]:
+• Mass conservation
+∂
+∂t
+[
+ε(1− sl− si)ρg
+]
++∇·
+(
+ρgug
+)
+= Sm (1)
+whereε is the porosity of CLs, MPL, and GDLs. sl and si indicate the volume fraction of liquid
+water and ice in the porous pore. ρg and ug denote the density and ﬂow velocity of the gas
+mixture, respectively.
+• Momentum conservation
+∂
+∂t
+( ρgug
+ε(1−sl−si)
+)
++∇·
+( ρgugug
+ε2(1−sl−si)2
+)
+=−∇pg− 2
+3µg∇
+(
+∇·
+( ug
+ε(1−sl−si)
+))
++µg∇·
+(
+∇
+( ug
+ε(1−sl−si)
+)
++∇
+( ug
+ε(1−sl−si)
+)tr)
++ Su
+(2)
+where pg andµg denote the pressure and dynamic viscosity of the gas mixture.
+• Gas species conservation
+∂
+∂t
+[
+ε(1− sl− si)ρgYn
+]
++∇·
+(
+ρgugYn
+)
+=∇·
+(
+ρgDeff
+n∇Yn
+)
++ Sn (3)
+where Yn is the mass fraction of the each species (including H2, O2, and H2O) in the gas mixture.
+Deff
+n is the eﬀective diﬀusivity. The density of gas mixtureρg can be expressed asρg =
+(∑
+n
+Ynρ−1
+n
+)−1
+.
+• Membrane water conservation
+ρmem
+EW
+∂(ωλ)
+∂t = ρmem
+EW ∇·
+(
+ω1.5Dmw∇λ
+)
++ Smw (4)
+where EW andρmem denote the equivalent weight and the density of MEM. ω indicates the
+ionomer volume fraction in CLs. λ is the membrane water content. Dmw is the membrane water
+diﬀusivity, which is deﬁned as a function of temperature.
+• Liquid water conservation
+∂(ερlsl)
+∂t =∇·
+(ρlKl
+µl
+∇pl
+)
++ Sl (5)
+whereρl is the density of liquid water, andµl is the dynamic viscosity. Kl is the permeability of
+liquid water in the porous components, and pl is the liquid pressure. The liquid water would exist
+in the form of supercooled water when the cell temperature is below the freezing point Tf.
+• Ice conservation
+∂(εsiρi)
+∂t = Si (6)
+whereρi is the density of ice.
+• Charge conservation
+∇·
+(
+κeff
+e ∇φe
+)
++ Se = 0 (7)
+∇·
+(
+κeff
+s ∇φs
+)
++ Ss = 0 (8)
+whereφe andφs denote the potential of the electrolyte and solid phase.κeff
+e andκeff
+s are eﬀective
+ionic conductivity and electronic conductivity.
+
+=== PDF PAGE 5 ===
+Energies 2020, 13, 256 5 of 20
+• Energy conservation
+∂
+∂t
+[(
+ρCp
+)eff
+fl,slT
+]
++∇·
+[(
+ρCp
+)eff
+fl ugT
+]
+=∇·
+(
+keff
+fl,sl∇T
+)
++ ST (9)
+where T denotes the cell temperature,
+(
+ρCp
+)eff
+fl,sl represents the eﬀective volumetric heat capacities,
+and keff
+fl,sl represents thermal conductivity of ﬂuid and solid phase. The source terms Sm, SH2O,
+Smw, Sl, Si, ST, Ss, and Se in the conservation Equations (1) to (9) indicate the volumetric sources,
+which are closely related to the phase change process of water in the PEFC.
+2.2. Modeling of the Water Phase Change Processes
+During the cold-start process, as being mentioned in previous literature [24,35], the water inside
+the cell can exist in the form of vapor phase, liquid phase (supercooled water below freezing point
+Tf), membrane water or ice. Figure 2 illustrates the phase change processes in the PEFC [35]. During
+the operating period, the water in the ‘dissolved’ stage, which is considered as the membrane water,
+is produced in CCL due to the oxygen reduction reaction (ORR) [ 35]. Here, the mass transfer
+between the membrane water and water vapor is considered, as labeled with 1O, which represents
+the hydration/dehydration process of the electrolyte. The corresponding expression of this process is
+given as
+Smw−v =αmw−v
+ρmem
+EW
+(
+λ−λequil
+)
+(1− sl− si) (10)
+Here,αmw−v denotes the phase change rate between membrane water and water vapor.λequil indicates
+the equilibrium membrane water content. It is deﬁned as a function of the water activity a with the
+following relationship [39]
+λequil =
+{
+0.043 + 17.81a− 39.85a2 + 36.0a3 0< a≤ 1
+14.0 + 1.4(a− 1) 1< a≤ 3 . (11)
+Here, the water activity a is expressed as [40]
+a =
+pvp
+psat,l
++ 2sl (12)
+where pvp is the partial pressure of water vapor in the gas mixture. The membrane water tends to be
+gradually promoted while ORR continues. As pvp equals to psat,l, the value of a is 1.0. Liquid water will
+be desorbed from the electrolyte. This process, which is labeled with 2O in Figure 2, can be expressed as
+Smw-1 =
+
+(1−ζ)αmw-1
+ρmem
+EW
+(
+λ−λequil
+)
+a≥ 1
+0 a< 1 (13)
+Here, αmw-1 is the desorption rate, and ζ is a switching function. It is set to be 1 when the
+freezing process occurs in the cell. Otherwise, ζ is 0. If the cell temperature is above Tf,ζ is set to
+be 0 constantly since the freezing process does not happen. Meanwhile, the phase change process
+(condensation/evaporation) between the vapor and liquid water, which is labeled with 3O in Figure 2,
+can be expressed as
+Sv-1 =
+
+(1−ζ)αconε(1− sl− si)
+pvp−psat,l
+RT MH2O pvp≥ psat,l
+(1−ζ)αevapεsl
+pvp−psat,l
+RT MH2O pvp< psat,l
+(14)
+Here,αcon andαevap are the phase change rate of condensation and evaporation process.
+
+=== PDF PAGE 6 ===
+Energies 2020, 13, 256 6 of 20
+As it has been mentioned previously, when the temperature is under the freezing point Tf,
+the liquid water in the cell could be in the supercooled water form with unstable thermodynamic
+properties. Its freezing process depends on the stochastic appearance of ice nucleation particles [41,42].
+When the presence of nuclei is assumed to be independent, the nucleation process can be evaluated
+based on the Poisson distribution [43]. According to the classical nucleation theory (CNT), after time
+interval ∆t, the freezing probability can be calculated according to the following expression [35]
+f (Vd, T, ∆t) = 1− exp
+
+−C0Vd∆t exp
+
+− C1
+T(∆T)2
+
+
+
+ (15)
+Here, Vd indicates the volume of supercooled water.∆T = T− Tf is the super-cooling temperature.
+C0 and C1 are parameters, which can be ﬁtted according to the experimental results. In this study,
+according to the preliminary results of Dursch [44], we choose C0 = 112.7× 108 nuclei m−3 s−1 and
+C1 = 40.3× 104 K3. It is worthy to be noted that the supercooled water is assumed to be interconnected
+inside the cell, and the freezing process happens simultaneously [ 35]. Based on Equation (15),
+the occurrence of the freezing process can be estimated. The phase change process labeled with 4O in
+Figure 2 can be expressed as
+Sl-i =ζαicingεslρl (16)
+Here,αicing denotes the phase change rate. In Figure 2, as labeled with 5O, the desorbed membrane
+water will change into the ice rather than the supercooled water when the freezing process occurs.
+According to the X-ray diﬀraction [45] and neutron scattering [46] experiments, the ice crystals have
+been observed on the membrane surface. It implies that the water may crystallize in the porous
+pore of CL or GDL rather than inside the membrane /electrolyte. Meanwhile, as labeled with 6O,
+the de-sublimation process between the water vapor and ice will occur. The partial pressure of water
+vapor pvp will decrease from psat,l to psat,i [35]. The membrane water desorption is then driven by the
+diﬀerence between psat,i outside the membrane and psat,l inside the membrane [47]. According to the
+ratio between psat,i and psat,l, the maximum membrane water content, which can also be recognized as
+the saturated membrane water contentλsat, can be derived as a function of the cell temperature [35].
+The desorption process from membrane water to ice labeled with 5O in Figure 2 can be expressed as
+Smw-i =
+{
+ζαmw-i
+ρmem
+EW (λ−λsat) λ≥λsat
+0 λ<λ sat
+(17)
+Here,αmw-i denotes the desorption rate. The de-sublimation process from water vapor to ice
+labeled with 6O can be expressed as
+Sv-i =
+{
+ζαde-subε(1− sl− si)
+pvp−psat,i
+RT MH2O pvp≥ psat,i
+0 pvp< psat,i
+(18)
+whereαde-sub denotes the de-sublimation rate. Since the ORR in the CCL is an exothermic process,
+the cell temperature will grow as the cell keeps operating. When the cell temperature grows above the
+freezing point Tf, the ice begins to melt. The melting process labeled with 4O can be expressed as
+Sl-i =αmeltingεsiρi (19)
+whereαmelting is the melting rate from ice to liquid water. Clearly, the source terms Sm, SH2O, Smw, Sl,
+and Si in conservation equations include the phase change term Smw-v, Smw-l, Sv-l, Sl-i, Smw-i, and Sv-i.
+The detailed expressions for each source term can be found in [35].
+
+=== PDF PAGE 7 ===
+Energies 2020, 13, 256 7 of 20
+Energies 2020, 13, x FOR PEER REVIEW 7 of 20 
+ 
+Here, mw-iα  denotes the desorption rate. The de-sublimation process from water vapor to ice 
+labeled with ⑥ can be expressed as 
+()
+2
+vp sat,i
+de-sub l i H O vp sat,i
+v-i
+vp sat,i
+1         
+0                                                               
+pps sM p pS RT
+pp
+ζα ε − −− ≥= 
+ <
+ (18) 
+where de-subα  denotes the de-sublimation rate. Since the ORR in the CCL is an exothermic process, the 
+cell temperature will grow as the cell keeps operating. When the cell temperature grows above the 
+freezing point fT , the ice begins to melt. The melting process labeled with ④ can be expressed as 
+l-i melting i iSs αε ρ=  (19) 
+where meltingα  is the melting rate from ice to liquid water. Clearly, the source terms mS , 
+2HOS , mwS
+, lS , and iS  in conservation equations include the phase change term mw-vS , mw-lS , v-lS , l-iS , mw-iS
+, and v-iS . The detailed expressions for each source term can be found in [35]. 
+ 
+Figure 2. The phase change and mass transfer process of water in PEFC [35]. 
+2.3. Numerical Method and Boundary Conditions 
+The governing equations are discretized and so lved in the commercial CFD software package 
+FLUENT 16.0 based on the finite volume method. The source terms are implemented by using user-
+defined functions (UDFs). The second-order upwind is chosen for spatial discretization. The grid 
+independence study is carefully carried out. As sh own in Figure 1, the total number of structured 
+mesh used in the simulation is 204,000, which is refined in MEM, MPL, and CLs. 
+The stoichiometric mass flow rates of dry hydrogen and oxygen with relative humidity equaling 
+zero are assigned at the anode and cathode inlets of the GC, respectively. The ambient temperature, 
+which is treated as the startup temperature, is also set to be the inlet gas temperature. At the outlets 
+of the GC, constant pressures equa ling to 1 atm are prescribed. The potential of the solid phase on 
+the end surface of anode BP is set to be zero. The constant current density is defined at the end surface 
+of cathode BP for the galvanostatic condition. The symmetric boundary condition is applied on both 
+sides of the computational domain. Since the cell is heated up by the heat generated by its reaction, 
+the end surfaces of both anode and cathode BPs are assumed to be adiabatic. The specified boundary 
+conditions are listed in Table 2. 
+Table 2. The boundary conditions. 
+Description Type/Value Unit 
+Anode/cathode inlet mass flow inlet Kg s −1 
+Stoichiometry ratios of anode/cathode inlet 2.0 - 
+Relative humidity of anode/cathode inlet 0.0 - 
+Temperature of anode inlet −20/−30 °C 
+Figure 2. The phase change and mass transfer process of water in PEFC [35].
+2.3. Numerical Method and Boundary Conditions
+The governing equations are discretized and solved in the commercial CFD software package
+FLUENT 16.0 based on the ﬁnite volume method. The source terms are implemented by using
+user-deﬁned functions (UDFs). The second-order upwind is chosen for spatial discretization. The grid
+independence study is carefully carried out. As shown in Figure 1, the total number of structured
+mesh used in the simulation is 204,000, which is reﬁned in MEM, MPL, and CLs.
+The stoichiometric mass ﬂow rates of dry hydrogen and oxygen with relative humidity equaling
+zero are assigned at the anode and cathode inlets of the GC, respectively. The ambient temperature,
+which is treated as the startup temperature, is also set to be the inlet gas temperature. At the outlets of
+the GC, constant pressures equaling to 1 atm are prescribed. The potential of the solid phase on the
+end surface of anode BP is set to be zero. The constant current density is deﬁned at the end surface of
+cathode BP for the galvanostatic condition. The symmetric boundary condition is applied on both
+sides of the computational domain. Since the cell is heated up by the heat generated by its reaction,
+the end surfaces of both anode and cathode BPs are assumed to be adiabatic. The speciﬁed boundary
+conditions are listed in Table 2.
+Table 2. The boundary conditions.
+Description Type /Value Unit
+Anode/cathode inlet mass ﬂow inlet Kg s−1
+Stoichiometry ratios of anode/cathode inlet 2.0 -
+Relative humidity of anode/cathode inlet 0.0 -
+Temperature of anode inlet −20/−30 ◦C
+Temperature of cathode inlet −20/−30 ◦C
+Pressure of anode/cathode outlet 1.0 atm
+Potential of solid phase on anode BP end surfacesφs 0 V
+Potential of solid phase on cathode BP end surfaces galvanostatic
+Potential of electrolyte phase on BPs end surfaces∂φe/∂n 0 -
+Heat transfer characteristics of BP end surfaces adiabatic -
+Sides of the computational domain symmetric -
+3. Results and Discussion
+The accuracy of the present cold-start model and the values of corresponding parameters are
+ﬁrstly evaluated against the experimental measurements [2]. Figure 3 shows the comparison of the
+simulated voltage curves and the experimental data [2]. The applied current density is an initial ramp
+of 0.04 Acm−2 for 80 s followed by constant 0.04 Acm−2. The cell initial membrane water content in
+MEM and CLs isλ0 = 6.2, and the cell starts from−20◦C and−30◦C, respectively. For each situation,
+the calculation is repeated. Though the cell starts from the identical initial conditions, the freezing
+process may occur at a di ﬀerent time due to the stochastic freezing behavior of the supercooled
+
+=== PDF PAGE 8 ===
+Energies 2020, 13, 256 8 of 20
+water [35]. Here, only two representative results are given, and the numerical results are statistically
+in good agreement with the experimental data, as shown in Figure 3. The cell voltage tends to drop
+promptly when the freezing process occurs.
+Energies 2020, 13, x FOR PEER REVIEW 8 of 20 
+ 
+Temperature of cathode inlet −20/−30 °C 
+Pressure of anode/cathode outlet 1.0 atm 
+Potential of solid phase on anode BP end surfaces sφ  0 V 
+Potential of solid phase on cathode BP end surfaces galvanostatic  
+Potential of electrolyte phase on BPs end surfaces e nφ∂∂  0 - 
+Heat transfer characteristics of BP end surfaces adiabatic - 
+Sides of the computational domain symmetric - 
+3. Results and Discussion 
+The accuracy of the present cold-start model an d the values of corresponding parameters are 
+firstly evaluated against the experimental measurem ents [2]. Figure 3 show s the comparison of the 
+simulated voltage curves and the experimental data [2]. The applied current density is an initial ramp 
+of 20.04 Acm−  for 80 s  followed by constant 20.04 Acm− . The cell initial membrane water content 
+in MEM and CLs is 0 6.2λ = , and the cell starts from −20 °C and −30 °C, respectively. For each 
+situation, the calculation is repeated. Though the cell starts from the identical initial conditions, the 
+freezing process may occur at a different time du e to the stochastic freezing behavior of the 
+supercooled water [35]. Here, only two representative results are given, and the numerical results are 
+statistically in good agreement with the experimental data, as shown in Figure 3. The cell voltage 
+tends to drop promptly when the freezing process occurs. 
+ 
+Figure 3. Comparison between the present model and the experimental data 2 (denoted with symbols) 
+with different cold-start temperatures. The dash-d ot line denotes the variation of cell operating 
+current density. The corresponding variation of cell  voltage at different cold-start temperature is 
+shown with the solid and dashed lines, respectively. 
+In this study, it is worthy to note that we are concerned about the effects of startup current 
+density and initial membrane water content on the failure modes of the PEFC cold-start process. The 
+cold-start processes of PEFC are simulated comprehensively with various operating conditions. The 
+cell starts from −20 °C and −30 °C, respectively, with a constant current density, which is applied 
+without the initial ramp (as presented in Figure 3). The simulation is suspended when the cell output 
+voltage drops rapidly below 0.35 V, and the cell co ld-start process is recognized as fail. The 
+corresponding time is defined as the shutdown time. Here, the cell performance of the failed cold-start 
+process is merely considered. Based on the simulation results, the classification maps of startup failure 
+modes on the 00 Iλ −  plane are plotted with different startup temperatures (e.g., −20 °C and −30 °C). 
+3.1. The Failure Modes in the Cold-Start Process 
+We now focus on the failure modes of the cell cold-start process. The cell starts from −20 °C, and 
+the evolution of cell voltage with different st artup current density and initial membrane water 
+Time (s)
+Cell voltage (V)
+0 100 200 3000.30
+0.40
+0.50
+0.60
+0.70
+0.80
+0.90
+1.00
+Experiment, -20
+o
+C
+Simulation, -20
+o
+C
+Experiment, -30
+o
+C
+Simulation, -30
+o
+C
+Current density (Acm
+-2
+)
+0.1
+0.2
+0.3
+0.4
+0.04 Acm
+-2
+Figure 3. Comparison between the present model and the experimental data 2 (denoted with symbols)
+with diﬀerent cold-start temperatures. The dash-dot line denotes the variation of cell operating current
+density. The corresponding variation of cell voltage at diﬀerent cold-start temperature is shown with
+the solid and dashed lines, respectively.
+In this study, it is worthy to note that we are concerned about the eﬀects of startup current density
+and initial membrane water content on the failure modes of the PEFC cold-start process. The cold-start
+processes of PEFC are simulated comprehensively with various operating conditions. The cell starts
+from−20◦C and−30◦C, respectively, with a constant current density, which is applied without the
+initial ramp (as presented in Figure 3). The simulation is suspended when the cell output voltage
+drops rapidly below 0.35 V , and the cell cold-start process is recognized as fail. The corresponding
+time is deﬁned as the shutdown time. Here, the cell performance of the failed cold-start process is
+merely considered. Based on the simulation results, the classiﬁcation maps of startup failure modes on
+theλ0− I0 plane are plotted with diﬀerent startup temperatures (e.g.,−20◦C and−30◦C).
+3.1. The Failure Modes in the Cold-Start Process
+We now focus on the failure modes of the cell cold-start process. The cell starts from −20◦C,
+and the evolution of cell voltage with diﬀerent startup current density and initial membrane water
+content is simulated repeatedly. Here, only one representative result is proﬁled without loss of
+generality. In Figure 4a, the e ﬀects of startup current density on the cell performance is presented.
+The initial membrane water content isλ0 = 3.0. When the startup current density is I0 = 0.205 A/cm2
+or less (e.g., I0 = 0.200 A/cm2), the cell voltage grows during the initial stage. This is attributed to
+the hydration process of electrolyte in CCL and MEM, as well as the increase of cell temperature,
+as illustrated in Figure 5a. The volume-averaged membrane water in MEM increases slowly during
+the initial stage, whereas the membrane water content in CCL rises promptly. It means that the
+CCL electrolyte can absorb the product water eﬀectively. However, during the initial startup stage,
+the volume-averaged membrane water content in the anode CL (ACL) decreases. This indicates that
+the transfer of membrane water in ACL is dominated by the electro-osmosis ﬂux rather than the
+diﬀusion caused by the concentration gradient of membrane water. When the local saturation of the
+membrane water in CCL is achieved, the supercooled water begins to desorb. As shown in Figure 5b,
+the freezing process occurs att = 9.3 s, and the supercooled water instantly freezes with rapid releasing
+of latent heat. This leads to an instantaneous rise of the CCL temperature [35]. As a result, a peak of
+
+=== PDF PAGE 9 ===
+Energies 2020, 13, 256 9 of 20
+cell voltage can be observed, as shown in Figure 4a. A similar phenomenon has also been caught in the
+experimental observation [30].
+Energies 2020, 13, x FOR PEER REVIEW 9 of 20 
+ 
+content is simulated repeatedly. Here, only one representative result is profiled without loss of 
+generality. In Figure 4a, the effects of startup cu rrent density on the cell performance is presented. 
+The initial membrane water content is 0 3.0λ = . When the startup current density is 
+2
+0 0.205 A/cmI =  or less (e.g., 2
+0 0.200 A/cmI = ), the cell voltage grows during the initial stage. This 
+is attributed to the hydration process of electrolyte in CCL and MEM, as well as the increase of cell 
+temperature, as illustrated in Figure 5a. The volume-averaged membrane water in MEM increases 
+slowly during the initial stage, whereas the membrane water content in CCL rises promptly. It means 
+that the CCL electrolyte can absorb the product water effectively. However, during the initial startup 
+stage, the volume-averaged membrane water content in the anode CL (ACL) decreases. This indicates 
+that the transfer of membrane water in ACL is dominated by the electro-osmosis flux rather than the 
+diffusion caused by the concentration gradient of membrane water. When the local saturation of the 
+membrane water in CCL is achieved, the supercooled water begins to desorb. As shown in Figure 5b, 
+the freezing process occurs at 
+9.3 st = , and the supercooled water in stantly freezes with rapid 
+releasing of latent heat. This leads to an instantaneous rise of the CCL temperature [35]. As a result, 
+a peak of cell voltage can be observed, as shown in Figure 4a. A similar phenomenon has also been 
+caught in the experimental observation [30]. 
+  
+Figure 4. Evolution of cell voltage with various (a) startup current densities and (b) initial membrane 
+water content. The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass 
+flow rate is 2.0 for both anode and cathode sides. The cell starts from −20 °C and the background 
+pressure is 1.0 atm at both the anode and cathode outlets. 
+  
+Time (s)
+Cell voltage (V)
+0 5 10 15 20 25 30 35 40
+0.40
+0.45
+0.50
+0.55
+0.60
+0.65
+0.70
+I0 =0 . 2 0 0A c m
+-2
+I0 =0 . 2 0 5A c m
+-2
+I0 =0 . 2 1 0A c m
+-2
+I0 =0 . 2 1 5A c m
+-2
+(a)
+Time (s)
+Cell voltage (V)
+0 5 10 15 20 25 30 35 40
+0.40
+0.45
+0.50
+0.55
+0.60
+0.65
+0.70
+λ0 =2 . 8 0
+λ0 =2 . 8 5
+λ0 =2 . 9 0
+λ0 =2 . 9 5
+(b)
+Time (s)
+Averaged membrane water content λ
+0 5 10 15 20 25 30 35
+2.0
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+16.0
+ACL
+MEM
+CCL
+local saturation
+(a)
+initial stage
+Time (s)
+Averaged volume fraction of sl or si in CCL
+0 5 10 15 20 25 30 35
+0.20
+0.40
+0.60
+0.80
+1.00
+Supercooled water
+Ice
+(b)(b)
+desorb supercooled water
+ice formation
+Figure 4. Evolution of cell voltage with various (a) startup current densities and (b) initial membrane
+water content. The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass
+ﬂow rate is 2.0 for both anode and cathode sides. The cell starts from −20◦C and the background
+pressure is 1.0 atm at both the anode and cathode outlets.
+Energies 2020, 13, x FOR PEER REVIEW 9 of 20 
+ 
+content is simulated repeatedly. Here, only one representative result is profiled without loss of 
+generality. In Figure 4a, the effects of startup cu rrent density on the cell performance is presented. 
+The initial membrane water content is 0 3.0λ = . When the startup current density is 
+2
+0 0.205 A/cmI =  or less (e.g., 2
+0 0.200 A/cmI = ), the cell voltage grows during the initial stage. This 
+is attributed to the hydration process of electrolyte in CCL and MEM, as well as the increase of cell 
+temperature, as illustrated in Figure 5a. The volume-averaged membrane water in MEM increases 
+slowly during the initial stage, whereas the membrane water content in CCL rises promptly. It means 
+that the CCL electrolyte can absorb the product water effectively. However, during the initial startup 
+stage, the volume-averaged membrane water content in the anode CL (ACL) decreases. This indicates 
+that the transfer of membrane water in ACL is dominated by the electro-osmosis flux rather than the 
+diffusion caused by the concentration gradient of membrane water. When the local saturation of the 
+membrane water in CCL is achieved, the supercooled water begins to desorb. As shown in Figure 5b, 
+the freezing process occurs at 
+9.3 st = , and the supercooled water in stantly freezes with rapid 
+releasing of latent heat. This leads to an instantaneous rise of the CCL temperature [35]. As a result, 
+a peak of cell voltage can be observed, as shown in Figure 4a. A similar phenomenon has also been 
+caught in the experimental observation [30]. 
+  
+Figure 4. Evolution of cell voltage with various (a) startup current densities and (b) initial membrane 
+water content. The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass 
+flow rate is 2.0 for both anode and cathode sides. The cell starts from −20 °C and the background 
+pressure is 1.0 atm at both the anode and cathode outlets. 
+  
+Time (s)
+Cell voltage (V)
+0 5 10 15 20 25 30 35 40
+0.40
+0.45
+0.50
+0.55
+0.60
+0.65
+0.70
+I0 =0 . 2 0 0A c m
+-2
+I0 =0 . 2 0 5A c m
+-2
+I0 =0 . 2 1 0A c m
+-2
+I0 =0 . 2 1 5A c m
+-2
+(a)
+Time (s)
+Cell voltage (V)
+0 5 10 15 20 25 30 35 40
+0.40
+0.45
+0.50
+0.55
+0.60
+0.65
+0.70
+λ0 =2 . 8 0
+λ0 =2 . 8 5
+λ0 =2 . 9 0
+λ0 =2 . 9 5
+(b)
+Time (s)
+Averaged membrane water content λ
+0 5 10 15 20 25 30 35
+2.0
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+16.0
+ACL
+MEM
+CCL
+local saturation
+(a)
+initial stage
+Time (s)
+Averaged volume fraction of sl or si in CCL
+0 5 10 15 20 25 30 35
+0.20
+0.40
+0.60
+0.80
+1.00
+Supercooled water
+Ice
+(b)(b)
+desorb supercooled water
+ice formation
+Energies 2020, 13, x FOR PEER REVIEW 10 of 20 
+ 
+ 
+Figure 5. Evolution of (a) the volume-averaged membrane water content and (b) the averaged volume 
+fraction of supercooled water and ice in CCL; (c) the contour of ice volume fraction on midway cross 
+section (Z = 25 mm) of CCL at time 𝑡 = 35.2 s . The cell starts from −20 °C and the startup current 
+density is 0.205 A/cm2. The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of 
+the mass flow rate is 2.0 for both anode and cathode sides. The background pressure is 1.0 atm at both 
+the anode and cathode outlets. 
+After the freezing process occurs, the membrane water in CCL is confined to the saturated 
+content (e.g., sat 8.8λ =  at −20 °C) [21,35,39]. The redundant me mbrane water in the electrolyte 
+desorbs in the state of ice [35]. Additionally, the ice density is smaller than that of liquid water. As a 
+result, the ice volume fraction is larger than the corresponding volume fraction of supercooled water, 
+as shown in Figure 5b. According to Figures 4a and 5b, when the averaged volume fraction of ice in 
+CCL approaches 0.8, the cell voltage begins to drop  quickly, and the cold-start process fails. The 
+corresponding distribution of the ice volume fraction in CCL is shown in Figure 5c at 35.2 st = . The 
+local ice volume fraction is  is almost larger than 0.9 in most CCL regions. This indicates that almost 
+all the reaction sites in CCL are isolated from the oxidant. The failure of the cold-start process is 
+physically attributed to the ice blockage of the cathode pore. This failure mode is the most common 
+phenomenon in the failed cold-start process of PEFC. Moreover, as shown in Figure 5a, we know that 
+the membrane water content in MEM does not reach saturation yet, even though the cell cold-start 
+process failed. The membrane water keeps diffusing from the CCL into the MEM. As a result, the ice 
+volume fraction near the CCL/MEM interface is relatively smaller than the rest part of the CCL. This 
+can also be confirmed in Figure 5c. 
+In Figure 4a, when the startup current density increases to 
+2
+0 0.210 A/cmI = , the initial cell 
+voltage becomes lower than that in the previous situation, and the cell operating time shortens 
+drastically. According to the previous simulation with 2
+0 0.205 A/cmI = , we know that the CCL 
+pores cannot be blocked completely by the product water or ice within 4s. Undoubtedly, there exists 
+another mechanism, which leads to the rapid dropping of cell voltage. In Figure 6a, the evolution of 
+the volume-averaged membrane water content in ACL, MEM, and CCL are presented. Similar to 
+those in the previous situation, the membrane water content in CCL grows rapidly due to the initial 
+hydration process. The membrane water content in MEM remains almost constant. Due to the role of 
+the electro-osmotic drag (EOD), which dominates over the back-diffusion ability between the MEM and 
+ACL, the ACL membrane water content drops permanently. This results in a dramatic increase in cell 
+ohmic resistance and a rapid drop of the cell voltage, as shown in Figure 4a. In other words, the failure 
+of the cell cold-start process is caused by the anode dehydration. Although this phenomenon has often 
+been observed in the fuel cell wi th normal temperature and high current loads [48], it is rarely 
+mentioned in the cold-start process in previous literature [49]. As shown in Figure 6a, the ACL 
+volume-averaged membrane water content drops to less than 1.32 when the cell is shut down. The 
+distribution of the membrane water content in ACL is presented in Figure 6b. The minimum 
+membrane water content locates near the interf ace between ACL and MEM, and the corresponding 
+proton conductivity will become very small. This indicates that the proton transfer from ACL to MEM 
+will be impeded severely. In Figure 4b, it shows the effects of the initial membrane water content on 
+cell cold-start performance. The startup current density is fixed at 
+2
+0 0.2A / cmI = . The cell is ceased 
+Figure 5. Evolution of (a) the volume-averaged membrane water content and (b) the averaged volume
+fraction of supercooled water and ice in CCL; (c) the contour of ice volume fraction on midway cross
+section (Z = 25 mm) of CCL at time t = 35.2 s. The cell starts from −20◦C and the startup current
+density is 0.205 A/cm2. The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of
+the mass ﬂow rate is 2.0 for both anode and cathode sides. The background pressure is 1.0 atm at both
+the anode and cathode outlets.
+
+=== PDF PAGE 10 ===
+Energies 2020, 13, 256 10 of 20
+After the freezing process occurs, the membrane water in CCL is conﬁned to the saturated
+content (e.g., λsat = 8.8 at−20◦C) [21,35,39]. The redundant membrane water in the electrolyte
+desorbs in the state of ice [ 35]. Additionally, the ice density is smaller than that of liquid water.
+As a result, the ice volume fraction is larger than the corresponding volume fraction of supercooled
+water, as shown in Figure 5b. According to Figures 4a and 5b, when the averaged volume fraction
+of ice in CCL approaches 0.8, the cell voltage begins to drop quickly, and the cold-start process fails.
+The corresponding distribution of the ice volume fraction in CCL is shown in Figure 5c at t = 35.2 s.
+The local ice volume fraction si is almost larger than 0.9 in most CCL regions. This indicates that
+almost all the reaction sites in CCL are isolated from the oxidant. The failure of the cold-start process is
+physically attributed to the ice blockage of the cathode pore. This failure mode is the most common
+phenomenon in the failed cold-start process of PEFC. Moreover, as shown in Figure 5a, we know that
+the membrane water content in MEM does not reach saturation yet, even though the cell cold-start
+process failed. The membrane water keeps diﬀusing from the CCL into the MEM. As a result, the ice
+volume fraction near the CCL/MEM interface is relatively smaller than the rest part of the CCL. This can
+also be conﬁrmed in Figure 5c.
+In Figure 4a, when the startup current density increases toI0 = 0.210 A/cm2, the initial cell voltage
+becomes lower than that in the previous situation, and the cell operating time shortens drastically.
+According to the previous simulation with I0 = 0.205 A/cm2, we know that the CCL pores cannot be
+blocked completely by the product water or ice within 4s. Undoubtedly, there exists another mechanism,
+which leads to the rapid dropping of cell voltage. In Figure 6a, the evolution of the volume-averaged
+membrane water content in ACL, MEM, and CCL are presented. Similar to those in the previous
+situation, the membrane water content in CCL grows rapidly due to the initial hydration process.
+The membrane water content in MEM remains almost constant. Due to the role of the electro-osmotic
+drag (EOD), which dominates over the back-diﬀusion ability between the MEM and ACL, the ACL
+membrane water content drops permanently. This results in a dramatic increase in cell ohmic resistance
+and a rapid drop of the cell voltage, as shown in Figure 4a. In other words, the failure of the cell
+cold-start process is caused by the anode dehydration. Although this phenomenon has often been
+observed in the fuel cell with normal temperature and high current loads [48], it is rarely mentioned in
+the cold-start process in previous literature [49]. As shown in Figure 6a, the ACL volume-averaged
+membrane water content drops to less than 1.32 when the cell is shut down. The distribution of the
+membrane water content in ACL is presented in Figure 6b. The minimum membrane water content
+locates near the interface between ACL and MEM, and the corresponding proton conductivity will
+become very small. This indicates that the proton transfer from ACL to MEM will be impeded severely.
+In Figure 4b, it shows the eﬀects of the initial membrane water content on cell cold-start performance.
+The startup current density is ﬁxed atI0 = 0.2 A/cm2. The cell is ceased in a short time when the initial
+membrane water content is relatively small, e.g.,λ0 = 2.80 orλ0 = 2.85. The failure of the cold-start
+process can be attributed to the anode dehydration. However, the cell shutdown time tends to increase
+signiﬁcantly when the initial membrane water content is raised toλ0 = 2.90 orλ0 = 2.95. This indicates
+that the failure mode of the cell cold-start process has changed from the anode dehydration to the
+cathode pore blockage.
+According to the above analysis, it can be concluded that the failure of the cell cold-start process
+can be distinguished into two modes (the anode dehydration and the cathode pore blockage), which are
+attributed to diﬀerent physical mechanisms. In principle, the dominant failure mode can be determined
+according to the cell startup current density and the initial membrane water content. When the cell
+starts with relatively large current density and low initial membrane water content, anode dehydration
+would be the dominant failure mode. However, the cell failure mode could be dominated by the
+cathode pore blockage, when the cell starts with high initial membrane water content and relatively
+small current density.
+
+=== PDF PAGE 11 ===
+Energies 2020, 13, 256 11 of 20
+Energies 2020, 13, x FOR PEER REVIEW 11 of 20 
+ 
+in a short time when the initial membrane water content is relatively small, e.g., 0 2.80λ =  or 
+0 2.85λ = . The failure of the cold-start process can be attributed to the anode dehydration. However, 
+the cell shutdown time tends to increase signific antly when the initial membrane water content is 
+raised to 0 2.90λ =  or 0 2.95λ = . This indicates that the failure mode of the cell cold-start process 
+has changed from the anode dehydration to the cathode pore blockage. 
+ 
+ 
+Figure 6. (a) Evolution of the volume-average d membrane water content and ( b) the contour of 
+membrane water content on midway cross section (Z = 25 mm) of ACL when the cell shuts down. The 
+cell starts from −20 °C and the startup current density is 0.210 A/cm 2. The cell is supplied with dry 
+hydrogen and oxygen. The stoichiometry ratio of the mass flow rate is 2.0 for both anode and cathode 
+sides. The background pressure is 1.0 atm at both the anode and cathode outlets. 
+According to the above analysis, it can be concluded that the failure of the cell cold-start process 
+can be distinguished into two modes (the anode dehydration and the cathode pore blockage), which 
+are attributed to different physical mechanisms. In principle, the domina nt failure mode can be 
+determined according to the cell startup current density and the initial membrane water content. 
+When the cell starts with relatively large current  density and low initial membrane water content, 
+anode dehydration would be the do minant failure mode. However, the cell failure mode could be 
+dominated by the cathode pore blockage, when the cell starts with high initial membrane water 
+content and relatively small current density. 
+3.2. The Map of Failure Modes on the 
+00 Iλ −  Plane 
+In this section, the cell cold-start processes are simulated comprehensively with various initial 
+membrane water contents 0λ  and startup current densities 0I . The failure process and the 
+corresponding failure mode are classified and profiled on the 00 Iλ −  plane, as illustrated in Figure 
+7. It exhibits the map of the failure mode for the cell starts from different startup temperatures ( −20 
+°C and −30 °C) with various initial membrane wa ter contents and current densities. The 00 Iλ −  
+plane can be distinguished into three conspicuous zones as follows: (i) the cathode pore blockage 
+zone, which locates in the area with relatively high initial membrane water content and small startup 
+current density; (ii) the anode dehydration zone, which locates in the area with relatively low initial 
+membrane water content and large startup current density; and (iii) the ambiguous zone, which 
+locates between the above two zones, and it narrows significantly when the initial membrane water 
+becomes low (or the startup content density is relatively small). In the ambiguous zone, the cold-start 
+failure mode may be either cathode pore blockage or anode dehydration. It is attributed to the 
+stochastic freezing behavior of the supercooled water. For each initial membrane water content, two 
+critical current densities can be identified, as distinguished by the solid and dashed lines, 
+Time (s)
+Averaged membrane water content λ
+0 1 2 3
+2.0
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+ACL
+MEM
+CCL
+(a)
+Figure 6. (a) Evolution of the volume-averaged membrane water content and ( b) the contour of
+membrane water content on midway cross section (Z = 25 mm) of ACL when the cell shuts down.
+The cell starts from−20◦C and the startup current density is 0.210 A/cm2. The cell is supplied with dry
+hydrogen and oxygen. The stoichiometry ratio of the mass ﬂow rate is 2.0 for both anode and cathode
+sides. The background pressure is 1.0 atm at both the anode and cathode outlets.
+3.2. The Map of Failure Modes on the λ0− I0 Plane
+In this section, the cell cold-start processes are simulated comprehensively with various initial
+membrane water contentsλ0 and startup current densitiesI0. The failure process and the corresponding
+failure mode are classiﬁed and proﬁled on theλ0− I0 plane, as illustrated in Figure 7. It exhibits the
+map of the failure mode for the cell starts from diﬀerent startup temperatures (−20◦C and−30◦C) with
+various initial membrane water contents and current densities. The λ0− I0 plane can be distinguished
+into three conspicuous zones as follows: (i) the cathode pore blockage zone, which locates in the area
+with relatively high initial membrane water content and small startup current density; (ii) the anode
+dehydration zone, which locates in the area with relatively low initial membrane water content and
+large startup current density; and (iii) the ambiguous zone, which locates between the above two
+zones, and it narrows signiﬁcantly when the initial membrane water becomes low (or the startup
+content density is relatively small). In the ambiguous zone, the cold-start failure mode may be either
+cathode pore blockage or anode dehydration. It is attributed to the stochastic freezing behavior of
+the supercooled water. For each initial membrane water content, two critical current densities can be
+identiﬁed, as distinguished by the solid and dashed lines, respectively. The critical current densities
+elevate with the increase of initial membrane water content, and the growth rate trend tends to decrease
+as well. Comparing Figure 7a,b, it shows that the ambiguous zone tends to expand, and the critical
+current densities decrease as the startup temperature drops from−20◦C to−30◦C. This is physically
+attributed to the fact that the back-diﬀusion ability of membrane water becomes weaker at the lower
+startup temperature. As a result, the failure modes may tend to fall in the anode dehydration zone
+even if the cell is started with relatively high initial membrane water content.
+If the cell startup current density is larger than the critical current density denoted by the dashed
+line, the cell cannot be started successfully. The failure of the cold-start process is attributed to the
+anode dehydration. However, if the cell startup current density is smaller than the critical current
+density denoted by the solid line, the anode dehydration cannot be observed during the cell cold-start
+process, whether the startup process is successful or not. If the supercooled water does not freeze
+during the cold-start process, it can ﬂow into the MPL, GDL, or even the GC [30]. The cell will continue
+to run for a long time, whose temperature keeps increasing, even above the freezing point. In this
+way, the cold-start process would be successful. Unfortunately, according to Equation (15), the lower
+the temperature at which the cell starts, the larger the probability that the supercooled water will
+
+=== PDF PAGE 12 ===
+Energies 2020, 13, 256 12 of 20
+freeze. This indicates that the freezing process often occurs during the cold-start process. The cell
+cold-start process usually fails when the cell starts from a relatively lower startup temperature. In this
+study, since we are only concerned with the failure modes in the cell cold-start process, the numerical
+simulation results of the successful cold-start processes are ignored.
+Energies 2020, 13, x FOR PEER REVIEW 12 of 20 
+ 
+respectively. The critical current densities elevate with the increase of initial membrane water content, 
+and the growth rate trend tends to decrease as well. Comparing Figure 7a,b, it shows that the 
+ambiguous zone tends to expand, and the critic al current densities decrease as the startup 
+temperature drops from 20 C−°  to 30 C−° . This is physically attributed to the fact that the back-
+diffusion ability of membrane water becomes weaker at the lower startup temperature. As a result, 
+the failure modes may tend to fall in the anode de hydration zone even if the cell is started with 
+relatively high initial membrane water content. 
+  
+Figure 7. The map of failure modes for the cell starts from (a) −20 °C and (b) −30 °C. The cell is supplied 
+with dry hydrogen and oxygen. The stoichiometry rati o of the mass flow rate is 2.0 for both anode 
+and cathode sides. The background pressure is 1.0 atm at both the anode and cathode outlets. 
+If the cell startup current density is larger than the critical current density denoted by the dashed 
+line, the cell cannot be started successfully. The failure of the cold-start process is attributed to the 
+anode dehydration. However, if the cell startup current density is smaller than the critical current 
+density denoted by the solid line, the anode dehydration cannot be observed during the cell cold-
+start process, whether the startup process is successful or not. If the supercooled water does not freeze 
+during the cold-start process, it can flow into the MPL, GDL, or even the GC [30]. The cell will 
+continue to run for a long time, whose temperature keeps increasing, even above the freezing point. 
+In this way, the cold-start process would be succe ssful. Unfortunately, according to Equation (15), 
+the lower the temperature at which the cell starts, the larger the probability that the supercooled 
+water will freeze. This indicates that the freezing process often occurs during the cold-start process. 
+The cell cold-start process usually fails when the cell starts from a relatively lower startup 
+temperature. In this study, since we are only concerned with the failure modes in the cell cold-start 
+process, the numerical simulation results of the successful cold-start processes are ignored. 
+3.3. The Failure Mode in the Ambiguous Zone 
+As we have mentioned, the cold-start failure mode may be either cathode pore blockage or anode 
+dehydration in the ambiguous zone. In this section,  the effects of the supercooled water stochastic 
+freezing behavior on the cell co ld-start failure modes are discu ssed in detail. Without loss of 
+generality, the cell is assumed to start from 
+o20 C− , and two typical cold-start process cases are 
+mainly discussed. The corresponding initial membrane water contents are 0 5.0λ =  and 7.8, 
+respectively. 
+3.3.1. 0 5.0λ =  and 
+2
+0 0.30 A/cmI =  
+Initial membrane water content λ0
+Startup current density (Acm
+-2
+)
+2.0 3.0 4.0 5.0 6.0 7.0
+0.15
+0.20
+0.25
+0.30
+0.35
+(a)
+Initial membrane water content λ0
+Startup current density (Acm
+-2
+)
+2.0 3.0 4.0 5.0 6.0 7.0
+0.15
+0.20
+0.25
+0.30
+0.35
+(a)
+Cathode pore blockage
+Anode dehydration
+Ambiguous region
+(P3,P 4)
+(P1,P 2)
+Initial membrane water content λ0
+Startup current density (Acm
+-2
+)
+2.0 3.0 4.0 5.0 6.0
+0.10
+0.15
+0.20
+Initial membrane water content λ0
+Startup current density (Acm
+-2
+)
+2.0 3.0 4.0 5.0 6.0
+0.10
+0.15
+0.20
+(b)
+C a t h o d ep o r eb l o c k a g e
+Anode dehydration
+Ambiguous region
+Figure 7. The map of failure modes for the cell starts from ( a)−20◦C and ( b)−30◦C. The cell is
+supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass ﬂow rate is 2.0 for both
+anode and cathode sides. The background pressure is 1.0 atm at both the anode and cathode outlets.
+3.3. The Failure Mode in the Ambiguous Zone
+As we have mentioned, the cold-start failure mode may be either cathode pore blockage or anode
+dehydration in the ambiguous zone. In this section, the e ﬀects of the supercooled water stochastic
+freezing behavior on the cell cold-start failure modes are discussed in detail. Without loss of generality,
+the cell is assumed to start from−20◦C, and two typical cold-start process cases are mainly discussed.
+The corresponding initial membrane water contents areλ0 = 5.0 and 7.8, respectively.
+3.3.1. λ0 = 5.0 and I0 = 0.30 A/cm2
+In this case, the initial membrane water content is λ0 = 5.0, and the startup current density is
+set to be I0 = 0.30 A/cm2. As shown in Figure 7a, we know that the cell startup condition falls in the
+ambiguous zone. Due to the stochastic freezing process of the supercooled water, the cell cold-start
+process is simulated repeatedly, and two representative processes (denoted by P1 and P2) are presented
+here. In Figure 8a, the diﬀerence of cell voltage between P1 and P2 seems to be signiﬁcant after the
+freezing process happens. In P1, the supercooled water freezes at t = 5.1 s. After that, the cell voltage
+drops continuously. According to the previous discussion, we know that this might be caused by the
+increase of ice volume fraction in CCL together with the dropping of membrane water content in ACL.
+However, in Figure 8b, the averaged ice volume fraction in CCL is still less than 0.5 when the cell shuts
+down at t = 8.6 s. Therefore, we can conclude that in P1, the cell cold-start failure mode is dominated
+by the anode dehydration. This can also be conﬁrmed in Figure 9, where the distribution of membrane
+water content along the thickness of CCL, MEM, and ACL is proﬁled. Generally, before the supercooled
+water freezes (e.g., t = 4.7 s), the membrane water content in CCL can reach as high as 14.0. But the
+membrane water contents in MEM and ACL are far less than that in CCL. After the freezing process
+occurs (e.g., t = 6.7 s), the membrane water content in CCL drops to the saturated level λsat = 9.5,
+which corresponds to the lower saturated vapor pressure of the ice [35]. The gradient of the membrane
+water between CCL and MEM reduces, and the back-di ﬀusion ability of the membrane water is
+enervated and even weaker than the EOD. As the cell keeps operating (e.g., t = 8.7 s), the membrane
+water content in ACL drops continuously, and the membrane water content near the interface between
+
+=== PDF PAGE 13 ===
+Energies 2020, 13, 256 13 of 20
+ACL and MEM becomes even lower than 1.0. As a result, the proton conductivity becomes very small,
+and the cell cold-start process fails with the voltage dropping to almost zero rapidly, as shown in
+Figure 8a.
+Energies 2020, 13, x FOR PEER REVIEW 13 of 20 
+ 
+In this case, the initial membrane water content is 0 5.0λ = , and the startup current density is 
+set to be 2
+0 0.30 A/cmI = . As shown in Figure 7a, we know that the cell startup condition falls in the 
+ambiguous zone. Due to the stochastic freezing proc ess of the supercooled water, the cell cold-start 
+process is simulated repeatedly, and two represen tative processes (denoted by P1 and P2) are 
+presented here. In Figure 8a, the difference of cell voltage between P1 and P2 seems to be significant 
+after the freezing process happens. In P1, the supercooled water freezes at 5.1 st = . After that, the 
+cell voltage drops continuously. According to the pr evious discussion, we know that this might be 
+caused by the increase of ice volume fraction in CCL together with the dropping of membrane water 
+content in ACL. However, in Figure 8b, the averaged ice volume fraction in CCL is still less than 0.5 
+when the cell shuts down at 8.6t =  s. Therefore, we can conclude that in P1, the cell cold-start failure 
+mode is dominated by the anode dehydration. This can also be confirmed in Figure 9, where the 
+distribution of membrane water content along th e thickness of CCL, MEM, and ACL is profiled. 
+Generally, before the supercooled water freezes (e.g., 4.7 st = ), the membrane water content in CCL 
+can reach as high as 14.0. But the membrane water contents in MEM and ACL are far less than that 
+in CCL. After the freezing process occurs (e.g., 6.7 st = ), the membrane water content in CCL drops 
+to the saturated level sat 9.5λ = , which corresponds to the lower saturated vapor pressure of the ice 
+[35]. The gradient of the membrane water between CCL and MEM reduces, and the back-diffusion 
+ability of the membrane water is enervated and even weaker than the EOD. As the cell keeps 
+operating (e.g., 8.7 st = ), the membrane water content in ACL drops continuously, and the 
+membrane water content near the interface between ACL and MEM becomes even lower than 1.0. As 
+a result, the proton conductivity becomes very sma ll, and the cell cold-start process fails with the 
+voltage dropping to almost zero rapidly, as shown in Figure 8a. 
+  
+Figure 8. Evolution of (a) the cell voltage, and ( b) the volume-averaged ice volume fraction in CCL. 
+The cell starts from −20 °C with initial membrane water content 0 5.0λ = and current density 
+2
+0 0.30 A/cmI = . The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the 
+mass flow rate is 2.0 for both anode and cathode si des. The background pressu re is 1.0 atm at both 
+the anode and cathode outlets. 
+Times (s)
+Voltage (V)
+0 5 10 15 20
+0.40
+0.45
+0.50
+0.55
+0.60
+0.65
+Representative process P1
+Representative process P2
+(a)
+Times (s)
+Averaged ice volume fraction si in CCL
+0 5 10 15 20
+0.10
+0.20
+0.30
+0.40
+0.50
+0.60
+0.70
+0.80
+0.90
+1.00
+Representative process P1
+Representative process P2
+(b)
+Figure 8. Evolution of ( a) the cell voltage, and ( b) the volume-averaged ice volume fraction in
+CCL. The cell starts from−20◦C with initial membrane water contentλ0 = 5.0 and current density
+I0 = 0.30 A/cm2. The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the
+mass ﬂow rate is 2.0 for both anode and cathode sides. The background pressure is 1.0 atm at both the
+anode and cathode outlets.
+Energies 2020, 13, x FOR PEER REVIEW 14 of 20 
+ 
+ 
+Figure 9. In process P1, the distribution of the membra ne water content along the thickness of CCL, 
+MEM and ACL at different time. The cell starts from −20 °C with initial membrane water content 
+0 5.0λ = and current density 2
+0 0.30 A/cmI = . The cell is supplied with dry hydrogen and oxygen. 
+The stoichiometry ratio of the mass flow rate is 2.0 for both anode and cathode sides. The background 
+pressure is 1.0 atm at both the anode and cathode outlets. 
+In P2, the supercooled water freezes at 7.1 st = , which is later than that in P1. In Figure 8a, it 
+shows that the cell voltage does not keep dropping after the freezing process occurs. In Figure 8b, the 
+averaged ice volume fraction in CCL tends to increase continuously as the cell keeps operating. When 
+the averaged ice volume fraction goes up to more than 0.9, the cell voltage begins to drop rapidly, 
+and the cell cold-start process fails. Unlike P1, the failure mode of P2 is attributed to the cathode pore 
+blockage. Figure 10 gives the distribution of temp erature, membrane water content, and diffusivity 
+in the middle plane of CCL at the time, which is 1.6 s later than the occurrence of freezing. Since the 
+freezing of supercooled water in P2 occurs late r than that in P1, the corresponding amount of 
+supercooled water in P2 is more substantial than that in P1. When the freezing process happens, more 
+latent heat is released in P2, and the corresponding  cell temperature is higher than that in P1, as 
+shown in Figure 10a. Moreover, the membrane wate r content and diffusivity in P2 are higher than 
+those in P1, as illustrated in Figure 10b,c. Thus , the anode dehydration can be avoided even if the 
+freezing process occurs. 
+   
+Figure 10. Contours of ( a) temperature, ( b) membrane water content, and ( c) membrane water 
+diffusivity in the middle plane of CCL (XZ plane with Y = −0.01 mm) for the process P1 and P2 at the 
+time 1.6 s later than the occurrence of freezing. The cell starts from −20 °C with initial membrane water 
+content 0 5.0λ = and current density 2
+0 0.30 A/cmI = . The cell is supplied with dry hydrogen and 
+Position y (10
+-3
+mm)
+Membrane water content λ
+-10.0 -5.0 0.0 5.0 10.00.0
+2.0
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+16.0
+t =4 . 7s
+t =6 . 7s
+t =8 . 7s
+ACLCCL MEM
+Figure 9. In process P1, the distribution of the membrane water content along the thickness of CCL,
+MEM and ACL at di ﬀerent time. The cell starts from −20◦C with initial membrane water content
+λ0 = 5.0 and current density I0 = 0.30 A/cm2. The cell is supplied with dry hydrogen and oxygen.
+The stoichiometry ratio of the mass ﬂow rate is 2.0 for both anode and cathode sides. The background
+pressure is 1.0 atm at both the anode and cathode outlets.
+In P2, the supercooled water freezes at t = 7.1 s, which is later than that in P1. In Figure 8a,
+it shows that the cell voltage does not keep dropping after the freezing process occurs. In Figure 8b,
+the averaged ice volume fraction in CCL tends to increase continuously as the cell keeps operating.
+When the averaged ice volume fraction goes up to more than 0.9, the cell voltage begins to drop
+rapidly, and the cell cold-start process fails. Unlike P1, the failure mode of P2 is attributed to the
+cathode pore blockage. Figure 10 gives the distribution of temperature, membrane water content,
+and diﬀusivity in the middle plane of CCL at the time, which is 1.6 s later than the occurrence of
+freezing. Since the freezing of supercooled water in P2 occurs later than that in P1, the corresponding
+
+=== PDF PAGE 14 ===
+Energies 2020, 13, 256 14 of 20
+amount of supercooled water in P2 is more substantial than that in P1. When the freezing process
+happens, more latent heat is released in P2, and the corresponding cell temperature is higher than that
+in P1, as shown in Figure 10a. Moreover, the membrane water content and diﬀusivity in P2 are higher
+than those in P1, as illustrated in Figure 10b,c. Thus, the anode dehydration can be avoided even if the
+freezing process occurs.
+Energies 2020, 13, x FOR PEER REVIEW 14 of 20 
+ 
+ 
+Figure 9. In process P1, the distribution of the membra ne water content along the thickness of CCL, 
+MEM and ACL at different time. The cell starts from −20 °C with initial membrane water content 
+0 5.0λ = and current density 2
+0 0.30 A/cmI = . The cell is supplied with dry hydrogen and oxygen. 
+The stoichiometry ratio of the mass flow rate is 2.0 for both anode and cathode sides. The background 
+pressure is 1.0 atm at both the anode and cathode outlets. 
+In P2, the supercooled water freezes at 7.1 st = , which is later than that in P1. In Figure 8a, it 
+shows that the cell voltage does not keep dropping after the freezing process occurs. In Figure 8b, the 
+averaged ice volume fraction in CCL tends to increase continuously as the cell keeps operating. When 
+the averaged ice volume fraction goes up to more than 0.9, the cell voltage begins to drop rapidly, 
+and the cell cold-start process fails. Unlike P1, the failure mode of P2 is attributed to the cathode pore 
+blockage. Figure 10 gives the distribution of temp erature, membrane water content, and diffusivity 
+in the middle plane of CCL at the time, which is 1.6 s later than the occurrence of freezing. Since the 
+freezing of supercooled water in P2 occurs late r than that in P1, the corresponding amount of 
+supercooled water in P2 is more substantial than that in P1. When the freezing process happens, more 
+latent heat is released in P2, and the corresponding  cell temperature is higher than that in P1, as 
+shown in Figure 10a. Moreover, the membrane wate r content and diffusivity in P2 are higher than 
+those in P1, as illustrated in Figure 10b,c. Thus , the anode dehydration can be avoided even if the 
+freezing process occurs. 
+   
+Figure 10. Contours of ( a) temperature, ( b) membrane water content, and ( c) membrane water 
+diffusivity in the middle plane of CCL (XZ plane with Y = −0.01 mm) for the process P1 and P2 at the 
+time 1.6 s later than the occurrence of freezing. The cell starts from −20 °C with initial membrane water 
+content 0 5.0λ = and current density 2
+0 0.30 A/cmI = . The cell is supplied with dry hydrogen and 
+Position y (10
+-3
+mm)
+Membrane water content λ
+-10.0 -5.0 0.0 5.0 10.00.0
+2.0
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+16.0
+t =4 . 7s
+t =6 . 7s
+t =8 . 7s
+ACLCCL MEM
+Figure 10. Contours of ( a) temperature, ( b) membrane water content, and ( c) membrane water
+diﬀusivity in the middle plane of CCL (XZ plane with Y =−0.01 mm) for the process P1 and P2 at
+the time 1.6 s later than the occurrence of freezing. The cell starts from−20◦C with initial membrane
+water contentλ0 = 5.0 and current density I0 = 0.30 A/cm2. The cell is supplied with dry hydrogen
+and oxygen. The stoichiometry ratio of the mass ﬂow rate is 2.0 for both anode and cathode sides.
+The background pressure is 1.0 atm at both the anode and cathode outlets.
+3.3.2. λ0 = 7.8 and I0 = 0.33 A/cm2
+In this case, we set the startup current density I0 = 0.33 A/cm2 when the initial membrane water
+content increases toλ0 = 7.8. As illustrated in Figure 7a, the cell startup condition also falls in the
+ambiguous zone. Similar to the previous section, the numerical simulation is repeated, and in Figure 11
+only two representative processes (denoted by P3 and P4) with the corresponding freezing time of
+supercooled water at 3.6 s and 9.5 s are presented. In Figure 11a, though the freezing time is diﬀerent,
+the diﬀerences of the cell shutdown time are relatively small. In Figure 11b, it can be found that in P3,
+the averaged ice volume fraction in CCL tends to approach 1.0 when the cell voltage drops rapidly.
+Thus, the failure of the cell cold-start process is attributed to the cathode pore blockage. However,
+in P4, though the freezing process happens later than that in P3, the averaged ice volume fraction only
+approaches to 0.56 when the cell shuts down. The anode dehydration will be the principal reason to
+cause the failure of the cold-start process. This is diﬀerent from those phenomena observed in P1 and
+P2, where the cell cold-start failure process is attributed to the cathode pore blockage if the occurrence
+of the freezing process is postponed.
+
+=== PDF PAGE 15 ===
+Energies 2020, 13, 256 15 of 20
+Energies 2020, 13, x FOR PEER REVIEW 15 of 20 
+ 
+oxygen. The stoichiometry ratio of the mass flow ra te is 2.0 for both anode and cathode sides. The 
+background pressure is 1.0 atm at both the anode and cathode outlets. 
+3.3.2. 0 7.8λ =  and 
+2
+0 0.33 A/cmI =  
+In this case, we set the startup current density 2
+0 0.33 A/cmI =  when the initial membrane 
+water content increases to 0 7.8λ = . As illustrated in Figure 7a, the cell startup condition also falls in 
+the ambiguous zone. Similar to the previous sectio n, the numerical simulation is repeated, and in 
+Figure 11 only two representative processes (denoted by P3 and P4) with the corresponding freezing 
+time of supercooled water at 3.6 s and 9.5 s are presen ted. In Figure 11a, though the freezing time is 
+different, the differences of the cell shutdown time are relatively small. In Figure 11b, it can be found 
+that in P3, the averaged ice volume fraction in CCL tends to approach 1.0 when the cell voltage drops 
+rapidly. Thus, the failure of the cell cold-start process is attributed to the cathode pore blockage. 
+However, in P4, though the freezing process happens later than that in P3, the averaged ice volume 
+fraction only approaches to 0.56 when the cell shuts down. The anode dehydration will be the 
+principal reason to cause the failure of the cold-start process. This is different from those phenomena 
+observed in P1 and P2, where the cell cold-start failure process is attributed to the cathode pore 
+blockage if the occurrence of the freezing process is postponed. 
+  
+  
+Figure 11. Evolution of (a) the cell voltage, (b) the volume-averaged ice volume fraction in CCL. The 
+cell starts from −20 °C with initial membrane water content 0 7.8λ =  and current density 
+2
+0 0.33 A/cmI = . The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the 
+mass flow rate is 2.0. The background pressure is 1.0 atm at both the anode and cathode outlets. 
+In previous literature [30], it has been mentioned that the supercooled water can transport 
+through the water pathway from CL to GDL and even GC. It can be expected that if the supercooled 
+water freezes later, the more supercooled water will be expelled from the CCL into the MPL, GDL or 
+GC. Thus, during the cell cold-start process more produced water or ice can be stored in the MPL and 
+GDL. On the other hand, since the solid ice cannot flow, more produced water or ice will accumulate 
+in the CCL if the supercooled water freezes earlier.  Therefore, the CCL is more likely to be blocked 
+by ice if the supercooled water freezes more prior. In  P3, the freezing process occurs at 3.6 s. It is 
+much earlier than that in P4, where the freezing process occurs at 9.5 s. The corresponding ice volume 
+fraction in CCL at 
+11.9 st =  is contoured in Figure 12a. In P3, the ice volume fraction in CCL is more 
+significant than that in P4. It means that more pores in CCL are blocked in P3 than those in P4. In 
+Times (s)
+Voltage (V)
+0 2 4 6 8 10 12 14
+0.40
+0.45
+0.50
+0.55
+0.60
+0.65
+Representative process P3
+Representative process P4
+(a)
+Times (s)
+Averaged ice volume fraction si in CCL
+0 2 4 6 8 10 12 14
+0.10
+0.20
+0.30
+0.40
+0.50
+0.60
+0.70
+0.80
+0.90
+1.00
+Representative process P3
+Representative process P4
+(b)
+Figure 11. Evolution of (a) the cell voltage, (b) the volume-averaged ice volume fraction in CCL. The cell
+starts from−20◦C with initial membrane water contentλ0 = 7.8 and current density I0 = 0.33 A/cm2.
+The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass ﬂow rate is 2.0.
+The background pressure is 1.0 atm at both the anode and cathode outlets.
+In previous literature [30], it has been mentioned that the supercooled water can transport through
+the water pathway from CL to GDL and even GC. It can be expected that if the supercooled water
+freezes later, the more supercooled water will be expelled from the CCL into the MPL, GDL or GC.
+Thus, during the cell cold-start process more produced water or ice can be stored in the MPL and GDL.
+On the other hand, since the solid ice cannot ﬂow, more produced water or ice will accumulate in the
+CCL if the supercooled water freezes earlier. Therefore, the CCL is more likely to be blocked by ice if
+the supercooled water freezes more prior. In P3, the freezing process occurs at 3.6 s. It is much earlier
+than that in P4, where the freezing process occurs at 9.5 s. The corresponding ice volume fraction in
+CCL at t = 11.9 s is contoured in Figure 12a. In P3, the ice volume fraction in CCL is more signiﬁcant
+than that in P4. It means that more pores in CCL are blocked in P3 than those in P4. In Figure 12b,
+the membrane water content distribution along the thickness of CCL, MEM, and ACL at t = 11.9 s is
+presented. Since the freezing of supercooled water has occurred, the membrane water content in CCL
+approaches to the saturated content (λsat = 10.6). However, the MEM is still unsaturated, and it can
+keep absorbing the product membrane water continuously. In the region of CCL close to the CCL/MEM
+interface, the membrane water content is distinctively lower than the saturated value, and the cathode
+pores keep unblocking. Since the cell cold-start process is operated in the galvanostatic state, it is
+expectable that the electrochemical reaction is mainly located in this unblocked region. This results
+in the relatively high local temperature and membrane water content in the part of CCL close to the
+CCL/MEM interface. The gradient of membrane water content across the CCL/MEM interface in P3
+is prospected to be higher than that in P4, as illustrated in Figure 12b with ∆λP3 > ∆λP4. This will
+promote more product water in CCL diﬀusing back into MEM and ACL. As the cell keeps operating,
+the ice volume fraction in CCL increases continuously as well as the membrane water content in ACL,
+as shown in Figure 13 with the solid line. Thus, in P3, the failure of cell cold-start process is caused by
+the cathode pore blockage instead of the anode dehydration.
+
+=== PDF PAGE 16 ===
+Energies 2020, 13, 256 16 of 20
+Energies 2020, 13, x FOR PEER REVIEW 16 of 20 
+ 
+Figure 12b, the membrane water content distribution along the thickness of CCL, MEM, and ACL at 
+11.9 st =  is presented. Since the freezing of supercooled water has occurred, the membrane water 
+content in CCL approaches to the saturated content ( sat 10.6λ = ). However, the MEM is still 
+unsaturated, and it can keep absorbing the product membrane water continuously. In the region of 
+CCL close to the CCL/MEM interface, the membrane water content is distinctively lower than the 
+saturated value, and the cathode pores keep unblocking. Since the cell cold-start process is operated 
+in the galvanostatic state, it is expectable that th e electrochemical reaction is mainly located in this 
+unblocked region. This results in the relatively high local temperature and membrane water content 
+in the part of CCL close to the CCL/MEM interface. The gradient of membrane water content across 
+the CCL/MEM interface in P3 is prospected to be higher than that in P4, as illustrated in Figure 12b 
+with 
+P3 P4λλΔ> Δ . This will promote more product water in CCL diffusing back into MEM and ACL. 
+As the cell keeps operating, the ice volume fraction  in CCL increases continuously as well as the 
+membrane water content in ACL, as shown in Figure 13 with the solid line. Thus, in P3, the failure of 
+cell cold-start process is caused by the cathode pore blockage instead of the anode dehydration. 
+ 
+ 
+Figure 12. The distribution of (a) ice volume fraction in CCL for the processes P3 and P4 at t = 11.9 s, 
+and (b) membrane water content along the thickness of CCL, MEM, and ACL. The cell starts from −20 
+°C with initial membrane water content 0 7.8λ =  and current density 2
+0 0.33 A/cmI = . The cell is 
+supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass flow rate is 2.0 for both 
+anode and cathode sides. The background pressure is 1.0 atm at both the anode and cathode outlets. 
+ 
+++ + +++ + + + +
++ + + + + + + + + +
++ + + + + +++++
++ + + + + + + + +
++
++ + + + + + + + + +
++ + + + + ++ + ++
+Position y (10
+-3
+mm)
+Membrane water content λ
+-10.0 -5.0 0.0 5.0 10.00.0
+2.0
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+16.0
+Representative result P3
+Representative result P4
++
++
+ACLCCL MEM
+Δλ P4
+Δλ P3
+(b)
+Times (s)
+Averaged membrane water content λ
+0 2 4 6 8 10 12 141.0
+2.0
+3.0
+4.0
+5.0
+6.0
+7.0
+8.0
+Representative process P3
+Representative process P4
+Freezing time in P3
+Freezing time in P4
+Figure 12. The distribution of (a) ice volume fraction in CCL for the processes P3 and P4 at t = 11.9 s,
+and (b) membrane water content along the thickness of CCL, MEM, and ACL. The cell starts from
+−20◦C with initial membrane water contentλ0 = 7.8 and current density I0 = 0.33 A/cm2. The cell is
+supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass ﬂow rate is 2.0 for both
+anode and cathode sides. The background pressure is 1.0 atm at both the anode and cathode outlets.
+Energies 2020, 13, x FOR PEER REVIEW 16 of 20 
+ 
+Figure 12b, the membrane water content distribution along the thickness of CCL, MEM, and ACL at 
+11.9 st =  is presented. Since the freezing of supercooled water has occurred, the membrane water 
+content in CCL approaches to the saturated content ( sat 10.6λ = ). However, the MEM is still 
+unsaturated, and it can keep absorbing the product membrane water continuously. In the region of 
+CCL close to the CCL/MEM interface, the membrane water content is distinctively lower than the 
+saturated value, and the cathode pores keep unblocking. Since the cell cold-start process is operated 
+in the galvanostatic state, it is expectable that th e electrochemical reaction is mainly located in this 
+unblocked region. This results in the relatively high local temperature and membrane water content 
+in the part of CCL close to the CCL/MEM interface. The gradient of membrane water content across 
+the CCL/MEM interface in P3 is prospected to be higher than that in P4, as illustrated in Figure 12b 
+with 
+P3 P4λλΔ> Δ . This will promote more product water in CCL diffusing back into MEM and ACL. 
+As the cell keeps operating, the ice volume fraction  in CCL increases continuously as well as the 
+membrane water content in ACL, as shown in Figure 13 with the solid line. Thus, in P3, the failure of 
+cell cold-start process is caused by the cathode pore blockage instead of the anode dehydration. 
+ 
+ 
+Figure 12. The distribution of (a) ice volume fraction in CCL for the processes P3 and P4 at t = 11.9 s, 
+and (b) membrane water content along the thickness of CCL, MEM, and ACL. The cell starts from −20 
+°C with initial membrane water content 0 7.8λ =  and current density 2
+0 0.33 A/cmI = . The cell is 
+supplied with dry hydrogen and oxygen. The stoichiometry ratio of the mass flow rate is 2.0 for both 
+anode and cathode sides. The background pressure is 1.0 atm at both the anode and cathode outlets. 
+ 
+++ + +++ + + + +
++ + + + + + + + + +
++ + + + + +++++
++ + + + + + + + +
++
++ + + + + + + + + +
++ + + + + ++ + ++
+Position y (10
+-3
+mm)
+Membrane water content λ
+-10.0 -5.0 0.0 5.0 10.00.0
+2.0
+4.0
+6.0
+8.0
+10.0
+12.0
+14.0
+16.0
+Representative result P3
+Representative result P4
++
++
+ACLCCL MEM
+Δλ P4
+Δλ P3
+(b)
+Times (s)
+Averaged membrane water content λ
+0 2 4 6 8 10 12 141.0
+2.0
+3.0
+4.0
+5.0
+6.0
+7.0
+8.0
+Representative process P3
+Representative process P4
+Freezing time in P3
+Freezing time in P4
+Figure 13. The evolution of the ACL volume-averaged membrane water content in process P3 and
+P4. The cell starts from −20◦C with initial membrane water content λ0 = 7.8 and current density
+I0 = 0.33 A/cm2. The cell is supplied with dry hydrogen and oxygen. The stoichiometry ratio of the
+mass ﬂow rate is 2.0 for both anode and cathode sides. The background pressure is 1.0 atm at both the
+anode and cathode outlets.
+According to the above P1 to P4 processes, we know that the cold-start failure mode in the
+ambiguous zone mainly depends on the occurrence of the stochastic freezing process. When the initial
+membrane water content is relatively small, as listed in Table 3, the failure mode is dominated by
+anode dehydration if the freezing process occurs earlier. Otherwise, the failure mode is attributed to
+the cathode pore blockage. However, the opposite is exact for the situation with high initial membrane
+water content. In this section, the cell started from−20◦C is considered in detail. It is worth noting
+that similar results can also be obtained for the cell started from−30◦C. Due to the presence of the
+ambiguous zone, the phenomena that may occur during the cell cold-start process, become complicated
+and unpredictable.
+
+=== PDF PAGE 17 ===
+Energies 2020, 13, 256 17 of 20
+Table 3. The failure modes in the ambiguous zone with startup temperature−20◦C.
+Startup Condition Freezing Occurs Earlier Freezing Occurs Later
+λ0 = 5.0, I0 = 0.30 A/cm2 Anode dehydration (Process P1) Cathode pore blockage (Process P2)
+λ0 = 7.8, I0 = 0.33 A/cm2 Cathode pore blockage (Process P3) Anode dehydration (Process P4)
+4. Conclusions
+In this study, a numerical model has been introduced to simulate the cold-start process of PEFC.
+The stochastic freezing process of supercooled water is included. The validation results of the model are
+consistent with the experimental data in previous literature. Based on this model, the cold-start failure
+processes of PEFC are studied numerically. The inﬂuences of initial membrane water content and
+startup current density on the failure processes are mainly concerned with various startup temperatures.
+The results show that the failure of the cell cold-start process can be distinguished into two modes,
+which are physically attributed to the anode dehydration and cathode pore blockage. The dominant
+failure mode can be determined according to the startup current density and the initial membrane
+water content. The predominant failure mode is mainly attributed to the anode dehydration if the
+cell startup current density is large. However, the cell failure mode is dominated by the cathode pore
+blockage if the cell’s initial membrane water content is high. On the λ0− I0 plane, the map of startup
+failure mode has been plotted with various startup temperatures. According to the map, the anode
+dehydration failure mode can be avoided by choosing the relatively high initial membrane water
+content and small startup current density. However, it is a pity that the value of initial membrane water
+and startup current density, at which the cold-start process could be successful, is still unreachable.
+Due to the stochastic freezing behavior of the supercooled water, an ambiguous zone can be observed,
+where the cold-start failure mode is uncertain. It mainly depends on the stochastic occurrence of the
+freezing process.
+It is worthy to note that we focus on the failure mode of the cell cold-start process, and only the
+simulation results of failed cold-start processes are presented. The above phenomena and corresponding
+critical values of initial membrane water and startup current density are predicted only by numerical
+simulation. They may rely on the cell material and structure properties, such as the ionomer volume
+fraction, the membrane thickness, the porosity of CL, and the contact angle of CL/MPL/GDL. Frankly,
+the exact values of these property parameters are hard to determine, and the uncertainty of these
+values do inﬂuence the accuracy of the model. However, the presence of the failure mode and the
+corresponding physical explanation is reasonable. We hope that these phenomena can be observed in
+future experimental research.
+Author Contributions: Conceptualization, L.Y. and J.P .; formal analysis, L.Y. and F.M.; data curation, Y.Z. and J.S.;
+writing—original draft preparation, L.Y. and F.M.; writing—review and editing, J.P .; funding acquisition, J.Z.;
+supervision, J.P . All authors have read and agreed to the published version of the manuscript.
+Funding: This research was funded by the National Key Research and Development Program of China,
+grant number 2016YFE0118600.
+Conﬂicts of Interest: The authors declare no conﬂict of interest.
+Nomenclature
+Cp Speciﬁc heat, J kg−1 K−1 µ Viscosity, Pa s
+D Diﬀusivity, m2 s−1 ρ Density, kg m−3
+EW Equivalent weight, kg kmol−1 φ Potential, V
+I Current density, A m−2 ω Ionomer volume fraction
+k Thermal conductivity, W m−1 K−1 ζ Switching function
+K Permeability, m2 Subscripts and Superscripts
+p Pressure, Pa 0 Initial
+s Volume fraction e Electrolyte
+
+=== PDF PAGE 18 ===
+Energies 2020, 13, 256 18 of 20
+S,S Source term eff E ﬀective
+t Time, s fl Fluid phase
+∆t Time step, s g Gas phase
+T Temperature, K i Ice
+∆T Super-cooling temperature, K l Liquid water
+u Velocity, m s−1 m Mass, for source term
+Y Mass fraction mem Membrane
+Greek mw Membrane water
+α Phase transfer rate, s−1 n The nth gas species
+δ Thickness, mm s Solid phase
+ε Porosity sl Solid phase
+θ Contact angle,◦ T Energy, for source term
+κ Conductivity, S m−1 u Momentum, for source term
+λ Membrane water content φ Charge, for source term
+References
+1. Tajiri, K.; Tabuchi, Y.; Wang, C.Y. Isothermal cold-start of polymer electrolyte fuel cells.J. Electrochem. Soc.
+2007, 154, B147–B152. [CrossRef]
+2. Tajiri, K.; Tabuchi, Y.; Kagami, F.; Takahashi, S.; Yoshizawa, K.; Wang, C.H. Eﬀects of operating and design
+parameters on PEFC cold-start. J. Power Sour. 2007, 165, 279–286. [CrossRef]
+3. Ge, S.; Wang, C.Y. Characteristics of subzero startup and water/ice formation on the catalyst layer in a polymer
+electrolyte fuel cell. Electrochim. Acta 2007, 52, 4825–4835. [CrossRef]
+4. Jiao, K.; Alaefour, I.E.; Karimi, G.; Li, X. Cold-start characteristics of proton exchange membrane fuel cells.
+Int. J. Hydrog. Energy 2011, 36, 11832–11845. [CrossRef]
+5. Lin, R.; Weng, Y.; Li, Y.; Lin, X. Internal behavior of segmented fuel cell during cold-start.Int. J. Hydrogen
+Energy 2014, 39, 16025–16035. [CrossRef]
+6. Tabe, Y.; Saito, M.; Fukui, K.; Chikahisa, T. Cold-start characteristics and freezing mechanism dependence
+on start-up temperature in a polymer electrolyte membrane fuel cell. J. Power Sour. 2012, 208, 366–373.
+[CrossRef]
+7. Hiramitsu, Y.; Mitsuzawa, N.; Okada, K.; Hori, M. Eﬀects of ionomer content and oxygen permeation of
+the catalyst layer on proton exchange membrane fuel cell cold-start-up. J. Power Sour. 2010, 195, 1038–1045.
+[CrossRef]
+8. Thompson, E.L.; Jorne, J.; Gu, W.; Gasteiger, H.A. PEM fuel cell operation at−20◦ CI Electrode and membrane
+water (charge) storage. J. Electrochem. Soc. 2008, 155, B625–B634. [CrossRef]
+9. Hirakata, S.; Mochizuki, T.; Uchida, M.; Uchida, H. Investigation of the eﬀect of pore diameter of gas diﬀusion
+layers on cold-start behavior and cell performance of polymer electrolyte membrane fuel cells. Electrochim.
+Acta 2013, 108, 304–312. [CrossRef]
+10. Xie, X.; Wang, R.; Jiao, K.; Zhang, G.; Zhou, J.; Du, Q. Investigation of the eﬀect of micro-porous layer on
+PEM fuel cell cold-start operation. Renew. Energy 2018, 117, 125–134. [CrossRef]
+11. Wakatake, N.; Tabe, Y.; Chikahisa, T. Water transport in ionomer and ice formation during cold-startup with
+supercooled state in PEFC. ECS T rans.2016, 75, 623–630. [CrossRef]
+12. Wang, Y.; Mukherjee, P .P .; Mishler, J.; Mukundan, R.; Borup, R.L. Cold-start of polymer electrolyte fuel cells:
+Three-stage startup characterization. Electrochim. Acta 2010, 55, 2636–2644. [CrossRef]
+13. Mao, L.; Wang, C.Y.; Tabuchi, Y. A multiphase model for cold-start of polymer electrolyte fuel cells. J.
+Electrochem. Soc. 2007, 154, B341–B351. [CrossRef]
+14. Jiang, F.; Fang, W.; Wang, C.Y. Non-isothermal cold-start of polymer electrolyte fuel cells.Electrochim. Acta
+2007, 53, 610–621. [CrossRef]
+15. Meng, H. Numerical analyses of non-isothermal self-start behaviors of PEM fuel cells from subfreezing
+startup temperatures. Int. J. Hydrogen Energy 2008, 33, 5738–5747. [CrossRef]
+16. Meng, H. A PEM fuel cell model for cold-start simulations. J. Power Sources 2008, 178, 141–150. [CrossRef]
+17. Gwak, G.; Ko, J.; Ju, H. Numerical investigation of cold-start behavior of polymer-electrolyte fuel-cells from
+subzero to normal operating temperatures–eﬀects of cell boundary and operating conditions. Int. J. Hydrogen
+Energy 2014, 39, 21927–21937. [CrossRef]
+
+=== PDF PAGE 19 ===
+Energies 2020, 13, 256 19 of 20
+18. Ko, J.; Ju, H. Comparison of numerical simulation results and experimental data during cold-start of polymer
+electrolyte fuel cells. Appl. Energy 2012, 94, 364–374. [CrossRef]
+19. Gwak, G.; Ju, H. A rapid start-up strategy for polymer electrolyte fuel cells at subzero temperatures based on
+control of the operating current density. Int. J. Hydrogen Energy 2015, 40, 11989–11997. [CrossRef]
+20. Thompson, E.L.; Capehart, T.W.; Fuller, T.J.; Jorne, J. Investigation of low-temperature proton transport in
+Naﬁon using direct current conductivity and diﬀerential scanning calorimetry. J. Electrochem. Soc. 2006, 153,
+A2351–A2362. [CrossRef]
+21. Jiao, K.; Li, X. Three-dimensional multiphase modeling of cold-start processes in polymer electrolyte
+membrane fuel cells. Electrochim. Acta 2009, 54, 6876–6891. [CrossRef]
+22. Jiao, K.; Li, X. Cold-start analysis of polymer electrolyte membrane fuel cells. Int. J. Hydrogen Energy 2010, 35,
+5077–5094. [CrossRef]
+23. Jiao, K.; Li, X. E ﬀects of various operating and initial conditions on cold-start performance of polymer
+electrolyte membrane fuel cells. Int. J. Hydrogen Energy 2009, 34, 8171–8184. [CrossRef]
+24. Ishikawa, Y.; Morita, T.; Nakata, K.; Shiozawa, M. Behavior of water below the freezing point in PEFCs.J.
+Power Sour. 2007, 163, 708–712. [CrossRef]
+25. Ishikawa, Y.; Hamada, H.; Uehara, M.; Shiozawa, M. Supercooled water behavior inside polymer electrolyte
+fuel cell cross-section below freezing temperature. J. Power Sour. 2008, 179, 547–552. [CrossRef]
+26. Mayrhuber, I.; Marone, F.; Stampanoni, M.; Schmidt, T.J.; Büchi, F.N. Fast X-ray tomographic microscopy:
+Investigating mechanisms of performance drop during freeze starts of polymer electrolyte fuel cells.
+ChemElectroChem 2015, 2, 1551–1559. [CrossRef]
+27. Roth, J.; Zurbrügg, M.R.; Irvine, S.; Marone, F. Investigation of PEFC freeze start by X-ray tomographic
+microscopy. ECS T rans.2013, 58, 453–462. [CrossRef]
+28. Oberholzer, P .; Boillat, P .; Siegrist, R.; Perego, R.; Kästner, A.; Lehmann, E.; Scherer, G.G.; Wokaun, A.
+Cold-start of a PEFC visualized with high resolution dynamic in-plane neutron imaging. J. Electrochem. Soc.
+2012, 159, B235–B245. [CrossRef]
+29. Stahl, P .; Biesdorf, J.; Boillat, P .; Friedrich, K.A. An investigation of PEFC sub-zero startup: Evidence of local
+freezing eﬀects. J. Electrochem. Soc. 2016, 163, F1535–F1542. [CrossRef]
+30. Biesdorf, J.; Forner-Cuenca, A.; Siegwart, M.; Schmidt, T.J.; Boillat, P . Statistical analysis of isothermal
+cold-starts of PEFCs: Impact of gas diﬀusion layer properties. J. Electrochem. Soc. 2016, 163, F1258–F1266.
+[CrossRef]
+31. Stahl, P .; Biesdorf, J.; Boillat, P .; Friedrich, K.A. An investigation of PEFC sub-zero startup: Inﬂuence of initial
+conditions and residual water. Fuel Cells 2017, 17, 778–785. [CrossRef]
+32. Biesdorf, J.; Stahl, P .; Siegwart, M.; Schmidt, T.J. When size matters: Active area dependence of PEFC
+cold-start capability. J. Electrochem. Soc. 2015, 162, F1231–F1235. [CrossRef]
+33. Yang, Z.; Du, Q.; Huo, S.; Jiao, K. Eﬀect of membrane electrode assembly design on the cold-start process of
+proton exchange membrane fuel cells. Int. J. Hydrogen Energy 2017, 42, 25372–25387. [CrossRef]
+34. Huo, S.; Jiao, K.; Park, J.W. On the water transport behavior and phase transition mechanisms in cold-start
+operation of PEM fuel cell. Appl. Energy 2019, 233, 776–788. [CrossRef]
+35. Yao, L.; Peng, J.; Zhang, J.; Zhang, Y. Numerical investigation of cold-start behavior of polymer electrolyte
+fuel cells in the presence of supercooled water. Int. J. Hydrogen Energy 2018, 43, 15505–15520. [CrossRef]
+36. U.S. Department of Energy. DOE Technical Targets for Fuel Cell Systems and Stacks for Transportation
+Applications. Available online: https: //www.energy.gov/eere/fuelcells/doe-technical-targets-fuel-cell-
+systems-and-stacks-transportation-applications (assessed on 27 February 2019).
+37. Ge, N.; Banerjee, R.; Muirhead, D.; Lee, J.; Liu, H.; Shrestha, P .; Wong, A.K.C.; Jankovic, J.; Tam, M.; Susac, D.;
+et al. Membrane dehydration with increasing current density at high inlet gas relative humidity in polymer
+electrolyte membrane fuel cells. J. Power Sour. 2019, 422, 163–174. [CrossRef]
+38. Cheah, M.J.; Kevrekidis, I.G.; Benziger, J. Eﬀect of interfacial water transport resistance on coupled proton
+and water transport across Naﬁon. J. Phys. Chem. B 2011, 115, 10239–10250. [CrossRef]
+39. Springer, T.E.; Zawodzinski, T.A.; Gottesfeld, S. Polymer electrolyte fuel cell model. J. Electrochem. Soc. 1991,
+138, 2334–2342. [CrossRef]
+40. Gallagher, K.G.; Pivovar, B.S.; Fuller, T.F. Electro-osmosis and water uptake in polymer electrolytes in
+equilibrium with water vapor at low temperatures. J. Electrochem. Soc. 2009, 156, B330–B338. [CrossRef]
+
+=== PDF PAGE 20 ===
+Energies 2020, 13, 256 20 of 20
+41. Bertolini, D.; Cassettari, M.; Salvetti, G. Nucleation process and solidiﬁcation rate of super-cooled water.
+Phys. Scr. 1988, 38, 404. [CrossRef]
+42. Alpert, P .A.; Knopf, D.A. Analysis of isothermal and cooling-rate-dependent immersion freezing by a unifying
+stochastic ice nucleation model. Atmos. Chem. Phys. 2016, 16, 2083–2107. [CrossRef]
+43. Jiang, S.; ter Horst, J.H. Crystal nucleation rates from probability distributions of induction times. Cryst.
+Growth Des. 2010, 11, 256–261. [CrossRef]
+44. Dursch, T.J.; Trigub, G.J.; Lujan, R.; Liu, J.F.; Radke, R.M.C.J.; Weber, A.Z. Ice-crystallization kinetics in the
+catalyst layer of a proton-exchange-membrane fuel cell. J. Electrochem. Soc. 2014, 161, F199–F207. [CrossRef]
+45. Pineri, M.; Gebel, G.; Davies, R.J.; Diat, O. Water sorption–desorption in Naﬁon ® membranes at low
+temperature, probed by micro X-ray diﬀraction. J. Power Sour. 2007, 172, 587–596. [CrossRef]
+46. Plazanet, M.; Sacchetti, F.; Petrillo, C.; Dem é, B.; Bartolini, P .; Torre, R. Water in a polymeric electrolyte
+membrane: Sorption/desorption and freezing phenomena. J. Membr. Sci. 2014, 453, 419–424. [CrossRef]
+47. Guillermo, A.; Gebel, G.; Mendil-Jakani, H.; Pinton, E. NMR and pulsed ﬁeld gradient NMR approach of
+water sorption properties in Naﬁon at low temperature. J. Phys. Chem. B 2009, 113, 6710–6717. [CrossRef]
+48. Schmittinger, W.; Vahidi, A. A review of the main parameters inﬂuencing long-term performance and
+durability of PEM fuel cells. J. Power Sour. 2008, 180, 1–14. [CrossRef]
+49. Chacko, C.; Ramasamy, R.; Kim, S.; Khandelwal, M.; Mench, M. Characteristic behavior of polymer electrolyte
+fuel cell resistance during cold-start. J. Electrochem. Soc. 2008, 155, B1145–B1154. [CrossRef]
+© 2020 by the authors. Licensee MDPI, Basel, Switzerland. This article is an open access
+article distributed under the terms and conditions of the Creative Commons Attribution
+(CC BY) license (http://creativecommons.org/licenses/by/4.0/).

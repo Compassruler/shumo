@@ -1,0 +1,199 @@
+{
+  "only_authorized_changes": true,
+  "original_content_recovered_exactly": true,
+  "citation_order": [
+    "huang2021review",
+    "luo2018review",
+    "ma2026endplate",
+    "min2022current",
+    "tao2022reduction",
+    "yao2020failure",
+    "mao2007",
+    "jiao2009multiphase",
+    "buck1996manual",
+    "huo2019water",
+    "springer1991",
+    "pasaogullari2004",
+    "otsuki2020",
+    "liu2025ramping",
+    "lei2022loading",
+    "li2019localheating",
+    "yang2021assisted",
+    "yang2022efficient"
+  ],
+  "bibliography_count": 18,
+  "provided_pdf_count": 15,
+  "provided_unique_paper_count": 14,
+  "file_citations": [
+    {
+      "file": "质子交换膜燃料电池系统低温启动技术研究进展.pdf",
+      "key": "huang2021review",
+      "citation_number": 1,
+      "duplicate_of": null
+    },
+    {
+      "file": "2.pdf",
+      "key": "luo2018review",
+      "citation_number": 2,
+      "duplicate_of": null
+    },
+    {
+      "file": "6.pdf",
+      "key": "ma2026endplate",
+      "citation_number": 3,
+      "duplicate_of": null
+    },
+    {
+      "file": "4.pdf",
+      "key": "yao2020failure",
+      "citation_number": 6,
+      "duplicate_of": null
+    },
+    {
+      "file": "3.pdf",
+      "key": "jiao2009multiphase",
+      "citation_number": 8,
+      "duplicate_of": null
+    },
+    {
+      "file": "11(2).pdf",
+      "key": "huo2019water",
+      "citation_number": 10,
+      "duplicate_of": null
+    },
+    {
+      "file": "10(1).pdf",
+      "key": "li2019localheating",
+      "citation_number": 16,
+      "duplicate_of": null
+    },
+    {
+      "file": "111(1).pdf",
+      "key": "yang2021assisted",
+      "citation_number": 17,
+      "duplicate_of": null
+    },
+    {
+      "file": "222(1).pdf",
+      "key": "yang2022efficient",
+      "citation_number": 18,
+      "duplicate_of": null
+    },
+    {
+      "file": "333(1).pdf",
+      "key": "min2022current",
+      "citation_number": 4,
+      "duplicate_of": null
+    },
+    {
+      "file": "55(1).pdf",
+      "key": "otsuki2020",
+      "citation_number": 13,
+      "duplicate_of": null
+    },
+    {
+      "file": "66(1).pdf",
+      "key": "tao2022reduction",
+      "citation_number": 5,
+      "duplicate_of": null
+    },
+    {
+      "file": "77(1).pdf",
+      "key": "lei2022loading",
+      "citation_number": 15,
+      "duplicate_of": null
+    },
+    {
+      "file": "88(1).pdf",
+      "key": "liu2025ramping",
+      "citation_number": 14,
+      "duplicate_of": null
+    },
+    {
+      "file": "99(1).pdf",
+      "key": "ma2026endplate",
+      "citation_number": 3,
+      "duplicate_of": "6.pdf"
+    }
+  ],
+  "change_categories": [
+    "abstract",
+    "figure:problem_progression",
+    "figure:q2_startup_flowchart",
+    "figure:q3_heating_flowchart",
+    "figure:q4_dynamic_flowchart",
+    "citation:huang2021review",
+    "citation:luo2018review",
+    "citation:ma2026endplate",
+    "citation:yao2020failure",
+    "citation:jiao2009multiphase",
+    "citation:huo2019water",
+    "citation:li2019localheating",
+    "citation:yang2021assisted",
+    "citation:yang2022efficient",
+    "citation:min2022current",
+    "citation:otsuki2020",
+    "citation:tao2022reduction",
+    "citation:lei2022loading",
+    "citation:liu2025ramping",
+    "bibliography-in-first-citation-order",
+    "abstract:fit-one-page",
+    "figure-layout:problem_progression",
+    "figure-layout:q2_startup_flowchart",
+    "figure-layout:q3_heating_flowchart",
+    "figure-layout:q4_dynamic_flowchart",
+    "figure-layout:final-progression-size"
+  ],
+  "original_sha256": "82d96662ae8284fd7fff120e6408c222d248a9e38b02ff0e264757d62765966c",
+  "final_sha256": "6e5807d4e718da6407d3cfe5e8f5f462aab1a03a29aab1e69ca81e7f9ea9508f",
+  "original_bytes_recovered_exactly": true,
+  "keywords_unchanged": true,
+  "citation_order_matches_bibliography": true,
+  "abstract_counts": [
+    108,
+    405,
+    315,
+    72
+  ],
+  "abstract_percentages": [
+    12,
+    45,
+    35,
+    8
+  ],
+  "figure_labels": [
+    "fig:problem_progression",
+    "fig:q2_startup_flowchart",
+    "fig:q3_heating_flowchart",
+    "fig:q4_dynamic_flowchart"
+  ],
+  "figures": [
+    {
+      "key": "fig:problem_progression",
+      "number": "1-1",
+      "printed_page": 4,
+      "pdf_page": 5
+    },
+    {
+      "key": "fig:q2_startup_flowchart",
+      "number": "5-1",
+      "printed_page": 28,
+      "pdf_page": 29
+    },
+    {
+      "key": "fig:q3_heating_flowchart",
+      "number": "6-1",
+      "printed_page": 44,
+      "pdf_page": 45
+    },
+    {
+      "key": "fig:q4_dynamic_flowchart",
+      "number": "7-1",
+      "printed_page": 56,
+      "pdf_page": 57
+    }
+  ],
+  "final_compile_exit_code": 0,
+  "undefined_references": 0,
+  "overfull_boxes": 0
+}

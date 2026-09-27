@@ -1,0 +1,58 @@
+[
+  {
+    "file": "质子交换膜燃料电池系统低温启动技术研究进展.pdf",
+    "key": "huang2021review",
+    "bibitem": "\\bibitem{huang2021review} 黄天川, 刘志祥. 质子交换膜燃料电池系统低温启动技术研究进展[J]. 化工进展, 2021, 40(S1): 117--125. \\href{https://doi.org/10.16085/j.issn.1000-6613.2021-0406}{DOI: 10.16085/j.issn.1000-6613.2021-0406}.",
+    "anchor": "质子交换膜燃料电池通过氢氧电化学反应输出电能并生成水，具有能量转化效率高、响应快和排放清洁等特点，在寒区交通与供能中具有应用潜力。",
+    "replace": "质子交换膜燃料电池通过氢氧电化学反应输出电能并生成水，具有能量转化效率高、响应快和排放清洁等特点，在寒区交通与供能中具有应用潜力\\cite{huang2021review}。",
+    "support": "PDF第1页书目信息与摘要；第2页介绍PEMFC工作温度、响应、交通应用潜力及低温启动障碍。适合第1章背景首句。"
+  },
+  {
+    "file": "2.pdf",
+    "key": "luo2018review",
+    "bibitem": "\\bibitem{luo2018review} Luo Y, Jiao K. Cold start of proton exchange membrane fuel cell[J]. Progress in Energy and Combustion Science, 2018, 64: 29--61. \\href{https://doi.org/10.1016/j.pecs.2017.10.003}{DOI: 10.1016/j.pecs.2017.10.003}.",
+    "anchor": "环境温度低于冰点时，残余水及反应生成水容易冻结；冰占据催化层（CL）和气体扩散层（GDL）的孔隙后，会阻碍反应气体传输，并可能引起电压下降和启动失败。",
+    "replace": "环境温度低于冰点时，残余水及反应生成水容易冻结；冰占据催化层（CL）和气体扩散层（GDL）的孔隙后，会阻碍反应气体传输，并可能引起电压下降和启动失败\\cite{luo2018review}。",
+    "support": "PDF第1页元信息；第4页（期刊32页）Fig.1及相关文字说明多相输运、膜水冻结、孔隙冰与启动条件。"
+  },
+  {
+    "file": "6.pdf",
+    "key": "ma2026endplate",
+    "bibitem": "\\bibitem{ma2026endplate} Ma T, Du C, Gu Z, et al. Diagnosing the cold start failure of fuel cell system: End-plate cell's thermo-hydraulic imbalance and its mitigation through loading control[J]. Chemical Engineering Journal, 2026, 538: 176737. \\href{https://doi.org/10.1016/j.cej.2026.176737}{DOI: 10.1016/j.cej.2026.176737}.",
+    "anchor": "电堆中片间导热、端板热容和边界换热进一步造成温升差异，端部单电池更容易出现升温滞后和局部结冰。",
+    "replace": "电堆中片间导热、端板热容和边界换热进一步造成温升差异，端部单电池更容易出现升温滞后和局部结冰\\cite{ma2026endplate}。",
+    "support": "PDF第1页摘要与书目信息；第6页端板效应导致端部电压、传热与冰量不均，第7页后续机理。只引用端部效应这一一般背景，不引用本论文自身的数值结果；该文线性升载优于阶跃结论不能当作本论文满载最优结果的直接依据。99(1).pdf若同题名DOI则共用一个条目。"
+  },
+  {
+    "file": "4.pdf",
+    "key": "yao2020failure",
+    "bibitem": "\\bibitem{yao2020failure} Yao L, Ma F, Peng J, et al. Analysis of the failure modes in the polymer electrolyte fuel cell cold-start process---anode dehydration or cathode pore blockage[J]. Energies, 2020, 13(1): 256. \\href{https://doi.org/10.3390/en13010256}{DOI: 10.3390/en13010256}.",
+    "anchor": "冰生成后将占据多孔介质孔隙，降低气体扩散能力并覆盖催化层有效反应区域，进而加剧极化损失并引起电压下降。",
+    "replace": "冰生成后将占据多孔介质孔隙，降低气体扩散能力并覆盖催化层有效反应区域，进而加剧极化损失并引起电压下降\\cite{yao2020failure}。",
+    "support": "PDF第1页摘要与引言，及第2页：阴极孔隙冰堵造成传质不足、反应中止；该文也研究阳极脱水。仅引用一般阴极冰堵机理，不作为本文端部温升不足/电荷耗尽失败判定的证据。"
+  },
+  {
+    "file": "3.pdf",
+    "key": "jiao2009multiphase",
+    "bibitem": "\\bibitem{jiao2009multiphase} Jiao K, Li X. Three-dimensional multiphase modeling of cold start processes in polymer electrolyte membrane fuel cells[J]. Electrochimica Acta, 2009, 54: 6876--6891. \\href{https://doi.org/10.1016/j.electacta.2009.06.072}{DOI: 10.1016/j.electacta.2009.06.072}.",
+    "anchor": "该耦合框架参考多相冷启动研究\\cite{mao2007}；",
+    "replace": "该耦合框架参考多相冷启动研究\\cite{mao2007,jiao2009multiphase}；",
+    "support": "PDF第1页摘要：膜水冻结、CL离聚物水和孔隙水非平衡交换、CL/GDL冻融；第3页控制方程、第6--7页膜水相变。支持耦合建模框架，保留已有mao2007。不可据此将本文不可冻阈值3称为文献实测值，该文为温度相关阈值。"
+  },
+  {
+    "file": "11(2).pdf",
+    "key": "huo2019water",
+    "bibitem": "\\bibitem{huo2019water} Huo S, Jiao K, Park J W. On the water transport behavior and phase transition mechanisms in cold start operation of PEM fuel cell[J]. Applied Energy, 2019, 233--234: 776--788. \\href{https://doi.org/10.1016/j.apenergy.2018.10.068}{DOI: 10.1016/j.apenergy.2018.10.068}.",
+    "anchor": "PEM 中不存在独立气相孔隙，因此将 \\(m_l\\) 定义为未冻束缚水，将 \\(m_i\\) 定义为冻结膜水。",
+    "replace": "PEM 中不存在独立气相孔隙，因此将 \\(m_l\\) 定义为未冻束缚水，将 \\(m_i\\) 定义为冻结膜水\\cite{huo2019water}。",
+    "support": "PDF第1页摘要说明五种水状态（蒸气、液水、冰、膜水、冻结膜水）；第3--4页相变机制，第6页式(14)冻结膜水质量守恒。支持膜内冻结/非冻结水区分，不证明本文具体界面交换率、产水状态与阈值选取。"
+  },
+  {
+    "file": "10(1).pdf",
+    "key": "li2019localheating",
+    "bibitem": "\\bibitem{li2019localheating} Li L, Wang S, Yue L, et al. Cold-start method for proton-exchange membrane fuel cells based on locally heating the cathode[J]. Applied Energy, 2019, 254: 113716. \\href{https://doi.org/10.1016/j.apenergy.2019.113716}{DOI: 10.1016/j.apenergy.2019.113716}.",
+    "anchor": "因此，需要通过外部辅助热源弥补冷启动过程中的热量缺口。",
+    "replace": "因此，需要通过外部辅助热源弥补冷启动过程中的热量缺口\\cite{li2019localheating}。",
+    "support": "PDF第1--2页：阴极脊下加热丝、直接接触GDL局部供热有助于冷启动；支持外部电加热原理，仅一般动机，不为本文-30摄氏度、五片均匀加热、最优功率或能耗数值背书。"
+  }
+]

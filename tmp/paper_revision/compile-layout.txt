@@ -1,0 +1,67 @@
+log4cxx: setFile(D:\retex\CTEX\UserData\miktex\log/xelatex.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(拒绝访问。  )
+This is XeTeX, Version 3.141592653-2.6-0.999998 (MiKTeX 26.5) (preloaded format=xelatex.fmt)
+entering extended mode
+(MathModel.tex
+LaTeX2e <2026-06-01>
+L3 programming layer <2026-08-10>
+(gmcmthesis.cls
+Document Class: gmcmthesis 2020/09/09 v2.2 update https://github.com/zhanwen/Ma
+thModel
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctexart.cls
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/config\ctexbackend.cfg)
+(D:\retex\CTEX\MiKTeX\tex/latex/l3kernel\expl3.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/l3kernel\l3backend-xetex.def))
+Document Class: ctexart 2026/08/11 v2.6.5 Chinese adapter for class article (CT
+EX)
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctexhook.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctexpatch.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/base\fix-cm.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/base\ts1enc.def))
+(D:\retex\CTEX\CTeX\tex/latex/ctex/cfg\ctexopts.cfg)
+
+Class ctexart Warning: Option `cs4size' is deprecated.
+(ctexart)              Option `zihao=-4' is set.
+
+(D:\retex\CTEX\MiKTeX\tex/latex/base\article.cls
+Document Class: article 2025/01/22 v1.4n Standard LaTeX document class
+(D:\retex\CTEX\MiKTeX\tex/latex/base\size12.clo))
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/engine\ctex-engine-xetex.def
+(D:\retex\CTEX\MiKTeX\tex/xelatex/xecjk\xeCJK.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/l3packages/xtemplate\xtemplate.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/fontspec\fontspec.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/fontspec\fontspec-xetex.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/base\fontenc.sty)
+(D:\retex\CTEX\MiKTeX\tex/latex/fontspec\fontspec.cfg)))
+(D:\retex\CTEX\MiKTeX\tex/xelatex/xecjk\xeCJK.cfg)))
+(D:\retex\CTEX\MiKTeX\tex/latex/zhnumber\zhnumber.sty
+(D:\retex\CTEX\MiKTeX\tex/latex/zhnumber\zhnumber-utf8.cfg))
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/scheme\ctex-scheme-chinese-article.def
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/config\ctex-name-utf8.cfg))
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex\ctex-cs4size.clo)
+log4cxx: setFile(D:\retex\CTEX\UserData\miktex\log/miktex-maketfm.log,true) call failed.
+log4cxx: IO Exception : status code = 720005(拒绝访问。  )
+
+Sorry, but maketfm did not succeed.
+
+The log file hopefully contains the information to get MiKTeX going again:
+
+  D:\retex\CTEX\UserData\miktex\log\miktex-maketfm.log
+(D:\retex\CTEX\MiKTeX\tex/latex/ctex/fontset\ctex-fontset-fandol.def
+
+! Package fontspec Error: 
+(fontspec)                The font "FandolSong-Regular" cannot be found;
+(fontspec)                this may be but usually is not a fontspec bug.
+(fontspec)                Either there is a typo in the font name/file, the
+(fontspec)                font is not installed (correctly), or there is a
+(fontspec)                bug in the underlying font loading engine
+(fontspec)                (XeTeX/luaotfload).
+
+For immediate help type H <return>.
+ ...                                              
+                                                  
+l.100   }
+         
+No pages of output.
+Transcript written on C:/Users\马汗青\Desktop\shumo\tmp\paper_revision\build\MathM
+odel.log.

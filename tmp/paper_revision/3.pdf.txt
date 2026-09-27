@@ -1,0 +1,1704 @@
+
+=== PDF PAGE 1 ===
+Electrochimica Acta 54 (2009) 6876–6891
+Contents lists available at ScienceDirect
+Electrochimica Acta
+journal homepage: www.elsevier.com/locate/electacta
+Three-dimensional multiphase modeling of cold start processes in polymer
+electrolyte membrane fuel cells
+Kui Jiao, Xianguo Li∗
+Department of Mechanical & Mechatronics Engineering, University of Waterloo, 200 University Avenue West, Waterloo, Ontario, Canada N2L 3G1
+article info
+Article history:
+Received 24 February 2009
+Received in revised form 19 May 2009
+Accepted 26 June 2009
+Available online 4 July 2009
+Keywords:
+Cold start
+Polymer electrolyte membrane fuel cell
+Mathematical model
+Water freezing and melting
+Heating source
+abstract
+Startup from subzero temperatures, referred to as “cold start”, has been one of the technical challenges
+hindering the commercialization of polymer electrolyte membrane fuel cell (PEMFC). In this study, a
+mathematical model has been developed to simulate the cold start processes in a PEMFC. The present
+three-dimensional multiphase model uniquely includes the water freezing in the membrane electrolyte,
+the non-equilibrium mass transfer between the water in the ionomer and the water (vapour, liquid and
+ice) in the pore region of the catalyst layer (CL), and the water freezing and melting in the CL and gas dif-
+fusion layer (GDL). Both the failed and successful cold start processes have been numerically investigated.
+Numerical results indicate that increasing the ionomer fraction in the cathode CL has more signiﬁcant
+effects than increasing the thickness of the membrane layer in reducing the amount of ice formation, and
+the ohmic heat is the largest heating source at low cell voltages. It is observed that water freezes ﬁrst in
+the cathode CL under the land, and ice melts ﬁrst in the CLs under the ﬂow channel, the melted water in
+the anode is also removed faster than in the cathode.
+© 2009 Elsevier Ltd. All rights reserved.
+1. Introduction
+Low operating temperature, high power density and zero/low
+emission have made polymer electrolyte membrane fuel cell
+(PEMFC) the most promising fuel cell type for the future in auto-
+motive applications. It appears to offer the best prospect for
+further improvement until commercialization. Over past decades
+PEMFC technology has achieved signiﬁcant improvements in terms
+of performance, durability, stability and cost. However, further
+improvement is necessary before commercial application, such as
+cold start in winter. In winter conditions, it is unavoidable for vehi-
+cles driving below the freezing point of water (0
+◦C), therefore,
+for successful commercialization of PEMFC in automotive applica-
+tions, rapid startup from subzero temperatures must be achieved,
+which is referred to as “cold start” of PEMFC. The major problem
+of PEMFC cold start is that the product water freezes when the
+temperature inside the PEMFC is lower than the freezing point
+of water. If the catalyst layer (CL) is fully covered by ice before
+the cell temperature rises above freezing point, the electrochem-
+ical reaction may be stopped due to the blockage of the reaction
+site. In addition, ice formation may also result in serious damage to
+the structure of the membrane electrode assembly (MEA). There-
+fore, for PEMFC in automotive applications, successful cold start is
+∗ Corresponding author. Tel.: +1 519 888 4567x36843; fax: +1 519 885 5862.
+E-mail addresses: kjiao@uwaterloo.ca (K. Jiao), x6li@uwaterloo.ca (X. Li).
+of paramount importance. The U.S. Department of Energy (DOE)
+already established a challenging technical target: rapid startup
+of PEMFC to 90% rated power from −20
+◦C for 30 s in 2010 [1].
+At present, rapid unassisted cold start of PEMFC is still very dif-
+ﬁcult. Most of the present PEMFCs employ various assisted cold
+start methods such as: resistance heating using DC from batteries,
+coolant heating, hot air blowing, catalytic hydrogen/oxygen reac-
+tion inside the PEMFC, etc. United Technology Corporation (UTC)
+achieved 34% rated power in 30 s from −30
+◦C, they also achieved
+unassisted cold start from −35◦C, but the duration is not reported
+[2]. Ballard Mark1100 PEMFC power module also has cold start
+capability from −15◦C [3]. Apparently PEMFC cold start capability
+still needs signiﬁcant improvement, especially for unassisted cold
+start, this is because assisted cold start might increase the volume
+and weight of the system, as well as the operation complexity and
+installation costs. However, only few of the numerously previous
+numerical and experimental PEMFC studies paid attention to cold
+start, even more signiﬁcant effort is needed in this area for PEMFC
+commercialization.
+By comparing with the experimental studies focusing on normal
+operating conditions, the cold start related experimental studies
+are much less. Tajiri et al.[4,5] designed experimental procedures to
+mainly investigate the effects of MEA characteristics on PEMFC cold
+start, and the initial water content in Naﬁon membrane was con-
+trolled by different purging methods. They found that the best cold
+start capability is achieved with the lowest initial water content,
+because more product water can be taken by the membrane, result-
+0013-4686/$ – see front matter © 2009 Elsevier Ltd. All rights reserved.
+doi:10.1016/j.electacta.2009.06.072
+
+=== PDF PAGE 2 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6877
+ing in less water freezing in the CL. Hou et al.[6,7] investigated the
+performance degradations after freeze–thaw cycles, and they indi-
+cated that membrane degradation is not a major issue for PEMFC
+cold start. Cho et al.[8,9] studied the freeze–thaw cycles with a sub-
+freezing temperature of −10
+◦C, they reported that the unpurged
+initial condition resulted in severe performance degradation, and
+the solution purge (purged with antifreezes such as methanol)
+might be an effective way to achieve fast startup. Similarly, other
+experimental studies that focused on the effects of purging meth-
+ods [10], startup temperatures [11], and purging temperatures [12]
+on cold start performance were also carried out. Thompson et
+al. [13] experimentally determined the oxygen reduction reaction
+(ORR) kinetics for PEMFC operating at subzero temperatures, and
+no signiﬁcant change in the ORR mechanism was found. Ge and
+Wang [14,15] conducted the ﬁrst two in situ visualizations of ice
+formation on the cathode CL surface by cooling the transparent
+cells with coolant recirculation, and they have reported that the
+freezing point of water in the CL is around −1
+◦C. Ishikawa et al.
+[16] also reported that the freezing temperature of liquid water
+in the CL changes between −0.1 and −2.2 ◦C. All these studies
+[14–16] showed that liquid water freezes at the temperatures lower
+than 0 ◦C, known as the freezing point depression (FPD). Sun et
+al. [17] described a new method called catalytic hydrogen/oxygen
+reaction assisted cold start by supplying mixed hydrogen and air
+(or oxygen) into the fuel cell, however, further investigations are
+needed for this method. McDonald et al. [18] conducted an ex situ
+freeze–thaw study on MEA, and they reported that no degrada-
+tion was observed for dry MEA. Cappadonia et al.[19,20]conducted
+experimental measurements of Naﬁon membrane conductance at
+various subzero temperatures, and Thompson et al. [21] reported
+the conductivities of Naﬁon membrane at different subzero temper-
+atures based on the measured membrane conductance and sample
+size. The measurements in [19–21] all observed sharp decrements
+of membrane conductance/conductivity at subzero temperatures.
+In [21], it was also found that such sharp decrements occurred when
+the water phase changes were observed, and the amount of non-
+frozen membrane water content at different subzero temperatures
+were also estimated.
+Similar to the experimental studies, only a few numerical mod-
+els for PEMFC cold start are available in literature. Sundaresan and
+Moore [22] conducted an analytical model for cold start of PEMFC
+stacks. This one-dimensional model could predict the temperature
+for each of the single cell by performing energy balance and heat
+transfer analysis, and this model could also reveal the effects of the
+endplate thermal mass and the internal heating method for PEMFC
+cold start. Khandelwal et al.[23] also conducted a one-dimensional
+thermal model, and similar to Sundaresan and Moore[22], the cold
+start capability of PEMFC stacks can be evaluated. They reported
+that adjusting the startup current density, coolant heating, isolation
+of stack endplates are all effective ways to optimize the cold start
+performance. Mao and Wang [24] developed an analytical model,
+not only for temperature, this one-dimensional model can also pre-
+dict the amount of ice formation in CL, water transport, changes of
+cell voltage and current density, etc. Wang [25] also conducted an
+analytical study and deﬁned some important parameters affecting
+PEMFC cold start performance. The analytical models in [22–25]
+can only roughly predict the PEMFC cold start performance, and in
+order to investigate the fundamental physics of PEMFC cold start,
+multi-dimensional and multiphase models are needed. However,
+very few literatures are related to this ﬁeld[26–29]. Ahluwalia and
+Wang [26] conducted a simple two-dimensional cold start model
+for single PEMFCs, and they reported that high startup current den-
+sity is favorable for rapid cold start, and they also investigated the
+effects of feed gas temperatures, operating pressure, and electri-
+cal heating on cold start performance. Mao et al. [27] developed a
+three-dimensional, multiphase model, Meng[28] conducted a two-
+dimensional multiphase model for PEMFC cold start simulations,
+and based on the work in Mao et al. [27], Jiang el al. [29] further
+conducted non-isothermal cold start simulations for PEMFC. How-
+ever, all the numerical models in [27–29] assumed instantaneous
+desublimation of water vapour to ice, and the reaction product is
+water vapour. Since no liquid water is considered, so that these
+models can only provide reasonable results when the temperature
+is lower than the freezing point of water.
+Based on the literature review, it is found that development of
+multi-dimensional, multiphase PEMFC cold start model with the
+capability to consider the detailed phase changes of water in both
+the membrane electrolyte and the pore volumes of the GDL and
+CL needs to be carried out for better predictions of cold start per-
+Fig. 1. Computational domain (a) and mesh (b) (10 × miniﬁcation along the x-
+direction).
+
+=== PDF PAGE 3 ===
+6878 K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891
+formance. Therefore, in this study, a mathematical model has been
+developed to simulate the cold start processes in a PEMFC. Numer-
+ical simulations have been conducted for a single PEMFC starting at
+different subzero temperatures. In the following sections, a detailed
+description of the mathematical model is given ﬁrst, followed by the
+results and discussion and the conclusion.
+2. Cold start model
+2.1. Conservation equations
+Fig. 1 shows the computational domain and mesh for the cold
+start simulations, it can be noticed that all the major components
+of a PEMFC are considered in this model, which are the bipolar
+plate (BP), ﬂow channel, GDL, CL and membrane. The cell properties
+and operating conditions are listed in Table 1. Fourteen conser-
+vation equations are developed and to be solved simultaneously
+in different domains, as listed in Table 2. These equations include
+the conservations of mass, momentum ( x, y and z velocities), gas
+species (hydrogen, oxygen and water vapour), liquid water, ice, non-
+frozen membrane water content, frozen membrane water content,
+electronic potential, ionic potential, and energy. The corresponding
+source terms of the 14 conservation equations are listed inTable 3.
+The ﬁrst two equations in Table 2 represent the mass and
+momentum conservations of the gas mixture, and the next equa-
+tion describes the species transport of hydrogen, oxygen, and water
+vapour, respectively. Superﬁcial velocity is used in this model to sat-
+isfy the mass conservation at the interfaces between GDL (porous)
+and ﬂow channel. All the gas species are assumed to be ideal
+gas. It should be noticed that the effects of porous regions, liquid
+water and ice on gaseous transport are considered by modifying
+the gas phase permeability in the momentum equations and effec-
+tive species diffusivities in the species transport equations. The gas
+phase and liquid phase permeabilities (K
+g and Klq, respectively, m2)
+depend on the intrinsic permeabilities of the porous materials (K0,
+m2, listed in Table 1) and the local volume fraction of liquid water
+Table 1
+Cell properties and operating conditions.
+Parameter Value
+Channel length; width; depth; rib width 50; 1.0; 1.0; 1.0 mm
+Thicknesses of membrane (Naﬁon 117); CL; GDL (carbon paper) 0.178; 0.01; 0.2 mm
+Membrane density; equivalent weight /SUBmem = 1980 kg m−3; EW = 1100 kg kmol−1
+Volume fraction of ionomer in CL, and the porosities of CL; GDL ω= 0.2; εCL,GDL = 0.5; 0.6
+Contact angles and pore radii of CL; GDL /DC2CL,GDL = 100◦; rCL,GDL = 1.2 × 10−8;3 .89 × 10−5 m
+Intrinsic permeabilities of CL; GDL K0
+CL,GDL = 6.2 × 10−13;6 .2 × 10−12 m2
+Densities of CL; GDL; BP /SUBCL,GDL,BP = 1000 kg m−3
+Speciﬁc heat capacities of membrane; CL; GDL; BP ( Cp)mem,CL,GDL,BP = 833; 3300; 568; 1580 J kg −1 K−1
+Thermal conductivities of membrane; CL; GDL; BP kmem,CL,GDL,BP = 0.95; 1.0; 1.0; 20 W m −1 K−1
+Electrical conductivities of CL; GDL; BP /DC4CL,GDL,BP = 300; 300; 20 , 000 S m−1
+Cell voltage Vcell = 0.3V
+Stoichiometry ratios at 1.0 A cm−2 /CANa,c = 2.0
+Relative humidities of inlet gases RHin
+a,c = 0
+Inlet gas temperatures Tin
+a,c =T0 = volume averaged cell temperature or Tin
+a,c =Tsurr = surrounding temperature
+Absolute total pressure at outlets pout
+a,c = 1 atm
+Surrounding temperatures and heat transfer coefﬁcient Tsurr =− 3, − 10◦C; h = 55 W m−2 K−1
+Table 2
+Conservation equations.
+Property Conservation equation Domains solved in
+Mass ∂
+∂t(ε(1 −slq −sice)/SUBg ) + ∇ · (/SUBg ⃗ug ) =Sm Flow channel, GDL, CL
+Momentum ∂
+∂t
+(
+/SUBg ⃗ug
+ε(1 −slq −sice)
+)
++ ∇ ·
+(
+/SUBg ⃗ug ⃗ug
+ε2(1 −slq −sice)2
+)
+=− ∇pg +/SYNg ∇ ·
+(
+∇
+( ⃗ug
+ε(1 −slq −sice)
+)
++ ∇
+( ⃗uT
+g
+ε(1 −slq −sice)
+))
+− 2
+3/SYNg ∇
+(
+∇ ·
+( ⃗ug
+ε(1 −slq −sice)
+))
++Su
+Flow channel, GDL, CL
+Gas species i:
+hydrogen, oxygen,
+water vapour
+∂
+∂t(ε(1 −slq −sice)/SUBgYi) + ∇ · (/SUBg ⃗ugYi) = ∇ · (/SUBgDeff
+i ∇Yi) +Si Flow channel, GDL, CL
+Liquid water
+∂(εslq/SUBlq)
+∂t + ∇ · (/DC3/SUBlq ⃗ug ) = ∇ · (/SUBlqDlq∇slq) +Slq GDL, CL
+Ice ∂(εsice/SUBice)
+∂t =Sice GDL, CL
+Non-frozen membrane
+water content
+/SUBmem
+EW
+∂(ω/NAKnf )
+∂t = /SUBmem
+EW ∇ · (ω1.5Dnmw∇/NAKnf ) +Snmw Membrane, CL
+Frozen membrane
+water content
+/SUBmem
+EW
+∂(ω/NAKf )
+∂t =Sfmw Membrane
+Electronic potential 0 = ∇ · (/DC4eff
+ele∇/RSele) +Sele CL, GDL, BP
+Ionic potential 0 = ∇ · (/DC4eff
+ion∇/RSion) +Sion Membrane, CL
+Energy ∂
+∂t((/SUBCp)eff
+fl,slT) + ∇ · ((/SUBCp)eff
+fl ⃗ugT) = ∇ · (keff
+fl,sl∇T) +ST All the domains
+
+=== PDF PAGE 4 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6879
+Table 3
+Source terms.
+Source term Unit
+Sm =SH2 +SO2 +Svp kg m−3 s−1
+Su =
+{
+−/SYNg
+Kg
+⃗ug (in CL and GDL)
+0 (in other zones)
+kg m−2 s−2
+SH2 =
+{
+− ja
+2FMH2 (in anode CL)
+0 (in other zones)
+,S O2 =
+{
+− jc
+4FMO2 (in cathode CL)
+0 (in other zones)
+kg m−3 s−1
+Svp =
+{
+−Sv–l −Sv–i +Sn–vMH2O (in CL)
+−Sv–l −Sv–i (in other zones)
+kg m−3 s−1
+Slq =Sv–l −Sl–i,S ice =
+{
+Sv–i +Sl–i +Sn–iMH2O (in CL)
+Sv–i +Sl–i (in other zones)
+kg m−3 s−1
+Snmw =
+⎧
+⎨
+⎩
+−Sn–f (in membrane)
+jc
+2F −Sn–v −Sn–i +SEOD (in cathode CL)
+−Sn–v −Sn–i +SEOD (in anode CL)
+,S fmw =Sn–f kmol m−3 s−1
+Sele =
+{ −ja (in anode CL)
+jc (in cathode CL)
+0 (in other zones)
+,S ion =
+{ja (in anode CL)
+−jc (in cathode CL)
+0 (in other zones)
+Am−3
+ST =
+⎧
+⎪⎪
+⎪
+⎪
+⎪
+⎪
+⎪
+⎨
+⎪⎪
+⎪
+⎪
+⎪
+⎪
+⎪
+⎩
+ja|/DC1act|+| |∇/RSele||2/DC4eff
+ele +| |∇/RSion||2/DC4eff
+ion +Spc (in anode CL)
+−jcT/Delta1S
+2F +jc|/DC1act|+| |∇/RSele||2/DC4eff
+ele +| |∇/RSion||2/DC4eff
+ion +Spc (in cathode CL)
+||∇/RSele||2/DC4eff
+ele +Spc (in GDL)
+||∇/RSele||2/DC4eff
+ele (in BP)
+||∇/RSion||2/DC4eff
+ion +Spc (in membrane)
+0 (in other zones)
+Wm −3
+(usually with an exponent of 4.0)[30,31]. In this work, the formation
+of ice is considered as well, by assuming that the effects of forma-
+tions of ice and liquid are similar on the permeabilities, therefore,
+the gas phase and liquid phase permeabilities can be calculated as
+K
+g =K0(1 −slq −sice)4.0 (1)
+Klq =K0s4.0
+lq (1 −sice)4.0 (2)
+where both the liquid and ice volume fractions (slq and sice, respec-
+tively) are considered. Eq. (1) depicts that if the local pore volume
+of the GDL or CL is full of liquid water and ice, the gas phase per-
+meability will become zero, resulting in an inﬁnite negative value
+for the momentum source term (Table 3), which will result in zero
+velocity. Similarly, Eq. (2) represents that if the local pore volume
+of the GDL or CL is full of ice, the liquid phase permeability will also
+become zero.
+The gas mixture density (kg m
+−3) is calculated based on the ideal
+gas law:
+/SUBg =pg
+(
+RT
+∑
+i
+Yi
+Mi
+) −1
+(3)
+where pg is the gas phase pressure (Pa), T is the temperature
+(K), R is the universal gas constant (J K −1 kmol−1), and Yi and Mi
+(kg kmol−1) are the mass fraction and molecular weight of species
+i. The dynamic viscosity of the ideal gas mixture (/SYNg,k gm−1 s−1)i s
+calculated based on kinetic theory [32] as
+/SYNg =
+∑
+i
+Xi/SYNi∑
+jXi ij
+(4)
+ ij =
+[1 + (/SYNi//SYNj)0.5(Mi/Mj)0.25]
+0.5
+[8(1 +Mi/Mj)]0.5 (5)
+and Xi is the mole fraction of speciesi, andi and j represent different
+species. Since the present cold start model provides the capabil-
+ity to simulate PEMFC operation from subzero to normal operating
+temperatures, therefore, the changes of different parameters with
+temperature must be considered, and Table 4 shows the correla-
+tions of the dynamic viscosity and mass diffusivity of each species
+with the changes of temperature and pressure based on the correla-
+tions and experimental data in[32]. In GDL and CL, the Bruggemann
+correlation is used to consider the effects of porosity and tortuosity
+on the effective gaseous diffusivities, and in some multiphase mod-
+els (e.g. in [33]) the effect of liquid water on the effective gaseous
+diffusivities is treated the same as porosity with an exponent of
+1.5. In this model, the effect of ice formation is treated the same
+as liquid water, and the diffusivity of each species is corrected by
+porosity (ε, listed in Table 1) and volume fractions of liquid water
+and ice:
+D
+eff
+i =Diε1.5(1 −slq −sice)1.5 (6)
+where Di (m2 s−1) is the mass diffusivity for species i calculated
+based on the correlations in Table 4. Apparently, if the local pore
+volume of the GDL and CL is full of liquid water and ice, the diffu-
+sivity of each species will become zero, reﬂecting the blockage due
+to liquid water and ice.
+The reaction rates (j
+a and jc,Am −3) for both the anode and cath-
+ode CLs are calculated by using the Butler–Volmer equation:
+ja = (1 −slq −sice)jref
+0,a
+(
+cH2
+cref
+H2
+) 0.5
+×
+[
+exp
+( 2˛aF
+RT /DC1act
+)
+− exp
+(
+− 2˛cF
+RT /DC1act
+)]
+(7)
+
+=== PDF PAGE 5 ===
+6880 K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891
+Table 4
+Transport parameters.
+Parameter Correlation/value ( T in K, p in Pa) Unit
+Hydrogen dynamic viscosity /SYNH2 = 3.205 × 10−3(T/293.85)1.5(T + 72)−1.0 kg m−1 s−1
+Oxygen dynamic viscosity /SYNO2 = 8.46 × 10−3(T/292.25)1.5(T + 127)−1.0 kg m−1 s−1
+Water vapour dynamic viscosity /SYNvp = 7.512× 10−3(T/291.15)1.5(T + 120)−1.0 kg m−1 s−1
+Hydrogen and water vapour diffusivities in anode Da
+H2
+=Da
+vp = 1.055 × 10−4(T/333.15)1.5(101325/p)m 2 s−1
+Oxygen diffusivity in cathode Dc
+O2
+= 2.652 × 10−5(T/333.15)1.5(101325/p)m 2 s−1
+Water vapour diffusivity in cathode Dc
+vp = 2.982 × 10−5(T/333.15)1.5(101325/p)m 2 s−1
+Liquid water dynamic viscosity /SYNlq = 2.414× 10−5 × 10247.8/(T−140) kg m−1 s−1
+Liquid water and ice densities /SUBlq = 990,/SUBice = 920 kg m −3
+Evaporation, condensation, desublimation, fusion, melting rates /CRevap,cond,desb,fusn,melt = 1.0s −1
+Water transfer rates /DLEn− v,v−n,n−i,n−f,f −n = 1.0s −1
+Latent heat of fusion hfusn = 3.336 × 105 Jkg −1
+Speciﬁc heat capacities of different gas species, liquid water, and ice ( Cp)H2
+= 14, 283, (Cp)O2
+= 919.31, (Cp)vp = 2014, (Cp)lq = 4182, (Cp)ice = 2050 J kg −1 K−1
+Thermal conductivities of different gas species, liquid water, and ice kH2 = 0.1672,k O2 = 0.0246,k vp = 0.0261,k lq = 0.6,k ice = 2.3W m −1 K−1
+Entropy change of reaction /Delta1S=− 163, 110 Jk m o l−1 K−1
+jc = (1 −slq −sice)jref
+0,c
+cO2
+cref
+O2
+[
+− exp
+( 4˛aF
+RT /DC1act
+)
++ exp
+(
+− 4˛cF
+RT /DC1act
+)]
+(8)
+where F is Faraday’s constant (C mol−1), and a linear relationship to
+reﬂect the blockage of the reaction sites due to the ice and liquid
+water is assumed[27–29]. The correlations and values of the param-
+eters related to electrochemical reactions are listed in Table 5.I t
+should be noticed that the reference exchange current densities also
+vary with temperature due to the change of electrochemical reac-
+tion kinetics[30], and the correlations are given in this table as well.
+Based on the densities of liquid water and ice tabulated in [34],
+it is found that the changes of liquid water and ice densities with
+temperature are not very signiﬁcant, therefore, in this model, liquid
+water and ice are assumed to have constant densities, and the values
+are listed in Table 4. The interfacial drag coefﬁcient ( /DC3) in liquid
+water conservation equation is deﬁned [35] as
+/DC3=
+K
+lq/SYNg
+Kg/SYNlq
+(9)
+Since the liquid water dynamic viscosity (/SYNlq) strongly depends
+on temperature, therefore, a correlation for temperature depen-
+dence of liquid water viscosity [36] is used rather than using a
+constant value, as listed in Table 4. The diffusivity of liquid water
+(D
+lq,m 2 s−1) in GDL and CL is deﬁned[35] by considering the effects
+of capillary pressure:
+Dlq =−
+Klq
+/SYNlq
+dpc
+dslq
+(10)
+and the capillary pressure (pc, Pa) is calculated as a function of liquid
+water volume fraction (the Leverett function) [37,38] as
+pc =/ESCcos/DC2
+( ε
+K0
+) 0.5
+× [1.42(1−slq) − 2.12(1 −slq)2 + 1.26(1 −slq)3] /DC2<90◦
+pc =/ESCcos/DC2
+( ε
+K0
+) 0.5
+× [1.42slq − 2.12s2
+lq + 1.26s3
+lq] /DC2>90◦ (11)
+where/DC2is the contact angle (listed in Table 1), which depends
+on the wettabilities of GDL and CL; /ESC(N m−1) is the surface ten-
+sion between liquid water and gas, based on the experimental
+data tabulated in [34], the following linear correlation is derived
+to account for the temperature dependence between 273.15 and
+373.15 K:
+/ESC=− 0.0001676T + 0.1218; 273 .15 K≤T ≤ 373.15 K (12)
+where the units of/ESCand T are N m
+−1 and K, respectively. The liquid
+phase pressure (plq, Pa) is calculated based on the capillary pressure
+(pc, Pa) and gas phase pressure (pg,P a )[39] as
+plq =pg −pc (13)
+Table 5
+Parameters related to electrochemical reactions.
+Parameter Correlation/value ( T in K) Unit
+Overpotential (activation loss) /DC1act =/RSele −/RSion V
+Transfer coefﬁcient ˛a =˛c = 0.5 Dimensionless
+Volumetric reference exchange current density in anode jref
+0,a =jref
+0,a|353.15 K exp
+[
+−1400
+(
+1
+T − 1
+353.15
+)]
+,j ref
+0,a|353.15 K = 109 Am −3
+Volumetric reference exchange current density in cathode jref
+0,c =jref
+0,c|353.15 K exp
+[
+−7900
+(
+1
+T − 1
+353.15
+)]
+,j ref
+0,c|353.15 K = 104 Am −3
+Reference hydrogen, oxygen concentrations cref
+H2
+=cref
+O2
+= 40.0 mol m −3
+
+=== PDF PAGE 6 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6881
+and the liquid phase velocity (m s−1) can be calculated based on the
+liquid phase pressure [40] as
+⃗ulq =−
+Klq
+/SYNlq
+∇plq (14)
+Alternatively, other capillary functions can also be used in this
+model, such as the one used in [30] (pc in Pa)
+pc = 35.6 − 2.09 exp(44.9slq − 14.41)
++ 2.09 exp(−22.2slq + 7.13) (in GDL)
+pc =− 2395 − 2431 exp(92.36slq − 52.37)
++ 2431 exp(−0.0088slq + 0.005) (in CL) (15)
+The numerical simulations in [41] compared the effects of the
+different capillary functions on liquid water volume fraction, and
+it was noticed that even the liquid water volume fractions are
+slightly different with different capillary functions, the general liq-
+uid water distributions are similar. Therefore, in this study, the
+Leverett function (Eq. (11)) is used because of its numerical sta-
+bility. In addition, liquid water is only formed during a successful
+cold start process (ice melts and saturated vapour condenses to
+liquid water, also explained later on in this paper), therefore, the
+effects of the different capillary functions on the ice melting and
+vapour condensing processes will be investigated in the future
+studies.
+Fig. 2 presents the schematics of water phase change and trans-
+fer for both the normal operating condition and cold start. It should
+be noticed that the schematics in Fig. 2 are for the operating con-
+ditions that partially or non-humidiﬁed gases are supplied, and
+in this case liquid water is formed only if the gas stream is fully
+humidiﬁed ﬁrst (enough amount of water taken by the gas stream
+from the membrane electrolyte to reach saturation). Based on
+this premise, the membrane hydration/dehydration is taken into
+account by considering the mass transfer between vapour and non-
+frozen membrane water in CL. On the other hand, if fully humidiﬁed
+gases are supplied, the water leaving the membrane electrolyte will
+become liquid water directly (water vapour is already saturated),
+and therefore the mass transfer between liquid and non-frozen
+membrane water needs to be considered in this case. More dis-
+cussions on the membrane hydration/dehydration processes can
+be found in [41]. For PEMFC cold start, partially or non-humidiﬁed
+gases are usually supplied to reduce the amount of ice formation
+[4,5,27,29]. Therefore, in this study, only non-humidiﬁed inlet gases
+are considered (listed inTable 1), and hence, the membrane hydra-
+tion/dehydration is taken into account by considering the mass
+Fig. 2. Schematics of water phase change and transfer (with partially or non-
+humidiﬁed gases supplied).
+transfer between vapour and non-frozen membrane water in CL
+(shown in Fig. 2). By comparing with the normal operating condi-
+tion, frozen water in membrane and ice in CL and GDL are further
+included for cold start.
+Fusion and melting of water in the membrane electrolyte are
+considered based on the experimental investigation in [21], which
+also found that the frozen membrane water does not contribute
+to the ion transport. In membrane, fusion and melting between
+frozen and non-frozen membrane water is considered. In CL, for
+simplicity, it is assumed that the non-frozen membrane water
+freezes to ice, and ice melts to liquid water, based on the assump-
+tion that the frozen water does not contribute to the ion transport
+[21]. The phase changes between vapour, liquid water and ice are
+fully considered in CL and GDL. It should be noticed that because
+the operating pressure of PEMFC is always equal to or greater
+than the atmospheric pressure, therefore the sublimation process
+(phase change from ice directly to vapour) can be safely neglected.
+Table 6 shows the phase change functions in considering the
+phase changes between vapour, liquid water and ice in GDL and CL,
+and Table 7 shows the phase change and water transfer functions
+related to membrane water content. The values of phase change
+rates and water transfer rates are listed in Table 4 [30,35,41–43] .
+p
+sat (Pa) is the saturation pressure of vapour, and by checking the
+Table 6
+Water phase change functions.
+Phase change function Unit
+Vapour and liquid water
+Sv–l =
+⎧
+⎪⎨
+⎪⎩
+{
+/CRcondε(1 −slq −sice)
+(pgXvp −psat )MH2O
+RT if pgXvp ≥psat
+/CRevapεslq
+(pgXvp −psat )MH2O
+RT if pgXvp <psat
+if T ≥TN +TFPD
+0i f T<T N +TFPD
+kg m−3 s−1
+Vapour and ice
+Sv–i =
+⎧
+⎨
+⎩
+{
+/CRdesbε(1 −slq −sice)
+(pgXvp −psat )MH2O
+RT if pgXvp ≥psat
+0i f pgXvp <psat
+if T<T N +TFPD
+0i f T ≥TN +TFPD
+kg m−3 s−1
+Liquid water and ice
+Sl–i =
+{/CRfusnεslq/SUBlq if T<T N +TFPD
+−/CRmeltεsice/SUBice if T ≥TN +TFPD
+kg m−3 s−1
+
+=== PDF PAGE 7 ===
+6882 K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891
+Table 7
+Membrane water related phase change and water transfer functions.
+Phase change/water transfer function Unit
+Non-frozen membrane water and vapour
+Sn–v =/DLEn–v
+/SUBmem
+EW (/NAKnf −/NAKequil)(1 −slq −sice)k m o l m −3 s−1
+Non-frozen membrane water and ice
+Sn–i =
+{
+/DLEn–i
+/SUBmem
+EW (/NAKnf −/NAKsat )(1 −slq −sice)i f /NAKnf ≥/NAKsat
+0i f /NAKnf </NAKsat
+kmol m−3 s−1
+Non-frozen membrane water and frozen membrane water
+Sn–f =
+{
+/DLEn–f
+/SUBmem
+EW (/NAKnf −/NAKsat )i f /NAKnf ≥/NAKsat
+/DLEn–f
+/SUBmem
+EW /NAKf if /NAKnf </NAKsat
+kmol m−3 s−1
+Membrane water transfer due to EOD
+SEOD = ∇ ·
+(nd
+F /DC4eff
+ion∇/RSion
+)
+kmol m−3 s−1
+experimental data tabulated in[34], it is found that the correlation
+provided by Springer et al.[44] provides acceptable agreement with
+the experimental data in the temperature range from−50 to 100◦C,
+therefore can be used in this model:
+log10
+( psat
+101, 325
+)
+=− 2.1794+ 0.02953(T − 273.15)
+− 9.1837× 10−5(T − 273.15)2
++ 1.4454 × 10−7(T − 273.15)3 (16)
+where the units of psat and T are Pa and K, respectively. The experi-
+ments in [14–16] all observed that the fusion and desublimation of
+water in CL take place at the temperatures below the normal freez-
+ing point of water (273.15 K), which is mainly due to the wettability
+and extremely small pore size in CL, known as the Gibbs–Thomson
+undercooling [45]. The difference between the freezing point in
+small pores and normal freezing point of water ( T
+N =2 7 3 . 1 5K ) i s
+deﬁned as TFPD (K), and can be calculated as
+TFPD = TN/ESC|273.15 K cos/DC2
+/SUBicehfusnrCL,GDL
+(17)
+where hfusn (J kg−1) is the latent heat of fusion as listed in Table 4,
+and rCL,GDL (m) is the pore radius of CL or GDL, as listed in Table 1.
+The units for /ESCand/SUBice are N m−1 and kg m3, respectively. Based
+on the values listed in Tables 1 and 4, TFPD is calculated to be about
+−1 K in CL by using Eq. (17), which agrees with the experimental
+investigations in [14,15].
+Since the three-phase contact in CL must be satisﬁed for PEMFC
+operation, which requires certain amount of ionomer in CL, result-
+ing in certain amount of membrane water content. Therefore, in
+this model, the transport of non-frozen membrane water content
+(/NAK
+nf) is also solved in CL. The product water is assumed to be
+non-frozen membrane water because the electrochemical reac-
+tions only take place at the ionomer/catalyst interface; similar
+assumption was also used in [30]. In the conservation equations
+of non-frozen and frozen membrane water contents in Table 2 ,
+/SUB
+mem and EW represent the dry membrane density (kg m −3) and
+equivalent weight of membrane (kg kmol −1), respectively (listed
+in Table 1 ). The relationship between membrane water content
+and mole concentration of water in membrane ( c,k m o l m−3)i s
+deﬁned as
+/NAKnf,f = EW
+/SUBmem
+cnf,f (18)
+The diffusivity of non-frozen membrane water content ( Dnmw,
+m2 s−1) can be calculated [46] as
+Dnmw =
+⎧
+⎪⎪
+⎪
+⎪
+⎨
+⎪⎪
+⎪
+⎪
+⎩
+3.1 × 10−7/NAKnf [exp(0.28/NAKnf ) − 1] exp
+( −2346
+T
+)
+(if 0 </NAKnf < 3)
+4.17× 10−8/NAKnf [161 exp(−/NAKnf ) + 1] exp
+( −2346
+T
+)
+(if 3 ≤/NAKnf < 17)
+(19)
+where the units of Dnmw and T are m2 s−1 and K, respectively. The
+equilibrium membrane water content (water uptake),/NAKequil, is cal-
+culated by using the correlation in [44]
+/NAKequil =
+{
+0.043 + 17.81a − 39.85a2 + 36.0a3 if 0 ≤a ≤ 1
+14.0 + 1.4(a − 1) if 1 <a ≤ 3 (20)
+where a is the water activity, deﬁned as
+a = Xvppg
+psat
++ 2slq (21)
+It should be noticed that Eq.(20) is based on experimental mea-
+surements at 30 ◦C. However, this is probably the most suitable
+correlation for this cold start model, because most of the other cor-
+relations are based on experimental measurements at 80
+◦C. Eq.(20)
+was also used in other numerical models for cold start simulations
+[27,29]. The difference between /NAK
+equil and /NAKnf indicates whether
+water transfers into or out of membrane, and as mentioned ear-
+lier, the mass transfer between vapour and non-frozen membrane
+water is considered during this process. At subzero temperatures,
+the experimental study in[21]observed that the maximum allowed
+amount of non-frozen membrane water decreases with the decre-
+ment of temperature, and based on the experimental results shown
+in [21], the following correlation is ﬁtted to calculate the maximum
+allowed non-frozen membrane water content at different subzero
+temperatures (T in K), namely, saturated membrane water content
+(/NAK
+sat)
+/NAKsat
+⎧
+⎨
+⎩
+= 4.837 (if T< 223.15 K)
+= [−1.304 + 0.01479T − 3.594 × 10−5T2]
+−1
+(if 223.15 K≤T<T N )
+>/NAKnf (if T ≥TN )
+(22)
+It should be noticed that since no further water phase change
+was detected when the temperature is lower than −50 ◦C [21],
+therefore the saturated membrane water content remains constant
+in this temperature range. Moreover, the membrane water does not
+freeze if the temperature is higher than the normal freezing tem-
+perature of water (T
+N = 273.15 K), therefore the saturated membrane
+water content is always higher than the non-frozen membrane
+water content in this temperature range. The effects on water trans-
+fer due to the electro-osmotic drag (EOD) is considered by adding
+a water transfer function ( S
+EOD) into the source term of the non-
+frozen membrane water conservation equation, as shown inTable 7.
+The EOD drag coefﬁcient (nd) is calculated [44] as
+nd =
+2.5/NAKnf
+22 (23)
+The EOD coefﬁcient is the number of water molecules dragged
+per hydrogen ion moved through the ionomer.
+The transient terms in the conservation equations of the elec-
+tronic and ionic potentials listed in Table 2 are neglected, due to
+fast electrochemical double layer changing and discharging pro-
+cess [47]. The ion conductivity of the ionomer (/DC4
+ion,Sm −1)i sg i v e n
+[44] as
+/DC4ion = (0.5139/NAKnf − 0.326) exp
+[
+1268
+( 1
+303.15 − 1
+T
+)]
+(24)
+
+=== PDF PAGE 8 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6883
+Fig. 3. Effects of water freezing on the membrane conductivity.
+where the units of /DC4ion and T are S m−1 and K, respectively. It
+should be noticed that Eq. (24) is correlated based on experimen-
+tal measurements between 30 and 80 ◦C, and it overestimates the
+ion conductivity at subzero temperatures (sharper decrements of
+the conductivity were observed [19–21]). However, by considering
+the freezing of membrane water at subzero temperatures, Eq. (24)
+with non-frozen membrane water content rather than total mem-
+brane water content provides a more reasonable agreement with
+the experimental measurements in[21]. Fig. 3shows the changes of
+ion conductivity at different total membrane water contents, it can
+be observed that the ion conductivity starts dropping fast when the
+membrane water starts freezing. The effective electron conductivity
+in CL and GDL and ion conductivity in CL are further modiﬁed with
+the porosities (ε) of the CL and GDL and the ionomer volume frac-
+tion in CL (ω). Based on the Bruggemann correlation, an exponent
+of 1.5 is used:
+/DC4
+eff
+ele = (1 −ε−ω)1.5/DC4ele (25)
+/DC4eff
+ion =ω1.5/DC4ion (26)
+The effective volumetric heat capacities (J m −3 K−1)i nt h e
+energy conservation equation in Table 2 are determined as
+(/SUBCp)eff
+fl,sl =ε[slq/SUBlq(Cp)lq +sice/SUBice(Cp)ice + (1 −slq −sice)/SUBg (Cp)g ]
++ (1 −ε−ω)/SUBsld(Cp)sld +ω/SUBmem(Cp)mem (27)
+(/SUBCp)eff
+fl =ε[slq/SUBlq(Cp)lq/DC3+ (1 −slq −sice)/SUBg (Cp)g ] (28)
+where (Cp)g (J kg−1 K−1) is the speciﬁc heat capacity of the gas mix-
+ture, and it is determined based on the mass fraction of each species:
+Cp =
+∑
+i
+Yi(Cp)i (29)
+where (Cp)sld (J kg−1 K−1) represents the speciﬁc heats of the elec-
+tron conducting materials (platinum powders, carbon powders,
+etc.) in CL and all the solid materials in GDL and BP. For simplic-
+ity, the effective thermal conductivity (W m
+−1 K−1) in the energy
+conservation equation is assumed to be a volume averaged value:
+keff
+fl,sl =ε[slqklq +sicekice + (1 −slq −sice)kg ]
++ (1 −ε−ω)ksld +ωkmem (30)
+where the thermal conductivity of the gas mixture,kg (W m−1 K−1),
+is calculated based on kinetic theory [32] as
+kg =
+∑
+i
+Xiki∑
+jXi ij
+(31)
+ ij =
+[1 + (ki/kj)0.5(Mi/Mj)0.25]
+0.5
+[8(1 +Mi/Mj)]0.5 (32)
+The speciﬁc heat capacities and thermal conductivities are all
+assumed to be constants for all the substances in this model. Based
+on the values tabulated in[34], it is found that the changes of these
+two parameters of different substances between −50 and 100
+◦C
+are not very signiﬁcant, therefore this assumption is acceptable for
+the present model. The values of these two parameters for different
+cell components, gas species, liquid water and ice are all given in
+Tables 1 and 4 . The latent heat function, S
+pc (W m−3), is deﬁned
+based on the water phase change and transfer rates:
+Spc =
+⎧
+⎪⎪
+⎪
+⎪
+⎪
+⎪
+⎨
+⎪⎪
+⎪
+⎪
+⎪
+⎪
+⎩
+hcondSv−l + (hcond +hfusn)Sv−i +hfusnSl−i (in GDL)
+hcond(Sv−l −Sn− vMH2O)
++ (hcond +hfusn)Sv−i
++hfusn(Sl−i +Sn−iMH2O) (in CL)
+hfusnSn−fMH2O (in membrane)
+0 (in other zones)
+(33)
+It should be noticed that the non-frozen membrane water is
+assumed to be in liquid phase, this assumption is also used in the
+experimental study in [21]. The water vapour absorption into a
+membrane is a process similar to a vapour condensation process
+and involves a release of heat, similarly, water molecules leaving a
+membrane as vapour is similar to a liquid evaporation process and
+requires heat; by comparing these processes, Ostrovskii and Gostev
+[48] showed that the difference in the amounts of heat released or
+absorbed is very small, and the numerical simulations in [41] also
+conﬁrmed that such difference can be safely neglected. Moreover,
+the speciﬁc or molar entropy of the non-frozen membrane water is
+also not available in literature. Therefore, it is reasonable to assume
+that the non-frozen membrane water is the same as liquid water.
+Based on this assumption, the product water is also in liquid phase,
+and the entropy change of the overall reaction, /Delta1S (J kmol
+−1 K−1),
+is deﬁned based on liquid water product, as listed in Table 4.A
+constant value of/Delta1S is used by neglecting the temperature effects
+(based on the values tabulated in [34]). The temperature depen-
+dence of the latent heat of condensation,hcond (J kg−1), is considered
+by ﬁtting the values tabulated in [34]
+hcond =− 2438.5T + 3, 170, 700 (34)
+where the units of hcond and T are J kg−1 and K, respectively.
+2.2. Boundary conditions
+The domains that different conservation equations are solved in
+are listed in Table 2. The mass, momentum and gas species con-
+servation equations are solved in ﬂow channel, GDL and CL. Liquid
+water, ice and non-frozen membrane water conservation equations
+are solved in CL, and both the non-frozen and frozen membrane
+water conservation equations are solved in membrane, therefore
+the detailed phase changes between the ﬁve phases of water are
+fully accounted for. The electronic potential and ionic potential con-
+servation equations are all solved in CL, therefore the activation loss
+due to the electrochemical double layer charging and discharging
+can be considered. Energy conservation equation is solved in all the
+domains to fully account for all the heat transfer and generation
+processes.
+
+=== PDF PAGE 9 ===
+6884 K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891
+At the inlets of the ﬂow channels, the mass ﬂow rates (kg s −1)
+are deﬁned as
+˙ma =
+/SUBa
+g/CANaIrefA
+2FcH2
+, ˙mc =
+/SUBc
+g/CANcIrefA
+4FcO2
+(35)
+cH2 =
+(pa
+g −RHapsat )
+RTa
+in
+,c O2 =
+0.21(pc
+g −RHcpsat )
+RTc
+in
+(36)
+where/CANa and/CANc are the stoichiometry ratios (listed in Table 1)f o r
+the anode and cathode, respectively. Iref is the reference current
+density (A cm−2, listed in Table 1), A is the ﬂat active surface area
+of the CL (m 2). Since the cold start model only considers part of
+the PEMFC (part of a single cell with straight channel), the inlet
+gases are assumed to be already heated up by the cell. Therefore,
+constant temperatures are deﬁned at the anode and cathode inlets
+(T
+in, K) to be equal to the volume averaged cell temperature (T0,K )
+for each time step. If the straight cell for the simulations is at the
+inlet of the whole cell, the inlet gas temperatures should be equal
+to the ambient temperature. Therefore, numerical simulations are
+carried out to compare these two inlet gas conditions (the inlet gas
+temperatures equal to the ambient temperatures or the cell tem-
+peratures, respectively), and no noticeable difference is found for
+these two conditions, as shown in Section 3.2. Furthermore, con-
+stant pressures are deﬁned at the ﬂow channel outlets, as listed in
+Table 1.
+The liquid water volume fraction is ﬁxed at zero in the ﬂow chan-
+nels, reﬂecting the condition that liquid water can be removed from
+ﬂow channel quickly. However, for large-scale simulations with
+very long ﬂow channels, liquid water may accumulate in the ﬂow
+channel, and liquid water transport in ﬂow channel also needs to be
+considered. Therefore, the cold start model will be further modiﬁed
+for large-scale simulations in the future.
+The electronic potentials on the end surfaces of the BPs for both
+the anode and cathode are deﬁned as
+/RS
+c,end
+ele = 0;/RSa,end
+ele =Vrev −Vcell =/DC1total (37)
+where Vrev and Vcell are the reversible and operating voltages, there-
+fore/DC1total represents the total voltage loss. For liquid water product,
+the reversible cell voltage is calculated as
+Vrev = 1.23 − 0.9 × 10−3(T0 − 298) +RT0
+2F
+(
+lnpin
+H2
++ 1
+2 lnpin
+O2
+)
+(38)
+In this equation, the inlet partial pressures of hydrogen and
+oxygen (atm), and the operating temperature (volume average tem-
+perature) (T
+0, K) are used for the calculation.
+On the surrounding walls of the cell, a heat transfer coefﬁcient is
+deﬁned based on normal atmosphere condition [29,49]. Therefore,
+the heat transfer rate between the cell wall and surroundings can
+be calculated as
+˙Q =hA
+wall(Tsurr −Twall) (39)
+where ˙Q (W) is the heat transfer rate between the cell wall and
+surroundings, a positive value indicates that heat is absorbed by the
+cell, and vice versa; h is the heat transfer coefﬁcient (W m
+−2 K−1);
+Awall is the surface area of the cell wall (m2); Tsurr is the temperature
+of the surrounding (K); and Twall is the temperature of the cell wall
+(K).
+2.3. Numerical procedures
+The governing equations are discretized and solved in the com-
+mercial CFD software package Fluent 6.3 based on ﬁnite volume
+method. Equations and physical properties are written and imple-
+mented by using its user-deﬁned function (UDF). Because cold start
+simulations are time dependent, the PISO algorithm is used which
+is based on predictor–corrector splitting for unsteady problems.
+An algebraic multigrid (AMG) method with a Gauss–Seidel type
+smoother is used to accelerate the convergence. Adaptive time
+stepping is employed, and for the simulations presented in this
+paper, a minimum of 10
+−6 s and a maximum of 0.1 s time step sizes
+are used. Strict convergence criteria with a residual of 10 −8 are
+used for all variables. The total number of cell shown in Fig. 1 is
+76,000, and structured mesh is used for the whole computational
+domain. Each cell in the ﬂow channel and BP has the same size
+with dimensions of 1.0 mm× 0.1 mm× 0.1 mm, along thex-, y- and
+z-directions, respectively. The mesh size along the y-direction is
+reduced to 0.0178, 0.001 and 0.02 mm for the membrane, CL and
+GDL, respectively, to ensure at least 10 cells along the y-direction
+in each layer. Grid independent study was carefully carried out.
+The difference in results (variations of cell temperature, current
+density, water content, ice formation) by further increasing the
+number of cells (up to two times of the one used) is negligible.
+Such meshing systems were also considered sufﬁcient and widely
+used in previous three-dimensional multiphase simulations (for
+both the subzero and normal operating temperatures) [27,29,30].
+3. Results and discussion
+3.1. Comparison between model predictions and experimental
+data
+In order to examine the accuracy of the present cold start
+model, the evolutions of the cell voltages for both the successful
+(from −3
+◦C) and failed (from−20 ◦C) cold start processes obtained
+from the experimental measurements in [5] are compared with
+the model predictions, as shown in Fig. 4. For the results shown
+in Fig. 4, some of the operating conditions and cell properties are
+changed to be consistent with the experimental conditions in [5]
+rather than using the values inTable 1. The startup current density
+is 0.04 A cm−2 for both of the cold start processes from −3 and
+−20 ◦C, respectively; the stoichiometry ratio is 2.0 corresponding
+to the operating current density for both the anode and cathode
+Fig. 4. Comparison between the present model predictions and experimental data
+[5] under the conditions: the current density is 0.04 A cm −2 for both of the cold
+start processes from −3 and −20 ◦C, respectively; the stoichiometry ratio is 2.0 cor-
+responding to the operating current density for both the anode and cathode inlet
+gases; the inlet gas temperatures are equal to the ambient temperatures; the mem-
+brane thickness is 30 /H9262m; the initial water content in the membrane and catalyst
+layers is 6.2; the initial ice volume fraction is 0 everywhere in the cell; and the
+relative humidity is 0 for all the inlet gases.
+
+=== PDF PAGE 10 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6885
+inlet gases; the inlet gas temperatures are equal to the ambient
+temperatures; the membrane thickness is 30/H9262m; the initial water
+content in the membrane and CLs is 6.2; the initial ice volume
+fraction is 0 everywhere in the cell; and the relative humidity is 0
+for all the inlet gases.
+It can be observed fromFig. 4 that the cell voltage evolutions are
+consistent between the model predictions and experimental data.
+For the model predictions in this ﬁgure, the current density is 0
+before the cell starts and therefore the cell voltage is assumed to be
+equal to the reversible voltage (Eq. (38)). When the cell starts, cur-
+rent is drawn from the cell and the voltage loss suddenly increases,
+resulting in sharp decrements of the cell voltages upon load for
+the two cold start processes. This observation is consistent with
+the numerical results in [29]. It should be noticed that the current
+densities in the experimental measurements in [5] were increased
+linearly from 0 to 0.04 A cm
+−2 in the ﬁrst 80 s of the cold start pro-
+cesses due to the convenience of operation. Therefore, the model
+predictions obtained by starting the cell directly with a constant
+current density (0.04 A cm
+−2) are compared with the experimen-
+tal data from the midpoint (40 s) of the initially linear increment
+of the current density to conserve the total charge capacity (the x-
+coordinate for the experimental data in Fig. 4 is therefore 40 s less
+than the measurements in [5]). The same method was also used in
+[27] to compare the results from the model predictions with the
+experimental data. Due to the neglect of the initially linear incre-
+ment of the current density, the cell voltages from the experimental
+measurements for the two cold start processes are all higher than
+the model predictions at the beginning (10 s). After the ﬁrst 40 s
+(the initially linear increment of the current density is over), the
+model predictions agree quite well with the experimental data for
+the successful cold start process (from −3
+◦C). For the failed cold
+start process (from −20 ◦C), the model predictions agree well with
+the experimental data in the time period from 40 to 110 s. After
+that, the cell voltage starts decreasing due to the ice formation, and
+the model predictions show a sharper decrement of the cell volt-
+age than the experimental data. Since the present model assumes
+a linear relationship to reﬂect the blockage of the reaction sites
+due to the ice and liquid water formation [27–29] (Eqs. (7) and
+(8)), further modiﬁcations of this linear relationship may result in
+better agreements with the experimental data. However, further
+pore-scale investigation on the ice and liquid water distributions
+are needed to ﬁnd better correlations.
+3.2. Effects of inlet gas temperatures and startup current densities
+Simulations for the cell starting from −10 and −3
+◦C are carried
+out in this study. Previous experimental measurements showed
+that it is possible to start the cell successfully from −3
+◦C and
+the startup from −10◦C may be failed [5]. In fact, based on the
+cell properties and operating conditions for this study (listed in
+Table 1), it is also found that the cell can be successfully started
+from −3
+◦C but failed from −10◦C. However, it should be noticed
+that the cold start capability mainly depends on the cell properties
+and operating conditions, as successful cold start processes from
+−10
+◦C were also reported in the simulation studies [29,50] with
+different cell properties and operating conditions. The results
+in [50] showed that starting the cell with constant cell voltages
+could lead to faster cold start processes than starting the cell with
+constant current densities, therefore the numerical simulations
+in this paper focus on the cold start processes with a constant
+cell voltage of 0.3 V. Such a low cell voltage is considered in
+order to produce high startup current densities considered to be
+beneﬁcial for a successful cold start process [26]. Based on the
+measurements of the water contents and distributions after purge
+in [51], as well as the setup of the initial conditions in [29], the
+initial water content is set to be 5.0 in the membrane and CLs,
+Fig. 5. Effects of the inlet gas temperatures on the cold start performance for the
+two different cold start processes from −3 and −10◦C, respectively (solid line: the
+inlet gas temperatures are set in the simulations equal to the ambient temperatures;
+symbol ⃝: the inlet gas temperatures are set in the simulations equal to the cell
+temperatures).
+and the initial ice volume fraction is set to be 0.15 in the CLs and
+GDLs.
+As mentioned earlier, since the numerical simulations in this
+paper only consider a straight cell (part of a whole cell), and
+for different locations of the straight cell in the whole cell, the
+inlet gas temperatures of the straight cell can be equal to the
+ambient temperature or the cell temperature. Fig. 5 shows the
+comparison between the two inlet gas conditions for the two cold
+start processes. It can be noticed that these two inlet gas conditions
+result in almost the same cold start performance, due to the fact
+that the extra heat carried by the inlet gases (the case that the
+inlet gas temperatures equal to the cell temperatures) is much
+lower than the heat generation from the electrochemical reaction.
+For the successful cold start (from −3
+◦C), the case with the inlet
+gas temperatures equal to the cell temperatures produces higher
+and higher current densities than the case with inlet gas temper-
+atures equal to the ambient temperature, due to the continuously
+increased cell temperature during the successful cold start process.
+It can also be noticed that the cold start processes in Fig. 5 are
+much faster than in Fig. 4 , due to the fact that the startup cur-
+rent densities in Fig. 5 (around 0.2 A cm
+−2) is much higher than
+in Fig. 4 (0.04 A cm−2). For a lower startup current density, the heat
+and water generation rates are also lower, and with a lower water
+generation rate the ice formation rate is lower as well, the mem-
+brane and gas streams can also take larger amounts of water (since
+the cold start process is longer) which further extends the duration
+of the cold start process. Signiﬁcant difference in the durations of
+the cold start processes with different startup current densities can
+also be found in the simulations studies [50].
+Since no noticeable difference between the two inlet gas con-
+ditions is observed, the rest of the investigations in this paper only
+focus on the condition that the inlet gas temperatures equal to the
+cell temperatures. The details of the operating conditions are listed
+in Table 1. Both the failed (from−10
+◦C) and successful (from−3 ◦C)
+cold start processes are investigated in the next two sections.
+3.3. Failed cold start (from −10◦C)
+The evolutions of both the current density and ice volume
+fraction in cathode CL for the cold start from −10◦C are shown in
+Fig. 6. The current density increases quickly at the beginning due
+
+=== PDF PAGE 11 ===
+6886 K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891
+Fig. 6. Evolutions of current density and ice volume fraction in the cathode catalyst
+layer for the cold start from −10◦C.
+to the fast electrochemical double layer charging and discharging
+process. Then the variation of the current density becomes the
+minimum for a period of time, owing to the combined effects of the
+membrane hydration, temperature increment and ice blockage.
+Finally the current density drops fast indicating that the cold start
+process is failed. This trend is consistent with the experimental
+measurements in [52]. The fast drop of the current density is
+caused by the ice blockage on the active catalyst surface, and it
+occurs when the ice volume fraction in the cathode CL reaches
+unity (higher than 0.9). For the cold start with constant current
+densities, the variations of the cell voltages in both the numerical
+[24,27] and experimental [4,5] results showed very similar trends,
+and it was reported that the cell voltage starts dropping fast when
+the ice volume fraction in cathode CL reaches unity[24]. The linear
+increment of the ice volume fraction shown in Fig. 6 is also consis-
+tent with the numerical results in[24]. As mentioned in Section2.2,
+the product water is assumed to be in the ionomer in cathode CL.
+During the cold start process, the mass transfer between the water
+in the ionomer and water vapour takes place, and the freezing of
+the water in the ionomer into ice occurs as well, as described by
+the equations shown inTable 7. Therefore, there are two sources of
+ice formation: desublimation of vapour and freezing of membrane
+water, as shown in Fig. 2. Before these ice formation processes can
+take place, the water content in the ionomer must reach certain
+values: to reach 14.0 in order to have saturated water vapour to
+desublimate (Eq. (20)), and to reach /NAK
+sat (10.1 at −10◦C) in order
+to have the membrane water to freeze (Eq. (22)). The initial water
+content is 5.0, therefore the ice volume fraction in the cathode CL
+in Fig. 6 remains unchanged in the ﬁrst second of the cold start pro-
+cess. Such phenomenon can also be conﬁrmed by the experimental
+and numerical studies in [4,5,24,27–29], and it indicates that
+purging the cell reduces the rate of ice formation during cold start.
+The contours of the ice volume fraction in the cathode CL in the
+y–z plane (x = 0.025 m, middle of the cell) for the cold start from
+−10
+◦C are shown in Fig. 7 . The ice ﬁrst appears under the land
+because the temperature is low in those areas (close to the sur-
+rounding walls), which result in low /NAK
+sat. In the areas close to the
+membrane, more water in the ionomer could diffuse into the mem-
+brane due to the large gradient of water content, and in the areas
+close to the ﬂow channel, more water in the ionomer can be taken by
+the dry air ﬂow. Therefore, the ice is also ﬁrst generated at the loca-
+tions away from both the membrane/CL and GDL/CL interfaces. As
+time passes, more ice is formed and the cathode CL is fully blocked
+(12 s), indicating that no further electrochemical reaction can take
+Fig. 7. Evolution of ice volume fraction in the cathode catalyst layer in the y–z plane (x = 0.025 m, middle of the cell) for the cold start from−10◦C.
+
+=== PDF PAGE 12 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6887
+Fig. 8. Evolution of non-frozen water content in the membrane and catalyst layers in they–z plane (x = 0.025 m, middle of the cell) for the cold start from−10◦C.
+place. The evolution of the non-frozen water content in the mem-
+brane and CLs for the cold start from−10◦C is illustrated inFig. 8.I t
+can be observed that the water content in the cathode CL increases
+fast and the changes of the water content in the membrane and
+anode CL are relatively slow. The reason is that the water produc-
+tion rate is higher than the water diffusion rate in the ionomer (low
+diffusivity at subzero temperatures). Fig. 8 shows that the water
+content difference across the membrane is still very signiﬁcant even
+at 35 s (23 s after the electrochemical reaction stops). Therefore, it
+can be concluded that increasing the ionomer fraction in the cath-
+ode CL has more signiﬁcant effects than increasing the thickness of
+the membrane layer in reducing the amount of ice formation.
+The evolutions of various heat generation rates, heat loss rate
+through the surrounding walls, and cell temperature for the cold
+start from −10
+◦C are presented in Fig. 9 . It should be noticed
+that the cell temperature presented in this ﬁgure is the volume
+averaged temperature of the whole computational domain, and
+the heat generation rates and the heat loss rate are the total values
+for the whole computational domain. The largest heating source
+is found to be the ohmic heat, mainly due to the low membrane
+conductivity at subzero temperatures. The activational heat in
+this case is about half of the ohmic heat, however, the numerical
+simulations in [29] showed that the activational heat is higher than
+the ohmic heat. The reason is that the startup current density in
+this study (0.19 A cm
+−2) is higher than the current density in [29]
+(0.1 A cm−2). The last equation in Table 3 shows that the ohmic
+heat increases with an exponent of 2 with the increment of current
+density, and the activational heat changes almost linearly with the
+current density (the major change of/DC1
+act occurs at very low current
+densities). Both the reversible heat and latent heat are much lower,
+and at 12 s, all the heat generations drop down to almost zero due
+to the blockage of ice. The evolutions of the heat loss through the
+surrounding walls and the cell temperature are in the same trend
+(the heat loss increases linearly with the cell temperature if the
+heat transfer coefﬁcient is constant), and it should be noticed that
+the heat exchange through the ﬂow inlets and outlets can be safely
+neglected (the level of 10
+−5 W) because the inlet gases are set to
+be equal to the cell temperature. The cell temperature reaches to
+about −3.5
+◦C (12 s, when the electrochemical reaction is stopped)
+and then decreases again due to the heat loss to the surroundings.
+Fig. 9. Evolutions of various heat generation rates, heat loss rate through the sur-
+rounding walls, and cell temperature for the cold start from−10◦C.
+
+=== PDF PAGE 13 ===
+6888 K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891
+Fig. 10. Evolution of temperature in the y–z plane (x = 0.025 m, middle of the cell)
+for the cold start from −10◦C.
+The contours of temperature in the y–z plane ( x = 0.025 m,
+middle of the cell) for the cold start from −10◦Ci sg i v e ni nFig. 10.
+Due to the fact that the ohmic heat is mainly caused by the low
+membrane conductivity, therefore the highest temperature is very
+close to the membrane, a slight shift to the cathode CL due to
+the other heating sources (activational heat, reversible heat and
+latent heat). The temperature is also the highest under the ﬂow
+channel rather than under the land because the heat is lost at the
+surrounding walls. It is also observed that the temperature in the
+anode is slightly higher than in the cathode, and the reasons are:
+(1) the ohmic heat is the highest in the anode CL (a low water
+content results in a low membrane conductivity); (2) the heat
+transfer rate is higher in the anode, due to the higher thermal
+conductivity of hydrogen by comparing with oxygen (listed in
+Table 4) and the blockage of ice in the cathode CL.
+3.4. Successful cold start (from −3
+◦C)
+Fig. 11shows evolutions of current density and cell temperature
+for the cold start from −3 ◦C. In this successful cold start process,
+the current density increases with the increment of the cell tem-
+perature, and the increment of the cell temperature becomes the
+lowest at around 0
+◦C, because heat is needed for ice melting. Even
+Fig. 11 shows that the cell temperature reaches 0 ◦C at about 5 s,
+however, the evolutions of ice and liquid water volumes fractions in
+Fig. 12 shows that the ice starts melting at about 1 s in the CLs and
+2.5 s in the GDLs, due to the higher temperatures in these regions
+as well as the FPD effect. The liquid water volume fractions change
+more dramatically than the ice volume fractions. In the cathode
+Fig. 1 1. Evolutions of current density and cell temperature for the cold start from
+−3 ◦C.
+Fig. 12. Evolutions of ice and liquid water volume fractions in the catalyst layers and
+gas diffusion layers for the cold start from −3 ◦C (a: cathode; b: anode).
+
+=== PDF PAGE 14 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6889
+Fig. 13. Evolution of ice volume fraction in the catalyst layers and gas diffusion layers
+in the y–z plane (x = 0.025 m, middle of the cell) for the cold start from−3 ◦C.
+Fig. 14. Evolution of liquid water volume fraction in the catalyst layers and gas dif-
+fusion layers in the y–z plane (x = 0.025 m, middle of the cell) for the cold start from
+−3 ◦C.
+(Fig. 12(a)), the liquid water volume fraction in the CL increases
+up to 0.2 at the beginning, due to both the ice melting and water
+production, followed by a fast drop due to the liquid water removal
+and the stoppage of the ice melting. The liquid water volume frac-
+tions in the cathode CL and GDL reach almost constants at about
+10 s by balancing both the water production and removal. The
+liquid water volume fractions in the anode (Fig. 12(b)) are less than
+in the cathode, and the maximum volume fractions are reached at
+the end of the ice melting process, and then decrease with time
+due to both the water evaporation and the water absorption by the
+ionomer.
+Fig. 13 shows the contours of ice volume fraction in the CLs and
+GDLs in the y–z plane (x = 0.025 m, middle of the cell) for the cold
+start from−3
+◦C. The ice ﬁrst melts in the CLs under the land (t = 1 s),
+then the whole CL and the GDL under the land, and ﬁnally the whole
+area. It is also observed that the ice melting in the anode is slightly
+faster than in the cathode, due to the faster heat transfer in the
+anode, as mentioned before. The evolution of the ice volume frac-
+tion shown inFig. 13matches the temperature distributions shown
+in Fig. 10. The contours of liquid water volume fraction in the CLs and
+GDLs in the y–z plane (x = 0.025 m, middle of the cell) for the cold
+start from−3
+◦C is presented inFig. 14, and the locations of the liquid
+water formation matches the locations of the ice melting inFig. 13.I t
+should be noticed that the liquid water in the cathode CL becomes
+the maximum at 3 s, and at 30 s, the liquid water in the anode is
+still decreasing and it remains almost unchanged in the cathode,
+this observation is consistent with the results shown in Fig. 12.
+4. Conclusion
+In this paper, a mathematical model has been developed to sim-
+ulate the cold start processes in a PEMFC. Unique in the present
+three-dimensional multiphase cold start model is the inclusion of
+the following phenomena: (i) the water freezing in the membrane
+electrolyte and its effects on the membrane conductivity; (ii) the
+non-equilibrium mass transfer between the water in the ionomer
+and the water (vapour, liquid and ice) in the pore region of the
+catalyst layer (CL); and (iii) both the water freezing and melting
+in the CL and gas diffusion layer (GDL). Good agreement between
+the model predictions and published experimental data has been
+obtained. Numerical simulations have been conducted for a sin-
+gle PEMFC starting at different subzero temperatures ( −10
+◦Cf o r
+failed cold start and −3 ◦C for successful cold start). Two inlet gas
+temperatures are considered, either equal to the cell temperatures
+or the ambient temperatures, and no noticeable difference in cold
+start performance between these two conditions are observed, due
+to the fact that the extra heat carried by the inlet gases for the
+case that the inlet gas temperatures equal to the cell temperatures
+is much lower than the heat generation from the electrochemical
+reaction. It is also found that increasing the startup current den-
+sity can signiﬁcantly accelerate the cold start process. For the cold
+start from −10
+◦C (failed cold start), it is observed that the ice ﬁrst
+appears under the land and at the locations away from both the
+membrane/CL and GDL/CL interfaces. The simulation results also
+show that the water production rate is higher than the water diffu-
+sion rate in the ionomer (low diffusivity at subzero temperatures),
+therefore increasing the ionomer fraction in the cathode CL has
+more signiﬁcant effects than increasing the thickness of the mem-
+brane in reducing the amount of ice formation. At low cell voltages,
+it is found that the ohmic heat is the largest heating source during
+cold start, which reduces the temperature difference between the
+anode and cathode. The much higher conductivity of hydrogen by
+comparing with oxygen and nitrogen also results in a faster heating-
+up in the anode. For the cold start from−3
+◦C (successful cold start),
+the ice melts ﬁrst in the CLs and then in the GDLs, and the melt-
+
+=== PDF PAGE 15 ===
+6890 K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891
+ing process ﬁrst starts under the ﬂow channel and then under the
+land. The melted water in the anode is also removed faster than
+in the cathode, due to both the water evaporation and the water
+absorption by the ionomer.
+Acknowledgments
+The ﬁnancial support by the Natural Sciences and Engineering
+Research Council of Canada (NSERC) via a strategic Project Grant
+(Grant no. 350662-07) and by Auto21 is greatly appreciated.
+Appendix A. Nomenclature
+The ﬁnancial support by the Natural Sciences and Engineering
+Research Council of Canada (NSERC) via a strategic Project Grant
+(Grant no. 350662-07) and by Auto21 is greatly appreciated.
+a water activity
+A cell geometric area (m
+2)
+c molar concentration (mol m−3)
+Cp speciﬁc heat (J kg−1 K−1)
+D mass diffusivity (m2 s−1)
+EW equivalent weight of membrane (1100 kg kmol−1)
+F Faraday’s constant (96,487 C mol−1)
+h latent heat (J kg−1), surrounding heat transfer coefﬁcient
+(W m−2 K−1)
+I current density (A cm−2)
+j reaction rate (A m−3)
+j0 volumetric exchange current density (A m−3)
+k thermal conductivity (W m−1 K−1)
+K permeability (m2)
+˙m mass ﬂow rate (kg s−1)
+M molecular weight (kg kmol−1)
+nd electro-osmotic drag coefﬁcient (H2O per H+)
+p pressure (Pa)
+˙Q heat transfer rate (W)
+r pore radius (m)
+R universal gas constant (8.314 J mol−1 K−1)
+RH relative humidity
+s volume fraction
+S source terms, entropy (J kmol−1 K−1)
+t time (s)
+T temperature (K)
+T0 volume averaged cell temperature (K)
+⃗u velocity (m s−1)
+V electrical potential (V)
+X mole fraction
+Y mass fraction
+Greek letters
+˛ transfer coefﬁcient
+/CR water phase change rate (s−1)
+ε porosity
+/DLE water transfer rate (s−1)
+/DC1 over potential (V)
+/DC2 contact angle (◦)
+/DC3 interfacial drag coefﬁcient
+/DC4 electrical conductivity (S m−1)
+/NAK water content in ionomer
+/SYN dynamic viscosity (kg m−1 s−1)
+/CAN stoichiometry ratio
+/SUB density (kg m−3)
+/ESC surface tension (N m−1)
+/RS electrical potential (V)
+ω volume fraction of ionomer in catalyst layer
+Subscripts and superscripts
+a anode
+act activation
+BP bipolar plate
+c cathode
+cell cell characteristic
+CL catalyst layer
+cond condensation
+desb desublimation
+eff effecitive
+ele electronic
+EOD electro-osmotic drag
+equil equilibrium
+evap evaporation
+f frozen
+ﬂ ﬂuid phase
+FPD freezing point depression
+fmw frozen membrane water
+g gas phase
+GDL gas diffusion layer
+H2 hydrogen
+i, j the ith and jth components
+ice ice
+in inlet
+ion ionic
+lq liquid water
+m mass (for source term)
+mem membrane
+N normal condition
+nf non-frozen
+nmw non-frozen membrane water
+O2 oxygen
+out outlet
+ref reference state
+rev reversible
+sat saturation
+sl solid phase including the membrane electrolyte and ice
+sld solid phase excluding the membrane electrolyte and ice
+surr surroundings
+T energy (for source term)
+u momentum (for source term)
+vp water vapour
+wall surrounding wall of the cell
+0 intrinsic value
+l–i liquid water to ice (vice versa)
+n–f non-frozen membrane water to frozen membrane water
+(vice versa)
+n–i non-frozen membrane water to ice
+n–
+v non-frozen membrane water to vapour (vice versa)
+v–i vapour to ice
+v–l vapour to water liquid (vice versa)
+References
+[1] N. Garland, DOE Program/Targets and Workshop Objectives, www.eere.
+energy.gov/hydrogenandfuelcells/fc freeze workshop.html.
+[2] 2007 Annual Progress Report for the DOE Hydrogen Program, www.hydrogen.
+energy.gov/annual progress07.html.
+[3] Speciﬁcation of Ballard Mark1100 PEM Fuel Cell Power Module,
+http://www.ballard.com.
+[4] K. Tajiri, Y. Tabuchi, C.Y. Wang, J. Electrochem. Soc. 154 (2007) B147.
+[5] K. Tajiri, Y. Tabuchi, F. Kagami, S. Takahashi, K. Yoshizawa, C.Y. Wang, J. Power
+Sources 165 (2007) 279.
+[6] J. Hou, H. Yu, S. Zhang, S. Sun, H. Wang, B. Yi, P. Ming, J. Power Sources 162 (2006)
+513.
+[7] J. Hou, B. Yi, H. Yu, L. Hao, W. Song, Y. Fu, Z. Shao, Int. J. Hydrogen Energy 32
+(2007) 4503.
+[8] E.A. Cho, J.J. Ko, H.Y. Ha, S.A. Hong, K.Y. Lee, T.W. Lim, I.H. Oh, J. Electrochem.
+Soc. 150 (2003) A1667.
+
+=== PDF PAGE 16 ===
+K. Jiao, X. Li / Electrochimica Acta 54 (2009) 6876–6891 6891
+[9] E.A. Cho, J.J. Ko, H.Y. Ha, S.A. Hong, K.Y. Lee, T.W. Lim, I.H. Oh, J. Electrochem.
+Soc. 151 (2004) A661.
+[10] Q. Guo, Z. Qi, J. Power Sources 160 (2006) 1269.
+[11] Q. Yan, H. Toghiani, Y.W. Lee, K. Liang, H. Causey, J. Power Sources 160 (2006)
+1242.
+[12] J. St-Pierre, J. Roberts, K. Colbow, S. Campbell, A. Nelson, J. New Mater. Elec-
+trochem. Syst. 8 (2005) 163.
+[13] E.L. Thompson, J. Jorne, H.A. Gasteiger, J. Electrochem. Soc. 154 (2007) B783.
+[14] S. Ge, C.Y. Wang, Electrochem. Solid-State Lett. 9 (2006) A499.
+[15] S. Ge, C.Y. Wang, Electrochim. Acta 52 (2007) 4825.
+[16] Y. Ishikawa, T. Morita, K. Nakata, K. Yoshida, M. Shiozawa, J. Power Sources 163
+(2007) 708.
+[17] S. Sun, H. Yu, J. Hou, Z. Shao, B. Yi, P. Ming, Z. Hou, J. Power Sources 177 (2008)
+137.
+[18] R.C. McDonald, C.K. Mittelsteadt, E.L. Thompson, Fuel Cells 4 (2004) 208.
+[19] M. Cappadonia, J.W. Erning, U. Stimming, J. Electroanal. Chem. 376 (1994) 189.
+[20] M. Cappadonia, J.W. Erning, S.M. Saberi Niaki, U. Stimming, Solid State Ionics
+77 (1995) 65.
+[21] E.L. Thompson, T.W. Capehart, T.J. Fuller, J. Jorne, J. Electrochem. Soc. 153 (2006)
+A2351.
+[22] M. Sundaresan, R.M. Moore, J. Power Sources 145 (2005) 534.
+[23] M. Khandelwal, S. Lee, M.M. Mench, J. Power Sources 172 (2007) 816.
+[24] L. Mao, C.Y. Wang, J. Electrochem. Soc. 154 (2007) B139.
+[25] Y. Wang, J. Electrochem. Soc. 154 (2007) B1041.
+[26] R.K. Ahluwalia, X. Wang, J. Power Sources 162 (2006) 502.
+[27] L. Mao, C.Y. Wang, Y. Tabuchi, J. Electrochem. Soc. 154 (2007) B341.
+[28] H. Meng, J. Power Sources 178 (2008) 141.
+[29] F. Jiang, W. Fang, C.Y. Wang, Electrochim. Acta 53 (2007) 610.
+[30] Q. Ye, T.V. Nguyen, J. Electrochem. Soc. 154 (2007) B1242.
+[31] J.T. Gostick, M.W. Fowler, M.A. Ioannidis, M.D. Pritzker, Y.M. Volfkovich, A.
+Sakars, J. Power Sources 156 (2006) 375.
+[32] R.B. Bird, W.E. Stewart, E.N. Lightfoot, Transport Phenomena, John Wiley & Sons,
+1960.
+[33] H. Meng, J. Power Sources 162 (2006) 426.
+[34] Handbook of Chemistry and Physics, 88th ed., CRC Press, 2007.
+[35] W. He, J.S. Yi, T.V. Nguyen, AIChE J. 46 (2000) 2053.
+[36] Thermophysical Properties Research Literature Retrieval Guide, Purdue Univer-
+sity, Iﬁ-Plenum, 1973.
+[37] F.A.L. Dullien, Porous Media: Fluid Transport and Pore Structure, Academic
+Press, 1992.
+[38] K.S. Udell, Int. J. Heat Mass Transfer 28 (1985) 485.
+[39] A.Z. Weber, J. Newman, Chem. Rev. 104 (2004) 4679.
+[40] Y. Wang, S. Basu, C.Y. Wang, J. Power Sources 179 (2008) 603.
+[41] H. Wu, X. Li, P. Berg, On the modeling of water transport in polymer electrolyte
+membrane fuel cells, Electrochim. Acta, doi:10.1016/j.electacta.2009.06.070.
+[42] P. Berg, K. Promislow, J. St-Pierre, J. Stumper, B. Wetton, J. Electrochem. Soc. 151
+(2004) A341.
+[43] D. Natarajan, T.V. Nguyen, J. Electrochem. Soc. 148 (2001) A1324.
+[44] T.E. Springer, T.A. Zawodzinski, S. Gottesfeld, J. Electrochem. Soc. 138 (1991)
+2334.
+[45] W. Kurz, D.J. Fisher, Fundamentals of Solidiﬁcation, Trans. Tech. Publications,
+1989.
+[46] S. Motupally, A.J. Becker, J.W. Weidner, J. Electrochem. Soc. 147 (2000) 3171.
+[47] Y. Wang, C.Y. Wang, Electrochim. Acta 50 (2005) 1307.
+[48] V.E. Ostrovskii, B.V. Gostev, J. Therm. Anal. Calorim. 46 (1996) 397.
+[49] http://www.engineeringtoolbox.com/convective-heat-transfer-d
+430.html.
+[50] F. Jiang, C.Y. Wang, J. Electrochem. Soc. 155 (2008) B743.
+[51] R. Bradean, H. Haas, A. Desousa, R. Rahmani, K. Fong, K. Eggen, D. Ayotte, A.
+Huang, 2005 ACS Annual Meeting-Fuel Processing Session I: Modeling and
+System Integration, Cincinnati, OH, October 30–November 4, 2005.
+[52] M. Oszipok, M. Zedda, D. Riemann, D. Greckeler, J. Power Sources 154 (2006)
+404.

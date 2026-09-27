@@ -1,0 +1,597 @@
+
+=== PDF PAGE 1 ===
+Contents lists available at ScienceDirect
+Applied Energy
+journal homepage: www.elsevier.com/locate/apenergy
+Cold-start method for proton-exchange membrane fuel cells based on locally
+heating the cathode
+Linjun Li a, Shixue Wang a,b,⁎
+, Like Yue a, Guozhuo Wang a
+a School of Mechanical Engineering, Tianjin University, Tianjin 300350, China
+b Key Laboratory of E ﬃ cient Utilization of Low and Medium Grade Energy (Tianjin University), Ministry of Education, Tianjin 300350, China
+HIGHLIGHTS
+ The eﬀ ect of local heating on cold-
+start performance is investigated.
+ The wires contact the cathode GDL to
+directly heat the membrane electrode.
+ Concentrated (one wire) and dispersed
+(three wires) local heating are com-
+pared.
+ One heating wire more eﬀ ectively
+improves cold-start performance than
+three wires.
+GRAPHICAL ABSTRACT
+Local heating apparently improves the cold-start ability of the fuel cell; the greater the local heating power, the
+faster the temperature of the reaction zone increases; the fuel cell using one heating wire showed better cold-
+start performance than that using three heating wires.
+ARTICLE INFO
+Keywords:
+Proton-exchange membrane fuel cell
+Cold start
+Local heating
+High-frequency impedance
+Heating power density
+ABSTRACT
+The key to successfully cold starting proton-exchange membrane fuel cells is increasing the cell temperature
+above 0 °C before the electrochemical reaction stops, because ice forms in fuel cells below this temperature. To
+decrease the input of external heat energy to fuel cells during cold starting, this paper proposes a local-heating
+method to improve the cold-start performance of fuel cells. During the experiments, heating wires were placed
+under partial ridges in the cathode plate to improve the cold-start performance of the fuel cells. The cold-start
+characteristics of the locally heated fuel cells were analyzed by measuring the voltage, high-frequency im-
+pedance, and cathode (gas di ﬀusion layer) temperature for di ﬀerent heating power densities and number of
+heating wires. The results show that locally heating the cathode improves the cold-start capability of the fuel
+cell, and increasing the heating power density to heat the fuel cell enhances the voltage stability during cold
+starting of the cell. Furthermore, at a constant heating power density, the fuel cell using one heating wire shows
+better cold-start performance than that heated using three heating wires.
+1. Introduction
+Proton-exchange membrane fuel cells (PEMFCs) are widely used for
+their cleanliness and high energy conversion rates [1]. Simultaneously,
+improving the cold-start ability of the PEMFCs used in vehicles is im-
+portant to the application of such cells in environments below 0 °C. Ice
+formation in these PEMFCs during cold starting separates the catalytic
+layer (CL) and gas di ﬀusion layer (GDL) and decreases the reaction
+areas [2], thereby lowering or even stopping the electrochemical re-
+action rate [3]. After multiple freeze –thaw cycles in the PEMFCs, pla-
+tinum particles in the CL are removed, and the fuel-cell impedance
+increases [4]. In addition, volume expansion owing to water freezing in
+the cathode membrane electrode causes other problems in the cells.
+Speciﬁcally, it breaks o ﬀ the carbon ﬁber in the GDL [5], increases the
+https://doi.org/10.1016/j.apenergy.2019.113716
+Received 20 February 2019; Received in revised form 5 August 2019; Accepted 6 August 2019
+⁎ Corresponding author at: School of Mechanical Engineering, Tianjin University, Tianjin 300350, China.
+E-mail address: wangshixue_64@tju.edu.cn (S. Wang).
+Applied Energy 254 (2019) 113716
+Available online 20 August 2019
+0306-2619/ © 2019 Elsevier Ltd. All rights reserved.
+T
+
+=== PDF PAGE 2 ===
+width and length of cracks in the microporous layer (MPL) [6], and
+damages the surface of the proton-exchange membrane (PEM) [7].
+To successfully cold start fuel cells in a cold environment (below
+0 °C), Florian et al. [8] used methanol as a cold-start antifreeze for
+PEMFCs; however, methanol impairs the normal temperature perfor-
+mance of fuel cells. Jiang et al. [9] and Ko et al. [10] studied the e ﬀect
+of current density on the cold-start performance. They believed that
+increasing the initial current density not only accelerates the increase in
+fuel-cell temperature but also increases water accumulation in the
+cathode CL, easily resulting in cold-start failure. Amamou et al. [11]
+proposed a real-time adaptive cold-start strategy of fuel cells to control
+the operating current in real time and quickly cold start fuel cells. Luo
+et al. [12] and Lin et al. [13] determined that the more the number of
+single PEMFC, the faster the temperature of the fuel-cell stack rises, and
+the better is the cold-start performance. Although the PEMFC can
+generate more heat energy when operating at a normal temperature
+[14], when the ambient temperature is low, utilizing the heat generated
+by an electrochemical reaction to increase the fuel-cell temperature for
+a successful cold start is di ﬃ cult [15]. Phase-change materials can store
+a large amount of latent heat [16] and can be used as microscale heat-
+transfer materials [17]. Therefore, for short-time shutdown of fuel cells,
+the latent heat of phase change can be used as a heat source. Using
+numerical calculations, Sasmito et al. [18] found that fuel-cell stacks
+can be successfully started from −20 °C when a phase-change material
+is used as a heat-storage medium. Furthermore, external heating
+sources, which mainly include a circulating heating medium [18], he-
+ated reaction gas [19], thermoelectric device [20], and external com-
+bustion, can help e ﬀectively cold start PEMFCs [21]. Zhang et al. [22]
+also proposed a cold-start method in which PEMFCs are heated using a
+heating medium circulating around the fuel cells. Li et al. [23] wrapped
+heat insulation materials around a fuel-cell stack while circulating a
+heating medium to preheat the stack during cold starting. Although
+these methods heat the PEMFCs, the use of a circulating heating
+medium can result in a steady increase in the fuel-cell temperature;
+these methods also consume a large amount of heat energy and prolong
+the cold-start process because the circulating heating medium and fuel
+cells simultaneously consume heat energy. In addition, to decrease the
+volume of the fuel-cell heat-exchange system, Guo et al. [24] and Jiao
+et al. [25] showed that using air as a medium increases the intake gas
+temperature and decreases the current density loss in fuel-cell cold-start
+simulation. Nguyen et al. [26] proposed a heat-recovery system by
+preheating the intake air, obviously improving the heat-utilization rate
+for heating the fuel-cell stack. Khandelwal et al. [27] estimated that
+heating anode gas has a high heat-utilization rate as hydrogen has a
+larger heat transfer coe ﬃ cient than air. However, heating the reaction
+gas to increase the fuel-cell temperature still utilizes a large amount of
+heat energy and prolongs the cold-start time as the reaction gas has a
+low heat capacity. Although external combustion can quickly increase
+the temperature of PEMFCs [28],
+ the use of a burner considerably in-
+creases the volume and weight of the fuel-cell system and results in
+uneven fuel-cell temperature [29]; such a system is unsuitable for cold
+starting PEMFCs in vehicles. Zhou et al. [30] used an electric heater to
+heat a fuel-cell stack during a simulated cold-start process and were
+able to successfully cold start the stack at −20 °C. Thompson et al. [31]
+proposed a patent to place heating wires in PEMFCs to help cold
+starting but did not conduct corresponding experimental investigations.
+The existing heating modes for cold starting PEMFCs were com-
+prehensively analyzed. Although the electrical-heating-based cold-start
+mode has many advantages, such as ﬂexible control, simple add-on
+devices, and high heating e ﬃ ciency, the direct use of heating wires for
+heating PEMFCs during the cold-start process has rarely been studied
+experimentally. In particular, the local-heating-based cold-start modes
+lack corresponding cold-start experimental and theoretical analyses.
+Therefore, in this study, a local-heating-based cold-start method, in
+which heating wires are placed under cathode ridges, was experimen-
+tally analyzed to successfully cold start PEMFCs while inputting less
+external heat energy. The local heating method is used to rapidly in-
+crease the temperature of the partial membrane electrode above 0 °C
+using a small amount of heat energy to maintain a continuous elec-
+trochemical reaction in this region. Then, the reaction heat released in
+this partial region can further increase the temperature in other reac-
+tion zones above 0 °C to successfully cold start fuel cells. Changes in the
+voltage, impedance, and cathode GDL temperature were analyzed to
+study the e ﬀect of the local heating method on the cold-start capability
+of PEMFCs for various heating power densities and di ﬀerent numbers of
+heating wires in the fuel cell.
+2. Experimental devices and system
+2.1. Design of the locally heated fuel cell
+Fig. 1 shows the locations of heating wires placed under ridges in
+the cathode and the local heating principle underlying the cold starting
+of fuel cells. The central reaction zone of a PEMFC has the highest
+current density in the fuel cell that easily causes a vacuum e ﬀect from
+starvation [32] and is crucial to a successful cold start [33]. To heat the
+membrane electrode assembly (MEA) using external heat energy, we
+placed heating wires in the center of the fuel cell. In addition, to
+compare the e ﬀects of concentrated and dispersed local heating and to
+prevent the shape of the bipolar plate from a ﬀecting the fuel-cell per-
+formance, di ﬀerent arrangements of heating wires were employed.
+Speciﬁcally, either one wire was employed in the center of the fuel cell
+or three wires were employed, i.e., one in the center and two identical
+heating wires under the ridges on either side ( Fig. 1(a)). Fig. 1(c) shows
+Fig. 1. Local heating principle underlying the cold starting of fuel cells: (a) location of heating wires and thermocouples; (b) cold starting without heating; (c) cold
+starting with local heating.
+L. Li, et al. Applied Energy 254 (2019) 113716
+2
+
+=== PDF PAGE 3 ===
+mini channels under three wide ridges in the cathode bipolar plate;
+these channels are ﬁlled with a heat-insulation material. The heating
+wires (Cr 20Ni80) placed on the surface of the heat insulation material
+contact the cathode GDL to directly heat the membrane electrode. As
+shown in Fig. 1(c), the membrane electrode heated by the heating wire
+forms a local high-temperature region relative to the unheated mem-
+brane electrode during the cold-start process. In addition, ice is not
+formed in the local high-temperature region, and the partial reaction
+region can continue to undergo the electrochemical reaction. In con-
+trast, the temperature in the reaction zone without heating remains
+below 0 °C for a long time, and ice continuously accumulates on the
+cathode CL surface, thereby decreasing the reaction area, as shown in
+Fig. 1(b). The widths of the three ridges with the heating wires were
+increased to 2 mm due to processing limitations, while the widths of the
+other ridges were 1 mm. The local heating may result in a temperature
+diﬀerence, which can be measured through thermocouples in the
+membrane electrode. These K-type thermocouples (diameter of
+0.25 mm) were used to measure the surface temperature of the cathode
+GDL through small holes in the cathode bipolar plate, as shown in
+Fig. 1 (a). This ﬁgure also shows the locations of the thermocouples T1,
+T2, and T3 with respect to the heat-source symmetry. TI and T2 mea-
+sured the temperature of the cathode GDL near the heating wires, while
+T3 measured the temperature at the edge of the cathode GDL. As the T3
+temperature is the lowest in the overall reaction zone, the fuel cell can
+be considered to be successfully cold started when this temperature
+exceeds 0 °C.
+Fig. 2 shows the structure of the locally heated fuel cell used in this
+study. In the experiment, the reaction area of the fuel cell was 25 cm
+2,
+and the widths of the straight channels were 1 mm each. Both the
+cathode and anode GDLs (TGP-060) were 190- μm thick and the MPL
+was 50- μm thick. The PEM was made of type Na ﬁon 212, and both the
+anode and cathode had the same platinum loading of 0.4 mg cm
+−2 in
+the CL. Every heating wire had a diameter of 0.15 mm and length of
+47 mm, while the semicircular heat-insulation layer had a radius of
+0.5 mm. The heating wires were clamped in the GDL and heat-insula-
+tion layer in the cathode, and the wires supplying the electrical power
+to the heating wires through the polar plate, current collector, and end
+plate were connected to the DC power supply. In addition, the anode
+and cathode comprised a heat-insulation layer between the current
+collectors and end plates, respectively, to decrease heat loss in the re-
+action zone.
+2.2. Experimental system
+Fig. 3 shows the experimental system for cold starting the locally
+heated fuel cell. The electrochemical workstation (Interface 5000E)
+whose frequency was 2500 Hz was used to measure the fuel-cell im-
+pedance during the cold-start process, and its lowest scanning time was
+10 μs. Before entering the fuel cell, both hydrogen and air were cooled
+to the experimental temperature ( −10 °C) by cooling the coils in the
+cryogenic box ( Fig. 3). The DC power supply (ITECH-IT6720) could
+supply a maximum power of 100 W to the heating wires. In addition,
+the control accuracies of the output voltage (0 –60 V) and output current
+(0–5 A) were < 0.05% and < 0.2%, respectively. A data-acquisition
+recorder (YOKOGAWA-MV1000) was used to measure and record the
+cathode GDL temperature, and the measuring accuracy of the thermo-
+couples ( K-type) was < 0.1 °C. The fuel-cell test system (BATE-FC100)
+had a voltage measurement range of 0 –2 V, and its accuracy was ±
+0.1% FS. After fuel-cell operation, any water remaining in the fuel cell
+can seriously a ﬀect the next cold-start performance [34]. Therefore, the
+fuel cell was purged using nitrogen [35] for 1 h at 25 °C before cold
+starting to remove water from the cathode and anode sides of the fuel
+cell [36]. After purging, the fuel cell was cooled to the experimental
+temperature ( −10 °C) and continued cooling for 3 h. At the beginning
+of the cold-start process, the heating wires in the cathode were powered
+simultaneously, and the voltage, impedance, and cathode GDL tem-
+perature were tested.
+As the ridges with the heating wires were wider than the other
+ridges, the ability to remove water may be decreased. In addition, the
+heat-insulation material ﬁlled in the wide ridges could increase the
+contact resistance between the GDL and bipolar plate in the cathode.
+Therefore, analyzing the e ﬀect of the locally heated bipolar plate on the
+normal temperature performance of the fuel cell before cold starting is
+important. Table 1 lists some experimental conditions for analyzing the
+normal-temperature and cold-start performance of the locally heated
+fuel cell.
+Fig. 2. Structure of the locally heated fuel cell.
+Fig. 3. Cold-start schematic of locally heated fuel cell.
+Table 1
+Experimental conditions for fuel cells operated at normal temperature and cold
+starting.
+Types of cathode polar plate Normal/Local heating Measurement units
+Normal temperature performance
+Hydrogen ﬂow 1800 sccm
+Air ﬂow 5000 sccm
+Fuel-cell temperature 60 °C
+Relative humidity of hydrogen 100 %
+Relative humidity of air 100 %
+Cold-start performance
+Starting temperature −10 °C
+Starting current density 0.04 A cm
+−2
+Number of heating wires 1/3
+Heating power density P1/P2/P3/
+P'1/P'2
+47.0/52.2 /60.6/
+365.0/438.0
+Wk g −1
+Relative humidity of hydrogen 0 %
+Relative humidity of air 0 %
+L. Li, et al. Applied Energy 254 (2019) 113716
+3
+
+=== PDF PAGE 4 ===
+3. Experimental results and discussion
+3.1. E ﬀect of locally heated bipolar plate on the normal temperature
+performance of the PEMFC
+As the structure of the cathode bipolar plate changed after installing
+heating wires, experiments were conducted to analyze the curren-
+t–voltage (I–V) performance (60 °C) of the locally heated fuel cell with a
+locally heated bipolar plate before cold starting. The voltage and power
+density of the PEMFC using two bipolar plates (normal and locally
+heated bipolar plates) changes with increasing current density, as
+shown in Fig. 4. Two fuel cells were tested three times each with a
+maximum experimental error of no more than 3%. The type of the
+cathode bipolar plate had little e ﬀect on the fuel-cell output voltage
+until the current density reached 0.9 A cm
+−2. After the current density
+exceeded 1.0 A cm −2, the output voltage of the fuel cell using the bi-
+polar plate with heating wires was lower than that of the fuel cell using
+the normal bipolar plate. As three wide ridges existed in the locally
+heated bipolar plate, the path through which air reached the cathode
+CL under the wide ridges increased; in addition, purging water from the
+GDL under the wide ridges was di ﬃ cult. Therefore, air was prevented
+from di ﬀusing into the CL under the wide ridges, thus decreasing the
+voltage at high current densities. However, the power density curves
+show that the peak power density of the fuel cell using the locally he-
+ated bipolar plate decreased by approximately 0.016 W cm −2 at 1.0 A
+cm−2. This means that normal-temperature performance loss of the
+locally heated fuel cell isless than 3%. Therefore, the locally heated
+bipolar plate hardly a ﬀects the practical utilization of the PEMFC.
+Nevertheless, to decrease the voltage loss caused by this bipolar plate,
+the width of the ridges with the heating wires can be decreased to
+improve the normal-temperature performance of the fuel cell.
+3.2. E ﬀect of local heating on the cold-start performance of PEMFC
+This section compares the cold-start performance of the locally
+heated fuel cell under di ﬀerent heating power densities with the self-
+starting performance of the fuel cell. Only one heating wire at T1
+(Fig. 1(a)) was used to heat the fuel cell under three heating power
+densities ( Table 1) during the cold-start process.
+The voltage, impedance, and temperature T3 ( Fig. 1(a)) changed for
+locally heated and self-started fuel cells from −10 °C at three heating
+power densities (P1/P2/P3; Table 1), as shown in Fig. 5 (a), and from
+−20 °C at two heating power densities (P'1/P'2; Table 1), as shown in
+Fig. 5 (b). Fig. 5(a) shows that approximately 500 s after cell start-up,
+the voltage of the fuel cell without local heating decreased to 0 V. When
+the heating power density was 47.0 W kg
+−1, the fuel cell ran con-
+tinuously for approximately 800 s until the voltage dropped to 0 V.
+Conversely, when the heating power density reached 52.2 W kg −1, the
+fuel-cell voltage did not decrease to 0 V before its overall temperature
+increased above 0 °C, indicating a successful cold start. However, the
+voltage was not stable during the cold-start process for low heating
+power density. That is, when the heating power density was at 60.6 W
+kg
+−1, the total temperature of the fuel cell increased above 0 °C, 200 s
+before that for the heating power density of 52.2 W kg −1. In particular,
+at 60.6 W kg −1, the PEMFC voltage was relatively stable. The afore-
+mentioned experimental results clearly illustrate that the locally heated
+membrane electrode could improve the fuel cell ’s cold-start capability.
+For the self-starting fuel cell, the impedance continued to decrease for
+approximately 200 s from the start-up, as shown in Fig. 5 (a), because
+the PEM was wetted with water produced in the cathode CL to decrease
+ion transfer resistance. As the electrochemical reaction continued,
+water that could not be absorbed by the PEM began to ﬂow into the
+interface between the CL and MPL in the cathode. Water at the CL/MPL
+interface in the cathode froze after approximately 200 s, increasing the
+interface electrical contact resistance. Therefore, the fuel-cell im-
+pedance increased at that time. For the locally heated fuel cell at a low
+heating power density (47.0 W kg
+−1), the impedance increased after
+approximately 300 s, illustrating that local heating prolonged the
+starting time of ice formation. However, the fuel cell eventually failed
+to cold start owing to the gradually rising temperature. When the
+heating power density was increased to 52.2 W kg
+−1 after 300 s from
+Fig. 4. Eﬀect of cathode-type bipolar plate on the fuel-cell performance at
+60 °C.
+Fig. 5. Changes in voltages, impedances, and temperatures at T3 for the fuel
+cell initiated at di ﬀerent heating power densities (a) from −10 °C and (b) from
+−20 °C.
+L. Li, et al. Applied Energy 254 (2019) 113716
+4
+
+=== PDF PAGE 5 ===
+start-up, the impedance ﬁrst increased before decreasing. This decrease
+in impedance after approximately 1000 s was due to ice melting when
+the overall temperature of the PEMFC increased above 0 °C. By com-
+bining the voltage and impedance changes, we considered that 52.2 W
+kg−1 might be the lowest heating power density required to success-
+fully cold start the fuel cell in this experiment. When the heating power
+density was ultimately increased to 60.6 W kg
+−1, the PEMFC im-
+pedance did not appreciably increase owing to the small amount of ice
+generated in the fuel cell during the cold-start process. Fig. 5(b) shows
+that when the fuel cell was initiated from −20 °C, the starting voltage
+of the locally heated fuel cell increased. This increase was due to the
+rapid increase in the temperature of the local reaction zone, which
+increased the activation area of the fuel-cell reaction. When the power
+density of the heating fuel cell exceeded 365.0 W kg
+−1, the fuel cell
+could cold start successfully. In summary, the increase in heating power
+density ensured not only a fast, successful cold start but also a stable
+output voltage.
+3.3. E ﬀect of number of heating wires on cold-start performance
+When the heating power density is the same, the temperature-ﬁ eld
+distribution in the reaction zone is a ﬀected by the number of heating
+wires in the cathode. This change in temperature- ﬁeld distribution may
+in turn a ﬀect the cold-start performance of the fuel cell. Therefore, the
+cold-start capability of the fuel cell was analyzed using one and three
+heating wires under the same total heating power density.
+The changes in the voltages, impedances, and cathode GDL tem-
+peratures for the fuel cells using one and three heating wires during the
+cold-start process from −10 °C are shown in Fig. 6 for a heating power
+density of 52.2 W kg
+−1. The fuel cell with one heating wire initiated
+successfully from −10 °C, while the voltage of the fuel cell using three
+heating wires dropped to 0 V after 1080 s, as shown in Fig. 6(a). This is
+because the fuel cell using one heating wire had better cold-start cap-
+ability than that using three heating wires. Fig. 6(b) shows that in the
+ﬁrst 200 s, the fuel cell using one heating wire showed a greater de-
+crease in impedance than that using three heating wires, implying that
+the former had better wetting ability on the PEM. The temperature at
+T1 (central position of cathode GDL) for the fuel cell using one heating
+wire increased above 0 °C after approximately 230 s, and certain non-
+frozen areas existed in the central reaction zone. As the temperature in
+the central reaction zone continued to increase, these nonfrozen reac-
+tion areas also constantly expanded until the temperature at T3 (posi-
+tion at the edge of the cathode GDL) increased above 0 °C after
+approximately 1100 s. However, for the fuel cell using three heating
+wires ( Fig. 6(d)), the temperatures at T1 and T2 increased above 0 °C
+after approximately 400 and 850 s, respectively. In particular, the
+temperature at T3 remained under 0 °C until the fuel cell failed to start.
+This is because every wire was powered with less amount of heat to
+locally heat the membrane electrode under the wide ridges. Therefore,
+the cathode GDL temperature near the heating wires increased gradu-
+ally, resulting in the formation of more ice in the cathode. In contrast,
+in the fuel cell using one heating wire, the wire was powered at a large
+heat density under the condition that total heating power was constant.
+Moreover, the central reaction zone generated relatively less ice, as the
+temperature near the heating wire rapidly increased above 0 °C. The
+central zone continued with the electrochemical reaction and released
+heat power to heat other reaction zones. Finally, the fuel cell using one
+heating wire successfully cold started from −10 °C. Fig. 6(a) shows that
+the voltage of the PEMFC using one heating wire dropped considerably
+after approximately 1100 s, started to increase after approximately
+1150 s, and stabilized after approximately 1200 s. However, the voltage
+after 1200 s showed a loss of 0.06 V relative to that before 1100 s. As
+shown in Fig. 6 (c), the temperature at T3 increased above 0 °C after
+approximately 1150 s, indicating that the ice in the entire reaction zone
+melted. We deduce that the ice accumulating in the membrane elec-
+trode covered a large area of the reaction zone, thus causing a con-
+centration polarization in voltage. Then, the reaction zone previously
+covered by ice started to react again after approximately 1150 s owing
+to the melting ice. Thus, the voltage started to increase at that time.
+However, the melted water at the CL/MPL interface in the cathode
+could not be removed quickly enough, so the voltage still showed a
+concentration polarization of 0.06 V.
+Fig. 7 shows the e ﬀect of the number of heating wires on the cold-
+start performance of a PEMFC from −10 °C for a local heating power
+density of 60.6 W kg
+−1. As shown in Fig. 7(a), the fuel cells using either
+one or three heating wires could be successfully cold started at 60.6 W
+kg
+−1. The fuel cell using one heating wire showed a stable voltage
+during the cold-start process. In addition, its impedance remained re-
+latively stable after approximately 200 s ( Fig. 7(b)) because less ice
+formed in the fuel cell. Thermocouples T2 and T3 located away from
+the central heating wire showed similar temperature ( Fig. 7(c)), which
+increased above 0 °C after approximately 800 s, whereas the tempera-
+ture at T1 ( Fig. 1(a)) increased above 0 °C after approximately 150 s.
+Therefore, ice barely formed in the central reaction zone, and the PEM
+near the heating wire showed a greater ion-transfer rate because of its
+higher temperature. In contrast, for the fuel cell with three heating
+Fig. 6. Eﬀect of the number of heating wires on the cold-start performance
+(power density: 52.2 W kg −1) with respect to (a) voltage, (b) impedance, (c)
+cathode GDL temperature (one heating wire), and (d) cathode GDL temperature
+(three heating wires).
+Fig. 7. Eﬀect of the number of heating wires on the cold-start performance
+(power density: 60.6 W kg −1) with respect to (a) voltage, (b) impedance, (c)
+cathode GDL temperature (one heating wire), and (d) cathode GDL temperature
+(three heating wires).
+L. Li, et al. Applied Energy 254 (2019) 113716
+5
+
+=== PDF PAGE 6 ===
+wires, the voltage dropped after approximately 800 s, increased, and
+then stabilized (as described in the previous section). The impedance
+for the fuel cell using three heating wires was still larger than that using
+one heating wire ( Fig. 7 (b)) when the heating power density was
+60.6 W kg −1. The temperatures at T1, T2, and T3 increased above 0 °C
+after approximately 300, 650, and 900 s, respectively, as shown in
+Fig. 7(d). In particular, the peak temperature at T1 for the fuel cell
+using three heating wires increased more gradually than that for the
+fuel cell using one heating wire, resulting in more ice formation and
+larger electrical contact resistance between the CL and MPL in the
+cathode central zone. As shown in Fig. 7 (b), with ice melting after
+800 s, the impedance decreased again for the fuel cell using three
+heating wires. Then, the melted water decreased the CL/MPL electrical
+contact resistance in the cathode, resulting in concentration impedance.
+Moreover, the partially melted water was absorbed by the PEM, which
+decreased its ion-transfer resistance.
+In summary, for a constant heating power density, the fuel cell using
+one heating wire showed better cold-start performance than that using
+three heating wires.
+4. Conclusions
+In this study, a local-heating method was proposed for cold starting
+a PEMFC by placing heating wires under the partial ridges in the
+cathode bipolar plate. In addition, the voltage, high-frequency im-
+pedance, and cathode GDL temperature for the fuel cell were measured
+from the initial temperature of −10 °C or −20 °C to study the e ﬀects of
+diﬀerent heating power densities and number of heating wires on the
+cold-start capability of the fuel cell. The main conclusions are as fol-
+lows.
+(1) Local heating apparently improves the cold-start ability of the fuel
+cell. The greater the local heating power, the faster the temperature
+of the reaction zone increases, which is conducive to successfully
+cold starting a PEMFC. Moreover, compared with other external
+heating methods (e.g., heating the circulate water or cathode air),
+directly heating the fuel cell cathode MEA enabled higher energy
+eﬃ ciency during cold starting.
+(2) Insu ﬃ cient local heating power density causes unstable voltage and
+even failure of the cold-start process.
+(3) At a constant heating power density, the fuel cell using one heating
+wire showed better cold-start performance than that using three
+heating wires. This means that concentrated heating had better ef-
+fect than dispersed heating, and quickly increasing the local tem-
+perature was conductive to a successful cold start.
+The local-heating method in this study can be applied to cold start a
+PEMFC stack for vehicles. Fuel-cell stacks can be rapidly cold started by
+arranging a certain number of heating wires in the stack to directly heat
+a partial region of each MEA and setting the power of heating wires
+according to the ambient temperature.
+Acknowledgements
+This research is supported by Ministry of Science and Technology
+Program of China: project of international cooperation (No.
+2016YFE0118600) and the national key research and development
+program (No. 2018YFB0105405).
+References
+[1] Kong IM, Jung A, Kim MS. Investigations on the double gas di ﬀusion backing layer for
+performance improvement of self-humidi ﬁed proton exchange membrane fuel cells[J].
+Appl Energy 2016;176:149 –56.
+[2] Lee Y, Kim B, Kim Y, Li X. E ﬀects of a microporous layer on the performance degradation
+of proton exchange membrane fuel cells through repetitive freezing[J]. J Power Sources
+2011;196(4):1940–7.
+[3] Ahluwalia RK, Wang X. Rapid self-start of polymer electrolyte fuel cell stacks from sub-
+freezing temperatures[J]. J Power Sources 2006;162(1):502 –12.
+[4] Jing L, Lee S, Roberts J. Ice formation and distribution in the catalyst layer during freeze-
+start process – CRYO-SEM investigation [J]. Electrochim Acta 2008;53(16):5391 –6.
+[5] Song KY, Kim HT. E ﬀect of air purging and dry operation on durability of PEMFC under
+freeze/thaw cycles[J]. Int J Hydrogen Energy 2011;36(19):12417 –26.
+[6] Lee Y, Kim B, Kim Y, Li X. Degradation of gas di ﬀusion layers through repetitive freezing
+[J]. Appl Energy 2011;88(12):5111 –9.
+[7] Kim SG, Lee SJ. Tomographic analysis of porosity variation in gas di ﬀusion layer under
+freeze-thaw cycles[J]. Int J Hydrogen Energy 2012;37(1):566 –74.
+[8] Knorr Florian, Sanchez Daniel Garcia, Schirmer Johannes, Gazdzicki Pawel, Friedrich KA.
+Methanol as antifreeze agent for cold start of automotive polymer electrolyte membrane
+fuel cells[J]. Appl Energy 2019;238:1 –10.
+[9] Jiang F, Wang CY, Chen KS. Current ramping: a strategy for rapid start-up of PEMFCs
+from subfreezing environment [J]. J Electrochem Soc 2010;157(3):B342 –7.
+[10] Ko J, Ju H. Comparison of numerical simulation results and experimental data during
+cold-start of polymer electrolyte fuel cells[J]. Appl Energy 2012;94(none):364 –74.
+[11] Amamou A, Kandidayeni M, Boulon L, Kelouwani S. Real time adaptive e ﬃ cient cold start
+strategy for proton exchange membrane fuel cells[J]. Appl Energy 2018;216:21 –30.
+[12] Luo Y, Guo Q, Du Q, Yin Y, Jiao K. Analysis of cold start processes in proton exchange
+membrane fuel cell stacks[J]. J Power Sources 2013;224:99 –114.
+[13] Lin R, Zhu Y, Ni M, Jiang Z, Lou D, Han L, et al. Consistency analysis of polymer elec-
+trolyte membrane fuel cell stack during cold start[J]. Appl Energy 2019;241:420 –32.
+[14] Reddy EH, Jayanti S. Thermal management strategies for a 1 kWe stack of a high tem-
+perature proton exchange membrane fuel cell[J]. Appl Therm Eng 2012;48(1):465 –75.
+[15] Jiao
+K, Alaefour IE, Karimi G, Li X. Simultaneous measurement of current and tem-
+perature distributions in a proton exchange membrane fuel cell during cold start pro-
+cesses[J]. Electrochim Acta 2011;56(8):2967 –82.
+[16] Zalba B, Marin JM, Cabeza LF, Mehling H. Review on thermal energy storage with phase
+change: materials, heat transfer analysis and applications. Appl Therm Eng
+2003;23:251–83.
+[17] Hasan MI. Numerical investigation of counter ﬂow microchannel heat exchanger with
+MEPCM suspension. Appl Therm Eng 2011;31:1068 –75.
+[18] Sasmito AP, Shamim T, Mujumdar AS. Passive thermal management for PEM fuel cell
+stack under cold weather condition using phase change materials (PCM)[J]. Appl Therm
+Eng 2013;58(1 –2):615–25.
+[19] Zhigang Z, Chong Y, Zhangrong H, Hui W, Sui PC, Ned D, Mu P. Experimental study on
+diﬀerent preheating methods for the cold-start of PEMFC stacks[J]. Energy
+2018;162:1029–40.
+[20] Kwan Trevor Hocksun, Wu Xiaofeng, Yao Qinghe. Bidirectional operation of the ther-
+moelectric device for active temperature control of fuel cells[J]. Appl Energy
+2018;222:410–22.
+[21] Luo Y, Jiao K. Cold start of proton exchange membrane fuel cell[J]. Prog Energy Combust
+Sci 2017;64:29 –61.
+[22] Zhang C, Yu T, Yi J, Liu Z, Raj KAR, Xia L, et al. Investigation of heating and cooling in a
+stand-alone high temperature PEM fuel cell system[J]. Energy Convers Manage
+2016;129:36–42.
+[23] Li Y, Xu S, Yang Z, Li Y. Experiment and simulation study on cold start of automotive
+PEMFC[C]. International Conference on Electric Information and Control Engineering.
+IEEE 2011:2166 –2170.
+[24] Guo Q, Luo Y, Jiao K. Modeling of assisted cold start processes with anode catalytic
+hydrogen–oxygen reaction in proton exchange membrane fuel cell[J]. Int J Hydrogen
+Energy 2013;38(2):1004 –15.
+[25] Jiao K, Li X. Cold start analysis of polymer electrolyte membrane fuel cells[J]. Int J
+Hydrogen Energy 2010;35(10):5077 –94.
+[26] Nguyen HQ, Aris AM, Shabani B. PEM fuel cell heat recovery for preheating inlet air in
+standalone solar-hydrogen systems for telecommunication applications: an exergy ana-
+lysis[J]. Int J Hydrogen Energy 2016;41(4):2987 –3003.
+[27] Khandelwal M, Lee S, Mench MM. One-dimensional thermal model of cold-start in a
+polymer electrolyte fuel cell stack[J]. J Power Sources 2007;172(2):816 –30.
+[28] Zhang C, Zhang J, Ma J. Hydrogen catalytic combustion over a Pt/Ce
+0.6Zr0.4O2/MgAl2O4,
+mesoporous coating monolithic catalyst[J]. Int J Hydrogen Energy 2012;37(17):12941 –6.
+[29] Schultze M, Mantzaras J. Hetero-/homogeneous combustion of hydrogen/air mixtures
+over platinum: fuel-lean versus fuel-rich combustion modes[J]. Int J Hydrogen Energy
+2013;38(25):10654–70.
+[30] Zhou Y, Luo Y, Yu S, Jiao K. Modeling of cold start processes and performance optimi-
+zation for proton exchange membrane fuel cell stacks[J]. J Power Sources
+2014;247(2):738–48.
+[31] Thompson E, Fuss R, Keeler T, Lee J, Raiser S. Self -thawing fuel cell. US Patent; 2005.
+[32] Zhong D, Lin R, Liu D, Cai X. Structure optimization of anode parallel ﬂow ﬁeld for local
+starvation of proton exchange membrane fuel cell[J]. J Power Sources 2018;403:1 –10.
+[33] Lin R, Ren YS, Lin XW, Jiang ZH, Yang Z, Chang YT. Investigation of the internal behavior
+in segmented PEMFCs of di ﬀerent ﬂow ﬁelds during cold start process[J]. Energy
+2017;123:367–77.
+[34] Ishikawa Y, Hamada H, Uehara M, Shiozawa M. Super-cooled water behavior inside
+polymer electrolyte fuel cell cross-section below freezing temperature[J]. J Power
+Sources 2008;179(2):547 –52.
+[35] Jiao Kui, Park Jaewan, Li Xianguo. Experimental investigations on liquid water removal
+from the gas di ﬀusion layer by reactant ﬂow in a PEM fuel cell[J]. Appl Energy
+2010;87:2770–7.
+[36] Park Jae Wan, Jiao Kui, Li Xianguo. Numerical investigations on liquid water removal
+from the porous gas di ﬀusion layer by reactant ﬂow[J]. Appl Energy 2010;87:2180 –6.
+L. Li, et al. Applied Energy 254 (2019) 113716
+6

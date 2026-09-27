@@ -1,0 +1,659 @@
+
+=== PDF PAGE 1 ===
+化 工 进 展
+C hemical I ndustry a n d En gineering Pr ogress2021 年第 40 卷第 S 1 期
+质子交换膜燃料电池系统低温启动技术研究进展
+黄天川
+1
+， 刘志祥
+1 ， 2
+（
+1
+佛山科学技术学院 ， 广东 佛山 528000 ；
+2
+佛山 （ 云浮 ） 氢能产业与新材料发展研究院 ， 广东 云浮 527300 ）
+摘要 ： 质子交换膜燃料电池电动汽车具有绿色环保 、 续航里程长等优点 ， 但在温度较低的环境下存在启动困难甚
+至失败的问题 ， 这一问题严重制约了质子交换膜燃料电池电动汽车的发展 。 研究调查了质子交换膜内部结冰的原
+理 ， 简述了 0 ℃ 以下低温环境下启动过程对质子交换膜本身 、 催化层 、 气体扩散层以及膜电极整体带来不同程度
+的损伤 ， 重点分析了质子交换膜燃料电池电动汽车低温启动的策略 ， 可大致分为三类 ： 停机吹扫的控制策略 、 外
+部辅助加热和无辅助加热 。 分析表明每种方法都有其各自的优点与缺点 ， 但总的来说单一的启动方法对质子交换
+膜燃料电池电动汽车低温启动的效果不如多种方法混合使用的效果理想 ， 未来燃料电池电动汽车的低温启动技术
+将会朝着多种方法共同协助的趋势发展 。
+关键词 ： 燃料电池 ； 低温启动 ； 传热 ； 氢
+中图分类号 ： TK 91 文献标志码 ： A 文章编号 ： 1000 - 6613 （ 2021 ） S 1 - 0117 - 09
+Low temperature start-up technology of proton exchange membrane
+fuel cells system
+HUANG Tianchuan
+1
+， LIU Zhixiang
+1 ， 2
+(
+1
+Foshan University , Foshan 528000 , Guangdong , China ;
+2
+Foshan ( Yunfu ) Research Institute for Hydrogen Energy Industry
+and New Material Development , Yunfu 527300 , Guangdong , China )
+Abstract : Proton exchange membrane fuel cell electric vehicles have the advantages of long cruising
+range and environmental-friendly , but there are problems in starting difficulties or even failures in low
+temperature environments . This problem seriously restricts the development of proton exchange
+membrane fuel cell electric vehicles . The study investigated the principle of icing inside the proton
+exchange membrane , and briefly described the damage to the proton exchange membrane itself , the
+catalytic layer , the gas diffusion layer and the membrane electrode as a whole by the start-up process in
+the sub-zero temperature environment . It focuses on the analysis of low-temperature start strategies for
+proton exchange membrane fuel cell electric vehicles , which can be roughly divided into three categories :
+shutdown and purge control strategies , external auxiliary heating and no auxiliary heating . The analysis
+shows that each method has its own advantages and disadvantages , but in general , a single starting method
+is not enough for the low-temperature starting effect of proton exchange membrane fuel cell electric
+vehicles . The mixed use of multiple methods has an ideal effect . In the future , the low-temperature start-up
+technology of fuel cell electric vehicles will develop towards a trend of mutual assistance in a variety of ways .
+Keywords : fuel cells ; low-temperature start-up ; heat transfer ; hydrogen
+􀤕􀤕􀤕􀤕􀤕􀤕 􀦕􀤕􀦕􀤕􀤕􀤕􀤕􀤕􀤕􀦕􀤕 􀦕
+综述与专论
+DOI ： 10 . 16085 /j . issn . 1000 - 6613 . 2021 - 0406
+收稿日期 ： 2021 - 03 - 01 ； 修改稿日期 ： 2021 - 03 - 05 。
+基金项目 ： 广东省重点领域研发计划 （ 2020 B 090920001 ） ； 国家自然科学基金 （ 51677157 ） 。
+第一作者 ： 黄天川 （ 1996 — ） ， 男 ， 硕士研究生 ， 研究方向为质子交换膜燃料电池系统水热管理 。 E-mail ： 1244384527 @qq . com 。
+通信作者 ： 刘志祥 ， 教授 ， 硕士研究生导师 ， 研究方向为燃料电池系统 。 E-mail ： 304245782 @qq . com 。
+引用本文 ： 黄天川 , 刘志祥 . 质子交换膜燃料电池系统低温启动技术研究进展 [ J ]. 化工进展 , 2021 , 40 ( S 1 ): 117 - 125 .
+Citation ： HUANG Tianchuan , LIU Zhixiang . Low temperature start-up technology of proton exchange membrane fuel cells system [ J ]. Chemical Industry and
+Engineering Progress , 2021 , 40 ( S 1 ): 117 - 125 .
+·· 117
+
+=== PDF PAGE 2 ===
+www . hgjz . com . cn 化工进展 ， 2021 ， 40 （ S 1 ）
+燃 料 电 池 电 动 汽 车 （ fuel cell electric vehicle ,
+FCEV ） 是以氢气作为动力源经化学作用转换为电
+源而驱动的车辆 ， 相比于传统内燃机汽车 ， FCEV
+具有零排放 、 无污染的优点 ； 相比于新能源纯电动
+汽车 ， FCEV 续航里程更长 ， 添加燃料时间短且不
+会造成锂污染 。 质子交换膜燃料电池 （ PEMFC ）
+因其工作温度低 ， 大约在 60 ~ 80 ℃ 范围工作 ， 启动
+迅速 ， 对负载变化响应快 ， 功率密度高
+[ 1 ]
+的特点 ，
+成为燃料电池电动汽车最理想的技术 。 近年来 ， 无
+论是在国际还是在国内 ， FCEV 的应用都受到了广
+泛的重视 。 丰田公司在 2015 年 12 月宣布将燃料电
+池汽车正式投放市场 ， 一些以传统产业为主的大型
+国有企业也陆续进军车用氢能产业 ， 如中国石油化
+工集团公司 、 潍柴动力股份有限公司等
+[ 2 ]
+。 原有的
+车用氢能企业加快推动燃料电池电动汽车产业化的
+进程 ， 如北京亿华通科技股份有限公司于 2017 年
+8 月计划建成并投产国内首条自动化 、 规模化的氢
+燃料电池发动机生产线
+[ 3 ]
+。
+但是燃料电池电动汽车在高寒地区的使用障碍
+问题极大地限制了其推广应用
+[ 4 ]
+。 以质子交换膜为核
+心的燃料电池需要在湿润的条件下传递质子才能正
+常工作 ， 发挥最大效率 。 而在这个过程中若水分被
+冻结成冰 ， 燃料电池的效率将会大大降低 ， 甚至停
+止工作 。 低温启动问题是燃料电池电动汽车行业发
+展遇到的瓶颈 ， 必须要重视理论的创新和探索 ， 对
+低温启动的研究是燃料电池电动汽车行业发展的内
+在需求 。 同时 ， 根据国家出台的关于燃料电池电动
+汽车的最新政策表明 ， 低温启动的研究是未来燃料
+电池研究的发展趋势 。 在 2019 年最新出台的燃料电
+池汽车示范应用奖补政策中明确提到将燃料电池汽
+车启动温度不高于 − 30 ℃ 作为城市群的示范目标 。
+1 PEMFC 冷启动科学问题研究进展
+1 . 1 PEMFC 低温冷启动过程分析
+PEMFC 低温冷启动是指在 0 ℃ 以下温度成功启
+动 ， 并运行至正常工作温度范围 （ 60 ~ 80 ℃ ） 的过
+程 。 当燃料电池在低温状态下开始启动时 ， 电池阴
+极逐渐生成水 ， 当电池内部温度不足以达到冰的熔
+点时 ， 燃料电池内部会结冰导致电压下降并停止工
+作 。 当电池内部温度高于冰点时 ， 燃料电池则会正
+常启动 。 美国宾夕法尼亚大学 Mao 等
+[ 5 ]
+提出了一个
+分析模型来描述在低温工况下热平衡问题 、 催化剂
+层结冰问题和水传输问题 。 该实验解决了 PEMFC
+低温启动结冰过程内部结冰机理的问题 ， 为其他学
+者更有针对性地去研究冷启动策略提供了参考 。
+Wang 等
+[ 6 ]
+也研究了冷启动过程的结冰机理 ， 其
+结果也验证了 Mao 的正确性 ， 但是在 Mao 的基础之
+上 Wang 的实验结果还发现了一个新问题 ： 阳极干
+燥 问 题 。 减 缓 冰 的 形 成 和 抑 制 其 生 长 速 度 是
+PEMFC 成功冷启动的决定性因素 ， 但阳极干燥问
+题 也 会 导 致 电 池 性 能 下 降 ， 不 能 成 功 启 动 。 在
+Wang 的研究中并没有对阳极干燥问题提出很好的
+解决方法 。
+1 . 2 低温环境 PEMFC 造成的影响
+在 0 ℃ 以下 ， 当质子交换膜里面的水被冻结时 ，
+由于水和冰两相存在密度差异 ， 膜内的水结冰后体
+积会膨胀 9 %
+[ 7 ]
+， 反复的水 、 冰相变引起的体积变化
+对电池材料与结构产生显著的影响 。 另外 ， 结冰会
+增加电池组件的机械应力 、 改变其形态 ， 影响物质
+的传输和其他的物理化学性能 。 詹志刚等
+[ 8 ]
+研究发
+现 PEMFC 冷 启 动 失 败 后 极 化 曲 线 在 电 流 密 度 为
+1000 mA/cm
+2
+时出现程度较深的衰减 ， 并进行了多
+次活化后电池性能仍然不能恢复 。 这说明冷启动失
+败是由于电池内部出现严重结冰引起的 ， 这导致结
+构发生损坏 ， 从而使电池性能发生不可逆劣化和电
+压衰减 。 根据国内外文献报道 ， 冰冻损害一般会发
+生在以下位置 。
+（ 1 ） 对质子交换膜的影响 结冰使质子交换膜
+表面会出现鼓胀 、 穿孔甚至是破裂等现象 。 质子交
+换膜应用最多的材料是基于四氟乙烯与全氟磺酸盐
+晶体的共聚物 ， 因为磺酸基团具有高度的亲水性 ，
+这就决定了质子的移动和转移需要依赖水 ， 所以质
+子交换膜需要在充分湿润的条件下才有传导质子的
+功能 ， 但在低温环境下充分润湿的膜里面的水分会
+发生冻结 ， 容易致使质子交换膜发生鼓胀 、 穿孔甚
+至是开裂等现象 。
+Schmittinger 等
+[ 9 ]
+研 究 发 现 在 低 温 冷 启 动 过 程
+中 ， 经过几个冻融循环 （ freeze/thaw , Ｆ / Ｔ ） 后 ， 完
+全水化的膜会发生开裂 。 黄成勇
+[ 10 ]
+用扫描电子显微
+镜对于未经任何处理而进行 F/T 循环的质子交换膜
+进行扫描 ， 如图 1 所示 ， 捕抓到了比 Schmittinger 实
+验图片更清晰 、 直观地反应膜受损情况的电镜图 。
+膜裂纹的出现会带来很大的危害 ， 最大的害处是导
+致气体交叉 ， 在不适当的场合进行氧化还原反应 ，
+造成局部热点 ， 随后形成的针孔破坏膜 ， 降低质子
+交换膜燃料电池的寿命 。 Park 等
+[ 11 ]
+和 Oszcipok 等
+[ 12 ]
+在冻融循环实验中发现 ： 当 F/T 循环次数增加时膜
+的接触电阻随冷启动实验次数的增加而增加 ， 电池
+·· 118
+
+=== PDF PAGE 3 ===
+2021 年 10 月 黄天川等 ： 质子交换膜燃料电池系统低温启动技术研究进展
+性能有所下降 。 Cho 等
+[ 13 ]
+在 F/T 循环实验中发现体
+积变化可能会使与质子交换膜紧贴着的 CL 孔结构
+变形 ， 这会使催化剂粉末与膜之间的接触变松并破
+坏 Nafion 膜的网络结构而降低电池性能 。 作为电堆
+核心零部件的质子交换膜与电池的性能是紧密联系
+的 ， 膜的受损势必会使电池性能下降 ， 但是关于质
+子交换膜的受损程度会导致电池性能发生何种程度
+衰减的联系还没有深入地进行研究 ， 受损程度的最
+大上限目前也有待考察 。
+（ 2 ） 对催化层的影响 结冰使得催化层与质子
+交换膜 、 气体扩散层之间会发生脱落 ， 出现局部破
+裂现象 ， 活化面积减小 。 Hwang 等
+[ 14 ]
+实验的优点在
+于利用了原位和异位的实验对单独催化层和组装在
+膜电极里面的催化层分别进行了 F/T 循环实验 ， 两
+种结果放在一起比较能更清晰直观地反映出催化层
+在冷启动中的特点 ， 为将来研究冷启动和催化层提
+供了很好的参考基础 ， 如图 2 所示 ， Hwang 的实验
+结果表明在冷启动过程中催化剂层的裂纹的形成和
+裂纹密度随循环次数的增加而增加 ， 表面积减小 ，
+电化学活性下降 ， 电池性能下降 。 Cho 等
+[ 13 ]
+和詹志
+刚等
+[ 8 ]
+分别用不同的方法分析了 PEMFC 中水的冻结
+对电极结构的影响 ， 图 3 为詹志刚对实验后催化层
+形貌的表征 。 水冰相变使催化层的结构改变 ， 孔径
+增大 ， 从而降低了比表面积 、 电化学活性表面积和
+铂催化剂的利用率 。
+（ 3 ） 对气体扩散层的影响 冰晶的形成会对气
+体扩散层的多孔结构造成破坏 ， 气体扩散层介质的
+疏水性会减弱 。 气体扩散层主要由支撑层和微孔层
+组成 ， 支撑层是经过疏水材料处理过的碳基 （ 碳布
+或碳纸 ） 材料组成的 ， 常用的疏水材料是聚四氟乙
+烯或氟化乙烯丙烯 ， 支 撑层的作用可防止水在气体
+扩散层中积聚影响气体扩散 。 如图 4 所示 ， 詹志刚
+图 2 催化层极化曲线图
+[ 14 ]
+图 1 膜破裂的图像
+[ 10 ]
+·· 119
+
+=== PDF PAGE 4 ===
+www . hgjz . com . cn 化工进展 ， 2021 ， 40 （ S 1 ）
+等
+[ 8 ]
+发现在冷启动失败后支撑层碳纸上的 PTFE 颗
+粒会出现严重的脱落 ， 碳纤维会出现明显的物理破
+坏的痕迹 。 Oszcipok 等
+[ 12 ]
+通过在不同工作条件下对
+单个燃料电池进行恒电位冷启动测量 ， 发现水冻结
+在 阴 极 电 极 的 微 孔 层 （ MPL ） 和 气 体 扩 散 层
+（ GDL ） 的多孔结构中 ， 使其结构发生变化 ， 导致
+疏水性发生变化 ， 如图 5 所 示 。 Lee 等
+[ 15 ]
+的研究也
+验证 Oszcipok 的实验正确性和可靠性 。 Kim 等
+[ 16 ]
+对
+气体扩散层孔隙率变化进行了测量 ， 研究在 F/T 循
+环下 GDL 结构参数的变化 。 Kim 的实验特点在于重
+建了 GDL 的 3 D 结构 ， 这个 3 D 结构能清晰看出 GDL
+和 MPL 之间的界面存在裂缝并且大多数沿着 GDL
+的网络结构发展 ， 这些裂缝会导致 GDL 孔隙率不
+可逆地降低和 PEMFC 在冷启动运行期间水的溢流
+和凝结 。 Hirakata 等
+[ 17 ]
+没有直接观察到 GDL 结构被
+破坏 ， 而是根据得出来的数据推断出电压下降的原
+因是由于反应物气体的质量输运能力降低造成的 。
+（ 4 ） 对膜电极的影响 结冰不仅会让气体扩散
+层 、 催化层和质子交换膜本身受到损害 ， 还会使整
+个膜电极之间的紧密性和统一性发生变化出现破
+裂 、 分离 。 Guo 等
+[ 18 ]
+发现无论是作为独立组件还是
+组装在单个电池之中的膜电极 ， 经过 − 30 ~ 20 ℃ 之间
+多次 F/T 循环之后 ， 可以观察到膜电极受到了严重
+的 物 理 损 伤 — — 出 现 裂 纹 和 催 化 剂 区 域 分 离 。
+Alink 等
+[ 19 ]
+利用异位环境扫描电子显微镜 （ ESEM ）
+发现电堆润湿特性改变的原因是由于低温冷启动工
+况下电堆中的电极明显受损且孔隙率增加 。
+2 解决 PEMFC 低温冷启动技术问题
+的研究进展
+2 . 1 冷启动技术发展现状
+2005 年 ， 美 国 能 源 部 （ the US Department of
+Energy , DOE ） 制 定 了 冷 启 动 的 第 一 个 目 标 ： 在
+2010 年之前实现从 − 20 ℃ 成功冷启动 。 2017 年之后
+DOE 对冷启动的目标重新进行了规划 ， 计划在有
+辅助冷启动的条件下从 − 30 ℃ 和无辅助的条件下从
+− 20 ℃ 的快速启动 ， 在 30 s 内达到额定功率的 50 % 。
+目前 ， 美国能源部发布的最新冷启动目标是在指定
+的冷冻温度下冰冻 8 h ， 在 − 30 ℃ 下的独立启动和在
+图 3 冷启动试验后催化层表面放大 500 倍形貌图
+[ 8 ]
+图 4 碳纸表面结构
+[ 8 ]
+图 5 用 10 μ L 水滴测量接触角
+[ 12 ]
+·· 120
+
+=== PDF PAGE 5 ===
+2021 年 10 月 黄天川等 ： 质子交换膜燃料电池系统低温启动技术研究进展
+− 40 ℃ 下的辅助启动 ， 并在规定的时间内达到额定
+的功率才算冷启动成功 。 目前 ， 欧洲制定的冷启
+动目标是在 − 25 ℃ 下快速启动
+[ 20 ]
+。 据文献报道
+[ 21 - 25 ]
+，
+2004 年本田 FCX 实现了在温度低至 11 ℃ 的室外停
+靠了一晚后成功启动 ， 启动时间为 95 s 。 2005 年现
+代推出的途胜 FCEV 实现了 100 s 内从 − 10 ℃ 成功启
+动 ， 2018 年推出的 NEXO FCEV 中实现了 30 s 内在
+− 29 ℃ 的冷启动 。 2009 年 ， 丰田推出燃料电池汽车
+FCHV － adv 车型将冷启动极限进一步提高到能够在
+− 37 ℃ 的环境条件下启动 ， 2016 年基于 FCHV-adv
+车 型 改 进 、 优 化 的 Mirai 车 型 在 − 30 ℃ 的 低 温 下 ，
+35 s 达到 60 % 额定功率 ， 70 s 达到 100 % 额定功率 。
+国内燃料电池汽车企业亿华通在 − 30 ℃ 低温下利用
+外部加热 ， 在 5 min 内冷启动成功 ； 在 − 20 ℃ 低温下
+自启动 ， 120 s 内达到 50 % 额定功率 。 捷氢在 − 30 ℃
+温度下 ， 实现了 30 s 内快速冷机启动 ， 高升速 、 降
+载 ， 无需外加热源 ； 雄韬氢雄 VISH- 60 A 燃料电池
+发动机系统在 − 30 ℃ 的低温环境下能够正常启动运
+行 。 国鸿氢能通过电加热器对系统小循环内冷却液
+进行循环加热 ， 快速提高电堆温度可在大部分条件
+下实现 − 15 ℃ 低温冷启动 ； 新源动力研发的第二代
+车用质子交换膜燃料电池电堆模块可实现 − 10 ℃ 低
+温启动 、 − 40 ℃ 储存 。
+低温成功冷启动的关键在于电池的升温速率要
+大于水结冰的速率 ， 而影响冷启动的因素大致可分
+为三大类 ， 分别为停机吹扫的控制策略 、 外部辅助
+加热和无辅助加热 。
+2 . 2 停机吹扫的控制策略
+如图 6 所示 ， 崔士涛等
+[ 26 ]
+从不同启动温度电堆
+阻抗值的变化去分析了吹扫对于冷启动的作用 ， 对
+比分析了在 − 20 ℃ 和 − 30 ℃ 的条件下启动时阻抗值的
+变化从而推断出电堆内部是否有结冰现象 。 但是此
+分析方法缺少严谨性 ， 在该研究中主要提到的是阻
+抗值与结冰现象 ， 但对于说明吹扫在其中起到的作
+用缺少说服力 ， 在 − 20 ℃ ， 阻抗值没有升高是因为
+上一次吹扫水分较为干净 ， 但是在 − 30 ℃ 启动时阻
+抗值升高没有很好地做出有关吹扫地说明 。 总体来
+说该方法还是具有一定的参考价值 。 相比崔士涛 ，
+许澎等
+[ 27 ]
+对单电池内部水的相变和传递进行模拟仿
+真的结果对于说明吹扫作用更具说服力 。 对于吹扫
+策略研究者们通常会聚焦于生成水的阴极 ， 但许澎
+的实验证明对干燥的阳极的吹扫也尤为重要 ， 因为
+对阳极的吹扫会降低阳极催化层的水分 ， 间接也会
+降低 MEA 水分的含量 ， 对于下一次冷启动有明显
+的帮助 ， 这为研究吹扫策略的研究者们提供了一种
+新思路 。 前面提到的都是一次吹扫的策略 ， 但是罗
+马吉等
+[ 28 ]
+研究了一种二次吹扫策略 ， 发现用适当流
+量的干空气进行两次不同时长的吹扫可以在较短时
+间内除去电池内部大部分的水 ， 不会对电池性能造
+成不可逆的损伤 ， 且在 − 10 ℃ 条件下冷启动成功 。
+但是罗马吉的这种二次吹扫策略对二次吹扫的流
+量 、 间隔时间和吹扫时长等参数需要精准控制 ， 否
+则容易起到反效果的作用 。
+2 . 3 外部辅助加热
+2 . 3 . 1 电加热器加热
+Li 等
+[ 29 ]
+在 燃 料 电 池 的 中 心 添 加 了 加 热 丝
+（ Cr
+20
+Ni
+80
+） 放 置 在 隔 热 材 料 表 面 ， 与 阴 极 GDL 接
+触 ， 直接加热膜电极 ， 加热功率密度越高加热时间
+越短 。 虽然与其他外部加热方法相比 ， 例如 ： 加热
+冷却液或加热流通空气 ， 直接加热燃料电池阴极 ，
+在运行期间膜电极表现出了更高的工作效率 ， 但同
+时也要对其进行相当精准的控制 ， 危险系数高 ， 容
+易对膜电极造成损害 。 如图 7 所示 ， Zhou 等
+[ 30 ]
+提出
+了一种新的启动方法 — —可变加热和负载控制 ， 先
+是对位于电堆中间位置的电池提供外部加热 ， 再对
+相邻的电池加热使得还没达到工作状态的电池一个
+接一个地被解冻 、 激活 。 此方法解决了电池更加均
+匀地 、 快速地受热的问题 。 Zhan 等
+[ 31 ]
+提出了一种分
+阶段预热的方法 ， 当端板和空气同时加热 ， 冷启动
+所消耗的时间最短 。 尽管加热空气所消耗的时间
+短 ， 但是目前燃料电池的企业大部分采用的还是加
+热冷却液 ， 因为冷却液具有更大的比热容 。
+2 . 3 . 2 氢氧催化燃烧
+早在 2007 年 ， Sun 等
+[ 32 ]
+针对 FC 流通道是微通
+道反应器的这一特点 ， 就已经提出了一种通过氢和
+氧反应加热燃料电池冷启动的思想 。 如图 8 所示 ，
+图 6 不同启动温度电堆阻抗的变化
+[ 26 ]
+·· 121
+
+=== PDF PAGE 6 ===
+www . hgjz . com . cn 化工进展 ， 2021 ， 40 （ S 1 ）
+经实验证明 ， PEMFC 电池组可通过催化氢反应在
+− 20 ℃ 下启动 。 郑俊生等
+[ 33 ]
+在质子交换膜燃料电池
+电堆入口处设置了氢氧催化燃烧反应器 ， 将氢气和
+氧气在反应器进行预混合然后催化燃烧 ， 燃烧后的
+尾气通入燃料电池阴极流场和水流场用以加热电
+堆 。 此方法拥有突出的优点和弊端 ， 优点是氢氧催
+化燃烧反应器和其他同等质量 、 体积的加热器相比
+拥有更高的功率密度 ， 氢氧催化燃烧产生的高热量
+对于缩短冷启动的时间 ， 提高冷启动的效率都起到
+一定的积极作用 ， 但缺点是燃烧反应带来的危险性
+和不确定性也是一个极大的挑战 。 经实践证明 ， 郑
+俊生的实验结果达到了预期的效果 ， 在氢氧催化 燃
+烧充分反应之后生成的尾气通入电堆可显著提高电
+堆冷启动的升温速度 。 Schultze 等
+[ 34 ]
+采用二维数值模
+拟的方法 ， 研究了氢气 / 空气混合物在铂涂层通道中
+的催化燃烧问题 。 对于催化燃烧 ， 他们做出了更深
+一层的研究 ， 分析了不同氢氧配比所带来的问题及
+其适用范围 ， 使得氢氧催化燃烧辅助冷启动的研究
+方法得到很好地补充 ， 为以后研究此方向的学者提
+供了更加细致的思路 。 Marco 得出的结论是富燃料
+的催化燃烧模式有利于燃料电池电堆安全运行 。
+2 . 4 无辅助加热
+2 . 4 . 1 控制电堆输出特性升温
+Lin 等
+[ 35 ]
+研究发现利用恒电压法可使 PEMFC 在
+− 15 ℃ 以内的工作范围冷启动成功 。 Lin 的实验特点
+在于利用了印刷电路板 （ PCB ） 的技术去研究 PEMFC
+的电流密度分布 ， 并优化了该技术在冷启动方面的
+应用 ， 为以后研究燃料电池提供了一种新思路 、 新
+方法 、 新技术 。 Jiang 等
+[ 36 ]
+提出了一种变电流启动的
+冷启动方法 ， 打破了传统单一的电流启动模式 ， 结
+合了低运行电流产水少和高 运行电流产热多两者的
+图 7 不同电池阴极催化层中的冰体积分数
+[ 30 ]
+图 8 在 − 20 ℃ 下氢氧催化反应启动电堆的 I - V 图
+[ 32 ]
+·· 122
+
+=== PDF PAGE 7 ===
+2021 年 10 月 黄天川等 ： 质子交换膜燃料电池系统低温启动技术研究进展
+特性 ， 同时也避开了两者的劣势 。 如图 9 ( a ) 、 ( b ) 所
+示 ， 施加高达 1 A/cm
+2
+的初始电流密度 ， 可在 5 s 内
+从 − 30 ℃ 启动热质量为 0 . 2 J/ ( cm
+2
+· K ) ， 且 MEA 相对较
+湿的 PEMFC 。 Jiao 等
+[ 37 ]
+与恒流启动方式作了比较 ，
+发现恒压启动可以产生更多的余热 ， 通过降低电池
+电压可以显著缩短加热时间 ， 从而使电池更快地加
+热和达到更高的最终温度 。
+2 . 4 . 2 向电堆内通入反应气体混合物升温
+Silva 等
+[ 38 ]
+对燃料电池电堆的电极之间施加了一
+个可控的短路 ， 通过控制空气 /H
+2
+化学计量因子来
+引起温度的上升加热电堆 ， 虽然升温快但是对化学
+计量因子把控要求相当精准 ， 危险系数高 。 如图 10
+所示 ， Guo 等
+[ 39 ]
+构建了三维多相冷启动模型对阳极
+氢 - 氧混合气体在恒电流模式下辅助 PEMFC 冷启动
+进行了研究 。 该研究体现了多方式的协同效应 ， 但
+是没有对混合气体反应升温的单独作用作出考察 ，
+无法确定在单独作用下的混合气体是否有利于电堆
+的升温和启动 。 郭海鹏等
+[ 40 ]
+在环 境温度为 − 20 ℃ 下
+直接把混合气体通入电堆加热 ， 出于对细节的考
+虑 ， 在 − 31 ℃ 、 − 36 ℃ 的低温启动情况下 ， 郭海鹏没
+有直接把混合气体通入电堆而是先将一定比例的氢
+氧混合气体通入阳极进行一段时间的催化预热之后
+再通入阴极 。 这是因为混合气体催化预热过程中 ，
+电池均匀受热 ， 各节电池温度基本保持一致 ， 避免
+出现局部温度过高而导致热胀冷缩破坏电池结构的
+现象 。
+3 总结与展望
+本文梳理了近年来质子交换膜燃料电池低温启
+动出现的相关问题及研究进展 。 总结了冷启动失败
+会给燃料电池的气体扩散层 、 催化层 、 质子交换膜
+本身和整个膜电极带来危害的相关问题 ， 基于对期
+刊论文 、 博士硕士论文和专利的调查基础之上 ， 对
+现有的研究进展进行了重新的分组 ， 阐述了燃料电
+池冷启动的方案 ， 根据控制策略的不同分为停机吹
+扫和加热启动 ， 其中加热启动又可以分为辅助加热
+启动和无辅助加热启动 。 停机吹扫一般是在燃料电
+池工作结束后运行的一种策略 ， 主要是清除工作期
+间电池产生的残留水 ， 自身无加热功能更多地是配
+合其他加热方式同时使用 。 辅助加热可以让燃料电
+池更加快速高效地冷启动 ， 但是会增加系统的复杂
+度 ， 降低燃料系统的功率密度 ， 增加制造成本 ； 无
+辅助加热消耗少 、 产热快 ， 但是冷启动速度慢且比
+较考验电堆自身的性能特性 。 PEMFC 发动机的低
+温启动和热传递应该是多层次 、 多角度 、 多方式的
+图 9 质子交换膜燃料电池变电流启动
+[ 36 ]
+ 图 10 在恒流条件下阴极催化剂层体积平均冰体积分数和
+电池电压的演变规律
+[ 39 ]
+·· 123
+
+=== PDF PAGE 8 ===
+www . hgjz . com . cn 化工进展 ， 2021 ， 40 （ S 1 ）
+结合 ， 今后对于质子交换膜燃料电池冷启动的研究
+应以多种方法共同协助为方向 ， 以达到电堆快速启
+动直至平稳运行的最佳状态 。
+参考文献
+[ 1 ] APPLEBY A J . From Sir William Grove to today : fuel cells and the
+future [ J ]. Journal of Power Sources , 1990 , 29 ( 1 / 2 ): 3 - 11 .
+[ 2 ] 衣宝廉 . 燃料电池和燃料电池车发展历程及技术现状 [ M ]. 北京 : 科
+学出版社 , 2018 .
+YI Baolian . Development history and technology status of fuel cells
+and fuel cell vehicles [ M ]. Beijing : Science Press , 2018 .
+[ 3 ] 中国汽车技术研究中心有限公司 . 中国汽车安全发展报告 ( 2018 )
+[ M ]. 北京 : 社会科学文献出版社 , 2018 .
+[ 4 ] 张宝斌 . 质子交换膜燃料电池冷启动策略研究现状 [ J ]. 节能 , 2018 ,
+37 ( 12 ): 107 - 111 .
+ZHANG Baobin . Research status on cold start strategy of proton
+exchange membrane fuel cell [ J ]. Energy Conservation , 2018 , 37 ( 12 ):
+107 - 111 .
+[ 5 ] MAO L , WANG C Y . Analysis of cold start in polymer electrolyte fuel
+cells [ J ]. Journal of the Electrochemical Society , 2007 , 154 ( 2 ): B 139 .
+[ 6 ] WANG Y , MUKHERJEE P P , MISHLER J , et al . Cold start of polymer
+electrolyte fuel cells : three-stage startup characterization [ J ]. Electrochimica
+Acta , 2010 , 55 ( 8 ): 2636 - 2644 .
+[ 7 ] 都京 , 王宇鹏 , 马秋玉 , 等 . 车用燃料电池发动机冷启动方法综述
+[ J ]. 汽车文摘 , 2019 ( 1 ): 37 - 41 .
+DU Jing , WANG Yupeng , MA Qiuyu , et al . A review of solutions and
+strategies for cold start of PEM fuel cell [ J ]. Automotive Digest , 2019 ( 1 ):
+37 - 41 .
+[ 8 ] 詹志刚 , 吕志勇 , 黄永 , 等 . 质子交换膜燃料电池冷启动及性能衰减
+研究 [ J ]. 武汉理工大学学报 , 2011 , 33 ( 1 ): 151 - 155 .
+ZHAN Zhigang , LYU Zhiyong , HUANG Yong , et al . Research on
+PEMFC start-up at subzero temperature and performance decay [ J ].
+Journal of Wuhan University of Technology , 2011 , 33 ( 1 ): 151 - 155 .
+[ 9 ] SCHMITTINGER W , VAHIDI A . A review of the main parameters
+influencing long-term performance and durability of PEM fuel cells [ J ].
+Journal of Power Sources , 2008 , 180 ( 1 ): 1 - 14 .
+[ 10 ] 黄成勇 . 质子交换膜燃料电池 CCM 冰点以下低温特性的研究 [ D ].
+武汉 : 武汉理工大学 , 2007 .
+HUANG Chengyong . Research on subfreezing characteristics of CCM
+for proton exchange membrane fuel cells [ D ]. Wuhan : Wuhan University
+of Technology , 2007 .
+[ 11 ] PARK G G , LIM S J , PARK J S , et al . Analysis on the freeze/thaw
+cycled polymer electrolyte fuel cells [ J ]. Current Applied Physics , 2010 ,
+10 ( 2 ): S 62 -S 65 .
+[ 12 ] OSZCIPOK M , RIEMANN D , KRONENWETT U , et al . Statistic
+analysis of operational influences on the cold start behaviour of PEM
+fuel cells [ J ]. Journal of Power Sources , 2005 , 145 ( 2 ): 407 - 415 .
+[ 13 ] CHO E , KO J J , HA H Y , et al . Characteristics of the PEMFC
+repetitively brought to temperatures below 0 ℃ [ J ]. Journal of the
+Electrochemical Society , 2003 , 150 ( 12 ): A 1667 .
+[ 14 ] HWANG G S , KIM H , LUJAN R , et al . Phase-change-related
+degradation of catalyst layers in proton-exchange-membrane fuel cells
+[ J ]. Electrochimica Acta , 2013 , 95 : 29 - 37 .
+[ 15 ] LEE C , MÉRIDA W . Gas diffusion layer durability under steady-state
+and freezing conditions [ J ]. Journal of Power Sources , 2007 , 164 ( 1 ): 141 - 153 .
+[ 16 ] KIM S G , LEE S J . Tomographic analysis of porosity variation in gas
+diffusion layer under freeze-thaw cycles [ J ]. International Journal of
+Hydrogen Energy , 2012 , 37 ( 1 ): 566 - 574 .
+[ 17 ] HIRAKATA S , MOCHIZUKI T , UCHIDA M , et al . Investigation of the
+effect of pore diameter of gas diffusion layers on cold start behavior
+and cell performance of polymer electrolyte membrane fuel cells [ J ].
+Electrochimica Acta , 2013 , 108 : 304 - 312 .
+[ 18 ] GUO Q H , QI Z G . Effect of freeze-thaw cycles on the properties and
+performance of membrane-electrode assemblies [ J ]. Journal of Power
+Sources , 2006 , 160 ( 2 ): 1269 - 1274 .
+[ 19 ] ALINK R , GERTEISEN D , OSZCIPOK M . Degradation effects in
+polymer electrolyte membrane fuel cell stacks by sub-zero operation —
+An in situ and ex situ analysis [ J ]. Journal of Power Sources , 2008 , 182 ( 1 ):
+175 - 187 .
+[ 20 ] LUO Y Q , JIAO K . Cold start of proton exchange membrane fuel cell
+[ J ]. Progress in Energy and Combustion Science , 2018 , 64 : 29 - 61 .
+[ 21 ] Honda FCX demonstrates cold-start performance [ J ]. Fuel Cells Bulletin ,
+2004 , 2004 ( 4 ): 5 .
+[ 22 ] KIM S H , KUM Y B , LEE K C , et al . Development of hyundai's
+Tucson FCEV [ C ] //SAE Technical Paper Series . 400 Commonwealth
+Drive , Warrendale , PA , United States : SAE International , 2005 : 77 - 83 .
+[ 23 ] ASO S , KIZAKI M , MIZUNO H . Development progress of the Toyota
+fuel cell hybrid vehicle [ J ]. SAE International Journal of Engines , 2008 ,
+1 ( 1 ): 296 - 303 .
+[ 24 ] 许德超 , 盛夏 , 赵子亮 , 等 . 车用燃料电池冷启动研究进展与影响因
+素综述 [ J ]. 汽车文摘 , 2019 ( 4 ): 28 - 34 .
+XU Dechao , SHENG Xia , ZHAO Ziliang , et al . Research progress and
+influence factors of vehicle fuel cell cold start [ J ]. Automotive Digest ,
+2019 ( 4 ): 28 - 34 .
+[ 25 ] 刘罗祥 , 宋珂 . 质子交换膜燃料电池冷启动研究综述 [ J ]. 佳木斯大
+学学报 ( 自然科学版 ), 2020 , 38 ( 1 ): 131 - 133 .
+LIU Luoxiang , SONG Ke . A review on cold start of proton exchange
+membrane fuel cell [ J ]. Journal of Jiamusi University ( Natural Science
+Edition ), 2020 , 38 ( 1 ): 131 - 133 .
+[ 26 ] 崔士涛 , 王铎霖 , 燕希强 , 等 . 燃料电池低温无辅助启动的研究 [ J ].
+电源技术 , 2020 , 44 ( 10 ): 1451 - 1455 .
+CUI Shitao , WANG Duolin , YAN Xiqiang , et al . Study on low
+temperature unassisted start-up of fuel cell stack [ J ]. Chinese Journal
+of Power Sources , 2020 , 44 ( 10 ): 1451 - 1455 .
+[ 27 ] 许澎 , 高源 , 许思传 . 质子交换膜燃料电池停机后吹扫仿真 [ J ]. 同济
+大学学报 ( 自然科学版 ), 2017 , 45 ( 12 ): 1873 - 1878 .
+XU Peng , GAO Yuan , XU Sichuan . Numerical simulation on gas purge
+after shutdown in proton exchange membrane fuel cell [ J ]. Journal of
+Tongji University ( Natural Science ), 2017 , 45 ( 12 ): 1873 - 1878 .
+[ 28 ] 罗马吉 , 王芳芳 , 刘威 , 等 . 二次吹扫条件下的 PEMFC 冷启动实验
+[ J ]. 华中科技大学学报 ( 自然科学版 ), 2011 , 39 ( 6 ): 116 - 120 .
+LUO Maji , WANG Fangfang , LIU Wei , et al . PEMFC cold-start
+performance after twice purge [ J ]. Journal of Huazhong University of
+Science and Technology ( Natural Science Edition ), 2011 , 39 ( 6 ): 116 - 120 .
+[ 29 ] LI L J , WANG S X , YUE L K , et al . Cold-start method for proton-
+exchange membrane fuel cells based on locally heating the cathode [ J ].
+Applied Energy , 2019 , 254 : 113716 .
+[ 30 ] ZHOU Y B , LUO Y Q , YU S H , et al . Modeling of cold start processes
+and performance optimization for proton exchange membrane fuel cell
+stacks [ J ]. Journal of Power Sources , 2014 , 247 : 738 - 748 .
+[ 31 ] ZHAN Z G , YUAN C , HU Z R , et al . Experimental study on different
+preheating methods for the cold-start of PEMFC stacks [ J ]. Energy ,
+2018 , 162 : 1029 - 1040 .
+[ 32 ] SUN S C , YU H M , HOU J B , et al . Catalytic hydrogen/oxygen reaction
+assisted the proton exchange membrane fuel cell ( PEMFC ) startup
+at subzero temperature [ J ]. Journal of Power Sources , 2008 , 177 ( 1 ):
+·· 124
+
+=== PDF PAGE 9 ===
+2021 年 10 月 黄天川等 ： 质子交换膜燃料电池系统低温启动技术研究进展
+137 - 141 .
+[ 33 ] 郑俊生 , 邓棚 , 马建新 . 催化燃烧辅助供热的燃料电池低温启动过
+程 [ J ]. 同济大学学报 ( 自然科学版 ), 2013 , 41 ( 6 ): 910 - 914 .
+ZHENG Junsheng , DENG Peng , MA Jianxin . Low-temperature start-
+up process of fuel cell by a catalytic combustion auxiliary heating [ J ].
+Journal of Tongji University ( Natural Science ), 2013 , 41 ( 6 ): 910 - 914 .
+[ 34 ] SCHULTZE M , MANTZARAS J . Hetero-/homogeneous combustion
+of hydrogen/air mixtures over platinum : Fuel-lean versus fuel-rich
+combustion modes [ J ]. International Journal of Hydrogen Energy , 2013 ,
+38 ( 25 ): 10654 - 10670 .
+[ 35 ] LIN R , WENG Y M , LIN X W , et al . Rapid cold start of proton
+exchange membrane fuel cells by the printed circuit board technology
+[ J ]. International Journal of Hydrogen Energy , 2014 , 39 ( 32 ): 18369 -
+18378 .
+[ 36 ] JIANG F M , WANG C Y , CHEN K S . Current ramping : a strategy for
+rapid start-up of PEMFCs from subfreezing environment [ J ]. Journal of
+the Electrochemical Society , 2010 , 157 ( 3 ): B 342 .
+[ 37 ] JIAO K , LI X G . Effects of various operating and initial conditions on
+cold start performance of polymer electrolyte membrane fuel cells [ J ].
+International Journal of Hydrogen Energy , 2009 , 34 ( 19 ): 8171 - 8184 .
+[ 38 ] SILVA R E , HAREL F , JEMEÏ S , et al . Proton exchange membrane
+fuel cell operation and degradation in short-circuit [ J ]. Fuel Cells ,
+2014 , 14 ( 6 ): 894 - 905 .
+[ 39 ] GUO Q , LUO Y Q , JIAO K . Modeling of assisted cold start processes
+with anode catalytic hydrogen-oxygen reaction in proton exchange
+membrane fuel cell [ J ]. International Journal of Hydrogen Energy ,
+2013 , 38 ( 2 ): 1004 - 1015 .
+[ 40 ] 郭海鹏 , 孙树成 , 俞红梅 , 等 . 催化反应方法辅助 PEMFC 低温启动
+的研究 [ J ]. 电源技术 , 2019 , 43 ( 6 ): 964 - 967 .
+GUO Haipeng , SUN Shucheng , YU Hongmei , et al . Study on start-up
+of PEMFC by catalytic reaction at subzero temperature [ J ]. Chinese
+Journal of Power Sources , 2019 , 43 ( 6 ): 964 - 967 .
+·· 125

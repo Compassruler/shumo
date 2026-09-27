@@ -1,0 +1,174 @@
+--- original/MathModel.tex
++++ revised/MathModel.tex
+@@ -26,13 +26,11 @@
+  \maketitle
+  \begin{abstract}
+-低温启动过程中，燃料电池的反应产热促进升温，反应产水及冻结则改变传质和电压，端板热惯性又使端部单电池成为升温瓶颈。本文建立贯通单电池、电堆与辅助控制的水--冰--热--电耦合模型，比较不同加载及分片加热策略，并区分首次启动与关热后持续运行。
+-
+-问题一采用一维有限体积模型，显式计入双极板热容，统一固定六类相变的参考速率，仅用$-20\,^\circ\mathrm C$数据校准交换电流密度，并以$-25\,^\circ\mathrm C$数据留出验证。两工况温度RMSE分别为$0.1162$和$0.2323\,^\circ\mathrm C$，电压MAPE分别为$8.66\%$和$9.02\%$；电压谷值时刻仍有偏差，局部冰量对未独立测定的相变参数敏感。
+-
+-问题二将五片单电池与六块共享/终端极板、两块端板耦合。$-10\,^\circ\mathrm C$下，恒流与三段加载均取$0.5\,\mathrm{A\,cm^{-2}}$，约$16.396\,\mathrm s$完成首次启动；有限升载策略趋近该结果。在所搜索策略中，最低自启动温度数值边界约为$-16.4\,^\circ\mathrm C$，临界失败主要由端部升温不足和电荷预算耗尽引起。
+-
+-问题三在$-30\,^\circ\mathrm C$下分别优化纯预热和恒功率协同加热，辅助电能为$3214.20$和$2975.26\,\mathrm J$，首次启动时间约为$25.71$和$25.73\,\mathrm s$。协同方案节省约$7.43\%$辅助电能，其最大局部冰体积分数为$0.01234$；关热后温度回落说明首次越冰并不保证持续暖态。
+-
+-问题四结合预冷温度场、独立状态观测器与前馈--PI反馈分配辅助功率，完全冷却、预冷20 min和40 min工况的推荐辅助电能分别为2929.996、293.609和1855.385 J，相对统一停机口径下的固定恒功率方案节电10.13\%、68.26\%和17.28\%。独立初值误差、热边界及期限试验界定了上述比较的适用范围。数值守恒与离散检验支持计算实现的一致性，但不替代对局部冰量及相变闭合的独立实验验证。
++质子交换膜燃料电池低温环境下启动时，反应产热促进升温，产水冻结却阻碍传质并降低电压，端板热惯性加剧端部升温滞后。针对电荷预算下的启动速度与辅助能耗问题，本文建立贯通单电池、电堆和动态加热控制的水--冰--热--电耦合模型。
++
++首先，将水划分为蒸气、液水和冰，采用六类库存约束相变，以冰量修正孔隙率、扩散系数及反应面积，将相变潜热和双极板储热纳入能量守恒；以有限体积离散、隐式推进及热电迭代求解，仅用$-20\,^\circ\mathrm C$数据校准交换电流密度，以$-25\,^\circ\mathrm C$数据留出验证。其次，将五片单电池、六块共享或终端极板及两块端板耦合为七节点热网络，在电流、电荷及安全约束下比较恒流、线性升载和三段阶梯策略，以参数搜索与二分定位确定所用策略的最低自启动初温。再次，引入五片独立辅助热源，分别优化纯预热与恒功率协同策略的功率分配及加热时长，以差分进化、局部精修和非对称扰动核验结果，区分首次达标与关热事件。最后，由层状导热模型计算预冷初场，采用热容加权映射、独立状态观测器及前馈--PI反馈调节分片功率，统一测量保持停机口径，结合扰动场景筛选推荐方案，以独立初值、物性失配、守恒及网格加密检验评价结果。设置同初态、同加载的恒功率对照，关热后继续运行$60\,\mathrm{s}$以检验持续暖态。
++
++结果表明，两工况温度RMSE为0.1162和$0.2323\,^\circ\mathrm C$，电压MAPE为8.66\%和9.02\%。$-10\,^\circ\mathrm C$下，恒流与阶梯策略约$16.396\,\mathrm{s}$完成启动，最低自启动初温约$-16.4\,^\circ\mathrm C$，临界失败由端部升温不足与电荷耗尽主导。$-30\,^\circ\mathrm C$下，纯预热和协同策略分别耗能3214.20、$2975.26\,\mathrm{J}$，首次启动约25.71、$25.73\,\mathrm{s}$，协同节电7.43\%。完全冷却、预冷$20\,\mathrm{min}$和$40\,\mathrm{min}$时，动态推荐方案耗能2929.996、293.609和$1855.385\,\mathrm{J}$，相对共同停机口径的恒功率方案节电10.13\%、68.26\%和17.28\%；代价是启动延长至74-$-89\,\mathrm{s}$，且冰峰增大。预冷$20\,\mathrm{min}$的名义最小辅助能耗为零，推荐方案保留扰动裕度。
++
++模型揭示端板与初始储热对冷启动的作用，支持安全约束下的辅助节电。首次达标不保证关热后持续暖态，局部冰量及相变闭合需实验验证，结论限于模型与策略。
+ \keywords{质子交换膜燃料电池\quad 冷启动\quad 水热耦合\quad 端部效应\quad 分片加热控制}
+ \end{abstract}
+@@ -48,9 +46,9 @@
+ \section{问题重述}
+ \subsection{问题背景}
+-质子交换膜燃料电池通过氢氧电化学反应输出电能并生成水，具有能量转化效率高、响应快和排放清洁等特点，在寒区交通与供能中具有应用潜力。环境温度低于冰点时，残余水及反应生成水容易冻结；冰占据催化层（CL）和气体扩散层（GDL）的孔隙后，会阻碍反应气体传输，并可能引起电压下降和启动失败。
+-
+-冷启动涉及电化学反应、传热、气体扩散、水迁移和水--冰相变。反应产热与环境散热决定温升，产水与冻结决定冰相积累；冰又通过有效传质能力和反应面积反馈于电压及产热。电堆中片间导热、端板热容和边界换热进一步造成温升差异，端部单电池更容易出现升温滞后和局部结冰。
+-
+-提高加载电流可增加反应热，也会增加产水；辅助加热则需付出额外电能。因此，本文从单电池模型逐步扩展至电堆自启动、辅助加热和动态反馈控制，在统一水热耦合框架下比较启动速度、约束状态及辅助能耗。
++质子交换膜燃料电池通过氢氧电化学反应输出电能并生成水，具有能量转化效率高、响应快和排放清洁等特点，在寒区交通与供能中具有应用潜力\cite{huang2021review}。环境温度低于冰点时，残余水及反应生成水容易冻结；冰占据催化层（CL）和气体扩散层（GDL）的孔隙后，会阻碍反应气体传输，并可能引起电压下降和启动失败\cite{luo2018review}。
++
++冷启动涉及电化学反应、传热、气体扩散、水迁移和水--冰相变。反应产热与环境散热决定温升，产水与冻结决定冰相积累；冰又通过有效传质能力和反应面积反馈于电压及产热。电堆中片间导热、端板热容和边界换热进一步造成温升差异，端部单电池更容易出现升温滞后和局部结冰\cite{ma2026endplate}。
++
++提高加载电流可增加反应热，也会增加产水\cite{min2022current}；辅助加热则需付出额外电能。因此，本文从单电池模型逐步扩展至电堆自启动、辅助加热和动态反馈控制，在统一水热耦合框架下比较启动速度、约束状态及辅助能耗。
+ 
+ \subsection{问题重述}
+@@ -76,4 +74,15 @@
+ 
+ 
++
++\begin{center}
++\begin{minipage}{\textwidth}
++\setlength{\parindent}{2em}
++上述四个问题依次由单电池机理建模推进至电堆加载优化、恒功率辅助加热和动态反馈控制，前一问的模型与结论为后一问提供基础，其递进关系如图\ref{fig:problem_progression}所示。\par\medskip
++\centering
++\includegraphics[width=0.80\textwidth]{figures/problem_progression.pdf}
++\captionof{figure}{问题一至四的递进关系}
++\label{fig:problem_progression}
++\end{minipage}
++\end{center}
+ 
+ \section{模型假设}
+@@ -129,9 +138,9 @@
+ 本章物理方程中的加载电流密度统一记为 $j_{\mathrm{SI}}$，单位为 $\mathrm{A\,m^{-2}}$；实验或控制曲线以 $\mathrm{A\,cm^{-2}}$ 表示时使用 $j=j_{\mathrm{SI}}/10^4$，控制体离散下标 $j$ 与电流无关。
+ 
+-问题一要求在常温一维模型基础上引入水--冰相变与冰堵效应，预测单电池平均温度、冰体积分数和电压，并利用实验数据校准与验证。关键是建立温度、水冰状态与电化学性能之间的动态耦合。
+-
+-低温冷启动过程本质上存在两组竞争关系：一是反应产热与环境散热的竞争，决定电池能否持续升温；二是反应产水与低温冻结的竞争，决定冰是否会在电池升温前大量积累。冰生成后将占据多孔介质孔隙，降低气体扩散能力并覆盖催化层有效反应区域，进而加剧极化损失并引起电压下降。
+-
+-本文将水划分为蒸气、液水和冰三相，以冰累积量修正孔隙率、扩散系数和催化层反应面积，并将相变潜热及双极板热惯性纳入能量守恒。该耦合框架参考多相冷启动研究\cite{mao2007}；相变时间尺度与膜水阈值另行声明。利用$-20\,^\circ\mathrm C$校准、$-25\,^\circ\mathrm C$留出验证检验其预测能力。
++问题一要求在常温一维模型基础上引入水--冰相变与冰堵效应，预测单电池平均温度、冰体积分数和电压，并利用实验数据校准与验证。关键是建立温度、水冰状态与电化学性能之间的动态耦合\cite{tao2022reduction}。
++
++低温冷启动过程本质上存在两组竞争关系：一是反应产热与环境散热的竞争，决定电池能否持续升温；二是反应产水与低温冻结的竞争，决定冰是否会在电池升温前大量积累。冰生成后将占据多孔介质孔隙，降低气体扩散能力并覆盖催化层有效反应区域，进而加剧极化损失并引起电压下降\cite{yao2020failure}。
++
++本文将水划分为蒸气、液水和冰三相，以冰累积量修正孔隙率、扩散系数和催化层反应面积，并将相变潜热及双极板热惯性纳入能量守恒。该耦合框架参考多相冷启动研究\cite{mao2007,jiao2009multiphase}；相变时间尺度与膜水阈值另行声明。利用$-20\,^\circ\mathrm C$校准、$-25\,^\circ\mathrm C$留出验证检验其预测能力。
+ 
+ 
+@@ -469,5 +478,5 @@
+ \item \textbf {PEM内膜水输运和膜-CL水交换}
+ 
+- PEM 中不存在独立气相孔隙，因此将 \(m_l\) 定义为未冻束缚水，将 \(m_i\) 定义为冻结膜水。膜内未冻水含量和总水含量分别为
++ PEM 中不存在独立气相孔隙，因此将 \(m_l\) 定义为未冻束缚水，将 \(m_i\) 定义为冻结膜水\cite{huo2019water}。膜内未冻水含量和总水含量分别为
+ \begin{equation}
+ \lambda_l = \frac{m_l}{W_\lambda}, \qquad \lambda_{\text{tot}} = \frac{m_l + m_i}{W_\lambda}, \qquad EW = 1 \, \text{kg mol}^{-1}. \label{eq:src:4-36}
+@@ -767,5 +776,5 @@
+ \item \textbf {水–冰相变潜热}
+ 
+-冷凝、冻结和凝华释放热量，而蒸发、融化和升华吸收热量。因此，相变体积热源统一写为
++冷凝、冻结和凝华释放热量\cite{otsuki2020}，而蒸发、融化和升华吸收热量。因此，相变体积热源统一写为
+ \begin{equation}
+ \dot{q}_{\text{pc}} = L_c(r_{\text{cond}} - r_{\text{evap}}) + L_f(r_{\text{frz}} - r_{\text{mlt}}) + L_s(r_{\text{dep}} - r_{\text{sub}}). \label{eq:src:4-65}
+@@ -1295,5 +1304,16 @@
+ 问题二将问题一的单电池模型扩展为5片串联电堆，在最大电流密度和累计电荷量约束下，优化恒流、线性升载和分段阶梯三类策略，以缩短启动时间；进一步搜索最低自启动初温，识别低于该温度时的关键单电池及失效原因。
+ 
+-各片承受相同电流且反应气体分配均匀，其差异主要来自片间导热与端部热边界。提高电流同时增加反应产热与产水，前者促进升温，后者可能增加冻结及极化损失；端部还受到环境散热和大热容端板吸热的影响。因此，策略优劣及限制启动的因素须由耦合模型与完整约束共同判断。
++各片承受相同电流且反应气体分配均匀，其差异主要来自片间导热与端部热边界。提高电流同时增加反应产热与产水，前者促进升温，后者可能增加冻结及极化损失\cite{liu2025ramping}；端部还受到环境散热和大热容端板吸热的影响。因此，策略优劣及限制启动的因素须由耦合模型与完整约束共同判断。
++\begin{center}
++\begin{minipage}{\textwidth}
++\setlength{\parindent}{2em}
++据此，本问先建立含端部热效应的五片电堆模型，再分别优化三类加载策略，并在统一启动判据下搜索最低可行初温，整体求解流程如图\ref{fig:q2_startup_flowchart}所示。\par\medskip
++\centering
++\includegraphics[width=1.0\textwidth]{figures/q2_startup_flowchart.pdf}
++\captionof{figure}{问题二：五片电堆瞬态自冷启动策略优化与最低初温搜索流程图}
++\label{fig:q2_startup_flowchart}
++\end{minipage}
++\end{center}
++
+ \subsection{五片电堆瞬态自冷启动模型的建立}
+ 五片内部沿用问题一的水—冰—电化学方程，以各片平均温度与堆叠方向热网络双向耦合。热源和输运方程使用$j_{\mathrm{SI}}=10^4j$（$\mathrm{A\,m^{-2}}$）；策略及电荷表使用$j$（$\mathrm{A\,cm^{-2}}$）。
+@@ -1753,5 +1773,5 @@
+ \item \textbf {分段阶梯加载策略}
+ 
+- 分段阶梯策略利用多个常值电流阶段逼近更一般的时变加载曲线。本文采用三段阶梯形式：
++ 分段阶梯策略利用多个常值电流阶段逼近更一般的时变加载曲线\cite{lei2022loading}。本文采用三段阶梯形式：
+ \begin{equation}
+ j(t) = \begin{cases}
+@@ -2063,7 +2083,18 @@
+ \subsection{问题描述和分析}
+ 
+-问题三要求在问题二五片电堆瞬态自冷启动模型的基础上，进一步考虑极低温环境下反应产热不足的问题，在各片单电池双极板内引入功率可独立调节的电热丝，建立电堆辅助冷启动模型。初始及环境温度降至 \(-30^\circ\mathrm C\) 后，电堆需要克服更大的升温需求，同时端部单电池还受到端板吸热和环境散热的共同作用，仅依靠电化学反应产热难以在有限电荷量内使五片单电池均越过冰点。因此，需要通过外部辅助热源弥补冷启动过程中的热量缺口。
++问题三要求在问题二五片电堆瞬态自冷启动模型的基础上，进一步考虑极低温环境下反应产热不足的问题，在各片单电池双极板内引入功率可独立调节的电热丝，建立电堆辅助冷启动模型。初始及环境温度降至 \(-30^\circ\mathrm C\) 后，电堆需要克服更大的升温需求，同时端部单电池还受到端板吸热和环境散热的共同作用，仅依靠电化学反应产热难以在有限电荷量内使五片单电池均越过冰点。因此，需要通过外部辅助热源弥补冷启动过程中的热量缺口\cite{li2019localheating,yang2021assisted}。
+ 
+ 根据辅助加热与电流加载的先后关系，本问分别研究纯预加热启动和恒定功率协同启动两种策略。纯预加热策略在加载电流前先利用电热丝提高电堆温度，可避免低温产水引起的大量结冰，但其升温所需热量主要由辅助加热承担；恒定功率协同策略则从启动初期同时施加电流和辅助加热，使电化学反应热与电热丝共同推动升温，但在电池越过冰点之前仍存在“产水—冻结—升温”的竞争过程。因此，两种策略在辅助能耗、启动过程和冰堵抑制能力之间具有不同的权衡关系。
++
++\begin{center}
++\begin{minipage}{\textwidth}
++\setlength{\parindent}{2em}
++围绕上述权衡，本问在统一辅助冷启动模型下分别优化两类策略的分片功率与加热时长，再比较辅助能耗、启动速度及端部冰堵抑制效果，具体流程如图\ref{fig:q3_heating_flowchart}所示。\par\medskip
++\centering
++\includegraphics[width=1.0\textwidth]{figures/q3_heating_flowchart.pdf}
++\captionof{figure}{问题三：电堆辅助冷启动策略优化与对比流程图}
++\label{fig:q3_heating_flowchart}
++\end{minipage}
++\end{center}
+ 
+ \subsection{五片电堆辅助冷启动模型的建立}
+@@ -2461,7 +2492,18 @@
+ 问题四允许各片电热丝功率随时间独立调节，要求利用单片温度、电压及其变化设计动态辅助加热策略，在满足启动与安全约束的条件下最小化辅助总能耗，并比较三种预冷工况下动态与恒功率控制的性能。同时，建立由常温向低温环境冷却的传热模型，研究预冷时间对初始温度场及后续恒功率启动的影响。
+ 
+-与前一问相比，初始状态由均匀低温扩展为预冷形成的非均匀温度场，加热输入由固定功率转为反馈调节。预冷程度决定初始储热及端部与中部温差，加载过程中产水、结冰和热负荷持续变化，因此控制器需要协调低温加热、风险响应和近目标降功率。
++与前一问相比，初始状态由均匀低温扩展为预冷形成的非均匀温度场，加热输入由固定功率转为反馈调节。预冷程度决定初始储热及端部与中部温差，加载过程中产水、结冰和热负荷持续变化，因此控制器需要协调低温加热、风险响应和近目标降功率\cite{yang2022efficient}。
+ 
+ 本文先将复合层状电堆的预冷终态映射为七节点初温，再结合独立状态观测、前馈与PI反馈形成分片控制律，通过离线搜索与独立扰动验证确定推荐方案，最后在统一加载和评价窗口下比较启动性能。
++
++\begin{center}
++\begin{minipage}{\textwidth}
++\setlength{\parindent}{2em}
++上述思路形成了从预冷初场计算、闭环功率调节到策略比较与预冷影响分析的完整流程，如图\ref{fig:q4_dynamic_flowchart}所示；下文依次给出模型、控制律及其数值验证。\par\medskip
++\centering
++\includegraphics[width=0.78\textwidth]{figures/q4_dynamic_flowchart.pdf}
++\captionof{figure}{问题四：电堆动态辅助加热控制策略优化与预冷影响分析流程图}
++\label{fig:q4_dynamic_flowchart}
++\end{minipage}
++\end{center}
+ 
+ \subsection{电堆预冷与动态辅助冷启动模型的建立}
+@@ -3378,10 +3420,24 @@
+ \section{参考文献}
+ %参考文献
+-\begin{thebibliography}{9}
++\begin{thebibliography}{99}
+ \setlength{\itemsep}{1mm}
++\bibitem{huang2021review} 黄天川, 刘志祥. 质子交换膜燃料电池系统低温启动技术研究进展[J]. 化工进展, 2021, 40(S1): 117--125. \href{https://doi.org/10.16085/j.issn.1000-6613.2021-0406}{DOI: 10.16085/j.issn.1000-6613.2021-0406}.
++\bibitem{luo2018review} Luo Y, Jiao K. Cold start of proton exchange membrane fuel cell[J]. Progress in Energy and Combustion Science, 2018, 64: 29--61. \href{https://doi.org/10.1016/j.pecs.2017.10.003}{DOI: 10.1016/j.pecs.2017.10.003}.
++\bibitem{ma2026endplate} Ma T, Du C, Gu Z, et al. Diagnosing the cold start failure of fuel cell system: End-plate cell's thermo-hydraulic imbalance and its mitigation through loading control[J]. Chemical Engineering Journal, 2026, 538: 176737. \href{https://doi.org/10.1016/j.cej.2026.176737}{DOI: 10.1016/j.cej.2026.176737}.
++\bibitem{min2022current} Min H, Cao Q, Yu Y, et al. A cold start mode of proton exchange membrane fuel cell based on current control[J]. International Journal of Hydrogen Energy, 2022, 47: 5507--5520. \href{https://doi.org/10.1016/j.ijhydene.2021.11.139}{DOI: 10.1016/j.ijhydene.2021.11.139}.
++\bibitem{tao2022reduction} Tao J, Wei X, Ming P, et al. Order reduction, simplification and parameters identification for cold start model of PEM fuel cell[J]. Energy Conversion and Management, 2022, 274: 116465. \href{https://doi.org/10.1016/j.enconman.2022.116465}{DOI: 10.1016/j.enconman.2022.116465}.
++\bibitem{yao2020failure} Yao L, Ma F, Peng J, et al. Analysis of the failure modes in the polymer electrolyte fuel cell cold-start process---anode dehydration or cathode pore blockage[J]. Energies, 2020, 13(1): 256. \href{https://doi.org/10.3390/en13010256}{DOI: 10.3390/en13010256}.
+ \bibitem{mao2007} Mao L, Wang C Y, Tabuchi Y. A multiphase model for cold start of polymer electrolyte fuel cells[J]. Journal of The Electrochemical Society, 2007, 154(3): B341--B351. \href{https://doi.org/10.1149/1.2430651}{DOI: 10.1149/1.2430651}.
++\bibitem{jiao2009multiphase} Jiao K, Li X. Three-dimensional multiphase modeling of cold start processes in polymer electrolyte membrane fuel cells[J]. Electrochimica Acta, 2009, 54: 6876--6891. \href{https://doi.org/10.1016/j.electacta.2009.06.072}{DOI: 10.1016/j.electacta.2009.06.072}.
+ \bibitem{buck1996manual} Buck Research Instruments. CR-2 Hygrometer User's Manual: Appendix 1, Humidity Conversion Equations (revised 7/96)[M/OL]. 2009: 19--20. \url{https://www.hygrometers.com/wp-content/uploads/CR-2-users-manual-2009-12.pdf}.
++\bibitem{huo2019water} Huo S, Jiao K, Park J W. On the water transport behavior and phase transition mechanisms in cold start operation of PEM fuel cell[J]. Applied Energy, 2019, 233--234: 776--788. \href{https://doi.org/10.1016/j.apenergy.2018.10.068}{DOI: 10.1016/j.apenergy.2018.10.068}.
+ \bibitem{springer1991} Springer T E, Zawodzinski T A, Gottesfeld S. Polymer electrolyte fuel cell model[J]. Journal of The Electrochemical Society, 1991, 138(8): 2334--2342. \href{https://doi.org/10.1149/1.2085971}{DOI: 10.1149/1.2085971}.
+ \bibitem{pasaogullari2004} Pasaogullari U, Wang C Y. Two-phase transport and the role of micro-porous layer in polymer electrolyte fuel cells[J]. Electrochimica Acta, 2004, 49: 4359--4369. \href{https://doi.org/10.1016/j.electacta.2004.04.027}{DOI: 10.1016/j.electacta.2004.04.027}.
++\bibitem{otsuki2020} Otsuki Y, Tamada Y, Inoue S, et al. Measurement of solidification heat from supercooled water freezing during PEFC cold start and visualization of ice distribution[J]. International Journal of Hydrogen Energy, 2020, 45: 15600--15610. \href{https://doi.org/10.1016/j.ijhydene.2020.04.004}{DOI: 10.1016/j.ijhydene.2020.04.004}.
++\bibitem{liu2025ramping} Liu G, Xian L, Chen L, et al. Development and evaluation of a novel two-stage exponential current ramping strategy for low-temperature self-cold start of PEM fuel cells[J]. Energy Conversion and Management, 2025, 346: 120466. \href{https://doi.org/10.1016/j.enconman.2025.120466}{DOI: 10.1016/j.enconman.2025.120466}.
++\bibitem{lei2022loading} Lei L, He P, He P, et al. A comparative study: The effect of current loading modes on the cold start-up process of PEMFC stack[J]. Energy Conversion and Management, 2022, 251: 114991. \href{https://doi.org/10.1016/j.enconman.2021.114991}{DOI: 10.1016/j.enconman.2021.114991}.
++\bibitem{li2019localheating} Li L, Wang S, Yue L, et al. Cold-start method for proton-exchange membrane fuel cells based on locally heating the cathode[J]. Applied Energy, 2019, 254: 113716. \href{https://doi.org/10.1016/j.apenergy.2019.113716}{DOI: 10.1016/j.apenergy.2019.113716}.
++\bibitem{yang2021assisted} Yang Z, Jiao K, Wu K, et al. Numerical investigations of assisted heating cold start strategies for proton exchange membrane fuel cell systems[J]. Energy, 2021, 222: 119910. \href{https://doi.org/10.1016/j.energy.2021.119910}{DOI: 10.1016/j.energy.2021.119910}.
++\bibitem{yang2022efficient} Yang X, Sun J, Sun S, et al. An efficient cold start strategy for proton exchange membrane fuel cell stacks[J]. Journal of Power Sources, 2022, 542: 231492. \href{https://doi.org/10.1016/j.jpowsour.2022.231492}{DOI: 10.1016/j.jpowsour.2022.231492}.
+ \end{thebibliography}
+ 
